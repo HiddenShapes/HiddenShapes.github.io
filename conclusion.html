@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Concluding remarks | The shape of a theorem</title>
+  <meta name="description" content="6 Concluding remarks | The shape of a theorem" />
+  <meta name="generator" content="bookdown 0.22.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Concluding remarks | The shape of a theorem" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Concluding remarks | The shape of a theorem" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="shape.html"/>
+<link rel="next" href="acknowledgements.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>The shape of a theorem</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
+<li class="chapter" data-level="2" data-path="projective.html"><a href="projective.html"><i class="fa fa-check"></i><b>2</b> Points at infinity</a></li>
+<li class="chapter" data-level="3" data-path="proof.html"><a href="proof.html"><i class="fa fa-check"></i><b>3</b> Proving Pappus</a></li>
+<li class="chapter" data-level="4" data-path="ceva.html"><a href="ceva.html"><i class="fa fa-check"></i><b>4</b> Variations on Ceva</a></li>
+<li class="chapter" data-level="5" data-path="shape.html"><a href="shape.html"><i class="fa fa-check"></i><b>5</b> The hidden shape</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><font size=7px>The shape of a theorem</font></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conclusion" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Concluding remarks</h1>
+<p><a href = "shape.html">The previous section</a> suggests a fairly radical proof strategy: swap out the torus <span class="math inline">\(\mathcal{S}\)</span> for a different triangulated surface and see what you prove. Well, once again Prof. Jürgen Richter-Hebert rose to the occasion and developed these ideas into a computable algorithm <span class="citation">(<a href="references.html#ref-RichterGebertMeditationsOC" role="doc-biblioref">Richter-Gebert 2006</a>)</span>. In truth, to get a truly impressive proof strategy you need to flesh out the material we’ve covered a bit. In particular, you need to be able to equip the triangles in your triangulation, not just with a Pappus configuration, but also with a Menelaus configuration (which has its own associated theorem). From now on we shall use the term <q>TS proof</q> to denote a proof that uses this strategy (the <q>TS</q> stands for <q>Triangulated Surface</q>).</p>
+<p>To conclude this essay we explore aspects of the TS proof system in the style of the papers <span class="citation"><a href="references.html#ref-RichterGebertMeditationsOC" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-RichterGebertMeditationsOC" role="doc-biblioref">2006</a>)</span> and <span class="citation"><a href="references.html#ref-Apel2010CancellationPI" role="doc-biblioref">Apel and Richter-Gebert</a> (<a href="references.html#ref-Apel2010CancellationPI" role="doc-biblioref">2010</a>)</span>: by individually addressing a list of questions and topics.</p>
+<p><font size=2em></p>
+<ul>
+<li><p><em>What happens if we glue our geometric configurations around a different triangulated surface?</em> The answer to this question is exactly what one would hope for: you prove loads of different theorems. The wonderful fact is that the TS proof strategy isn’t just elegant, it’s also really <em>powerful</em>. Remember back in <a href="proof.html#proof">Section <a href="proof.html#proof">3</a></a> where we discussed binomial proofs? Well, it turns out that there’s a deep connection between that proof strategy and the TS proof strategy. It’s been shown that any theorem which admits a binomial proof admits a TS proof <span class="citation">(<a href="references.html#ref-Apel2010CancellationPI" role="doc-biblioref">Apel and Richter-Gebert 2010</a>)</span>. This includes many well-knows results: Miguel’s theorem, Desargues’ theorem, Thales’ theorem… For an impressive collection of such results, see <span class="citation"><a href="references.html#ref-Crapo1995AutomaticPO" role="doc-biblioref">Crapo and Richter-Gebert</a> (<a href="references.html#ref-Crapo1995AutomaticPO" role="doc-biblioref">1995</a>)</span> .</p></li>
+<li><p><em>The <q>proof landscape</q>.</em> My favourite aspect of the TS proof strategy is the perspective it gives on the landscape of all projective incidence proofs. Sure binomial proofs already gave as a systematic way of exploring that landscape, but the TS proof strategy gives us one that’s so much richer. Exploring the landscape via binomial proofs essentially labels a proof by its hypotheses and conclusion, pretty standard stuff. Exploring with the TS proof strategy labels a proof by a triangulated surface (!) and assignment of either Ceva or Menelaus to each triangle. So many interesting questions fall out of this perspective. What happens if we <q>glue</q> two proofs together by gluing their triangulated surfaces together?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Is there a connection between Pappus being the <a href="proof.html#small_pappus">simplest non-trivial binomial theorem</a> and the torus being the simplest topologically non-trivial surface? And finally, leading to our next question, can we really assign a shape to a theorem?</p></li>
+<li><p><em>Is there really such a thing as <q>the shape of a theorem</q>?</em> This question is explicitly addressed by <span class="citation"><a href="references.html#ref-Apel2010CancellationPI" role="doc-biblioref">Apel and Richter-Gebert</a> (<a href="references.html#ref-Apel2010CancellationPI" role="doc-biblioref">2010</a>)</span>. We reproduce their answer here:</p>
+<div style="max-width: 850px; margin-left: auto; margin-right: auto; margin-top: 1em; font-size:1.2em;margin-bottom: 1em;">
+<q>The manifold proofs [i.e. the TS proofs] come along with a natural topology. In particular we have seen two proofs of Pappos’s theorem and both beared the structure of a torus. Is the topological type of the proof an invariant of the theorem? So far we were not able to find Ceva-Menelaus proofs for Pappos’s theorem that had a different topological type (as long as we exclude the possibility of adding additional generic points).</q>
+</div>
+<p>It sounds like we have evidence for the answer being <q>yes</q>, but the question remains open!<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> This does mean that titling this essay <q>The shape of a theorem</q> was a bit tenuous… if any projective geometers are reading: please work on settling this question (preferably in the affirmative).</p></li>
+<li><p><em>Sure TS proofs have a certain elegance to them, but we already had binomial proofs and they seem simpler.</em> If you agree with this sentiment, I’m afraid that might be partly due to my biases and how they come across in this account. I really wanted to include binomial proofs to illustrate the power of TS proofs, but I didn’t want them to become the focus. For this reason, I presented binomial proofs in as economical a fashion as I could, whereas I drew out every single detail of the TS proof of Pappus’ theorem.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> This could give readers the impression that binomial proofs are simpler than they really are. In particular, not proving <a href="projective.html#basis_prop">Proposition B</a> sweeps a lot (i.e. projective transformations) under the rug. Let’s put it this way: if you’d kidnapped me just after finishing my BSc in maths, isolated me on an island and told me that I couldn’t leave until I’d proved Pappus’ theorem, I think it would be more likely that I’d stumble into the TS-proof rather than reinvent the foundations of projective geometry and provide a binomial proof.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<p>A potential reason to prefer TS proofs is that they tend to provide more <em>satisfying</em> explanations. If one interrogates the binomial proof of Pappus’ theorem as to <em>why</em> the result holds, it can feel like the only answer provided is <q>because the linear algebra says so</q>. On the other hand, the TS proof responds with <q>because you can equip this triangulated torus with compatible Ceva configurations</q>. Whether or not the second answer is more <em>illuminating</em> is probably up for debate, but it is certainly more expressive.</p></li>
+<li><p><em>Where did all the projective geometry go?</em> This is a fair question: we spent a lot of time setting up projective geometry at the beginning but then, as the essay progressed, it just sort of fell away. I did toy with the idea of removing any mention of projective geometry (which would’ve also allowed me to cut a certain amount of set-up). However, as previously mentioned, including binomial proofs felt important to sell the power of TS proofs. And you can’t even discuss binomial proofs without homogeneous coordinates. So I bit the bullet and wrote <a href="projective.html#projective">Section <a href="projective.html#projective">2</a></a>. On reflection, I think it turned out well. I like how simplifying the statement of Pappus’ theorem works surprisingly well as an initial motivation for introducing the projective framework.</p>
+<p>The fact that we didn’t need to refer back to projective ideas when developing our TS proof of Pappus’ theorem points, I feel, to a interesting aspect of TS proofs more generally. The proof strategy is essentially agnostic as to whether the configurations one attaches to the triangles are projective or Euclidean. In other words, whether or not the TS-proof strategy produces Euclidean or projective results comes down to whether or not we think of the corresponding Ceva and Menelaus configurations as Euclidean or projective. This seems different to the binomial proof strategy which, as far as I know, doesn’t have a Euclidean counterpart.</p></li>
+</ul>
+<p></font></p>
+
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>An example of this is explored in Section 7 of <span class="citation"><a href="references.html#ref-RichterGebertMeditationsOC" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-RichterGebertMeditationsOC" role="doc-biblioref">2006</a>)</span><a href="conclusion.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>I’m sure we all agree this is the most exciting possibility.<a href="conclusion.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Seriously, in most references the entirety of <a href="shape.html#shape">Section <a href="shape.html#shape">5</a></a> is condensed into a few sentences.<a href="conclusion.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Of course, it’s far more likely that I’d die of old age before finding either proof.<a href="conclusion.html#fnref13" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="shape.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="acknowledgements.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
