@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Points at infinity | The shape of a theorem</title>
+  <meta name="description" content="2 Points at infinity | The shape of a theorem" />
+  <meta name="generator" content="bookdown 0.22.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Points at infinity | The shape of a theorem" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Points at infinity | The shape of a theorem" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="proof.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>The shape of a theorem</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
+<li class="chapter" data-level="2" data-path="projective.html"><a href="projective.html"><i class="fa fa-check"></i><b>2</b> Points at infinity</a></li>
+<li class="chapter" data-level="3" data-path="proof.html"><a href="proof.html"><i class="fa fa-check"></i><b>3</b> Proving Pappus</a></li>
+<li class="chapter" data-level="4" data-path="ceva.html"><a href="ceva.html"><i class="fa fa-check"></i><b>4</b> Variations on Ceva</a></li>
+<li class="chapter" data-level="5" data-path="shape.html"><a href="shape.html"><i class="fa fa-check"></i><b>5</b> The hidden shape</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><font size=7px>The shape of a theorem</font></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="projective" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Points at infinity</h1>
+<p><em>If you are already familiar with the basics of projective geometry feel free to skip this section. You can always come back later if things get confusing.</em></p>
+<p>OK, it’s time to come clean, proving Pappus’ theorem <a href="index.html#pappus_thm">as stated previously</a> is going to be tricky. Not because it’s a particularly hard theorem to prove, but because in its current form it isn’t <em>strictly speaking true</em>. Well, maybe that’s a bit harsh. The problem is the hypothesis of the theorem assumes the existence of three points: <span class="math inline">\((A,Y) \cap (B,X)\)</span>, <span class="math inline">\((A,Z) \cap (C,X)\)</span> and <span class="math inline">\((B,Z) \cap (C,Y)\)</span>. Of course all the lines exist, but whose to say that they intersect? Indeed, there are instances of the Pappus configuration where two of those lines are parallel. If we <em>assume</em> that they all intersect then the theorem works fine, but perhaps a more elegant solution exists…</p>
+<p>This is where things get <em>projective</em>. When presenting projective geometry, people tend to focus on certain applications. They bring up <em>perspective</em>, <em>projections</em> and even the <em>Italian Renaissance</em>. I find such introductions to be a little overwrought. Like many parts of maths, my preferred approach revolves around one simple idea: convenience. It’s really annoying that sometimes lines don’t intersect! We should change that. How? We just need to add some new points.</p>
+<p>The initial clever idea is to notice that, if we imagine the plane (<span class="math inline">\(\mathbb{R}^{2}\)</span>) embedded into 3-dimensional space (<span class="math inline">\(\mathbb{R}^{3}\)</span>) at some fixed non-zero height, then to every point in the plane we can consider the line which passes though both that point and the origin:</p>
+<center>
+<iframe scrolling="no" title="projective" src="https://www.geogebra.org/material/iframe/id/g5sh3shg/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>So if to a point we can associate a line passing through the origin to what can we associate a line? Pleasingly, the answer is a <em>plane</em> passing through the origin:</p>
+<center>
+<iframe scrolling="no" title="projective_line" src="https://www.geogebra.org/material/iframe/id/jtfvdch9/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>You might have noticed that, while it is possible to assign an origin-passing line in <span class="math inline">\(\mathbb{R}^{3}\)</span> to every point in our embedded <span class="math inline">\(\mathbb{R}^{2}\)</span>, there are a few extra lines that will never be assigned to a point. But that exactly what we’re after: some extra points! So let’s just rush optimistically ahead and make an extended plane (called the projective plane) where points are <em>exactly</em> lines in <span class="math inline">\(\mathbb{R}^{3}\)</span> that pass through the origin.</p>
+<div class="Theorembox" id="elts_proj_def">
+<b style='font-size: 1.2em;'>Definition. </b> <i style='font-size: 1.2em;'>(points and lines in the projective plane) </i>
+<hr style="margin: 0.3em auto;">
+<p>A <em>point</em> in <span class="math inline">\(\mathbb{RP}^{2}\)</span> is a line in <span class="math inline">\(\mathbb{R}^{3}\)</span> which passes through the origin. A <em>line</em> in <span class="math inline">\(\mathbb{RP}^{2}\)</span> is the set of all such points that lie within a particular plane<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. In accordance with this terminology, three points in <span class="math inline">\(\mathbb{RP}^{2}\)</span> are said to be <em>collinear</em> if they all lie within the same plane. To visualise points and lines in <span class="math inline">\(\mathbb{RP}^{2}\)</span> we will often draw their intersection with the plane <span class="math inline">\(z=1\)</span>, as illustrated by the figures above.</p>
+</div>
+<p>The first thing to note is that this new space perfectly solves our original problem. Two origin-passing planes <em>always</em> intersect in an origin passing line so we automatically know that two lines in <span class="math inline">\(\mathbb{RP}^{2}\)</span> intersect in a point in <span class="math inline">\(\mathbb{RP}^{2}\)</span>. So how does this work when the two lines are parallel lines in <span class="math inline">\(\mathbb{R}^{2}\)</span>? Let’s have a look:</p>
+<center>
+<iframe scrolling="no" title="projective_line_intersec" src="https://www.geogebra.org/material/iframe/id/ystfgxwx/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>This is exactly what we want, the projective lines intersect in one of our extra projective points i.e. a line in <span class="math inline">\(\mathbb{R}^{3}\)</span> that doesn’t intersect our old embedded <span class="math inline">\(\mathbb{R}^{2}\)</span>. Such points are called <em>points at infinity</em>, a name that seems fitting for the intersection points of parallel lines. The set of all points at infinity gives a projective line, the unique <em>line at infinity</em>:</p>
+<center>
+<iframe scrolling="no" title="projective_line" src="https://www.geogebra.org/material/iframe/id/b7566mby/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>So we now know what a point in <span class="math inline">\(\mathbb{RP}^{2}\)</span> <em>is</em>, but practically speaking, how are we going to write one down? Well there’s a surprisingly straightforward system for this called <em>homogeneous coordinates</em>. The idea is to simply specify the coordinates of a single non-zero point in <span class="math inline">\(\mathbb{R}^{3}\)</span> that lies on the line.</p>
+<center>
+<iframe scrolling="no" title="projective_homogeneous_coords" src="https://www.geogebra.org/material/iframe/id/sya7fqbz/width
+/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>In the figure above you can move both the light blue dot (which changes the point in <span class="math inline">\(\mathbb{RP}^{2}\)</span>) and the dark blue dot (which gives possible homogeneous coordinates for that point). This figure illustrates how homogeneous coordinates are only defined up to scale. Despite this, they are extremely useful, as the following proposition demonstrates.</p>
+<div class="Theorembox" id="collinear_prop">
+<b style='font-size: 1.2em;'>Proposition A.</b> <i style='font-size: 1.2em;'>(collinearity in terms of homogeneous coordinates) </i>
+<hr style="margin: 0.3em auto;">
+<p>Let <span class="math inline">\(\mathcal{B}\)</span> be a basis of <span class="math inline">\(\mathbb{R}^{3}\)</span> and let <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> be points in <span class="math inline">\(\mathbb{RP}^{2}\)</span> with corresponding homogeneous coordinates <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span>. Then the following are equivalent,</p>
+<ul style="margin-bottom: -0.1em;">
+<li>
+<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are collinear
+</li>
+<li>
+<span class="math inline">\(\det M = 0\)</span>
+</li>
+</ul>
+<p>where <span class="math inline">\(M\)</span> is the matrix <span class="math inline">\({\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] d&amp;e&amp;f \\[-2ex] g&amp;h&amp;i \end{pmatrix}}\)</span>.</p>
+<p><i>Proof.</i> By definition, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are collinear if and only if the vectors <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span> lie within a common plane. This is equivalent to requiring that there exists a linear relation<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> between these three vectors, which is equivalent to requiring that <span class="math inline">\(\det M = 0\)</span>. <span class="math inline">\(\square\)</span></p>
+</div>
+<p>Now that we have the basics of projective geometry in hand, there remains one technical result we should go over before proceeding with Pappus’ theorem. As the focus of this essay is uncovering cool facts hidden behind Pappus’ theorem, not establishing the foundations of projective geometry, we won’t see a proof of this result (although a reference will be provided).</p>
+<p>A good way of thinking about projective geometry is that it’s just another attempt to solve geometric problems with algebra (like Cartesian coordinates). What distinguishes projective geometry that we insist that the algebra be <em>linear</em> (that’s why everything is represented by lines and planes that pass through the origin). A big part of the subject is therefore simply bringing the tools of linear algebra into play. If you’ve every studied any linear algebra you’ll know that <em>bases</em><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> play an important role. The analogous notion in projective geometry is a collection of point in general position.</p>
+<div class="Theorembox" id="general_pos_def">
+<b style='font-size: 1.2em;'>Definition. </b> <i style='font-size: 1.2em;'>(general position) </i>
+<hr style="margin: 0.3em auto;">
+<p>Four distinct points in <span class="math inline">\(\mathbb{RP}^{2}\)</span> are said to be <em>in general position</em> when no three of them are collinear.</p>
+</div>
+<p>So how do we actually use such a collection of points? Once again, we bring it back to linear algebra, having a collection of points in general position allows us to choose a special basis:</p>
+<div class="Theorembox" id="basis_prop">
+<b style='font-size: 1.2em;'>Proposition B. </b> <i style='font-size: 1.2em;'>(useful basis) </i>
+<hr style="margin: 0.3em auto;">
+<p>Let <span class="math inline">\(A,B,C,D \in \mathbb{RP}^{2}\)</span> be four distinct points in general position. Then there exists a basis <span class="math inline">\(\mathcal{B}\)</span> of <span class="math inline">\(\mathbb{R}^{3}\)</span> such that the homogeneous coordinates of <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span> are <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span>, <span class="math inline">\((0,0,1)\)</span> and <span class="math inline">\((1,1,1)\)</span> respectively.</p>
+<p><i>Proof.</i> See Section 2.2.5 in <span class="citation"><a href="references.html#ref-Cunha13" role="doc-biblioref">Bobenko</a> (<a href="references.html#ref-Cunha13" role="doc-biblioref">2020</a>)</span>, publicly available <a href="https://www3.math.tu-berlin.de/geometrie/Lehre/SS20/GeometryII/geometry1-projective.pdf">here</a>.</p>
+</div>
+<p>With this final technicality in place, it’s time to move on.</p>
+
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>By definition this plane must also contain the origin.<a href="projective.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>I.e. a way of adding together scalar multiples of two of them to give the third.<a href="projective.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>A basis is a set of vectors that is both linearly independent and spanning. For more, see <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">here</a>.<a href="projective.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="proof.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
