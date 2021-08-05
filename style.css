@@ -1,0 +1,63 @@
+.book .book-body .page-wrapper .page-inner {
+  max-width: 950px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h1{font-size:1.2em;margin-bottom:0em; line-height:220%}
+.book .book-body .page-wrapper .page-inner section.normal h2{font-size:1.2em;margin-top:0.2em;}
+
+h1 {
+  font-family: "MathJax_Main";
+}
+
+hr {
+  border-style: dashed;
+  color: #ffffff;
+}
+
+.csl-entry, p, ol, ul {
+  font-size: 1.2em;
+}
+
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+.Theorembox {
+  padding: 1em;
+  padding-bottom: 0em;
+  background: #dde0eb;
+  max-width: 900px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.center {
+  text-align: center;
+}
+
+.book.font-family-0 {font-family: "MathJax_Main";}
+
+.book .book-summary {
+  font-family: "MathJax_Main";
+  font-size: 1.3em;
+}
+
+.footnotes {
+  font-size: 0.85em;
+}
+

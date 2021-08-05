@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 The hidden shape | The shape of a theorem</title>
+  <meta name="description" content="5 The hidden shape | The shape of a theorem" />
+  <meta name="generator" content="bookdown 0.22.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 The hidden shape | The shape of a theorem" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 The hidden shape | The shape of a theorem" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ceva.html"/>
+<link rel="next" href="conclusion.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><b>The shape of a theorem</b></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
+<li class="chapter" data-level="2" data-path="projective.html"><a href="projective.html"><i class="fa fa-check"></i><b>2</b> Points at infinity</a></li>
+<li class="chapter" data-level="3" data-path="proof.html"><a href="proof.html"><i class="fa fa-check"></i><b>3</b> Proving Pappus</a></li>
+<li class="chapter" data-level="4" data-path="ceva.html"><a href="ceva.html"><i class="fa fa-check"></i><b>4</b> Variations on Ceva</a></li>
+<li class="chapter" data-level="5" data-path="shape.html"><a href="shape.html"><i class="fa fa-check"></i><b>5</b> The hidden shape</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><font size=7px>The shape of a theorem</font></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="shape" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> The hidden shape</h1>
+<p>Let’s have one final look at the Pappus configuration, but this time let’s pretend that we don’t know the conclusion.</p>
+<center>
+<iframe scrolling="no" title="pappus_with_intersections" src="https://www.geogebra.org/material/iframe/id/fz5h28fs/width/487/height/260/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="487px" height="260px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>The idea is to fix a triangle with exactly one vertex from each of the sets <span class="math inline">\(\{A,B,C\}\)</span>, <span class="math inline">\(\{X,Y,Z\}\)</span> and <span class="math inline">\(\{\alpha,\beta,\gamma\}\)</span>, e.g. <span class="math inline">\(A\alpha X\)</span>. Now we look for Ceva configurations on <span class="math inline">\(A\alpha X\)</span>. As the Ceva configuration is so simple finding them isn’t very hard, we just have to choose another point. Therefore, simply choosing the point <span class="math inline">\(Z\)</span> gives one and we can represent this symbolically by drawing a triangle labelled by <span class="math inline">\(Z\)</span>.</p>
+<center>
+<img src="triangle.svg" style="max-height: 150px; width:3000px;filter: invert(.5);-webkit-filter: invert(.5);"/>
+</center>
+<p>From now on, for any given point <span class="math inline">\(P\)</span>, the <em><span class="math inline">\(P\)</span>-configuration</em> is the Ceva configuration obtained by considering the triangle <span class="math inline">\(A\alpha X\)</span> together with the point <span class="math inline">\(P\)</span>. Let’s turn our focus to the <span class="math inline">\(Y\)</span>-configuration. The crucial realisation is that, as <span class="math inline">\(X,Y\)</span> and <span class="math inline">\(Z\)</span> are collinear, the <span class="math inline">\(Y\)</span>-configuration defines the same intersection point along <span class="math inline">\((A\alpha)\)</span> as the <span class="math inline">\(Z\)</span>-configuration:</p>
+<center>
+<iframe scrolling="no" title="pappus_shared_point" src="https://www.geogebra.org/material/iframe/id/etucggat/width/486/height/260/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="486px" height="260px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>This is exactly the compatibility condition that allows us to glue these two Ceva configurations along <span class="math inline">\((A\alpha)\)</span>. To symbolise this, we draw two triangles correspondingly glued together.</p>
+<center>
+<img src="two_triangles.svg" style="max-height: 150px; width:3000px;filter: invert(.5);-webkit-filter: invert(.5);"/>
+</center>
+<p>Similarly the <span class="math inline">\(B\)</span>-configuration can also be glued into the picture.</p>
+<center>
+<img width=0.5 src="three_triangles.svg" style="max-height: 150px; width:3000px;filter: invert(.5);-webkit-filter: invert(.5);"/>
+</center>
+<p>Adding the <span class="math inline">\(C\)</span>-configuration is a bit trickier. Not only does it define the same intersection point along <span class="math inline">\((AX)\)</span> as the <span class="math inline">\(Y\)</span>-configuration (as <span class="math inline">\(Y,\alpha\)</span> and <span class="math inline">\(C\)</span> are collinear), it <em>also</em> defines the same intersection point along <span class="math inline">\((\alpha X)\)</span> as the <span class="math inline">\(B\)</span>-configuration (as <span class="math inline">\(A,B\)</span> and <span class="math inline">\(C\)</span> are collinear):</p>
+<center>
+<iframe scrolling="no" title="pappus_shared_pair" src="https://www.geogebra.org/material/iframe/id/ruvu9nwy/width/486/height/260/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="486px" height="260px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>We can therefore glue the <span class="math inline">\(C\)</span>-configuration to the <span class="math inline">\(Y\)</span>-configuration along <span class="math inline">\((AX)\)</span> <em>and also</em> to the <span class="math inline">\(B\)</span>-configuration along <span class="math inline">\((\alpha X)\)</span>. To symbolise this we not only glue a triangle labelled <span class="math inline">\(C\)</span> to the triangle labelled <span class="math inline">\(Y\)</span>, but also identify the its <span class="math inline">\((\alpha X)\)</span> edge with the corresponding edge of the triangle labelled <span class="math inline">\(B\)</span>.</p>
+<center>
+<img src="four_triangles.svg" style="max-height: 280px; width:3000px;"/>
+</center>
+<p>As is standard notation, we represent the identification of different edges by colouring those edges with a common colour and indicating an orientation (which makes the identification unambiguous). In the same manner we add in the <span class="math inline">\(\gamma\)</span>-configuration.</p>
+<center>
+<img  src="five_triangles.svg" style="max-height: 280px; width:3000px;"/>
+</center>
+<p>Here comes the final <em>coup de grâce</em>. Let’s consider the following triangulated surface.</p>
+<center>
+<img  src="surface.svg" style="max-height: 280px; width:3000px;"/>
+</center>
+<p>Our above discussion, demonstrates how we can equip each triangle on <span class="math inline">\(S\)</span> (except the top one) with a Ceva configuration coming from the points <span class="math inline">\(C,Y,Z,B,\gamma\)</span>. Furthermore, <a href="ceva.html#prop_ceva_glue">our compatible Ceva configurations proposition from the previous section</a> tells us that there exists a point <span class="math inline">\(\tilde{\beta}\)</span> such that the <span class="math inline">\(\tilde{\beta}\)</span>-configuration is compatible with all its adjacent configurations.</p>
+<center>
+<img  src="all_triangles.svg" style="max-height: 280px; width:3000px;"/>
+</center>
+<p>Let <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> be the intersection points that lie on <span class="math inline">\((A\alpha),(X\alpha)\)</span> and <span class="math inline">\((XA)\)</span> respectively. By definition, we have <span class="math inline">\(\tilde{\beta} = (XP) \cap (AQ)\)</span>. However, we also know that the <span class="math inline">\(\beta\)</span>-configuration is compatible with the <span class="math inline">\(C\)</span>-configuration (as <span class="math inline">\(X\)</span>,<span class="math inline">\(\beta\)</span> and <span class="math inline">\(C\)</span> are collinear) and the <span class="math inline">\(Z\)</span>-configuration (as <span class="math inline">\(A\)</span>,<span class="math inline">\(\beta\)</span> and <span class="math inline">\(Z\)</span> are collinear). Therefore <span class="math inline">\(\beta = (XP) \cap (AQ) = \tilde{\beta}\)</span>. But that means the <span class="math inline">\(\beta\)</span>-configuration is <em>also</em> compatible with the <span class="math inline">\(\gamma\)</span>-configuration and that’s equivalent to <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\gamma\)</span> being collinear (as it implies that the lines <span class="math inline">\((\alpha, \beta)\)</span> and <span class="math inline">\((\alpha, \gamma)\)</span> share the points <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(R\)</span> and therefore coincide). We’ve done it, <strong>we’ve proved Pappus’ theorem!</strong></p>
+<div class="Theorembox" id="rem_pappus_to_torus">
+<b style='font-size: 1.2em;'>Remark. </b> <i style='font-size: 1.2em;'> (explicitly drawing the Ceva configurations)</i>
+<hr style="margin: 0.3em auto;">
+<p>You might be wondering why, during our proof, we only saw symbolic depictions of <span class="math inline">\(A\alpha Z\)</span> being glued to itself. Why didn’t we just explicitly draw all the compatible Ceva configurations. The reason is that, if you start with a standard looking Pappus configuration (like <a href="pappus_with_intersections">this one</a>) then all the glued together Ceva configurations tend to look very chaotic. However, if you’re happy to start with a less standard looking Pappus configuration, you <em>can</em> explicitly draw all the resulting Ceva configurations into a coherent picture.</p>
+<center>
+<iframe scrolling="no" title="ceva_to_pappus" src="https://www.geogebra.org/material/iframe/id/k5epvtqn/width/850/height/380/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="850px" height="380px" style="border:0px;" allowfullscreen>
+</iframe>
+</center>
+<p>This figure is actually coded backwards (i.e. all the Ceva configurations are declared first and then the Pappus configuration is worked out). For this reason all the left-hand-side points are immobile, but moving the point labelled <span class="math inline">\(Z\)</span> on the right-hand-side varies the initial Ceva configurations.</p>
+</div>
+<p>Now that the proof’s complete, let’s just take a moment to bask in just how beautiful a proof it is. It almost feels like, once you’ve established Ceva’s theorem and written down the triangulated surface <span class="math inline">\(\mathcal{S}\)</span>, the theorem just <em>proves itself</em>. We didn’t really have to do anything, just interpret the consequences. Talking of <span class="math inline">\(S\)</span>, let’s try and get a better idea of what it actually looks like, starting by drawing it without the triangulation and labelling the glued edges.</p>
+<center>
+<img  src="no_triangles.svg" style="max-height: 200px; width:3000px;"/>
+</center>
+<p>We consider two paths on <span class="math inline">\(\mathcal{S}\)</span>: one, called <span style="color: purple;"><span class="math inline">\(d\)</span></span>, is obtained by following <span style="color: deeppink;"><span class="math inline">\(a\)</span></span> and then <span style="color: #48C3CD;"><span class="math inline">\(c\)</span></span> and the other, called <span style="color: darko+range;"><span class="math inline">\(e\)</span></span>, by following <span style="color: green;"><span class="math inline">\(b\)</span></span> and then the reverse of <span style="color: deeppink;"><span class="math inline">\(a\)</span></span>. Writing <span class="math inline">\(\mathcal{S}\)</span> with respect to these paths gives the following.</p>
+<center>
+<img  src="torus.svg" style="max-height: 180px; width:3000px;"/>
+</center>
+<p>If you still don’t recognise <span class="math inline">\(\mathcal{S}\)</span>, check out <a href="https://www.youtube.com/watch?v=0H5_h-RB0T8">this video</a>. The thick blue lines in that video correspond to our paths, <span style="color: purple;"><span class="math inline">\(d\)</span></span> and <span style="color: darkorange;"><span class="math inline">\(e\)</span></span>. That’s right, <span class="math inline">\(\mathcal{S}\)</span> is a <em>torus</em>.</p>
+<center>
+<img  src="3d_torus.svg" style="max-height: 180px; width:3000px; margin-bottom:1em"/>
+</center>
+<p>Personally, I find it cool that <span class="math inline">\(\mathcal{S}\)</span> is both a relatively simple, but topologically non-trivial surface. It’s also <em>so deeply embedded</em> into the theorem yet so hard to find. Have another look at <a href="proof.html#thm_pappus">the statement of Pappus’ theorem</a>. It’s hard to believe that all along there was a secret torus behind the scenes! Identifying <span class="math inline">\(\mathcal{S}\)</span> also raises a natural question: what happens it we use a <em>different</em> surface? Surely things can’t get even better?</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ceva.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
