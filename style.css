@@ -1,17 +1,108 @@
-@font-face{font-family:MathJax_Math; src:url('/includes/cssjs/katex/fonts/MathJax_Math.woff2') format('woff2');
-    font-weight:400;
-    font-style:italic}	
-@font-face{font-family:MathJax_Math; src:url('/includes/cssjs/katex/fonts/MathJax_Math-Italic.woff2') format('woff2');
-    font-weight:400;
-    font-style:italic}
-	
-@font-face{font-family:MathJax_Main; src:url('/includes/cssjs/katex/fonts/MathJax_Main-Regular.woff2') format('woff2');
-    font-weight:400;
-    font-style:normal}
-@font-face{font-family:MathJax_Main; src:url('/includes/cssjs/katex/fonts/MathJax_Main-Italic.woff2') format('woff2');
-    font-weight:400;
-    font-style:italic}
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-BoldItalic.eot');
+    src: url('STIXTwoText-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-BoldItalic.woff2') format('woff2'),
+        url('STIXTwoText-BoldItalic.woff') format('woff'),
+        url('STIXTwoText-BoldItalic.ttf') format('truetype'),
+        url('STIXTwoText-BoldItalic.svg#STIXTwoText-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
 
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-SemiBold.eot');
+    src: url('STIXTwoText-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-SemiBold.woff2') format('woff2'),
+        url('STIXTwoText-SemiBold.woff') format('woff'),
+        url('STIXTwoText-SemiBold.ttf') format('truetype'),
+        url('STIXTwoText-SemiBold.svg#STIXTwoText-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-Medium.eot');
+    src: url('STIXTwoText-Medium.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-Medium.woff2') format('woff2'),
+        url('STIXTwoText-Medium.woff') format('woff'),
+        url('STIXTwoText-Medium.ttf') format('truetype'),
+        url('STIXTwoText-Medium.svg#STIXTwoText-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-SemiBoldItalic.eot');
+    src: url('STIXTwoText-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-SemiBoldItalic.woff2') format('woff2'),
+        url('STIXTwoText-SemiBoldItalic.woff') format('woff'),
+        url('STIXTwoText-SemiBoldItalic.ttf') format('truetype'),
+        url('STIXTwoText-SemiBoldItalic.svg#STIXTwoText-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-Regular.eot');
+    src: url('STIXTwoText-Regular.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-Regular.woff2') format('woff2'),
+        url('STIXTwoText-Regular.woff') format('woff'),
+        url('STIXTwoText-Regular.ttf') format('truetype'),
+        url('STIXTwoText-Regular.svg#STIXTwoText-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-Italic.eot');
+    src: url('STIXTwoText-Italic.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-Italic.woff2') format('woff2'),
+        url('STIXTwoText-Italic.woff') format('woff'),
+        url('STIXTwoText-Italic.ttf') format('truetype'),
+        url('STIXTwoText-Italic.svg#STIXTwoText-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-Bold.eot');
+    src: url('STIXTwoText-Bold.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-Bold.woff2') format('woff2'),
+        url('STIXTwoText-Bold.woff') format('woff'),
+        url('STIXTwoText-Bold.ttf') format('truetype'),
+        url('STIXTwoText-Bold.svg#STIXTwoText-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'STIX Two Text';
+    src: url('STIXTwoText-MediumItalic.eot');
+    src: url('STIXTwoText-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('STIXTwoText-MediumItalic.woff2') format('woff2'),
+        url('STIXTwoText-MediumItalic.woff') format('woff'),
+        url('STIXTwoText-MediumItalic.ttf') format('truetype'),
+        url('STIXTwoText-MediumItalic.svg#STIXTwoText-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+.math { font-size: 95% !important; }
 
 .book .book-body .page-wrapper .page-inner {
   max-width: 950px;
@@ -21,7 +112,7 @@
 .book .book-body .page-wrapper .page-inner section.normal h2{font-size:1.2em;margin-top:0.2em;}
 
 h1 {
-  font-family: "MathJax_Main", serif;
+  font-family: 'STIX Two Text', serif;
 }
 
 hr {
@@ -31,6 +122,7 @@ hr {
 
 .csl-entry, p, ol, ul {
   font-size: 1.2em;
+  line-height: 1.8em;
 }
 
 p.caption {
@@ -41,6 +133,8 @@ p.caption {
 p code {
   white-space: inherit;
 }
+
+
 pre {
   word-break: normal;
   word-wrap: normal;
@@ -65,10 +159,12 @@ pre code {
   text-align: center;
 }
 
-.book.font-family-0 {font-family: "MathJax_Main", serif;}
+.book.font-family-0 {
+  font-family:'STIX Two Text', serif;
+}
 
 .book .book-summary {
-  font-family: "MathJax_Main", serif;
+  font-family: 'STIX Two Text', serif;
   font-size: 1.3em;
   width: 320px;
   position:absolute;
@@ -76,10 +172,13 @@ pre code {
   left:-350px;
 }
 
+.summary {
+  line-height: 1.2em;
+}
+
 .book.with-summary .book-header.fixed {
     left: 320px;
     padding-bottom: 53px;
-
 }
 
 .book.with-summary .book-body {
@@ -89,4 +188,3 @@ pre code {
 .footnotes {
   font-size: 0.85em;
 }
-
