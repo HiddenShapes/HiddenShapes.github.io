@@ -55,6 +55,19 @@ pre code {
 .book .book-summary {
   font-family: "MathJax_Main";
   font-size: 1.3em;
+  width: 320px;
+}
+
+.book.with-summary .book-header.fixed {
+    font-family: "MathJax_Main";
+    left: 320px;
+    font-size: .3em;
+}
+
+.book.with-summary .book-body {
+    font-family: "MathJax_Main";
+    left: 320px;
+    font-size: .3em;
 }
 
 .footnotes {
