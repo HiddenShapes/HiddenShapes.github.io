@@ -90,7 +90,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><b>The shape of a theorem</b></a></li>
+<li><a href="index.html"><b>The shape of a theorem</b></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
@@ -150,7 +150,7 @@ vertices to a common point <span class="math inline">\(D\)</span> (called the in
 </iframe>
 </center>
 <p>As the above can figure demonstrate (easier to see if you zoom out), <span class="math inline">\(D\)</span> need not be within the interior of <span class="math inline">\(ABC\)</span>.</p>
-<p><i>Proof.</i> OK, cards on the table, we’re not actually going to see a full proof of Ceva’s theorem. It’s not a hard theorem to prove, but the simplest arguments I know all use the notion of a <em>projective transformation/invariant</em> and that’s beyond the scope of this essay. A good reference for such proofs is Section 15.4 in <span class="citation"><a href="references.html#ref-10.5555/2031391" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-10.5555/2031391" role="doc-biblioref">2011</a>)</span>. However, proving the theorem’s Euclidean counterpart (i.e. we assume that <span class="math inline">\(D\)</span> is <em>not</em> a point at infinity) is pretty easy and gives a good intuition for why the result holds.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> So we will go over that proof.</p>
+<p><i>Proof.</i> OK, cards on the table, we’re not actually going to see a full proof of Ceva’s theorem. It’s not a hard theorem to prove, but the simplest arguments I know all use the notion of a <em>projective transformation/invariant</em> and that’s beyond the scope of this essay. A good reference for such proofs is Section 15.4 in <span class="citation"><a href="references.html#ref-10.5555/2031391" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-10.5555/2031391" role="doc-biblioref">2011</a>)</span>. However, proving the theorem’s Euclidean counterpart (i.e. we assume that <span class="math inline">\(D\)</span> is <em>not</em> a point at infinity) is pretty easy and gives a good intuition for why the result holds.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> So we will go over that proof.</p>
 <p>If <span class="math inline">\(D\)</span> is contained within the interior of <span class="math inline">\(ABC\)</span> then all the terms in the left-hand-side of the desired equation are positive. On the other hand, if <span class="math inline">\(D\)</span> is not contained within the interior of <span class="math inline">\(ABC\)</span> then exactly two of the terms are negative. Therefore <span class="math inline">\(\frac{|AX|}{|XB|} \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|}\)</span> is always positive and we only have to show that</p>
 <p><span class="math display">\[\begin{align*}
   \frac{\|AX\|}{\|XB\|}  \cdot \frac{\|BY\|}{\|YC\|} \cdot \frac{\|CZ\|}{\|ZA\|} = 1.
@@ -184,7 +184,7 @@ Combining these three equalities gives
 <span class="math display">\[\begin{align*}
   \frac{|AX|}{|XB|} \cdot \frac{|BX&#39;|}{|X&#39;A&#39;|} \cdot \frac{|A&#39;Z&#39;|}{|Z&#39;C|}\cdot \frac{|CZ|}{|ZA|}   = 1.
 \end{align*}\]</span></p>
-<p>But there’s no reason to stop with just two copies glued together. We can glue as many as we like! That said, the results won’t get much more interesting: we’ll just prove that an every-growing product of signed lengths along the perimeter evaluates to one. No, things get <em>really</em> interesting when we apply this perspective to <em>triangulated surfaces</em>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p>But there’s no reason to stop with just two copies glued together. We can glue as many as we like! That said, the results won’t get much more interesting: we’ll just prove that an every-growing product of signed lengths along the perimeter evaluates to one. No, things get <em>really</em> interesting when we apply this perspective to <em>triangulated surfaces</em>.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <p>Let’s consider a triangulated sphere, i.e. a sphere whose surface has been divided up into triangles. Now let’s imagine that, one by one, we fill each of the triangles with compatible <a href="ceva.html#thm_ceva">Ceva configurations</a> until exactly one triangle remains unfilled. What would that look like? Here’s a sphere I prepared earlier:</p>
 <center>
 <iframe scrolling="no" title="pappus_circle" src="https://www.geogebra.org/material/iframe/id/peawgujk/width/700/height/700/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="700px" style="border:0px;" allowfullscreen>
@@ -221,17 +221,17 @@ So, returning to our triangulated sphere, the equality we derived on the empty t
 <div class="Theorembox" id="prop_ceva_glue">
 <b style='font-size: 1.2em;'>Proposition. </b> <i style='font-size: 1.2em;'>(Compatible Ceva configurations) </i>
 <hr style="margin: 0.3em auto;">
-<p>Let <span class="math inline">\(\mathcal{S}\)</span> be a (compact, orientable) surface, let <span class="math inline">\(\mathcal{T}\)</span> be a triangulation of <span class="math inline">\(S\)</span><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and let <span class="math inline">\(T\)</span> be a distinguished triangle in <span class="math inline">\(\mathcal{T}\)</span>. We suppose that every triangle in <span class="math inline">\(\mathcal{T}\)</span> other that <span class="math inline">\(T\)</span> is equipped with a Ceva configuration such that adjacent configurations are compatible along their shared edge. Then <span class="math inline">\(T\)</span> admits a Ceva configuration that is compatible with all its adjacent configurations.</p>
+<p>Let <span class="math inline">\(\mathcal{S}\)</span> be a (compact, orientable) surface, let <span class="math inline">\(\mathcal{T}\)</span> be a triangulation of <span class="math inline">\(S\)</span><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> and let <span class="math inline">\(T\)</span> be a distinguished triangle in <span class="math inline">\(\mathcal{T}\)</span>. We suppose that every triangle in <span class="math inline">\(\mathcal{T}\)</span> other that <span class="math inline">\(T\)</span> is equipped with a Ceva configuration such that adjacent configurations are compatible along their shared edge. Then <span class="math inline">\(T\)</span> admits a Ceva configuration that is compatible with all its adjacent configurations.</p>
 </div>
 <p>Now we just have to prove Pappus’ theorem using this result.</p>
 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="7">
-<li id="fn7"><p>You can get a pretty good picture of what the theorem looks like when <span class="math inline">\(D\)</span> is a point at infinity by moving <span class="math inline">\(D\)</span> very far away from <span class="math inline">\(ABC\)</span> in the interactive figure (zooming out, and then back in with the mouse scroll helps a lot for this).<a href="ceva.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>Or, to be more precise, <a href="https://en.wikipedia.org/wiki/Orientability#Orientation_by_triangulation">compact orientable triangulated 2-manifolds</a>.<a href="ceva.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p>In other words, <span class="math inline">\(\mathcal{T}\)</span> is a collection of non-overlapping triangles that cover all of <span class="math inline">\(S\)</span>.<a href="ceva.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<ol start="8">
+<li id="fn8"><p>You can get a pretty good picture of what the theorem looks like when <span class="math inline">\(D\)</span> is a point at infinity by moving <span class="math inline">\(D\)</span> very far away from <span class="math inline">\(ABC\)</span> in the interactive figure (zooming out, and then back in with the mouse scroll helps a lot for this).<a href="ceva.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Or, to be more precise, <a href="https://en.wikipedia.org/wiki/Orientability#Orientation_by_triangulation">compact orientable triangulated 2-manifolds</a>.<a href="ceva.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>In other words, <span class="math inline">\(\mathcal{T}\)</span> is a collection of non-overlapping triangles that cover all of <span class="math inline">\(S\)</span>.<a href="ceva.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
