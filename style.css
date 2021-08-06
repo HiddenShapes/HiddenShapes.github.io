@@ -111,10 +111,6 @@
 .book .book-body .page-wrapper .page-inner section.normal h1{font-size:1.2em;margin-bottom:0em; line-height:220%}
 .book .book-body .page-wrapper .page-inner section.normal h2{font-size:1.2em;margin-top:0.2em;}
 
-h1 {
-  font-family: 'STIX Two Text', serif;
-}
-
 hr {
   border-style: dashed;
   color: #ffffff;
@@ -166,10 +162,8 @@ pre code {
 .book .book-summary {
   font-family: 'STIX Two Text', serif;
   font-size: 1.3em;
-  width: 320px;
   position:absolute;
   top:0;
-  left:-350px;
 }
 
 .summary {
@@ -177,14 +171,21 @@ pre code {
 }
 
 .book.with-summary .book-header.fixed {
-    left: 320px;
-    padding-bottom: 53px;
+  padding-bottom: 53px;
+  font-family: 'STIX Two Text', serif;  
 }
 
 .book.with-summary .book-body {
-    left: 320px;
+  overflow: hidden;
+}
+
+.book-body {
+  overflow: hidden;
 }
 
 .footnotes {
   font-size: 0.85em;
 }
+
+
+
