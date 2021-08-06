@@ -90,7 +90,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><b>The shape of a theorem</b></a></li>
+<li><a href="index.html"><b>The shape of a theorem</b></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
@@ -125,8 +125,8 @@ div.csl-indent {
 <h1><span class="header-section-number">2</span> Points at infinity</h1>
 <p><em>If you are already familiar with the basics of projective geometry feel free to skip this section. You can always come back later if things get confusing.</em></p>
 <p>OK, time to come clean, proving Pappus’ theorem <a href="index.html#pappus_thm">as stated previously</a> is going to be tricky. Not because it’s a particularly hard theorem to prove, but because in its current form it isn’t <em>strictly speaking true</em>. Well, maybe that’s a bit harsh. The problem is the hypothesis of the theorem assumes the existence of three points: <span class="math inline">\((A,Y) \cap (B,X)\)</span>, <span class="math inline">\((A,Z) \cap (C,X)\)</span> and <span class="math inline">\((B,Z) \cap (C,Y)\)</span>. Of course all the lines exist, but whose to say that they intersect? Indeed, there are instances of the Pappus configuration where two of those lines are parallel. If we <em>assume</em> that they all intersect then the theorem works fine, but perhaps a more elegant solution exists…</p>
-<p>This is where things get <em>projective</em>. When presenting projective geometry, people tend to focus on certain applications. They bring up <em>perspective</em>, <em>projections</em> and even the <em>Italian Renaissance</em>. I find such introductions to be a little overwrought. Like many parts of maths, my preferred approach revolves around one simple idea: convenience. It’s really annoying that sometimes lines don’t intersect! We should change that. How? We just need to add some new points.</p>
-<p>The initial clever idea is to notice that, if we imagine the plane (<span class="math inline">\(\mathbb{R}^{2}\)</span>) embedded into 3-dimensional space (<span class="math inline">\(\mathbb{R}^{3}\)</span>) at some fixed non-zero height, then to every point in the plane we can consider the line which passes though both that point and the origin:</p>
+<p>This is where things get <em>projective</em>. When presenting projective geometry, people tend to focus on certain applications. They bring up <em>perspective</em>, <em>projections</em> and even the <em>Italian Renaissance</em>. I find such introductions to be a little overwrought. Like many parts of maths, my preferred approach revolves around one simple idea: convenience. It’s really annoying that sometimes lines don’t intersect! We should change that. How? We just need to add a few new points.</p>
+<p>The initial idea is to notice that, if we imagine the plane (<span class="math inline">\(\mathbb{R}^{2}\)</span>) embedded into 3-dimensional space (<span class="math inline">\(\mathbb{R}^{3}\)</span>) at some fixed non-zero height, then for every point in the plane we can consider the line which passes though both that point and the origin:</p>
 <center>
 <iframe scrolling="no" title="projective" src="https://www.geogebra.org/material/iframe/id/g5sh3shg/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
 </iframe>
@@ -147,7 +147,7 @@ div.csl-indent {
 <iframe scrolling="no" title="projective_line_intersec" src="https://www.geogebra.org/material/iframe/id/ystfgxwx/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
 </iframe>
 </center>
-<p>This is exactly what we want, the projective lines intersect in one of our extra projective points i.e. a line in <span class="math inline">\(\mathbb{R}^{3}\)</span> that doesn’t intersect our old embedded <span class="math inline">\(\mathbb{R}^{2}\)</span>. Such points are called <em>points at infinity</em>, a name that seems fitting for the intersection points of parallel lines. The set of all points at infinity gives a projective line, the unique <em>line at infinity</em>:</p>
+<p>This is exactly what we want, the projective lines intersect in one of our extra projective points i.e. an origin-passing line in <span class="math inline">\(\mathbb{R}^{3}\)</span> that doesn’t intersect our old embedded <span class="math inline">\(\mathbb{R}^{2}\)</span>. Such points are called <em>points at infinity</em>, a name that seems fitting for the intersection points of parallel lines. The set of all points at infinity gives a projective line, the unique <em>line at infinity</em>:</p>
 <center>
 <iframe scrolling="no" title="projective_line" src="https://www.geogebra.org/material/iframe/id/b7566mby/width/700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
 </iframe>
@@ -158,11 +158,11 @@ div.csl-indent {
 /700/height/300/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="300px" style="border:0px;" allowfullscreen>
 </iframe>
 </center>
-<p>In the figure above you can move both the light blue dot (which changes the point in <span class="math inline">\(\mathbb{RP}^{2}\)</span>) and the dark blue dot (which gives possible homogeneous coordinates for that point). This figure illustrates how homogeneous coordinates are only defined up to scale. Despite this, they are extremely useful, as the following proposition demonstrates.</p>
+<p>In the figure above you can move both the light blue dot (which changes the point in <span class="math inline">\(\mathbb{RP}^{2}\)</span>) and the dark blue dot (which gives possible homogeneous coordinates for that point). This figure illustrates how homogeneous coordinates are only defined up to scale.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Despite this, they are extremely useful as the following proposition demonstrates.</p>
 <div class="Theorembox" id="collinear_prop">
 <b style='font-size: 1.2em;'>Proposition A.</b> <i style='font-size: 1.2em;'>(collinearity in terms of homogeneous coordinates) </i>
 <hr style="margin: 0.3em auto;">
-<p>Let <span class="math inline">\(\mathcal{B}\)</span> be a basis of <span class="math inline">\(\mathbb{R}^{3}\)</span> and let <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> be points in <span class="math inline">\(\mathbb{RP}^{2}\)</span> with corresponding homogeneous coordinates <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span>. Then the following are equivalent,</p>
+<p>Let <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> be points in <span class="math inline">\(\mathbb{RP}^{2}\)</span> with corresponding homogeneous coordinates <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span>. Then the following are equivalent,</p>
 <ul style="margin-bottom: -0.1em;">
 <li>
 <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are collinear
@@ -172,10 +172,10 @@ div.csl-indent {
 </li>
 </ul>
 <p>where <span class="math inline">\(M\)</span> is the matrix <span class="math inline">\({\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] d&amp;e&amp;f \\[-2ex] g&amp;h&amp;i \end{pmatrix}}\)</span>.</p>
-<p><i>Proof.</i> By definition, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are collinear if and only if the vectors <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span> lie within a common plane. This is equivalent to requiring that there exists a linear relation<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> between these three vectors, which is equivalent to requiring that <span class="math inline">\(\det M = 0\)</span>. <span class="math inline">\(\square\)</span></p>
+<p><i>Proof.</i> By definition, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are collinear if and only if the vectors <span class="math inline">\((a,b,c)\)</span>, <span class="math inline">\((d,e,f)\)</span> and <span class="math inline">\((g,h,i)\)</span> lie within a common plane. This is equivalent to requiring that there exists a linear relation<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> between these three vectors, which is equivalent to requiring that <span class="math inline">\(\det M = 0\)</span>. <span class="math inline">\(\square\)</span></p>
 </div>
 <p>Now that we have the basics of projective geometry in hand, there remains one technical result we should go over before proceeding with Pappus’ theorem. As the focus of this essay is uncovering cool facts hidden behind Pappus’ theorem, not establishing the foundations of projective geometry, we won’t see a proof of this result (although a reference will be provided).</p>
-<p>A good way of thinking about projective geometry is that it’s just another attempt to solve geometric problems with algebra (like Cartesian coordinates). What distinguishes projective geometry that we insist that the algebra be <em>linear</em> (that’s why everything is represented by lines and planes that pass through the origin). A big part of the subject is therefore simply bringing the tools of linear algebra into play. If you’ve every studied any linear algebra you’ll know that <em>bases</em><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> play an important role. The analogous notion in projective geometry is a collection of point in general position.</p>
+<p>A good way of thinking about projective geometry is that it’s just another attempt to solve geometric problems with algebra (like Cartesian coordinates). What distinguishes projective geometry that we insist that the algebra be <em>linear</em> (that’s why everything is represented by lines and planes that pass through the origin). A big part of the subject is therefore simply bringing the tools of linear algebra into play. If you’ve every studied any linear algebra you’ll know that <em>bases</em><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> play an important role. The analogous notion in projective geometry is a collection of point in general position.</p>
 <div class="Theorembox" id="general_pos_def">
 <b style='font-size: 1.2em;'>Definition. </b> <i style='font-size: 1.2em;'>(general position) </i>
 <hr style="margin: 0.3em auto;">
@@ -188,15 +188,16 @@ div.csl-indent {
 <p>Let <span class="math inline">\(A,B,C,D \in \mathbb{RP}^{2}\)</span> be four distinct points in general position. Then there exists a basis <span class="math inline">\(\mathcal{B}\)</span> of <span class="math inline">\(\mathbb{R}^{3}\)</span> such that the homogeneous coordinates of <span class="math inline">\(A,B,C\)</span> and <span class="math inline">\(D\)</span> are <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span>, <span class="math inline">\((0,0,1)\)</span> and <span class="math inline">\((1,1,1)\)</span> respectively.</p>
 <p><i>Proof.</i> See Section 2.2.5 in <span class="citation"><a href="references.html#ref-Cunha13" role="doc-biblioref">Bobenko</a> (<a href="references.html#ref-Cunha13" role="doc-biblioref">2020</a>)</span>, publicly available <a href="https://www3.math.tu-berlin.de/geometrie/Lehre/SS20/GeometryII/geometry1-projective.pdf">here</a>.</p>
 </div>
-<p>With this final technicality in place, it’s time to move on.</p>
+<p>This proposition highlights how homogeneous coordinates aren’t a fundamental property of a point in <span class="math inline">\(\mathbb{RP}^{2}\)</span> and <em>should only be though of with respect to a preferred basis</em> <a href="https://en.wikipedia.org/wiki/Change_of_basis">(just like regular coordinates in linear algebra)</a>. With this final technicality in place, it’s time to move on.</p>
 
 </div>
 <div class="footnotes">
 <hr />
 <ol start="2">
 <li id="fn2"><p>By definition this plane must also contain the origin.<a href="projective.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>I.e. a way of adding together scalar multiples of two of them to give the third.<a href="projective.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>A basis is a set of vectors that is both linearly independent and spanning. For more, see <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">here</a>.<a href="projective.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>In other words, the homogeneous coordinates <span class="math inline">\((a,b,c)\)</span> define the same point in <span class="math inline">\(\mathbb{RP}^{2}\)</span> as the homogeneous coordinates <span class="math inline">\(\lambda (a,b,c)\)</span> for any <span class="math inline">\(\lambda\)</span> in <span class="math inline">\(\mathbb{R}\)</span>.<a href="projective.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>I.e. a way of adding together scalar multiples of two of them to give the third.<a href="projective.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>A basis is a set of vectors that is both linearly independent and spanning. For more, see <a href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">here</a>.<a href="projective.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

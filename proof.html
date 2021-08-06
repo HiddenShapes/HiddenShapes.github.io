@@ -90,7 +90,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"><b>The shape of a theorem</b></a></li>
+<li><a href="index.html"><b>The shape of a theorem</b></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introductions</a></li>
@@ -123,7 +123,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="proof" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Proving Pappus</h1>
-<p>We’re now ready to prove Pappus’ Theorem. So let’s restate the theorem once more, but this time giving it the projective context it deserves. The proof will then immediately follow this restatement. By the way, I wouldn’t recommend computationally checking every step of this proof for yourself: not only could that become fairly tedious, it also wouldn’t necessarily provide much insight. The reason this proof is being presented it to illustrate it’s structure, what kind of arguments make it up. We’ll discuss this structure once the proof is done. OK, let’s go.</p>
+<p>We’re now ready to prove Pappus’ theorem. But remember, this proof is the first, not very exciting proof; the dramatic proof won’t be until <a href="shape.html">Section <a href="shape.html#shape">5</a></a>. Let’s restate the theorem once more, this time giving it the projective context it deserves. By the way, I wouldn’t recommend computationally checking every step of this proof for yourself: not only could that become fairly tedious, it also wouldn’t necessarily provide much insight. The reason this proof is being presented it to illustrate it’s structure: what kind of arguments make it up. We’ll discuss this structure once the proof is done. OK, let’s go.</p>
 <div class="Theorembox" id="pappus_thm">
 <b style='font-size: 1.2em;'>Pappus’ theorem.</b> <i style='font-size: 1.2em;'>(homogeneous coordinate proof) </i>
 <hr style="margin: 0.3em auto;">
@@ -144,14 +144,14 @@ div.csl-indent {
   \end{array}
 \]</span></p>
 <p></font></p>
-<p>As each matrix contains a standard vector row<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, each condition reduces to the vanishing of a 2×2 sub-matrix
+<p>As each matrix contains a standard vector row,<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> each condition reduces to the vanishing of a 2×2 sub-matrix
 giving the following equalities,</p>
 <p><span class="math display">\[
   \begin{array}[c]{llllllll}
     ce=bf, &amp; bj=ak, &amp; i=h, &amp; fm=do, &amp; ko=ln, &amp; dh=eg, &amp; a=c, &amp; gl=ij.
   \end{array}
 \]</span></p>
-<p>Multiplying all these equalities together and simplifying (possible by the non-degeneracy conditions<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>) reduces the equations to <span class="math inline">\(m=n\)</span> which is equivalent to</p>
+<p>Multiplying all these equalities together and simplifying (possible by the non-degeneracy conditions<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>) reduces to <span class="math inline">\(m=n\)</span> which is equivalent to</p>
 <p><span class="math display">\[\begin{align*}
      \begin{pmatrix} 0&amp;0&amp;1\\ m&amp;n&amp;o \\ 1&amp;1&amp;1 \end{pmatrix} =0 \quad \iff \quad \{\alpha,\beta,\gamma\} \text{ collinear.} 
   \end{align*}\]</span></p>
@@ -166,15 +166,15 @@ giving the following equalities,</p>
 <li>non-degeneracy data (<span class="math inline">\(\mathcal{B}\)</span>)</li>
 <li>a collection of conclusion intersections and collinearities (<span class="math inline">\(\mathcal{C}\)</span>)</li>
 </ul>
-<p>and would then decide whether or not <span class="math inline">\(\mathcal{C}\)</span> followed from <span class="math inline">\(\mathcal{H}\)</span> and <span class="math inline">\(\mathcal{B}\)</span>. A proof produced via this algorithm is called a <em>binomial proof</em>. <font id="small_pappus">The first genuinely intriguing fact I learnt about Pappus’ theorem was that it is the <em>simplest</em> non-trivial theorem which admits a binomial proof.</font></p>
+<p>and would then decide whether or not <span class="math inline">\(\mathcal{C}\)</span> followed from <span class="math inline">\(\mathcal{H}\)</span> and <span class="math inline">\(\mathcal{B}\)</span>. A proof produced via this algorithm is called a <em>binomial proof</em>. <font id="small_pappus">The first genuinely intriguing fact I learnt about Pappus’ theorem was that it’s the <em>simplest</em> non-trivial theorem which admits a binomial proof.</font></p>
 <p>This is all well and good, but the proofs produced by this algorithm are still going to admit the flaws we’ve already discussed. Perhaps a more illuminating (but equally powerful) proving strategy can be found.</p>
 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="5">
-<li id="fn5"><p>A row containing exactly one non-zero entry which is equal to <span class="math inline">\(1\)</span>.<a href="proof.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>The conditions that the triples of points are distinct and that <span class="math inline">\((A,C) \neq (X,Z)\)</span>. To illustrate how this allows cancellation, we give an explicit argument that division by <span class="math inline">\(a\)</span> is possible; analogous arguments hold for the other variables. By the non-degeneracy conditions, <span class="math inline">\(C\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(\alpha\)</span> are not collinear. Therefore <span class="math display">\[ 0 \neq \det{\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] 0&amp;1&amp;0 \\[-2ex] 0&amp;0&amp;1 \end{pmatrix}}=a. \]</span><a href="proof.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>A row containing exactly one non-zero entry which is equal to <span class="math inline">\(1\)</span>.<a href="proof.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>The conditions that the triples of points are distinct and that <span class="math inline">\((A,C) \neq (X,Z)\)</span>. To illustrate how this allows cancellation, we give an explicit argument that division by <span class="math inline">\(a\)</span> is possible; analogous arguments hold for the other variables. By the non-degeneracy conditions, <span class="math inline">\(C\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(\alpha\)</span> are not collinear. Therefore <span class="math display">\[ 0 \neq \det{\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] 0&amp;1&amp;0 \\[-2ex] 0&amp;0&amp;1 \end{pmatrix}}=a. \]</span><a href="proof.html#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
