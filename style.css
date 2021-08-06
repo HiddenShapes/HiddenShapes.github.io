@@ -6,7 +6,7 @@
 .book .book-body .page-wrapper .page-inner section.normal h2{font-size:1.2em;margin-top:0.2em;}
 
 h1 {
-  font-family: "MathJax_Main";
+  font-family: "MathJax_Main", serif;
 }
 
 hr {
@@ -50,10 +50,10 @@ pre code {
   text-align: center;
 }
 
-.book.font-family-0 {font-family: "MathJax_Main";}
+.book.font-family-0 {font-family: "MathJax_Main", serif;}
 
 .book .book-summary {
-  font-family: "MathJax_Main";
+  font-family: "MathJax_Main", serif;
   font-size: 1.3em;
   width: 320px;
   position:absolute;
