@@ -126,23 +126,25 @@ div.csl-indent {
 <h2 class="subtitle"><em><p style="font-style: normal; font-size: 28px;">
 (or Pappus revistited)
 </p></em></h2>
-<p class="author"><em><hr></em></p>
+<p class="author"><em>Leonard Hardiman
+<hr></em></p>
 </div>
 <div id="introductions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introductions</h1>
-<p>This essay is all about a very special proof, one that I first learnt around six years ago. Every few months I suddenly remember it, and my mind gets blown all over again. No other proof (so far) has that effect on me. I’ve never seen any online attempts to popularise it, so here’s my best try. Our journey will take us through a variety of mathematical disciplines: projective geometry, topology, computer assisted proofs… Like all the best maths, it involves interactions between disparate fields. So what theorem is this proof going to prove? Pappus’.</p>
-<p>The fact that a result like Pappus’ theorem has such a great proof is a big surprise (to me at least). You see, I’ve never been one to say things like <q>all of maths is beautiful</q>. Don’t get me wrong, I love maths. Most of my friends would agree, I get <em>too</em> excited about some maths. But Pappus’ theorem… well, let’s just take a look at it.</p>
-<div class="Theorembox" id="pappus_thm" style="padding-bottom: 1em;">
+<p>This essay is all about a very special proof, one that I first learnt around six years ago. Every few months I suddenly remember it, and my mind gets blown all over again. No other proof has had that effect on me and I’ve never seen any attempts to popularise it online. Our journey will take us through a variety of mathematical disciplines such as projective geometry, topology and computer assisted proofs. Like all the best maths, it involves interactions between disparate fields. So what theorem is this proof going to prove? Pappus’.</p>
+<p>The fact that a result like Pappus’ theorem has such a great proof is a big surprise (to me at least). You see, I’ve never been one to say things like <q>all of maths is beautiful</q>. Don’t get me wrong, I love maths. Most of my friends would agree, I get <em>too</em> excited about some maths. But Pappus’ theorem… well, let’s take a look at it.</p>
+<div class="Theorembox" id="pappus_thm">
 <b style='font-size: 1.2em;'>Pappus’ theorem.</b>
 <hr style="margin: 0.3em auto;">
 <p>Let <span class="math inline">\(\{A,B,C\}\)</span> and <span class="math inline">\(\{X,Y,Z\}\)</span> be two distinct triples of collinear points in <span class="math inline">\(\mathbb{R}^2\)</span> such that the lines <span class="math inline">\((A,B)\)</span> and <span class="math inline">\((X,Y)\)</span> don’t coincide. Then the points <span class="math inline">\((A,Y) \cap (B,X)\)</span>, <span class="math inline">\((A,Z) \cap (C,X)\)</span> and <span class="math inline">\((B,Z) \cap (C,Y)\)</span> are also collinear.</p>
 <div class="center">
-<iframe scrolling="no" title="pappus" src="https://www.geogebra.org/material/iframe/id/prf4uusy/width/487/height/260/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="487px" height="260px" style="border:0px;" allowfullscreen>
+<iframe scrolling="no" title="pappus" src="https://www.geogebra.org/material/iframe/id/prf4uusy/width/487/height/260/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="487px" height="260px" style="border:0px; margin-bottom:1em;" allowfullscreen>
 </iframe>
 </div>
+<p><em>Note:</em> Any brightly coloured dots in this figure (and subsequent ones) are interactive. Try moving them along the lines in the Pappus configuration above; you can also pan and zoom to get a better view if stuff moves off-screen.</p>
 </div>
-<p>Before proceeding, we’d better make sure we’re all on the same page, at least in terms of terminology. Three points are called <em>collinear</em> if they all lie on a common line, <span class="math inline">\(\mathbb{R}^2\)</span> is the set of pairs of real numbers and the <q><span class="math inline">\(\cap\)</span></q> symbol denotes intersection. From now on when technical terms come up, I’ll give their definition in a footnote like this one.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> While we’re discussing the conventions of this document, any brightly coloured dots in a figure should be interactive, try moving them along the lines in the Pappus configuration above. You can also pan and zoom to get a better view if stuff moves off-screen.</p>
-<p>Hopefully you can see what I was driving at before: Pappus’ theorem is just a bit dry. It falls right inline with Pythagoras and Thales’ theorems as the kind of thing mathematicians are always trying to convince people don’t form the entirety of the subject. Well, our goal today is to uncover a truly fascinating bit of structure underlying this seemingly innocuous result, which will then lead to the promised earth-shaking proof. However, before that, we’re going to have a look at a <em>different</em> proof of Pappus. And I warn you, this proof of Pappus’ theorem is <em>even more boring</em> that the statement. But that’s kind of the point. You’ll see.</p>
+<p>Before proceeding, let’s quickly clarify some terminology and notation. Three points are called <em>collinear</em> if they all lie on a common line, <span class="math inline">\(\mathbb{R}^2\)</span> is the set of pairs of real numbers and the <q><span class="math inline">\(\cap\)</span></q> symbol denotes intersection. From now on when technical terms come up, I’ll give their definition in a footnote like this one.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Hopefully you can see what I was driving at before: at first glance, Pappus’ theorem is just a bit dry. It falls right in line with Pythagoras and Thales’ theorems as the kind of thing mathematicians are always trying to convince people don’t form the entirety of the subject. Well, our goal today is to uncover a truly fascinating bit of structure underlying this seemingly innocuous result, which will then lead to the promised earth-shaking proof. However, before that, we’re going to have a look at a <em>different</em> proof of Pappus’s theorem. And I warn you, this proof is <em>even more boring</em> that the statement. But that’s kind of the point. You’ll see.</p>
 
 </div>
 <div class="footnotes">
