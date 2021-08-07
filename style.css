@@ -176,11 +176,6 @@ pre code {
 }
 
 .book.with-summary .book-body {
-  overflow: hidden;
-}
-
-.book-body {
-  overflow: hidden;
 }
 
 .footnotes {
