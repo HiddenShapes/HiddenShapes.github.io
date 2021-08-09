@@ -123,7 +123,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="proof" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Proving Pappus</h1>
-<p>We’re now ready to prove Pappus’ theorem. But remember, this proof is the first, not very exciting proof; the dramatic proof won’t be until <a href="shape.html">Section <a href="shape.html#shape">5</a></a>. Let’s restate the theorem once more, this time giving it the projective context it deserves. By the way, I wouldn’t recommend computationally checking every step of this proof for yourself: not only could that become fairly tedious, it also wouldn’t necessarily provide much insight. The reason this proof is being presented it to illustrate its structure: what kind of arguments make it up. We’ll discuss this structure once the proof is done. OK, let’s go.</p>
+<p>We’re now ready to prove Pappus’ theorem. But remember, this proof is the first, not very exciting proof; the dramatic proof won’t be until <a href="shape.html">Section <a href="shape.html#shape">5</a></a>. Let’s restate the theorem once more, this time giving it the projective context it deserves. By the way, I wouldn’t recommend computationally checking every step of this proof for yourself; not only could that become fairly tedious, it also wouldn’t necessarily provide much insight. The reason this proof is being presented is to illustrate its structure: what kind of arguments make it up. We’ll discuss this structure once the proof is done. OK, let’s go.</p>
 <div class="Theorembox" id="pappus_thm">
 <b style='font-size: 1.2em;'>Pappus’ theorem.</b> <i style='font-size: 1.2em;'>(homogeneous coordinate proof) </i>
 <hr style="margin: 0.3em auto;">
@@ -133,7 +133,7 @@ div.csl-indent {
 </iframe>
 </div>
 <p><em>Proof.</em> As <span class="math inline">\((A,C) \neq (X,Z)\)</span> the points <span class="math inline">\(A,X,\alpha\)</span> and <span class="math inline">\(\gamma\)</span> are in general position. We can therefore apply <a href="projective.html#basis_prop">Proposition B</a> and get a basis <span class="math inline">\(\mathcal{B}\)</span> of <span class="math inline">\(\mathbb{R}^{3}\)</span> with respect to which <span class="math inline">\(A,X,\alpha\)</span> and <span class="math inline">\(\gamma\)</span> have homogeneous coordinates <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span>, <span class="math inline">\((0,0,1)\)</span> and <span class="math inline">\((1,1,1)\)</span> respectively.</p>
-<p>Let <span class="math inline">\((a,b,c), (d,e,f),(g,h,i),(j,k,l)\)</span> and <span class="math inline">\((m,n,o)\)</span> be the homogeneous coordinates of <span class="math inline">\(B,C,Y,Z\)</span> and <span class="math inline">\(\beta\)</span> respectively (using the basis <span class="math inline">\(\mathcal{B}\)</span>). Thanks to <a href="projective.html#collinear_prop">Proposition C</a> we can translate the collinearities from the theorem’s hypothesis into the vanishing of certain discriminants:</p>
+<p>Let <span class="math inline">\((a,b,c), (d,e,f),(g,h,i),(j,k,l)\)</span> and <span class="math inline">\((m,n,o)\)</span> be the homogeneous coordinates of <span class="math inline">\(B,C,Y,Z\)</span> and <span class="math inline">\(\beta\)</span> respectively (using the basis <span class="math inline">\(\mathcal{B}\)</span>). Thanks to <a href="projective.html#collinear_prop">Proposition A</a> we can translate the collinearities from the theorem’s hypothesis into the vanishing of certain discriminants:</p>
 <p><font size=2em></p>
 <p><span class="math display">\[
   \begin{array}[c]{ccccccccccc}
@@ -146,35 +146,33 @@ div.csl-indent {
 <p></font></p>
 <p>As each matrix contains a standard vector row,<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> each condition reduces to the vanishing of a 2×2 sub-matrix
 giving the following equalities,</p>
-<p><span class="math display">\[
-  \begin{array}[c]{llllllll}
-    ce=bf, &amp; bj=ak, &amp; i=h, &amp; fm=do, &amp; ko=ln, &amp; dh=eg, &amp; a=c, &amp; gl=ij.
-  \end{array}
-\]</span></p>
-<p>Multiplying all these equalities together and simplifying (possible by the non-degeneracy conditions<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>) reduces to <span class="math inline">\(m=n\)</span> which is equivalent to</p>
+<p><span class="math display">\[\begin{align}
+  \begin{array}[c]{ll} 
+   ce=bf, &amp; bj=ak, &amp; i=h, &amp; fm=do, &amp; ko=ln, &amp; dh=eg, &amp; a=c, &amp; gl=ij.
+\end{array}\end{align}\]</span></p>
+<p>We next want to multiply all these equalities together and simplify, but first we have to check that the required cancellations are possible. To illustrate, we give an explicit argument that division by <span class="math inline">\(a\)</span> is possible; analogous arguments hold for the other variables. By the fact that the triples of points are distinct and that <span class="math inline">\((A,C) \neq (X,Z)\)</span> we have that <span class="math inline">\(C\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(\alpha\)</span> are not collinear. Therefore <span class="math display">\[ 0 \neq \det{\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] 0&amp;1&amp;0 \\[-2ex] 0&amp;0&amp;1 \end{pmatrix}}=a. \]</span> Once everything has been simplified, the equalities reduce to <span class="math inline">\(m=n\)</span>, which is equivalent to</p>
 <p><span class="math display">\[\begin{align*}
-     \begin{pmatrix} 0&amp;0&amp;1\\ m&amp;n&amp;o \\ 1&amp;1&amp;1 \end{pmatrix} =0 \quad \iff \quad \{\alpha,\beta,\gamma\} \text{ collinear.} 
+     \det \begin{pmatrix} 0&amp;0&amp;1\\ m&amp;n&amp;o \\ 1&amp;1&amp;1 \end{pmatrix} =0 \quad \iff \quad \{\alpha,\beta,\gamma\} \text{ collinear.} 
   \end{align*}\]</span></p>
 <p align="right">
 <span class="math inline">\(\square \qquad\)</span>
 </p>
 </div>
-<p>Perhaps the first thing to say about this proof is that it isn’t either particularly <em>illuminating</em> or <em>memorable</em>. It basically boils down to <q>write down homogeneous coordinates for everything in sight, translate the hypothesis collinearities into algebraic relations between the homogeneous coordinates and then see if these imply the algebraic condition corresponding to the conclusion</q>. In short, the proof is routine, technical and tedious, which makes it an ideal task for a computer. That’s why Dr. Jürgen Richter-Gebert wrote an algorithm that <em>generated projective proof/theorem pairs</em> based on this structure <span class="citation">(<a href="references.html#ref-RichterGebert1993" role="doc-biblioref">Richter-Gebert 1993</a>)</span>.</p>
-<p>In truth, the proof presented above does need some tweaking before it can be turned into an algorithm. Our choice of the basis <span class="math inline">\(\mathcal{B}\)</span> feels fairly specific to the Pappus configuration: there’s no reason why such a helpful basis should exist in another set-up. The solution to this problem is a bit beyond the scope of this essay, but in brief, one can use the <em><a href="https://en.wikipedia.org/wiki/Plücker_embedding">Grassmann–Plücker relations</a></em> to work in an equivalent manner without making a special choice of basis. One also has to systematise the argument that allows cancellations (i.e. how we proved that the coordinate <span class="math inline">\(a\)</span> was non-zero). This is done by introducing the notion of non-degeneracy data (which in our case was the claim that the triples of points were distinct and <span class="math inline">\((A,C) \neq (X,Z)\)</span>), this data can then be shown to allow certain cancellations. To summarise, Richter-Gebert wrote an algorithm that took as input</p>
+<p>Perhaps the first thing to say about this proof is that it isn’t either particularly <em>illuminating</em>. It basically boils down to, <q>write down homogeneous coordinates for everything in sight, translate the hypothesis collinearities into algebraic relations between the homogeneous coordinates and then see if these imply the algebraic condition corresponding to the conclusion</q>. In short, the proof is routine, technical and tedious, which makes it an ideal task for a computer. That’s why Richter-Gebert wrote an algorithm that generated <em>projective proof/theorem pairs</em> based on this structure <span class="citation">(<a href="references.html#ref-RichterGebert1993" role="doc-biblioref">Richter-Gebert 1993</a>)</span>.</p>
+<p>In truth, the proof presented above does need some tweaking before it can be turned into an algorithm. Our choice of the basis <span class="math inline">\(\mathcal{B}\)</span> is specific to the Pappus configuration: there’s no reason why such a helpful basis should exist in another set-up. The solution to this problem is a bit beyond the scope of this essay, but in brief, one can use the <em><a href="https://en.wikipedia.org/wiki/Plücker_embedding">Grassmann–Plücker relations</a></em> to work in an equivalent manner without making a special choice of basis. One also has to systematise the argument that allowed us to cancel certain terms (e.g. how we proved that the coordinate <span class="math inline">\(a\)</span> was non-zero). This is done by introducing the notion of non-degeneracy data, which in our case was the claim that the triples of points were distinct and <span class="math inline">\((A,C) \neq (X,Z)\)</span>. This data can then be shown to allow certain cancellations. To summarise, Richter-Gebert wrote an algorithm that took as input</p>
 <ul>
 <li>a collection of hypothesis intersections and collinearities (<span class="math inline">\(\mathcal{H}\)</span>)</li>
 <li>non-degeneracy data (<span class="math inline">\(\mathcal{B}\)</span>)</li>
 <li>a collection of conclusion intersections and collinearities (<span class="math inline">\(\mathcal{C}\)</span>)</li>
 </ul>
 <p>and would then decide whether or not <span class="math inline">\(\mathcal{C}\)</span> followed from <span class="math inline">\(\mathcal{H}\)</span> and <span class="math inline">\(\mathcal{B}\)</span>. A proof produced via this algorithm is called a <em>binomial proof</em>. <font id="small_pappus">The first genuinely intriguing fact I learnt about Pappus’ theorem was that it’s the <em>simplest</em> non-trivial theorem which admits a binomial proof.</font></p>
-<p>This is all well and good, but the proofs produced by this algorithm are still going to admit the flaws we’ve already discussed. Perhaps a more illuminating (but equally powerful) proving strategy can be found.</p>
+<p>This is all well and good, but the proofs produced by this algorithm are still going to admit the flaws we’ve already discussed. Perhaps a more illuminating (but equally powerful) proof strategy can be found.</p>
 
 </div>
 <div class="footnotes">
 <hr />
 <ol start="5">
 <li id="fn5"><p>A row containing exactly one non-zero entry which is equal to <span class="math inline">\(1\)</span>.<a href="proof.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>The conditions that the triples of points are distinct and that <span class="math inline">\((A,C) \neq (X,Z)\)</span>. To illustrate how this allows cancellation, we give an explicit argument that division by <span class="math inline">\(a\)</span> is possible; analogous arguments hold for the other variables. By the non-degeneracy conditions, <span class="math inline">\(C\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(\alpha\)</span> are not collinear. Therefore <span class="math display">\[ 0 \neq \det{\small \begin{pmatrix} a&amp;b&amp;c \\[-2ex] 0&amp;1&amp;0 \\[-2ex] 0&amp;0&amp;1 \end{pmatrix}}=a. \]</span><a href="proof.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
