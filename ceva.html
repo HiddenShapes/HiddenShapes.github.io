@@ -123,10 +123,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="ceva" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Variations on Ceva</h1>
-<p>The foundations of the rest of this essay are mainly composed of one result: Ceva’s theorem. Although it initially seems totally unrelated to Pappus’ theorem, our main result we eventually be a surprising and deep connection between the two.</p>
+<p>The foundations of the rest of this essay are mainly composed of one result: Ceva’s theorem. Although it initially seems totally unrelated to Pappus’ theorem, our main result will eventually be a surprising and deep connection between the two.</p>
 <p>In many ways, Ceva’s theorem is a much simpler result than Pappus’. The only real subtlety is becoming familiar with signed lengths. Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two points on an oriented line. The <em>signed length</em> from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span> is given by</p>
 <p><span class="math display">\[\begin{align*}
-  |AB| = \begin{cases} \hphantom{-}\|AB\| &amp; \text{if the orientation points from $A$ to $B$} \\ -\|AB\| &amp; \text{else}\end{cases}
+  |AB| = \begin{cases} \hphantom{-}\|AB\| &amp; \text{if the orientation points from $A$ to $B$} \\ -\|AB\| &amp; \text{otherwise}\end{cases}
 \end{align*}\]</span></p>
 <p>where <span class="math inline">\(\|AB\|\)</span> denotes the distance between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
 <!--Similarly, for an oriented triangle $ABC$, the *signed area* from $A$ to $B$ is given by
@@ -139,9 +139,8 @@ In particular we have $|AB|=-|BA|$ and $\Delta(ABC) = -\Delta(CBA)$.-->
 <div class="Theorembox" id="thm_ceva">
 <b style='font-size: 1.2em;'>Theorem. </b> <i style='font-size: 1.2em;'>(Ceva’s theorem) </i>
 <hr style="margin: 0.3em auto;">
-<p>Let <span class="math inline">\(ABC\)</span> be an oriented triangle in <span class="math inline">\(\mathbb{RP}^{2}\)</span>. Let the lines <span class="math inline">\(AD\)</span>, <span class="math inline">\(BD\)</span> and <span class="math inline">\(CD\)</span> be drawn from the
-vertices to a common point <span class="math inline">\(D\)</span> (called the intersection point) to meet opposite sides at <span class="math inline">\(Y, Z\)</span> and
-<span class="math inline">\(X\)</span> respectively. Then, the signed lengths of segments satisfy the relation,</p>
+<p>Let <span class="math inline">\(ABC\)</span> be an oriented triangle in <span class="math inline">\(\mathbb{RP}^{2}\)</span> and let <span class="math inline">\(D\)</span> be a point (called the <em>Ceva point</em>) that doesn’t lie on the lines <span class="math inline">\(AB\)</span>, <span class="math inline">\(BC\)</span> or <span class="math inline">\(AC\)</span>. Let the lines <span class="math inline">\(AD\)</span>, <span class="math inline">\(BD\)</span> and <span class="math inline">\(CD\)</span> meet the opposite sides of the triangle at <span class="math inline">\(Y, Z\)</span> and
+<span class="math inline">\(X\)</span> respectively (these points are called the <em>intersection points</em>). Then the signed lengths of segments satisfy the relation,</p>
 <p><span class="math display">\[\begin{align*}
   \frac{|AX|}{|XB|}  \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1.
 \end{align*}\]</span></p>
@@ -149,19 +148,19 @@ vertices to a common point <span class="math inline">\(D\)</span> (called the in
 <iframe scrolling="no" title="ceva" src="https://www.geogebra.org/material/iframe/id/yefdzvr8/width/700/height/400/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="400px" style="border:0px;" allowfullscreen>
 </iframe>
 </center>
-<p><em>Note:</em> As the above can figure demonstrate (easier to see if you zoom out), <span class="math inline">\(D\)</span> need not be within the interior of <span class="math inline">\(ABC\)</span>.</p>
-<p><i>Proof.</i> OK, cards on the table, we’re not actually going to see a full proof of Ceva’s theorem. It’s not a hard theorem to prove, but the simplest arguments I know all use the notion of a <em>projective transformation/invariant</em> and that’s beyond the scope of this essay. A good reference for such proofs is Section 15.4 in <span class="citation"><a href="references.html#ref-10.5555/2031391" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-10.5555/2031391" role="doc-biblioref">2011</a>)</span>. However, proving the theorem’s Euclidean counterpart (i.e. we assume that <span class="math inline">\(D\)</span> is <em>not</em> a point at infinity) is pretty easy and gives a good intuition for why the result holds.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> So we will go over that proof.</p>
+<p><em>Note:</em> In this figure (and subsequent ones) we colour Ceva points green and intersection points orange. Also, the above figure demonstrates that <span class="math inline">\(D\)</span> need not be within the interior of <span class="math inline">\(ABC\)</span> (easier to see if you zoom out).</p>
+<p><i>Proof.</i> OK, cards on the table, we’re not actually going to see a full proof of Ceva’s theorem. It’s not a hard theorem to prove, but the simplest arguments I know all use the notion of a <em>projective transformation/invariant</em> and that’s beyond the scope of this essay. A good reference for such proofs is Section 15.4 in <span class="citation"><a href="references.html#ref-10.5555/2031391" role="doc-biblioref">Richter-Gebert</a> (<a href="references.html#ref-10.5555/2031391" role="doc-biblioref">2011</a>)</span>. However, proving the theorem’s Euclidean counterpart (i.e. we assume that <span class="math inline">\(D\)</span> is not a point at infinity) is pretty easy and gives a good intuition for why the result holds.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> So we will go over that proof.</p>
 <p>If <span class="math inline">\(D\)</span> is contained within the interior of <span class="math inline">\(ABC\)</span> then all the terms in the left-hand-side of the desired equation are positive. On the other hand, if <span class="math inline">\(D\)</span> is not contained within the interior of <span class="math inline">\(ABC\)</span> then exactly two of the terms are negative. Therefore <span class="math inline">\(\frac{|AX|}{|XB|} \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|}\)</span> is always positive and we only have to show that</p>
 <p><span class="math display">\[\begin{align*}
   \frac{\|AX\|}{\|XB\|}  \cdot \frac{\|BY\|}{\|YC\|} \cdot \frac{\|CZ\|}{\|ZA\|} = 1.
 \end{align*}\]</span></p>
-<p>The area formula (area = height <span class="math inline">\(\times\)</span> base) tells us that, for any given height, a triangle’s area is proportional to the length of its base. We therefore have
+<p>The area formula for a triangle (area = <span class="math inline">\(\frac{1}{2}\times\)</span> height <span class="math inline">\(\times\)</span> base) tells us that, for any given height, a triangle’s area is proportional to the length of its base. We therefore have
 <span class="math display">\[\begin{align*}
-  \frac{\|BY\|}{\|YC\|}=\frac{\Delta(B,D,Y)}{\Delta(C,D,Y)}=\frac{\Delta(B,A,Y)}{\Delta(C,A,Y)} 
+  \frac{\|BY\|}{\|YC\|}=\frac{\Delta(B,A,Y)}{\Delta(C,A,Y)}=\frac{\Delta(B,D,Y)}{\Delta(C,D,Y)} 
 \end{align*}\]</span>
 where <span class="math inline">\(\Delta(B,D,Y)\)</span> denotes the area of <span class="math inline">\(BDY\)</span>. This implies
 <span class="math display">\[\begin{align*}
-  \frac{\|BY\|}{\|YD\|}=\frac{\Delta(B,A,Y)-\Delta(B,D,Y)}{\Delta(C,A,Y)-\Delta(C,D,Y)} = \frac{\Delta(B,A,D)}{\Delta(C,A,D)}.
+  \frac{\|BY\|}{\|YC\|}=\frac{\Delta(B,A,Y)-\Delta(B,D,Y)}{\Delta(C,A,Y)-\Delta(C,D,Y)} = \frac{\Delta(B,A,D)}{\Delta(C,A,D)}.
 \end{align*}\]</span>
 Similarly we get
 <span class="math display">\[\begin{align*}
@@ -175,22 +174,22 @@ Combining these three equalities gives
 <span class="math inline">\(\square \qquad\)</span>
 </p>
 </div>
-<p>One of the coolest things about Ceva’s therorem is that you can glue multiple copies of the theorem to itself. What does that mean? Well, let’s take a look at the following set up:</p>
+<p>One of the coolest things about Ceva’s therorem is that you can glue multiple copies of the theorem to itself. What does that mean? Let’s take a look at the following set up.</p>
 <center>
 <iframe scrolling="no" title="ceva_glued" src="https://www.geogebra.org/material/iframe/id/qxxf7gkn/width/700/height/500/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="500px" style="border:0px;" allowfullscreen>
 </iframe>
 </center>
-<p>Applying Ceva’s theorem on the left triangle tells us that <span class="math inline">\(\frac{|AX|}{|XB|} \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1\)</span>; applying it on the right-hand triangle tells us that <span class="math inline">\(\frac{|A&#39;Z&#39;|}{|Z&#39;C|} \cdot \frac{|CY|}{|YB|} \cdot \frac{|BX&#39;|}{|X&#39;A&#39;|} =1\)</span>. As <span class="math inline">\(\frac{|BY|}{|YC|} \cdot \frac{|CY|}{|YB|} = 1\)</span> (we note that requiring the quadrilateral <span class="math inline">\(ABA&#39;C\)</span> be oriented forces the induced orientations on <span class="math inline">\(ABC\)</span> and <span class="math inline">\(A&#39;BC\)</span> to disagree along the shared edge <span class="math inline">\(BC),\)</span> we get a result that only depends on points that lie on the perimeter of the quadrilateral <span class="math inline">\(ABA&#39;C\)</span>, namely
+<p>Applying Ceva’s theorem to the left-hand triangle tells us that <span class="math inline">\(\frac{|AX|}{|XB|} \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1\)</span>, while applying it to the right-hand triangle tells us that <span class="math inline">\(\frac{|A&#39;Z&#39;|}{|Z&#39;C|} \cdot \frac{|CY|}{|YB|} \cdot \frac{|BX&#39;|}{|X&#39;A&#39;|} =1\)</span>. We note that requiring the quadrilateral <span class="math inline">\(ABA&#39;C\)</span> be oriented forces the induced orientations on <span class="math inline">\(ABC\)</span> and <span class="math inline">\(A&#39;BC\)</span> to disagree along the shared line <span class="math inline">\(BC\)</span>; this is why the <span class="math inline">\(\frac{|BY|}{|YC|}\)</span> and <span class="math inline">\(\frac{|CY|}{|YB|}\)</span> terms are inversed. Therefore, by multiplying these two equalities, we get a result that only depends on points that lie on the perimeter of the quadrilateral <span class="math inline">\(ABA&#39;C\)</span>, namely
 <span class="math display">\[\begin{align*}
   \frac{|AX|}{|XB|} \cdot \frac{|BX&#39;|}{|X&#39;A&#39;|} \cdot \frac{|A&#39;Z&#39;|}{|Z&#39;C|}\cdot \frac{|CZ|}{|ZA|}   = 1.
 \end{align*}\]</span></p>
-<p>But there’s no reason to stop with just two copies glued together. We can glue as many as we like! That said, the results won’t get much more interesting: we’ll just prove that an every-growing product of signed lengths along the perimeter evaluates to one. No, things get <em>really</em> interesting when we apply this perspective to <em>triangulated surfaces</em>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
-<p>Let’s consider a triangulated sphere, i.e. a sphere whose surface has been divided up into triangles. Now let’s imagine that, one by one, we fill each of the triangles with compatible <a href="ceva.html#thm_ceva">Ceva configurations</a> until exactly one triangle remains unfilled. What would that look like? Here’s a sphere I prepared earlier:</p>
+<p>But there’s no reason to stop with just two copies glued together. We can glue as many as we like! That said, the results won’t get much more interesting: we’ll just prove that an ever-growing product of signed lengths along the perimeter evaluates to one. No, things get <em>really</em> interesting when we apply this perspective to <em>triangulated surfaces</em>.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>Let’s consider a triangulated sphere, i.e. a sphere whose surface has been divided up into triangles. Now let’s imagine that, one by one, we fill each of the triangles with compatible <a href="ceva.html#thm_ceva">Ceva configurations</a> until exactly one triangle remains unfilled. What would that look like? Here’s a sphere I prepared earlier.</p>
 <center>
 <iframe scrolling="no" title="pappus_circle" src="https://www.geogebra.org/material/iframe/id/peawgujk/width/700/height/700/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="700px" style="border:0px;" allowfullscreen>
 </iframe>
 </center>
-<p>You can move the green dot labelled <span class="math inline">\(D\)</span> to change the initial Ceva configuration and see how the others adapt (although moving the point into the exterior of its containing triangle with break things as drawing on a 3D surface is hard). Try and find the empty triangle (to get a good view of it I’d recommend using the full-screen button, shift-click to pan the camera and the mouse scroll to zoom in and out).</p>
+<p>You can move the Ceva point labelled <span class="math inline">\(D\)</span> to change the initial Ceva configuration and see how the others adapt (although moving the point into the exterior of its containing triangle will break things as drawing on a 3D surface is hard). Try to find the triangle without an interior Ceva point. To get a good view of it, I’d recommend using the full-screen button.</p>
 <p>If you’ve found the empty triangle, you’ll have seen that its corners are labelled <span class="math inline">\(A,B,C\)</span> and the intersection points caused by the surrounding Ceva configurations are labelled <span class="math inline">\(X,Y,Z\)</span>. Exactly as we described before, applying Ceva’s theorem to each triangle, multiplying all the resulting equalities together and then cancelling all possible terms, leads to an equality that only depends on points that lie on the perimeter i.e. our one remaining triangle. And what is that equality?
 <span class="math display">\[\begin{align*}
   \frac{|AX|}{|XB|}  \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1.
@@ -199,39 +198,39 @@ Huh, that’s funny. It’s exactly the conclusion we’d draw if <span class="m
 <div class="Theorembox" id="thm_ceva_cnv">
 <b style='font-size: 1.2em;'>Theorem. </b> <i style='font-size: 1.2em;'>(Converse to Ceva’s theorem) </i>
 <hr style="margin: 0.3em auto;">
-<p>Let <span class="math inline">\(ABC\)</span> be a triangle, let <span class="math inline">\(X \in (A,B) , \ Y \in (B,C)\)</span> and <span class="math inline">\(Z \in (C,A)\)</span> such that
+<p>Let <span class="math inline">\(ABC\)</span> be a triangle in <span class="math inline">\(\mathbb{RP}^{2}\)</span>, let <span class="math inline">\(X,Y\)</span> and <span class="math inline">\(Z\)</span> be points that lie on <span class="math inline">\(AB,BC\)</span> and <span class="math inline">\(CA\)</span> respectively, such that
 <span class="math display">\[\begin{align*}
   \frac{|AX|}{|XB|}  \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1
 \end{align*}\]</span>
-Then <span class="math inline">\((A,Y) , \ (B,Z)\)</span> and <span class="math inline">\((C,X)\)</span> are concurrent.</p>
-<p><i>Proof.</i> Let <span class="math inline">\(D = (A,Y) \cap (B,Z)\)</span> and <span class="math inline">\(\tilde{X}=(C,D) \cap (A,B)\)</span>. Then, by Ceva’s theorem,</p>
+Then <span class="math inline">\(AY , \ BZ\)</span> and <span class="math inline">\(CX\)</span> intersect in a single point.</p>
+<p><i>Proof.</i> Let <span class="math inline">\(D = AY \cap BZ\)</span> and <span class="math inline">\(\tilde{X}=CD \cap AB\)</span>. Then, by Ceva’s theorem,</p>
 <p><span class="math display">\[\begin{align*}
   \frac{|A\tilde{X}|}{|\tilde{X}B|}  \cdot \frac{|BY|}{|YC|} \cdot \frac{|CZ|}{|ZA|} = 1 \text{, and therefore }  \frac{|A\tilde{X}|}{|\tilde{X}B|} = \frac{|AX|}{|XB|}
 \end{align*}\]</span></p>
-<p>which, as <span class="math inline">\(X\)</span> and <span class="math inline">\(\tilde{X}\)</span> both lie on <span class="math inline">\((A,B)\)</span>, implies <span class="math inline">\(X = \tilde{X}\)</span>. <span class="math inline">\(\square\)</span></p>
+<p>which, as <span class="math inline">\(X\)</span> and <span class="math inline">\(\tilde{X}\)</span> both lie on <span class="math inline">\(AB\)</span>, implies <span class="math inline">\(X = \tilde{X}\)</span>. <span class="math inline">\(\square\)</span></p>
 </div>
 <p id="incidence_arg">
-So, returning to our triangulated sphere, the equality we derived on the empty triangle exactly tells us that <span class="math inline">\((A,Y) , \ (B,Z)\)</span> and <span class="math inline">\((C,X)\)</span> are concurrent.
+So, returning to our triangulated sphere, the equality we derived on the empty triangle exactly tells us that <span class="math inline">\(AY , \ BZ\)</span> and <span class="math inline">\(CX\)</span> intersect in a single point.
 </p>
 <center>
 <iframe scrolling="no" title="pappus_circle_com" src="https://www.geogebra.org/material/iframe/id/g7ddydfr/width/700/height/700/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="700px" style="border:0px;">
 </iframe>
 </center>
-<p>I find this really beautiful. Just by knowing Ceva’s theorem and how to glue copies of it together, we can automatically know the <em>incidence result</em> that <span class="math inline">\((A,Y) , \ (B,Z)\)</span> and <span class="math inline">\((C,X)\)</span> are concurrent. An important point to realise is that <em>no part of the argument we just made uses the fact that our surface was a sphere.</em> We therefore get the following, more general (if also a bit more wordy), statement.</p>
+<p>I find this really beautiful. Just by knowing Ceva’s theorem and how to glue copies of it together, we can automatically know the <em>incidence result</em> that <span class="math inline">\(AY,BZ\)</span> and <span class="math inline">\(CX\)</span> intersect in a single point. An important point to realise is that no part of the argument we just made uses the fact that our surface was a sphere. We therefore get the following, more general (if also a bit more wordy), statement.</p>
 <div class="Theorembox" id="prop_ceva_glue">
 <b style='font-size: 1.2em;'>Proposition. </b> <i style='font-size: 1.2em;'>(Compatible Ceva configurations) </i>
 <hr style="margin: 0.3em auto;">
-<p>Let <span class="math inline">\(\mathcal{S}\)</span> be a (compact, orientable) surface, let <span class="math inline">\(\mathcal{T}\)</span> be a triangulation of <span class="math inline">\(S\)</span><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and let <span class="math inline">\(T\)</span> be a distinguished triangle in <span class="math inline">\(\mathcal{T}\)</span>. We suppose that every triangle in <span class="math inline">\(\mathcal{T}\)</span> other that <span class="math inline">\(T\)</span> is equipped with a Ceva configuration such that adjacent configurations are compatible along their shared edge. Then <span class="math inline">\(T\)</span> admits a Ceva configuration that is compatible with all its adjacent configurations.</p>
+<p>Let <span class="math inline">\(\mathcal{S}\)</span> be a (compact, orientable) surface, let <span class="math inline">\(\mathcal{T}\)</span> be a triangulation of <span class="math inline">\(S\)</span><a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> and let <span class="math inline">\(T\)</span> be a distinguished triangle in <span class="math inline">\(\mathcal{T}\)</span>. Suppose that every triangle in <span class="math inline">\(\mathcal{T}\)</span> other that <span class="math inline">\(T\)</span> is equipped with a Ceva configuration such that adjacent configurations are compatible along their shared edge. Then <span class="math inline">\(T\)</span> admits a Ceva configuration that is compatible with all its adjacent configurations.</p>
 </div>
 <p>Now we just have to prove Pappus’ theorem using this result.</p>
 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="7">
-<li id="fn7"><p>You can get a pretty good picture of what the theorem looks like when <span class="math inline">\(D\)</span> is a point at infinity by moving <span class="math inline">\(D\)</span> very far away from <span class="math inline">\(ABC\)</span> in the interactive figure (zooming out, and then back in with the mouse scroll helps a lot for this).<a href="ceva.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>Or, to be more precise, <a href="https://en.wikipedia.org/wiki/Orientability#Orientation_by_triangulation">compact orientable triangulated 2-manifolds</a>.<a href="ceva.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p>In other words, <span class="math inline">\(\mathcal{T}\)</span> is a collection of non-overlapping triangles that cover all of <span class="math inline">\(S\)</span>.<a href="ceva.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>You can get a pretty good picture of what the theorem looks like when <span class="math inline">\(D\)</span> is a point at infinity by moving <span class="math inline">\(D\)</span> very far away from <span class="math inline">\(ABC\)</span> in the interactive figure (zooming out, and then back in with the mouse scroll helps a lot for this).<a href="ceva.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Or, to be more precise, <a href="https://en.wikipedia.org/wiki/Orientability#Orientation_by_triangulation">compact orientable triangulated 2-manifolds</a>.<a href="ceva.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>In other words, <span class="math inline">\(\mathcal{T}\)</span> is a collection of non-overlapping triangles that cover all of <span class="math inline">\(S\)</span>.<a href="ceva.html#fnref8" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
