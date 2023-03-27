@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:/config
+Allow:/
+Allow:/homes-www/jpousin/PHC-2rives
