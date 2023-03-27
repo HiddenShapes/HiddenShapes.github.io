@@ -1,0 +1,133 @@
+@font-face {
+font-family: "neo_euler";
+src: local("neo_euler"),
+ url("./fonts/neo-euler/ams-euler.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "blackout_sunrise";
+src: local("blackout_sunrise"),
+ url("./fonts/blackout-master/blackout_sunrise-webfont.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "blackout_midnight";
+src: local("blackout_midnight"),
+ url("./fonts/blackout-master/blackout_midnight-webfont.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "cmu";
+src: local("cmu"),
+ url("./fonts/CMU/cmunrm.otf") format("OpenType");
+}
+
+.reveal section * {
+  color: black;
+  font-family: "neo_euler";
+}
+
+#title-slide {
+  data-background: url(title_pic_2_f.png)
+}
+
+h1.title {
+  font-family: "blackout_sunrise";
+}
+
+h2.author {
+  font-family: "blackout_sunrise";
+}
+
+.backgrounds {
+  background-color: white !important;
+}
+
+.reveal section .Theorembox {
+  display: inline-block;
+  background: #dde0eb;
+  max-width: 900px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  font-size: 0.7em;
+  padding-bottom: 0.4em;
+}
+
+.reveal section li:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.reveal section .toc {
+  vertical-align: top;
+  display: inline-block;
+  padding-left: 0.1em;
+  font-size: 0.7em;
+  text-align: left;
+}
+
+.reveal section .center {
+  text-align: center;
+}
+
+.reveal section .left {
+  text-align: left
+  ;
+}
+
+.reveal section .right {
+  text-align: right
+  ;
+}
+
+#imcenter {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+
+.imleft {
+  display:inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.imright {
+  display:inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.my-bib {
+  text-align: left;
+  font-size: 0.6em;
+}
+
+
+ol {
+    counter-reset: list;
+}
+ol > li {
+    list-style: none;
+    position: relative;
+}
+ol > li:before {
+    counter-increment: list;
+    content: counter(list) ") ";
+    position: absolute;
+    left: -1.4em;
+}
+
+.reveal a {
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #3366CC;
+  ;
+}
+
+.reveal a:hover {
+  color: #3366CC;
+  text-decoration: underline;
+}
