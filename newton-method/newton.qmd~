@@ -1,0 +1,96 @@
+---
+title: Section 1.4.3
+subtitle: La méthode de Newton
+format:
+  revealjs:
+    incremental: true
+    progress: false
+    template-partials:
+      - title-slide.html
+    code-summary: "code"
+    theme: black
+    width: 1200
+    height: 720
+    transition: none
+    css: custom.css
+    chalkboard:
+        theme: whiteboard
+include-before-body: header.html
+jupyter: python3
+---
+
+## Points clés sur la méthode de Newton
+
+ - Pour estimer un zéro d'une fonction non linéaire 
+ - Une méthode de _point fixe_ (avec donc une fonction d'itération $g$)
+ - Convergence _quadratique_ (sous certaines conditions) 
+ 
+
+## Illustration de la méthode
+
+## Fonction d'itération 
+
+## Condition d'arrêt
+
+<div style="font-size:30px">
+Nous avons vu que pour une méthode de Picard avec une fonction d'itération <span style="color: gold;">$g \in C^1$</span>, il existe, $\forall n \in ℕ^*$, $\xi_{n} \in ℝ$ entre $\bar{x}$ et $x_{n}$ tel que,
+
+<div style="margin-top: -30px;">$$ \boxed{\bar{x} - x_{n} = \frac{1}{1-g'(\xi_n)}(x_{n+1}-x_n)}.$$</div>
+
+Nous avons conclus alors que $|x_{n+1}-x_n|$ estime bien l'erreur tant que $g'(\xi_n)$ n'est pas proche de 1.
+
+:::{.fragment}
+Comme, pour la méthode de Newton, 
+
+<div style="margin-top: -30px;">$$g(x) = x - \frac{f(x)}{f'(x)}$$</div>
+
+une manière de garantir que $g \in C^1$ est de supposé que $f \in C^2$, ce qui donne
+
+$$g'(x) = 1 - \frac{f'(x)^2 - f(x)\,f''(x)}{f'(x)^2} \in C^0.$$
+:::
+
+:::{.fragment}
+Par conséquent, $g'(\bar{x})=0$ et par continuité $g'(x)\approx 0$ dans un voisinage de $\bar{x}$. Nous pouvons donc utiliser en toute sécurité une borne sur $|x_{n+1}-x_n|$ pour définir notre condition d'arrêt. 
+:::
+</div>
+
+## Implémentation Python
+
+Nous commençons par définir nos fonctions,
+
+
+```{.python code-line-numbers="1-3|5-7"}
+# Définir la fonction dont on veut trouver le zéro
+def f(x):
+    return x**2 - 3
+
+# Définir la dérivée de cette fonction
+def fprime(x):
+    return 2*x
+```
+<br>
+<div class="fragment">
+<div  class="Theorembox" id="elts_proj_def">
+<b style='font-size: 1.2em;'>Remarque. </b>
+<hr style="margin: 0.3em auto;">
+Ici, nous avons le luxe d'avoir une expression analytique pour la dérivée de f. Si ce n'étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l'application de l'algorithme de Newton. 
+</div>
+</div>
+
+## Implémentation Python
+
+```{.python code-line-numbers="|1|6|9"}
+def mth_newton(f, f_p, x0, eps=1e-8, max_iter=100):
+    x = x0
+    for i in range():
+        fx = f(x)
+        if abs(fx) < eps:
+            return x
+        fpx = f_p(x)
+        if fpx == 0:
+            breakℝ
+        x -= fx / fpx
+    return x
+```
+
+
