@@ -3,10 +3,12 @@ title: Section 1.4.3
 subtitle: La méthode de Newton
 format:
   revealjs:
+  
     view-distance: 10
     mobile-view-distance: 10
     incremental: true
     progress: false
+    controls: true
     template-partials:
       - title-slide.html
     code-summary: "code"
@@ -65,6 +67,15 @@ L'espoir est que la suite <span style="color: gold;">$(x_{n}), n \in ℕ$, conve
 ![](img/newt-5.svg){.absolute top=60 left=267 height="550"}
 </div>
 
+<div class="fragment">
+![](img/newt-6.svg){.absolute top=60 left=267 height="550"}
+</div>
+
+<div class="fragment">
+![](img/newt-7.svg){.absolute top=60 left=267 height="550"}
+</div>
+
+
 <div style="text-align: center;">
 <div style="border: 2px solid #dde0eb; border-radius: 10px; text-align: center; display: inline-block; padding-left: 0.8em; padding-right: 0.8em; margin-left: auto; margin-right: auto; font-size: 34px;"> 
 $\bar{x}$ — le zéro recherché &nbsp; &nbsp; &nbsp; $x_0$ — l'approximation initiale 
@@ -74,17 +85,14 @@ $\bar{x}$ — le zéro recherché &nbsp; &nbsp; &nbsp; $x_0$ — l'approximation
 ## Fonction d'itération 
 
 <section data-auto-animate>
-<img src="img/newt-1.svg" style="opacity: 0; height:550px;"> <!--padding-->
-![](img/inter-2.svg){.absolute top=-12 left=267 height="550"}
-<div class="fragment fade-out">
-![](img/inter.svg){.absolute top=-12 left=267 height="550"}
-</div>
+<img src="img/newt-1.svg" style="opacity: 0; height:550px;"> <!--padding ![](img/inter-2.svg){.absolute top=-12 left=267 height="550"}-->
+![](img/inter.svg){.absolute top=-12 left=267 height="550" data-id="box"}
 </section>
 
 <section data-auto-animate>
 <img src="img/newt-1.svg" style="opacity: 0; height:700px;"> <!--padding-->
-![](img/inter-2.svg){.absolute top=-120 left=-350 height="700"}
-<img class="fragment" src="img/inter-3.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
+<img class="fragment fade-out" data-fragment-index="0" data-id="box" src="img/inter-1.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
+<img class="fragment"  data-fragment-index="0" src="img/inter-2.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
 <div class="fragment" style="position: absolute; top:20px; right:150px; font-size: 0.8em;"> Comme la pente $= \frac{\Delta_{y}}{\Delta_{x}}$, nous avons 
 $$ f'(x)=\frac{f(x)}{(x-g(x))} $$
 <span class="fragment">ce qui, après isolation de $g(x)$, donne
@@ -103,7 +111,7 @@ Pour isoler $g(x)$ ainsi, il faut que $f'(x)\neq 0$, ce qui nous donne notre pre
 ## Condition d'arrêt 
 
 <div style="font-size:30px">
-Nous avons vu que pour une méthode de Picard avec une fonction d'itération <span style="color: gold;">$g \in C^1$</span>, il existe, $\forall n \in ℕ^*$, $\xi_{n} \in ℝ$ entre $\bar{x}$ et $x_{n}$ tel que,
+Nous avons vu que pour une méthode de point fixe avec une fonction d'itération <span style="color: gold;">$g \in C^1$</span>, il existe, $\forall n \in ℕ^*$, $\xi_{n} \in \ ]\bar{x};x_n[$ tel que,
 
 <div style="margin-top: -30px;">$$ \boxed{\bar{x} - x_{n} = \frac{1}{1-g'(\xi_n)}(x_{n+1}-x_n)}.$$</div>
 
@@ -124,7 +132,7 @@ Par conséquent, $g'(\bar{x})=0$ et par continuité $g'(x)\approx 0$ dans un voi
 :::
 </div>
 
-## Résumé jusqu' à présent
+## Résumé sur les conditions
 
 <div style="font-size: 35px">
 
@@ -144,7 +152,7 @@ Utiliser les résultats du dernier cours pour montrer que, sous les conditions <
 <div class="fragment">
 Nous avons également discuté d'une variante légèrement plus forte de la condition <span style="color: gold;">(A)</span>. 
 
-• <span style="color: gold;">Condition (A')</span> : $f'(x)\neq 0$ (c'est-à-dire que $\bar{x}$ est un zéro _simple_)
+• <span style="color: gold;">Condition (A')</span> : $f'(\bar{x})\neq 0$ (c'est-à-dire que $\bar{x}$ est un zéro _simple_)
 </div>
 <div class="fragment">
 Dans le prochain cours nous verrons un théorème qui montre que la méthode de Newton fonctionne au mieux lorsque <span style="color: gold;">(A')</span> et <span style="color: gold;">(B)</span> sont tous deux valables : ils garantissent alors une convergence _quadratique_. 
@@ -175,7 +183,7 @@ tol = 1e-6
 <div  class="Theorembox" style="margin-top:-30px">
 <b style='font-size: 1.2em;'>Remarque. </b>
 <hr style="margin: 0.3em auto;">
-Ici, nous avons le luxe d'avoir une expression analytique pour la dérivée de f. Si ce n'étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l'application de la méthode de Newton. 
+Ici, nous avons le luxe d'avoir une expression analytique pour la dérivée de $f$. Si ce n'étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l'application de la méthode de Newton. 
 </div>
 </div>
 
@@ -185,8 +193,8 @@ Ici, nous avons le luxe d'avoir une expression analytique pour la dérivée de f
 #Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie
 while True:
     
-  # Appliquer la fonction d'itération
-  x1 = x0 - f(x0)/fprime(x0);
+  # Appliquer la fonction d'itération : x1 = g(x0)
+  x1 = x0 - f(x0)/fprime(x0); 
   
   # Vérifier si la distance entre les approximations est inférieure à la tolérance
   if abs(x1 - x0) < tol:
@@ -208,7 +216,7 @@ print(math.sqrt(3))
 ```
 </div>
 
-## Une mise en garde
+## Une mise en garde 
 
 ```{.python code-line-numbers="1-7"}
 def f(x):
@@ -230,7 +238,7 @@ print("Le zéro de la fonction est approximativement", x0)
 ```
 <pre><code class="fragment">ZeroDivisionError: division by zero</code></pre> 
 <br>
-<div class="fragment" style="text-align:center">Il faut néanmoins être prudent dans le choix de $x$ !</div>
+<div class="fragment" style="text-align:center">Il faut néanmoins être prudent dans le choix de $x_0$!</div>
 
 
 
