@@ -440,6 +440,12 @@
 <div class="fragment">
 <p><img data-src="img/newt-5.svg" class="absolute" style="top: 60px; left: 267px; height: 550px; "></p>
 </div>
+<div class="fragment">
+<p><img data-src="img/newt-6.svg" class="absolute" style="top: 60px; left: 267px; height: 550px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="img/newt-7.svg" class="absolute" style="top: 60px; left: 267px; height: 550px; "></p>
+</div>
 <div style="text-align: center;">
 <div style="border: 2px solid #dde0eb; border-radius: 10px; text-align: center; display: inline-block; padding-left: 0.8em; padding-right: 0.8em; margin-left: auto; margin-right: auto; font-size: 34px;">
 <p><span class="math inline">\(\bar{x}\)</span> — le zéro recherché &nbsp; &nbsp; &nbsp; <span class="math inline">\(x_0\)</span> — l’approximation initiale</p>
@@ -449,13 +455,10 @@
 <section id="fonction-ditération" class="slide level2">
 <h2>Fonction d’itération</h2>
 <section data-auto-animate="">
-<img src="img/newt-1.svg" style="opacity: 0; height:550px;"> <!--padding--> <img data-src="img/inter-2.svg" class="absolute" style="top: -12px; left: 267px; height: 550px; ">
-<div class="fragment fade-out">
-<p><img data-src="img/inter.svg" class="absolute" style="top: -12px; left: 267px; height: 550px; "></p>
-</div>
+<img src="img/newt-1.svg" style="opacity: 0; height:550px;"> <!--padding ![](img/inter-2.svg){.absolute top=-12 left=267 height="550"}--> <img data-src="img/inter.svg" class="absolute" style="top: -12px; left: 267px; height: 550px; " data-id="box">
 </section>
 <section data-auto-animate="">
-<img src="img/newt-1.svg" style="opacity: 0; height:700px;"> <!--padding--> <img data-src="img/inter-2.svg" class="absolute" style="top: -120px; left: -350px; height: 700px; "> <img class="fragment" src="img/inter-3.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
+<img src="img/newt-1.svg" style="opacity: 0; height:700px;"> <!--padding--> <img class="fragment fade-out" data-fragment-index="0" data-id="box" src="img/inter-1.svg" style="position: absolute; top:-120px; left:-350px;height:700px;"> <img class="fragment" data-fragment-index="0" src="img/inter-2.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
 <div class="fragment" style="position: absolute; top:20px; right:150px; font-size: 0.8em;">
 <p>Comme la pente <span class="math inline">\(= \frac{\Delta_{y}}{\Delta_{x}}\)</span>, nous avons <span class="math display">\[ f'(x)=\frac{f(x)}{(x-g(x))} \]</span> <span class="fragment">ce qui, après isolation de <span class="math inline">\(g(x)\)</span>, donne <span class="math display">\[ \boxed{g(x) = x - \frac{f(x)}{f'(x)}}. \]</span></span></p>
 </div>
@@ -471,7 +474,7 @@ Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span c
 <section id="condition-darrêt" class="slide level2">
 <h2>Condition d’arrêt</h2>
 <div style="font-size:30px">
-<p>Nous avons vu que pour une méthode de Picard avec une fonction d’itération <span style="color: gold;"><span class="math inline">\(g \in C^1\)</span></span>, il existe, <span class="math inline">\(\forall n \in ℕ^*\)</span>, <span class="math inline">\(\xi_{n} \in ℝ\)</span> entre <span class="math inline">\(\bar{x}\)</span> et <span class="math inline">\(x_{n}\)</span> tel que,</p>
+<p>Nous avons vu que pour une méthode de point fixe avec une fonction d’itération <span style="color: gold;"><span class="math inline">\(g \in C^1\)</span></span>, il existe, <span class="math inline">\(\forall n \in ℕ^*\)</span>, <span class="math inline">\(\xi_{n} \in \ ]\bar{x};x_n[\)</span> tel que,</p>
 <div style="margin-top: -30px;">
 <span class="math display">\[ \boxed{\bar{x} - x_{n} = \frac{1}{1-g'(\xi_n)}(x_{n+1}-x_n)}.\]</span>
 </div>
@@ -489,8 +492,8 @@ Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span c
 </div>
 </div>
 </section>
-<section id="résumé-jusqu-à-présent" class="slide level2">
-<h2>Résumé jusqu’ à présent</h2>
+<section id="résumé-sur-les-conditions" class="slide level2">
+<h2>Résumé sur les conditions</h2>
 <div style="font-size: 35px">
 
 <p>Pour l’instant nous avons identifié deux conditions pour que la méthode de Newton fonctionne bien.</p>
@@ -507,7 +510,7 @@ Utiliser les résultats du dernier cours pour montrer que, sous les conditions <
 </div>
 <div class="fragment">
 <p>Nous avons également discuté d’une variante légèrement plus forte de la condition <span style="color: gold;">(A)</span>.</p>
-<p>• <span style="color: gold;">Condition (A’)</span> : <span class="math inline">\(f'(x)\neq 0\)</span> (c’est-à-dire que <span class="math inline">\(\bar{x}\)</span> est un zéro <em>simple</em>)</p>
+<p>• <span style="color: gold;">Condition (A’)</span> : <span class="math inline">\(f'(\bar{x})\neq 0\)</span> (c’est-à-dire que <span class="math inline">\(\bar{x}\)</span> est un zéro <em>simple</em>)</p>
 </div>
 <div class="fragment">
 <p>Dans le prochain cours nous verrons un théorème qui montre que la méthode de Newton fonctionne au mieux lorsque <span style="color: gold;">(A’)</span> et <span style="color: gold;">(B)</span> sont tous deux valables : ils garantissent alors une convergence <em>quadratique</em>.</p>
@@ -535,7 +538,7 @@ Utiliser les résultats du dernier cours pour montrer que, sous les conditions <
 <div class="Theorembox" style="margin-top:-30px">
 <b style="font-size: 1.2em;">Remarque. </b>
 <hr style="margin: 0.3em auto;">
-Ici, nous avons le luxe d’avoir une expression analytique pour la dérivée de f.&nbsp;Si ce n’étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l’application de la méthode de Newton.
+Ici, nous avons le luxe d’avoir une expression analytique pour la dérivée de <span class="math inline">\(f\)</span>. Si ce n’étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l’application de la méthode de Newton.
 </div>
 </div>
 </section>
@@ -544,8 +547,8 @@ Ici, nous avons le luxe d’avoir une expression analytique pour la dérivée de
 <div class="sourceCode" id="cb2" data-code-line-numbers="1-2|4-5|7-9|11|13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    </span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="co"># Appliquer la fonction d'itération</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0)<span class="op">/</span>fprime(x0)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="co"># Appliquer la fonction d'itération : x1 = g(x0)</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0)<span class="op">/</span>fprime(x0)<span class="op">;</span> </span>
 <span id="cb2-6"><a href="#cb2-6"></a>  </span>
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="co"># Vérifier si la distance entre les approximations est inférieure à la tolérance</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>  <span class="cf">if</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0) <span class="op">&lt;</span> tol:</span>
@@ -587,7 +590,7 @@ Ici, nous avons le luxe d’avoir une expression analytique pour la dérivée de
 <pre><code class="fragment">ZeroDivisionError: division by zero</code></pre>
 <br>
 <div class="fragment" style="text-align:center">
-Il faut néanmoins être prudent dans le choix de <span class="math inline">\(x\)</span> !
+Il faut néanmoins être prudent dans le choix de <span class="math inline">\(x_0\)</span>!
 </div>
 <div class="footer footer-default">
 
@@ -618,7 +621,7 @@ Il faut néanmoins être prudent dans le choix de <span class="math inline">\(x\
       // Full list of configuration options available at:
       // https://revealjs.com/config/
       Reveal.initialize({
-'controlsAuto': true,
+'controlsAuto': false,
 'previewLinksAuto': false,
 'smaller': false,
 'pdfSeparateFragments': false,
@@ -630,7 +633,7 @@ Il faut néanmoins être prudent dans le choix de <span class="math inline">\(x\
 'smaller': false,
  
         // Display controls in the bottom right corner
-        controls: false,
+        controls: true,
 
         // Help the user learn the controls by providing hints, for example by
         // bouncing the down arrow when they first encounter a vertical slide
