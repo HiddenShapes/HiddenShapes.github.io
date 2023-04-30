@@ -1,0 +1,17 @@
+def f(x):
+  return x**3 - 3*x + 1
+def fprime(x):
+  return 3*x**2 - 3
+
+# Cette estimation initiale fait que la méthode ne converge pas
+x0 = 5.0
+tol = 1e-6
+
+# Cette estimation initiale fait que la méthode ne converge pas
+for i in range(100): 
+  x1 = x0 - f(x0)/fprime(x0)
+  if abs(x1 - x0) < tol:
+    break
+  x0 = x1
+else:
+  print("La méthode n'a pas convergé après 100 itérations.")
