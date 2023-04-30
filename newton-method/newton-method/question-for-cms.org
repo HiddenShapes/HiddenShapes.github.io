@@ -1,5 +1,0 @@
-
-- [ ] why assume initially assume that the zero is simple when f is only assumed to be C1?
-- [ ] salary
-- [ ] [check desc.]
-- [ ] 50%...
