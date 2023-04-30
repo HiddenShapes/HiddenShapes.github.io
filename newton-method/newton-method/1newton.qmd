@@ -1,0 +1,2 @@
+[91mERROR: The specified directory ('.') is not a Quarto project[39m
+[91mERROR: The specified directory ('.') is not a Quarto project[39m
