@@ -1,5 +1,6 @@
 
-- [ ] why assume initially assume that the zero is simple when f is only assumed to be C1?
-- [ ] salary
+- [ ] sur la recherche... encouragée? indifférent?
+- [ ] répartition du travail? principalement de l'enseignement?
+- [ ] what are the teaching objectives of the CMS and the MAN and are they different?
+- [ ] commencer à 50% et envisageable?
 - [ ] [check desc.]
-- [ ] 50%...

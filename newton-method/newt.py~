@@ -1,46 +1,27 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Define the function to find the root of
+# Définir la fonction dont on veut trouver le zéro
 def f(x):
-    return x**3 - 2*x - 5
+    return x**2 - 3
 
-# Define the derivative of the function
+# Définir la dérivée de cette fonction
 def fprime(x):
-    return 3*x**2 - 2
+    return 2*x
 
-# Set the initial guess for the root
+# Définir l'estimation initiale pour le zéro
 x0 = 1.5
 
-# Set the tolerance for convergence
-tol = 1e-6
+# Définir la tolérance pour la convergence
+tol = 1e-10
 
-# Initialize a list to store the successive approximations
-x_vals = [x0]
-
-# Iterate Newton's method until convergence
-while abs(f(x0)) > tol:
-    x1 = x0 - f(x0)/fprime(x0)
-    x_vals.append(x1)
-    x0 = x1
-
-# Print the final approximation of the root
-print("The root of the function is approximately", x0)
-
-# Plot the successive approximations of the root and the tangent lines
-x = np.linspace(1, 2, 1000)
-y = f(x)
-plt.plot(x, y, label="f(x)")
-
-for i in range(len(x_vals)):
-    x_val = x_vals[i]
-    y_val = f(x_val)
-    plt.plot(x_val, y_val, 'o', label=f"Approximation {i}")
-    plt.plot(x, fprime(x_val)*(x-x_val) + y_val, label=f"Tangent line {i}")
+#Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie
+while True:
     
-plt.ylim(-5, 5)
-plt.xlim(1, 2)
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend()
-plt.show()
+  # Appliquer la fonction d'itération
+  x1 = x0 - f(x0)/fprime(x0);
+  
+  # Vérifier si la distance entre les approximations est inférieure à la tolérance
+  if abs(x1 - x0) < tol:
+      break;
+
+  x0 = x1;
+
+print("Le zéro de la fonction est approximativement", x0)
