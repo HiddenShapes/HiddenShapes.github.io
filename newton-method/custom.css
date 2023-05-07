@@ -71,3 +71,6 @@
     font-family: 'Fira Mono', monospace; 
 }
 
+.reveal section p {
+    white-space: nowrap;
+}
