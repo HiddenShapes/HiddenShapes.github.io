@@ -2,12 +2,11 @@
     var font = "Gyre Pagella";
     MathJax.Hub.Config({
         "HTML-CSS": {
-          scale: 80,
+          scale: 100,
           linebreaks: { automatic: true },
       		webFont: font,
       		imageFont: font,
       		preferredFont: font,
-      		availableFonts: [],
       		mtextFontInherit: true
         }});
 </script>
