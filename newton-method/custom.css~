@@ -23,23 +23,24 @@
 }
 
 .reveal section .Theorembox {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background: #303030;
-  max-width: 96%;
-  color: #dde0eb;
-  border: 2px solid #dde0eb;
-  border-radius: 10px;
-  padding-left: 0.8em;
-  padding-right: 0.8em;
-  font-size: 0.8em;
-  padding-bottom: 0.4em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #303030;
+    max-width: 96%;
+    color: #dde0eb;
+    border: 2px solid #dde0eb;
+    border-radius: 10px;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    font-size: 0.8em;
+    padding-bottom: 0.4em;
 }
 
 .reveal section h2 {
     font-size: 1.5em !important;
     margin-bottom: 30px;
+    margin-top: -30px;
     text-align: center !important;
 }
 
@@ -49,6 +50,15 @@
     margin-right: auto !important;
 }
 
+.img-newt {
+    display: block !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+     height: 550px !important;
+    width: auto !important;
+    opacity: 0 !important;
+}
+
 .reveal section .sourceCode * {
     font-family: 'Fira Mono', monospace; 
 }
@@ -56,3 +66,8 @@
 .reveal section code {
     font-family: 'Fira Mono', monospace; 
 }
+
+.reveal section code {
+    font-family: 'Fira Mono', monospace; 
+}
+
