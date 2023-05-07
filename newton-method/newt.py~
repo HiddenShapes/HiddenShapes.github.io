@@ -1,27 +1,51 @@
-# Définir la fonction dont on veut trouver le zéro
+import numpy as np
+import matplotlib.pyplot as plt
+
 def f(x):
-    return x**2 - 3
+    return x**3 - x - 1
 
-# Définir la dérivée de cette fonction
-def fprime(x):
-    return 2*x
+def f_prime(x):
+    return 3*x**2 - 1
 
-# Définir l'estimation initiale pour le zéro
-x0 = 1.5
+def newton_method(f, f_prime, x0, tol=1e-6, max_iter=100):
+    x = x0
+    for i in range(max_iter):
+        fx = f(x)
+        fpx = f_prime(x)
+        if abs(fx) < tol:
+            return x, i
+        x = x - fx/fpx
+    return None, i
 
-# Définir la tolérance pour la convergence
-tol = 1e-10
+# Define the range of x values to plot
+x_vals = np.linspace(-2, 2, 1000)
 
-#Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie
-while True:
-    
-  # Appliquer la fonction d'itération
-  x1 = x0 - f(x0)/fprime(x0);
-  
-  # Vérifier si la distance entre les approximations est inférieure à la tolérance
-  if abs(x1 - x0) < tol:
-      break;
+# Plot the function
+fig, ax = plt.subplots()
+ax.plot(x_vals, f(x_vals), label="f(x)")
 
-  x0 = x1;
+# Define the initial guess and plot it on the graph
+x0 = -1
+ax.scatter(x0, f(x0), marker="x", color="red", label="Initial guess")
 
-print("Le zéro de la fonction est approximativement", x0)
+# Perform Newton's method and plot each iteration on the graph
+x, num_iters = newton_method(f, f_prime, x0)
+for i in range(num_iters):
+    ax.scatter(x, f(x), marker="o", color="green", label=f"Iteration {i+1}")
+    fx = f(x)
+    fpx = f_prime(x)
+    x_next = x - fx/fpx
+    ax.plot([x, x_next], [fx, 0], color="black", linewidth=1)
+    x = x_next
+
+# Plot the final root on the graph
+ax.scatter(x, f(x), marker="*", color="blue", label="Root")
+
+# Add labels and legend to the plot
+ax.set_xlabel("x")
+ax.set_ylabel("f(x)")
+ax.set_title("Newton's Method for f(x) = x^3 - x - 1")
+ax.legend()
+
+# Show the plot
+plt.show()

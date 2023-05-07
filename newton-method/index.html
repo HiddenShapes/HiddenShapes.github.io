@@ -407,14 +407,14 @@
 <h2>Rappels</h2>
 <div style="font-size:29px;">
 <ul>
-<li class="fragment"><p>Nous étudions des méthodes numériques pour estimer un zéro <span class="math inline">\(\bar{x}\)</span> d’une fonction réelle et non linéaire <span class="math inline">\(f\)</span>.</p></li>
-<li class="fragment"><p>La dernière fois, nous avons étudié une famille de méthodes en général: les <span style="color: gold;">méthodes de point fixe</span>. Il s’agit de choisir une fonction <span class="math inline">\(g\)</span>, telle que</p>
+<li class="fragment"><p>Nous étudions des méthodes numériques pour estimer un zéro <span class="math inline">\(\bar{x}\)</span> d’une fonction réelle et non-linéaire <span class="math inline">\(f\)</span>.</p></li>
+<li class="fragment"><p>La dernière fois, nous avons étudié en général une famille de méthodes : les <span style="color: gold;">méthodes de point fixe</span>. Il s’agit de choisir une fonction <span class="math inline">\(g\)</span>, tel que</p>
 <div style="margin-top: -30px;">
 <span class="math display">\[f(\bar{x}) = 0 \iff g(\bar{x})=\bar{x}\]</span>
 </div>
-<p>et de chercher un point fixe de <span class="math inline">\(g\)</span>. On appelle <span class="math inline">\(g\)</span> la <span style="color: gold;">fonction d’itération</span>.</p></li>
-<li class="fragment"><p>On procède par la méthode de Picard: on établit une estimation initiale de <span class="math inline">\(\bar{x}\)</span>, notée <span class="math inline">\(x_0\)</span>, puis on applique itérativement la fonction <span class="math inline">\(g\)</span> sur cette estimation pour produire les nombres <span class="math display">\[x_{n+1}:=g(x_{n}).\]</span> L’espoir est que la suite <span style="color: gold;"><span class="math inline">\((x_{n}), n \in ℕ\)</span>, converge vers <span class="math inline">\(\bar{x}\)</span> quand <span class="math inline">\(n \to \infty\)</span></span>.</p></li>
-<li class="fragment"><p>Aujourd’hui, nous allons étudier un exemple spécifique de méthode de point fixe : la méthode de Newton. Il s’agit d’une méthode puissante car elle peut converger rapidement (comme nous le verrons), mais elle exige aussi que <span style="color: gold;">certaines conditions</span> soient remplies, nous détaillerons ces conditions au fur et à mesure qu’elles se présenteront. Pour le moment, nous supposons seulement que <span style="color: gold;"><span class="math inline">\(f\)</span> est <span class="math inline">\(C^1\)</span></span>.</p></li>
+<p>et chercher un point fixe de <span class="math inline">\(g\)</span>. On appelle <span class="math inline">\(g\)</span> la <span style="color: gold;">fonction d’itération</span>.</p></li>
+<li class="fragment"><p>On procède par la méthode de Picard: on établis une estimation initiale de <span class="math inline">\(\bar{x}\)</span>, notée <span class="math inline">\(x_0\)</span>, puis on applique itérativement la fonction <span class="math inline">\(g\)</span> sur cette estimation pour produire les nombres <span class="math display">\[x_{n+1}:=g(x_{n}).\]</span> L’espoir est que la suite <span style="color: gold;"><span class="math inline">\((x_{n}), n \in ℕ\)</span>, converge vers <span class="math inline">\(\bar{x}\)</span></span>.</p></li>
+<li class="fragment"><p>Aujourd’hui, nous allons étudier un exemple spécifique de méthode de point fixe : la méthode de Newton. Il s’agit d’une méthode puissante car elle peut converger rapidement (comme nous le verrons), mais elle exige aussi que <span style="color: gold;">certaines conditions</span> soient remplies, nous détaillerons ces conditions au fur et à mesure qu’elles se présentent. Pour le moment, nous supposons seulement que <span style="color: gold;"><span class="math inline">\(f\)</span> est dans <span class="math inline">\(C^1\)</span></span>.</p></li>
 </ul>
 </div>
 </section>
@@ -460,13 +460,13 @@
 <section data-auto-animate="">
 <img src="img/newt-1.svg" style="opacity: 0; height:700px;"> <!--padding--> <img class="fragment fade-out" data-fragment-index="0" data-id="box" src="img/inter-1.svg" style="position: absolute; top:-120px; left:-350px;height:700px;"> <img class="fragment" data-fragment-index="0" src="img/inter-2.svg" style="position: absolute; top:-120px; left:-350px;height:700px;">
 <div class="fragment" style="position: absolute; top:20px; right:150px; font-size: 0.8em;">
-<p>Comme la pente <span class="math inline">\(= \frac{\Delta_{y}}{\Delta_{x}}\)</span>, nous avons <span class="math display">\[ f'(x)=\frac{f(x)}{(x-g(x))}, \]</span> <span class="fragment">ce qui, après isolation de <span class="math inline">\(g(x)\)</span>, donne <span class="math display">\[ \boxed{g(x) = x - \frac{f(x)}{f'(x)}.} \]</span></span></p>
+<p>Comme la pente <span class="math inline">\(= \frac{\Delta_{y}}{\Delta_{x}}\)</span>, nous avons <span class="math display">\[ f'(x)=\frac{f(x)}{(x-g(x))} \]</span> <span class="fragment">ce qui, après isolation de <span class="math inline">\(g(x)\)</span>, donne <span class="math display">\[ \boxed{g(x) = x - \frac{f(x)}{f'(x)}}. \]</span></span></p>
 </div>
 <div class="fragment">
 <div style="position: absolute; bottom:100px; right:0px; background: #303030; max-width: 60%; color: #dde0eb; border: 2px solid #dde0eb; border-radius: 10px; padding-left: 0.8em; padding-right: 0.8em; font-size: 0.7em; padding-bottom: 0.4em; ">
-<b style="font-size: 1.2em;">Remarque</b>
+<b style="font-size: 1.2em;">Remarque. </b>
 <hr style="margin: 0.3em auto;">
-Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span class="math inline">\(f'(x)\neq 0\)</span>, ce qui nous donne notre première condition sur <span class="math inline">\(f\)</span>: qu’<span style="color: gold;">il existe un voisinage (épointé) de <span class="math inline">\(\bar{x}\)</span> tel que <span class="math inline">\(f'(x)\neq 0\)</span></span>. Le plus souvent, cette condition est remplie en exigeant que <span class="math inline">\(f'(\bar{x}) \neq 0\)</span> (c’est-à-dire que <span class="math inline">\(\bar{x}\)</span> est un zéro <em>simple</em>).
+Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span class="math inline">\(f'(x)\neq 0\)</span>, ce qui nous donne notre première condition sur <span class="math inline">\(f\)</span>: qu’<span style="color: gold;">il existe un voisinage de <span class="math inline">\(\bar{x}\)</span> tel que <span class="math inline">\(f'(x)\neq 0\)</span></span>. Le plus souvent, cette condition est remplie en exigeant que <span class="math inline">\(f'(\bar{x}) \neq 0\)</span> (c’est-à-dire que <span class="math inline">\(\bar{x}\)</span> est un zéro <em>simple</em>).
 </div>
 </div>
 </section>
@@ -474,17 +474,17 @@ Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span c
 <section id="condition-darrêt" class="slide level2">
 <h2>Condition d’arrêt</h2>
 <div style="font-size:30px">
-<p>Nous avons vu que pour une méthode de point fixe avec une fonction d’itération <span style="color: gold;"><span class="math inline">\(g\)</span> qui est <span class="math inline">\(C^1\)</span></span>, il existe, <span class="math inline">\(\forall n \in ℕ^*\)</span>, <span class="math inline">\(\xi_{n}\)</span> entre <span class="math inline">\(\bar{x}\)</span> et <span class="math inline">\(x_n\)</span> tel que,</p>
+<p>Nous avons vu que pour une méthode de point fixe avec une fonction d’itération <span style="color: gold;"><span class="math inline">\(g \in C^1\)</span></span>, il existe, <span class="math inline">\(\forall n \in ℕ^*\)</span>, <span class="math inline">\(\xi_{n} \in \ ]\bar{x};x_n[\)</span> tel que,</p>
 <div style="margin-top: -30px;">
-<span class="math display">\[ \boxed{\bar{x} - x_{n} = \frac{1}{1-g'(\xi_n)}(x_{n+1}-x_n).}\]</span>
+<span class="math display">\[ \boxed{\bar{x} - x_{n} = \frac{1}{1-g'(\xi_n)}(x_{n+1}-x_n)}.\]</span>
 </div>
-<p>Nous avons conclu alors que <span class="math inline">\(|x_{n+1}-x_n|\)</span> estime bien l’erreur tant que <span class="math inline">\(g'(\xi_n)\)</span> n’est pas proche de 1.</p>
+<p>Nous avons conclus alors que <span class="math inline">\(|x_{n+1}-x_n|\)</span> estime bien l’erreur tant que <span class="math inline">\(g'(\xi_n)\)</span> n’est pas proche de 1.</p>
 <div class="fragment">
 <p>Comme, pour la méthode de Newton,</p>
 <div style="margin-top: -30px;">
-<span class="math display">\[g(x) = x - \frac{f(x)}{f'(x)},\]</span>
+<span class="math display">\[g(x) = x - \frac{f(x)}{f'(x)}\]</span>
 </div>
-<p>une manière de garantir que <span class="math inline">\(g\)</span> est <span class="math inline">\(C^1\)</span> est de supposer que <span style="color: gold;"><span class="math inline">\(f\)</span> est <span class="math inline">\(C^2\)</span></span>, ce qui donne une deuxième condition sur <span class="math inline">\(f\)</span>. Sous cette condition, nous avons donc que</p>
+<p>une manière de garantir que <span class="math inline">\(g \in C^1\)</span> est de supposé que <span style="color: gold;"><span class="math inline">\(f \in C^2\)</span></span>, ce qui donne notre deuxième condition sur <span class="math inline">\(f\)</span>. Sous cette condition, nous avons</p>
 <p><span class="math display">\[g'(x) = 1 - \frac{f'(x)^2 - f(x)\,f''(x)}{f'(x)^2} \in C^0.\]</span></p>
 </div>
 <div class="fragment">
@@ -498,8 +498,8 @@ Pour isoler <span class="math inline">\(g(x)\)</span> ainsi, il faut que <span c
 
 <p>Pour l’instant nous avons identifié deux conditions pour que la méthode de Newton fonctionne bien.</p>
 <ul>
-<li class="fragment"><span style="color: gold;">Condition (A)</span> : Il existe un voisinage (épointé) de <span class="math inline">\(\bar{x}\)</span> tel que <span class="math inline">\(f'(x)\neq 0\)</span></li>
-<li class="fragment"><span style="color: gold;">Condition (B)</span> : <span class="math inline">\(f\)</span> est <span class="math inline">\(C^2\)</span></li>
+<li class="fragment"><span style="color: gold;">Condition (A)</span> : Il existe un voisinage de <span class="math inline">\(\bar{x}\)</span> tel que <span class="math inline">\(f'(x)\neq 0\)</span></li>
+<li class="fragment"><span style="color: gold;">Condition (B)</span> : <span class="math inline">\(f \in C^2\)</span></li>
 </ul>
 <div class="fragment">
 <div class="Theorembox">
@@ -513,61 +513,53 @@ Utiliser les résultats du dernier cours pour montrer que, sous les conditions <
 <p>• <span style="color: gold;">Condition (A’)</span> : <span class="math inline">\(f'(\bar{x})\neq 0\)</span> (c’est-à-dire que <span class="math inline">\(\bar{x}\)</span> est un zéro <em>simple</em>)</p>
 </div>
 <div class="fragment">
-<p>Dans le prochain cours, nous verrons un théorème qui montre que la méthode de Newton fonctionne au mieux lorsque <span style="color: gold;">(A’)</span> et <span style="color: gold;">(B)</span> sont toutes deux satisfaites: elles garantissent alors une convergence <em>quadratique</em>.</p>
+<p>Dans le prochain cours nous verrons un théorème qui montre que la méthode de Newton fonctionne au mieux lorsque <span style="color: gold;">(A’)</span> et <span style="color: gold;">(B)</span> sont tous deux valables : ils garantissent alors une convergence <em>quadratique</em>.</p>
 </div>
 </div>
 </section>
 <section id="implémentation-python" class="slide level2">
 <h2>Implémentation Python</h2>
-<div style="margin-top: -30px; margin-bottom: 10px;">
-Nous commençons par fixer les paramètres de notre implémentation,
-</div>
-<div class="sourceCode" id="cb1" data-code-line-numbers="1-3|5-7|9-10|12-13|15-16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Définir la fonction dont on veut trouver le zéro</span></span>
+<p>Nous commençons par fixer les paramètres de notre implémentation,</p>
+<div class="sourceCode" id="cb1" data-code-line-numbers="1-3|5-7|9-10|12-13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Définir la fonction dont on veut trouver le zéro</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">def</span> f(x):</span>
 <span id="cb1-3"><a href="#cb1-3"></a>  <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">3</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Définir la dérivée de cette fonction</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">def</span> df(x):</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">def</span> fprime(x):</span>
 <span id="cb1-7"><a href="#cb1-7"></a>  <span class="cf">return</span> <span class="dv">2</span><span class="op">*</span>x</span>
 <span id="cb1-8"><a href="#cb1-8"></a></span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Définir l'estimation initiale pour le zéro</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a>x0 <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Définir le seuil de tolérance pour la convergence</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>tol <span class="op">=</span> <span class="fl">1e-10</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># Définir une variable pour compter le nombre d'iteration appliquées</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>i <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Définir la tolérance pour la convergence</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <br>
 <div class="fragment">
-<div class="Theorembox" style="margin-top:-35px">
-<b style="font-size: 1.2em;">Remarque</b>
+<div class="Theorembox" style="margin-top:-30px">
+<b style="font-size: 1.2em;">Remarque. </b>
 <hr style="margin: 0.3em auto;">
-Ici, nous avons une expression analytique pour la dérivée de <span class="math inline">\(f\)</span>. Si ce n’était pas le cas, une évaluation numérique serait nécessaire, ceci compliquerait l’application de la méthode.
+Ici, nous avons le luxe d’avoir une expression analytique pour la dérivée de <span class="math inline">\(f\)</span>. Si ce n’étais pas le cas et une évaluation numérique étais nécessaire, la complexité de ce calcul doit être prise en compte dans l’application de la méthode de Newton.
 </div>
 </div>
 </section>
 <section id="implémentation-python-1" class="slide level2">
 <h2>Implémentation Python</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="1-2|4-6|8-10|12|14-15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie</span></span>
+<div class="sourceCode" id="cb2" data-code-line-numbers="1-2|4-5|7-9|11|13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#Itérer la méthode de Newton jusqu'à ce que notre condition soit remplie</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    </span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="co"># Appliquer la fonction d'itération : x1 = g(x0)</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0) <span class="op">/</span> df(x0)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>  </span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="co"># Vérifier si la distance entre les approximations est inférieure au seuil</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="cf">if</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0) <span class="op">&lt;</span> tol:</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="cf">break</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a>  x0 <span class="op">=</span> x1</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="bu">print</span>(<span class="st">"Le zéro de la fonction est approximativement"</span>, x0)</span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="bu">print</span>(<span class="st">"(</span><span class="sc">{0}</span><span class="st"> itérations)"</span>.<span class="bu">format</span>(i))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code class="fragment">Le zéro de la fonction est approximativement 1.7320508075688772
-(5 itérations)</code></pre>
+<span id="cb2-5"><a href="#cb2-5"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0)<span class="op">/</span>fprime(x0)<span class="op">;</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="co"># Vérifier si la distance entre les approximations est inférieure à la tolérance</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="cf">if</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0) <span class="op">&lt;</span> tol:</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  x0 <span class="op">=</span> x1<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="bu">print</span>(<span class="st">"Le zéro de la fonction est approximativement"</span>, x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code class="fragment">Le zéro de la fonction est approximativement 1.7320508100147276</code></pre>
 <div class="fragment">
-<p><span style="font-size: 30px;"> Ce qui est une approximation parfaitement respectable: </span></p>
+<p><span style="font-size: 30px;"> Ce qui est une approximation parfaitement respectable : </span></p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> math</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(math.sqrt(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,17 +574,17 @@ Ici, nous avons une expression analytique pour la dérivée de <span class="math
 <div class="sourceCode" id="cb5" data-code-line-numbers="1-7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">def</span> df(x):</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">def</span> fprime(x):</span>
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>x</span>
 <span id="cb5-6"><a href="#cb5-6"></a></span>
 <span id="cb5-7"><a href="#cb5-7"></a>x0 <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>tol <span class="op">=</span> <span class="fl">1e-10</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a></span>
 <span id="cb5-10"><a href="#cb5-10"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb5-11"><a href="#cb5-11"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0) <span class="op">/</span> df(x0)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  x1 <span class="op">=</span> x0 <span class="op">-</span> f(x0)<span class="op">/</span>fprime(x0)<span class="op">;</span></span>
 <span id="cb5-12"><a href="#cb5-12"></a>  <span class="cf">if</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0) <span class="op">&lt;</span> tol:</span>
-<span id="cb5-13"><a href="#cb5-13"></a>    <span class="cf">break</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>  x0 <span class="op">=</span> x1</span>
+<span id="cb5-13"><a href="#cb5-13"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  x0 <span class="op">=</span> x1<span class="op">;</span></span>
 <span id="cb5-15"><a href="#cb5-15"></a></span>
 <span id="cb5-16"><a href="#cb5-16"></a><span class="bu">print</span>(<span class="st">"Le zéro de la fonction est approximativement"</span>, x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code class="fragment">ZeroDivisionError: division by zero</code></pre>
