@@ -20,6 +20,7 @@ let canvas3, ctx3;
 let canvas4, ctx4;
 let canvas5, ctx5;
 let speedSlider, updateSpeed, evolveCheckbox, stepButton;
+let timeoutId; // to store the id of the setTimeout
 
 let cellSize = 6; // Size of a cell in pixels
 
@@ -53,6 +54,8 @@ function computeSyncPercentage() {
 
 
 function drawAndEvolve() {
+    // clear previous timeout
+    clearTimeout(timeoutId);
     for (let i = 0; i < grids.length; i++) {
         let grid = grids[i];
         let ctx = canvasContexts[i];
@@ -86,10 +89,10 @@ function drawAndEvolve() {
 
     updateSpeed = Math.max(10, 1000 - speedSlider.value);
     if (evolveCheckbox.checked) {
-	setTimeout(drawAndEvolve, updateSpeed);
+        timeoutId = setTimeout(drawAndEvolve, updateSpeed);
     }
     else {
-	setTimeout(drawAndEvolve, 300);
+        timeoutId = setTimeout(drawAndEvolve, 300);
     }
     let syncPercentage = computeSyncPercentage();
     syncPercentageElement.textContent = "Synchronization: " + syncPercentage.toFixed(2) + "%";
