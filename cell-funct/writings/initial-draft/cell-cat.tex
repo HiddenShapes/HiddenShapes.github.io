@@ -1,0 +1,180 @@
+\documentclass[11pt,a4paper]{amsart}
+
+\title{Functors of cellular automata}
+
+\input{cell-prelim.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Setup}
+Let $S$ be a non-empty finite set of states and let $G$ be an non-empty graph. A \emph{Cellular Automaton} (CA) on $(G,S)$ is a function,
+$$\de \colon S^{V} \rightarrow S^{V}.$$
+We call an element of $S^{V}$ a \emph{configuration}, and call this function the \emph{transition function}, it describes the dynamics of the automaton, mapping the current configuration (state of each vertex) to the next configuration. 
+
+\begin{REM}
+  \label{rem:contraints}
+  Obviously, $\de$ should be constrained by $G$, in some way. But, for now, one of the good/bad things is that everything works for an arbitrary $\de \in \End(S^{V})$.
+\end{REM}
+
+For a given cellular automata $(G,S,\de)$, we consider a cateogry $\bC$ defined as follows. 
+\begin{itemize}
+\item $\Obj(\bC) = S^{V}$
+\item $\Hom(a,b) = \{n \in \bN \mid \de^n(a)=b \}.$
+\end{itemize}
+A nice feature of this construction is that composition is simply given by addition. In particular, the identity map is given by $0 \colon a \to a$, we denote this map  $\id \in \End(a)$.   
+
+We note that the $\Hom$-spaces have a fairly particular structure, that mainly depends upon the following property.
+
+\begin{DEF}
+  \label{def:recurrent}
+  We call a configuration $a \in \Obj(\bG)$ \emph{recurrent} if 
+  \begin{align*}
+    \End(a) \neq \{ \id \},
+  \end{align*} i.e. that there exists $n \in \bN^{*}$ such that $\de^n(a)=a$.
+\end{DEF}
+
+\begin{PROP}
+  \label{prop:hom-struct}
+  Let $a$ and $b$ be such that $\Hom(a,b) \neq \emptyset.$ Then there exists $k, l \in \bN$ such that
+  \begin{align*}
+    \Hom(a,b) = 
+    \begin{cases}
+      \{ k \} & \text{if neither $a$ nor $b$ are recurrent.}\\
+      \{k + n\cdot l \mid n \in \bN\} &\text{else.}
+    \end{cases}
+  \end{align*}
+  \proof Obvious. \endproof
+\end{PROP}
+
+
+Our real object of interest is the 2-category $\Cell$  of such categories (i.e. categories that arise from cellular automata). In particular, we consider $\bG$, the category arsing from the Game of Life, and ask the following explorative question: can we construct a non-trivial functor $F \colon \bG \to \bC$? An initial challenge in answering this question is finding the right characterisation of \say{non-trivial}. This is the objective of the next section, however, before that there is some abstract nonsense left to do.
+
+\begin{DEF}
+  \label{def:equivalent-automata}
+  Two cellular automata are considered \emph{equivalent} if their corresponding categories are equivalent. 
+\end{DEF}
+
+\begin{DEF}
+  \label{def:dead-automata}
+  A cellular automata is called \emph{dead} if it is equivalent to a cellular automata with only one state. 
+\end{DEF}
+
+\begin{PROP}
+  \label{prop:dead-zero}
+  Any dead cellular automata is a zero object in $\Cell$. \com{This could be incorrect --- but if that's true $\bC$ should be changed, see the discussion in Section~\ref{sec:where-to-go}.} Therefore dead cellular automata are unique up to unique isomorphism and we may speak of \href{https://ncatlab.org/nlab/show/generalized+the}{the} dead cellular automata, which we denote $\bot$.
+\end{PROP}
+
+
+\section{Trivial examples}
+
+Let $\bG$ be the category arising from the Game of Life and let $\bC$ be an object in $\Cell$. To recall a functor $F\colon \bG \to \bC$ would consist of the following data,
+\begin{itemize}
+\item a map on configurations $F \colon \Obj(\bG) \to \Obj(\bC)$,
+\item a map on morphisms $F \colon \Hom(a,b) \to \Hom(F(a),F(b))$ such that $F(\alpha + \beta) = F(\alpha) + F(\beta)$. From now on, we will always assume that this map is the identity (an assumption which implies that $\Hom(a,b) = \Hom(F(a),F(b)), \ \forall a,b$),\footnote{It would be perfectly possible to forgo this assumption, the cellular interpretation perhaps being some kind of \say{time dilation} (which could be very not trivial, depending upon the source and target configurations). }
+\end{itemize}
+
+\begin{REM}
+  \label{rem:diagram} As we have fixed the behaviour of the functor on morphisms, any mapping $F\colon \Obj(\bG) \to \Obj(\bC)$ provides a candidate functor, which gives rise to a genuine functor if the following diagram is satisfied, 
+  \begin{center}
+    \begin{tikzcd}
+      a \arrow[r, "1"] \arrow[maps to, d, "F"'] & b \arrow[maps to, d, "F"] \\
+      F(a) \arrow[r, "1"'] & F(b)
+    \end{tikzcd}.
+  \end{center}
+\end{REM}
+
+Before proceeding, we note the existence of two \say{formal} examples of trivial functors: 
+\begin{align*}
+  \textbf{0} \colon \bG \to \bot \quad \text{and} \quad \Id \colon \bG \to \bG. 
+\end{align*}
+For a given configuration $c \in \Obj(\bG)$, let $A_1(c)$ denote the set of configurations $b$ such that $\de(b)=c$. For a fixed configuration $c_0$, such that $|A_1(c_0)|>1$, we consider $b_0 \neq b_1 \in A_1(c_0)$, Vassili suggests the following candidate functor,
+\begin{align*}
+  F \colon \bG &\to \bG\\
+  a &\mapsto
+      \begin{cases}
+        b_1 &\text{if $a = b_0$,}\\
+        a &\text{else.}
+      \end{cases}
+\end{align*}
+The intuition being that this functor clearly satisfies the following diagram
+\begin{center}
+  \begin{tikzcd}
+    b_0 \arrow[r, "1"] \arrow[maps to,d, "F"'] & c_0 \arrow[maps to,d, "F"] \\
+    b_1 \arrow[r, "1"'] & c_0
+  \end{tikzcd}.
+\end{center}
+The problem arises if there exists $a_0 \in A_1(b_0)$, as the following diagram illustrates,
+\begin{center}
+  \begin{tikzcd}
+    a_0 \arrow[r, "1"] \arrow[d, "F"'] & b_0 \arrow[d, "F"] \\
+    a_0 \arrow[r, "1"'] & \uglyfrac{$b_0$}{$b_1$}
+  \end{tikzcd}.
+\end{center}
+Therefore, this construction only works if $b_0$ is an \emph{Eden configuration}. However, the construction can be generalised quite easily, as follows.
+
+For a fixed configuration $a_0 \in \Obj(\bG)$, we extend our existing notation in the following way,
+\begin{align*}
+  A_k(a_0) &= \{b \in \Obj(\bG) \mid \de^k(b) = a_0\} \\ A(a_0) &= \{b \in \Obj(\bG) \mid \exists n \in \bN, \de^n = a_0\}.
+\end{align*}
+Furthermore, we call a sequence $(\pi_k) \in A(a_0)^{\bN} \sqcup \{\theta\} $ an \emph{$a_0$-rooted path} if $\pi_0 = a_0$, $\pi_k = \theta$ iff $A_k(a_0)=\emptyset$ and $\de(\pi_k) = \pi_{k-1}$.
+\begin{PROP}
+  \label{prop:extend-functor}
+  Let $(\pi_k)_{k \in \bN}$ be an $a_0$-rooted path. Then the map,
+  \begin{align*}
+    F \colon \Obj(\bG) &\to \Obj(\bG)\\
+    a &\mapsto 
+        \begin{cases}
+          \pi_k &\text{if $a \in A_k(a_0)$}\\
+          a &\text{else,}
+        \end{cases}
+  \end{align*}
+  extends to a functor in $\End(\bG)$ (as described in Remark~\ref{rem:diagram}).
+
+  \proof \com{Not too hard, might need $a_0$ to not be recurrent, but I don't think so. Indeed, we probably have the following stronger result. } 
+\end{PROP}
+
+\begin{PROP}
+  \label{prop:extend-functor-ii}
+  Let $(\sigma_k) \in \bigoplus_k \End(A_k(a_0))$ be such that
+  \begin{align*}
+    \de(\sigma_k(a)) = \sigma_{k-1}(\de(a)).
+  \end{align*}
+  Then the map 
+  \begin{align*}
+    F \colon \Obj(\bG) &\to \Obj(\bG)\\
+    a &\mapsto 
+        \begin{cases}
+          \sigma_k(a) &\text{if $a \in A_k(a_0)$}\\
+          a &\text{else,}
+        \end{cases}
+  \end{align*} 
+\end{PROP}
+extends to a functor in $\End(\bG)$ (as described in Remark~\ref{rem:diagram}).
+\begin{figure}[h]
+  \begin{tikzpicture}
+    \draw[opacity=0.2,fill=gray,draw=none] (0,0) -- (1,1.5) -- (-1,1.5) to (0,0);
+    \node[inner sep=0pt] (b) at (-1,1.5) {};
+    \node[inner sep=0pt] (c) at (1,1.5) {};
+    \draw (b) -- (0,0);
+    \draw (c) -- (0,0);
+    \draw (0,0) -- (0,-0.6);
+    % Random path inside the triangle
+    \draw[red] (0,0) -- (0.05,0.2) -- (0.15,0.4) -- (0.07,0.6) -- (-0.06,0.8) -- (-0.3,1) -- (-0.1,1.2) -- (-0.18,1.4) -- (0,1.5);
+    \node[red] at (0,1.8) {$(\pi_k)$};
+    \node[circle,fill=black,inner sep=0pt,minimum size=3pt, label=right:{$a_0$}] (a) at (0,0) {};
+    \draw[<-] (1.5,1) -- (1.5,0) node[midway, right] {$k$};
+  \end{tikzpicture}
+  \caption[b]{The shaded region represents $A(a_0)$, the vertical axis tracks $k$ (this figure assumes $a_0$ is not recurrent) which corresponds to \say{backwards time} from the cellular point of view. The functor from Proposition~\ref{prop:extend-functor} collapses $A_k(a_0)$ horizontally onto $(\pi_k)$, the functor from Proposition~\ref{prop:extend-functor-ii} applies an arbitrary endomorphism to each horizontal slice of $A_k(a_0)$.}
+\end{figure}
+\section{Where to go from here} \label{sec:where-to-go}
+
+The interesting things about the functors that arise from Proposition~\ref{prop:extend-functor} and~\ref{prop:extend-functor-ii} is that they're pointing towards why our current framework isn't correct. The category $\bC$ we're associating to a cellular automata is too permissive -- the functors we've defined shouldn't \say{count} in some handwavy sense. 
+
+When your categories have too many functors between them, there are two things you can do:
+\begin{itemize}
+\item Quotient out the $\Hom$-spaces or collections of objects (this can identify previously different functors). Seems very hard to find the right approach... It's possible enriching everything over vector spaces could help... but you'd need a bit of argument as to why linear combinations of time evolutions are at all natural to consider.
+\item Add more morphisms (this can rule out functors, or make non-equivalent functors equivalent). Much more promising. The more I think about it, the more the category $\bC$ feels fundamentally wrong (Proposition~\ref{prop:hom-struct} isn't very encouraging). Here the \say{bad} functors can guide us. One way of making them seem less important would be if they were natural transformations of the identity functor. For this to work, you'd need a to think about the category of \say{hats} on $\bC$, where $\Hom(a,b) = \{(j,k) \in \bN \mid \de^j(a) = \de^k(b)\}$... Could be interesting.  
+\end{itemize}
+\end{document}

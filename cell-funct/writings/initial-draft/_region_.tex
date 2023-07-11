@@ -1,0 +1,71 @@
+\message{ !name(cell-cat.tex)}\documentclass[11pt,a4paper]{amsart}
+
+\title{Morphisms of cellular automata}
+
+\input{cell-prelim.tex}
+
+\begin{document}
+
+\message{ !name(cell-cat.tex) !offset(-3) }
+
+
+\maketitle
+
+\section{Setup}
+
+Let $S$ be a non-empty finite set of states and let $G$ be an non-empty graph. A \emph{Cellular Automaton} (CA) on $(G,S)$ is a function,
+$$\de \colon S^{|V|} \rightarrow S^{|V|}.$$
+We call an element of $S^{|V|}$ a \emph{configuration}, and call this function the \emph{global transition function}, it describes the dynamics of the automaton, mapping the current configuration (state of each vertex) to the next configuration. 
+
+\begin{REM}
+  \label{rem:contraints}
+  Obviously, $\de$ should be constrained by $G$, in some way. But, for now, one of the good/bad things is that everything works for an arbitrary $\de \in \End(S^{|V|})$.
+\end{REM}
+
+For a given cellular automata $(G,S,\de)$, we consider a cateogry $\bC$ defined as follows. 
+\begin{itemize}
+\item $\Obj(\bC) = S^{|V|}$
+\item $\Hom(a,b) = \{n \in \mathbb{N} \mid \de^n(a)=b \}.$
+\end{itemize}
+A nice feature of this construction is that composition is simply given by addition.
+
+Our real object of interest is the 2-category $\Cell$  of such categories (i.e. categories that arise from cellular automata). In particular, we consider $\bG$, the category arsing from the game of life, and ask the following explorative question: can we construct a non-trivial functor $F \colon \bG \to \bC$? An initial challenge in answering this question is finding the right characterisation of \say{non-trivial}. This is the objective of the next section, however, before that there is some abstract nonsense left to do.
+
+\begin{DEF}
+  \label{def:equivalent-automata}
+  Two cellular automata are considered \emph{equivalent} if their corresponding categories are. 
+\end{DEF}
+
+
+\begin{DEF}
+  \label{def:dead-automata}
+  A cellular automata is called \emph{dead} if it is equivalent to a cellular automata with only one state. 
+\end{DEF}
+
+\begin{PROP}
+  \label{prop:dead-zero}
+  Any dead cellular automata is a zero object in $\Cell$. \com{This could be incorrect, but if that's true -- $\bC$ should be changed, see the discussion in Remark~\ref{rem:change-cat}.} Therefore dead cellular automata are unique up to unique isomorphism and we may speak of \href{https://ncatlab.org/nlab/show/generalized+the}{the} dead cellular automata, which we denote $\bot$.
+\end{PROP}
+
+
+\section{Trivial examples}
+
+Obviously there are two \say{formal} trivial examples: 
+\begin{align*}
+  \textbf{0} \colon \bG \to \bot \quad \text{and} \quad \Id \colon \bG \to \bG. 
+\end{align*}
+For a given configuration $a \in \Obj(\bG)$, let $A_1(a)$ denote the set of configurations $b$ such that $\de{b}=a$
+For a given configuration $a \in \Obj(\bG)$, we consider the following sets,
+\begin{align*}
+A_k(a) &= \{b \in \Obj(\bG) \mid \de^k = a\} \\ A(a) &= \{b \in \Obj(\bG) \mid \exists n \in \mathbb{N}, \de^n = a\}
+\end{align*}
+Vassili's description of how to make a different kind of morphism doesn't quite work 
+
+\begin{REM}
+  \label{rem:change-cat}
+  lipsum
+\end{REM}
+
+
+\end{document}
+\message{ !name(cell-cat.tex) !offset(-71) }
