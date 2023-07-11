@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cellular Automaton</title>
+    <style>
+      canvas {
+          border: 1px solid black;
+      }
+      #canvasContainer {
+          display: grid;
+          grid-template-columns: repeat(2, 300px);
+          grid-template-rows: repeat(2, 300px);
+          gap: 10px;
+      }
+      #canvasContainer > div {
+          width: 300px;
+          height: 300px;
+      }
+    </style>
+    <script type="module" src="cellularAutomaton.js"></script>
+  </head>
+  <body>
+    <div id="canvasContainer">
+      <div>
+        <canvas id="canvas2" width="300" height="300"></canvas>
+      </div>
+      <div>
+        <canvas id="canvas1" width="300" height="300"></canvas>
+      </div>
+      <div>
+        <canvas id="canvas4" width="300" height="300"></canvas>
+      </div>
+      <div>
+        <canvas id="canvas3" width="300" height="300"></canvas>
+      </div>
+    </div>
+    <div>
+      <label for="speedSlider">Speed: </label>
+      <input type="range" id="speedSlider" min="500" max="990" step="10">
+    </div>
+    <div>
+        <input type="checkbox" id="evolveCheckbox">
+        <label for="evolveCheckbox">Time Evolution</label>
+	        <button id="stepButton">Step</button>
+    </div>
+  </body>
+</html>

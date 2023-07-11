@@ -1,0 +1,50 @@
+\usepackage{dirtytalk}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{etoolbox}
+
+\makeatletter
+\patchcmd{\@startsection}
+  {\@afterindenttrue}
+  {\@afterindentfalse}
+  {}{}
+  \makeatother
+
+\usepackage{graphicx, nicefrac}
+\let\rfb\reflectbox
+\newcommand{\uglyfrac}[2]{\rfb{\color{red}\nicefrac{\rfb{#1}}{\rfb{#2}}}}
+
+\theoremstyle{plain}
+\newtheorem{THM}{Theorem}[section]
+\newtheorem{PROP}[THM]{Proposition}
+\newtheorem{LEMMA}[THM]{Lemma}
+\newtheorem{CONJ}[THM]{Conjecture}
+\newtheorem{COR}[THM]{Corollary}
+\theoremstyle{definition}
+\newtheorem{REM}[THM]{Remark}
+\newtheorem*{REM*}{Remark}
+\newtheorem{EX}[THM]{Example}
+\newtheorem{DEF}[THM]{Definition}
+\newtheorem*{DEF*}{Definition}
+
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Cell}{\underline{\mathbb{C}ell}}
+
+\newcommand{\de}{\delta}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+\renewcommand\labelitemi{---}
+
+\newcommand{\com}[1]{\textcolor{red}{#1}}

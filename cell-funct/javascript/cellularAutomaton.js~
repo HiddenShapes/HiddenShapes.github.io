@@ -1,0 +1,89 @@
+// cellularAutomaton.js
+
+import {initialize as initialize1, update as update1, states as states1} from './CA1.js';
+import {update as update2, states as states2} from './CA2.js';
+import {cellFunctor} from './cellFunctor.js';
+import {colors} from './colors.js'; // new import
+
+let width = 50;
+let height = 50;
+
+let grid1 = {data: initialize1(width, height)};
+let grid2 = {data: cellFunctor(grid1.data)}; // Initial grid of CA2 is obtained by applying cellFunctor to grid1
+let grid3 = {data: JSON.parse(JSON.stringify(grid1.data))};
+let grid4 = {data: JSON.parse(JSON.stringify(grid2.data))};
+
+let canvas1, ctx1;
+let canvas2, ctx2;
+let canvas3, ctx3;
+let canvas4, ctx4;
+let speedSlider, updateSpeed, evolveCheckbox, stepButton;
+
+let cellSize = 6; // Size of a cell in pixels
+
+let notInitialized = 2;
+
+let grids, canvasContexts, updateFunctions;
+
+function drawAndEvolve() {
+    for (let i = 0; i < grids.length; i++) {
+        let grid = grids[i];
+        let ctx = canvasContexts[i];
+        let canvas = ctx.canvas;
+        let updateFunction = updateFunctions[i];
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < grid.data.length; i++) {
+            for (let j = 0; j < grid.data[0].length; j++) {
+                ctx.fillStyle = colors[grid.data[i][j]];
+                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            }
+        }
+
+        if (evolveCheckbox.checked || notInitialized) {
+            let newGrid = new Array(height);
+            for (let i = 0; i < height; i++) {
+                newGrid[i] = new Array(width);
+                for (let j = 0; j < width; j++) {
+                    newGrid[i][j] = updateFunction(grid.data, i, j);
+                }
+            }
+            notInitialized = Math.max(0,notInitialized-1);
+            grid.data = newGrid;
+        }
+    }
+
+    updateSpeed = Math.max(10, 1000 - speedSlider.value);
+    setTimeout(drawAndEvolve, updateSpeed);
+}
+
+window.onload = function() {
+    canvas1 = document.getElementById("canvas1");
+    ctx1 = canvas1.getContext("2d");
+
+    canvas2 = document.getElementById("canvas2");
+    ctx2 = canvas2.getContext("2d");
+
+    canvas3 = document.getElementById("canvas3");
+    ctx3 = canvas3.getContext("2d");
+
+    canvas4 = document.getElementById("canvas4");
+    ctx4 = canvas4.getContext("2d");
+
+    speedSlider = document.getElementById("speedSlider");
+    evolveCheckbox = document.getElementById("evolveCheckbox");
+    stepButton = document.getElementById("stepButton");
+
+    grids = [grid1, grid2, grid3, grid4];
+    canvasContexts = [ctx1, ctx2, ctx3, ctx4];
+    updateFunctions = [update1, update2, update1, update2];
+
+    drawAndEvolve();
+
+    stepButton.onclick = function() {
+        if (!evolveCheckbox.checked) {
+            notInitialized = 4;
+            drawAndEvolve();
+        }
+    };
+};
