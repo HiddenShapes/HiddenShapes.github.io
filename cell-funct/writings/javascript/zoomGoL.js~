@@ -1,4 +1,4 @@
-// CA1.js
+// Game of Life
 
 let num_states = 2;
 let states = Array.from(Array(num_states).keys());
