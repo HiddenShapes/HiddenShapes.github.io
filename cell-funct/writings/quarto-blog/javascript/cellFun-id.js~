@@ -1,0 +1,9 @@
+// cellFunctor.js Identity
+
+function cellFunctor(grid) {
+    let newGrid = grid.map(row => row.map(cell => cell));
+    // Sabotage!
+    return newGrid
+}
+
+export {cellFunctor};

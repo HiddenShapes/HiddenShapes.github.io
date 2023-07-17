@@ -1,0 +1,17 @@
+---
+title: Functors between cellular automata
+subtitle: or CA with CT
+author: Leonard Hardiman
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: cyborg
+---
+
+<div style="display: flex; justify-content: center;">
+<div style="margin-right: 120px;">
+<img id="myImage" src="./../img/tikz/cd1.svg" style="width: 220%;">
+</div>
+</div>
+
