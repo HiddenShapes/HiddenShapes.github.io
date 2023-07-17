@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  5 JUL 2023 18:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  13 JUL 2023 01:18
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -686,7 +686,7 @@ Package rerunfilecheck Info: File `cell-cat.out' has not changed.
 Here is how much of TeX's memory you used:
  21529 strings out of 478287
  412641 string characters out of 5849290
- 688718 words of memory out of 5000000
+ 688717 words of memory out of 5000000
  39180 multiletter control sequences out of 15000+600000
  478374 words of font info for 62 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191

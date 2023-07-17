@@ -1,0 +1,26 @@
+import {drawAndEvolve} from './drawAndEvolve.js';
+
+export function initApp(canvasIds, grids, updateFunctions, cellSizes) {
+    let canvasContexts = canvasIds.map(id => {
+        let canvas = document.getElementById(id);
+        return canvas.getContext("2d");
+    });
+
+    let playButton = document.getElementById("playButton");
+    let isPlaying = false;
+    playButton.onclick = function() {
+        isPlaying = !isPlaying;
+    }
+
+    let notInitialized = 5;
+
+    let canvasContainer = document.getElementById("canvasContainer");
+    canvasContainer.onclick = function() {
+        if (!isPlaying) {
+            notInitialized = 5;
+            drawAndEvolve(grids, canvasContexts, updateFunctions, cellSizes, isPlaying, notInitialized);
+        }
+    };
+
+    drawAndEvolve(grids, canvasContexts, updateFunctions, cellSizes, isPlaying, notInitialized);
+}
