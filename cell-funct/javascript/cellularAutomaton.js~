@@ -1,12 +1,13 @@
 // cellularAutomaton.js
 
-import {initialize as initialize1, update as update1, states as states1} from './GoL.js';
-import {update as update2, states as states2} from './zeroCA.js';
-import {cellFunctor} from './zeroFun.js';
+import {initialize as initialize1, update as update1, states as states1} from './GoLM.js';
+import {update as update2, states as states2} from './GoL.js';
+import {cellFunctor} from './cellFun-GoLM-GoL.js';
 import {colors} from './colors.js'; // new import
 
 let width = 50;
 let height = 50;
+let cellSizes = [6,6]; // Size of a cell in pixels
 
 let grid1 = {data: initialize1(width, height)};
 let grid2 = {data: cellFunctor(grid1.data)}; // Initial grid of CA2 is obtained by applying cellFunctor to grid1
@@ -21,8 +22,6 @@ let canvas4, ctx4;
 let canvas5, ctx5;
 let speedSlider, updateSpeed, evolveCheckbox, stepButton;
 let timeoutId; // to store the id of the setTimeout
-
-let cellSize = 6; // Size of a cell in pixels
 
 let notInitialized = 3; 
 
@@ -61,21 +60,22 @@ function drawAndEvolve() {
         let ctx = canvasContexts[i];
         let canvas = ctx.canvas;
         let updateFunction = updateFunctions[i];
-
+	let currentCellSize = i === 0 || i === 3 ? cellSizes[0] : cellSizes[1]; 
+	
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < grid.data.length; i++) {
             for (let j = 0; j < grid.data[0].length; j++) {
                 ctx.fillStyle = colors[grid.data[i][j]];
-                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+                ctx.fillRect(j * currentCellSize, i * currentCellSize, currentCellSize, currentCellSize);
             }
         }
 
         if (evolveCheckbox.checked || notInitialized) {
             if (i !== 2) { // For grids other than grid3
-                let newGrid = new Array(height);
-                for (let i = 0; i < height; i++) {
-                    newGrid[i] = new Array(width);
-                    for (let j = 0; j < width; j++) {
+                let newGrid = new Array(grid.data.length);
+                for (let i = 0; i < grid.data.length; i++) {
+                    newGrid[i] = new Array(grid.data[0].length);
+                    for (let j = 0; j < grid.data[0].length; j++) {
                         newGrid[i][j] = updateFunction(grid.data, i, j);
                     }
                 }
@@ -95,7 +95,7 @@ function drawAndEvolve() {
         timeoutId = setTimeout(drawAndEvolve, 300);
     }
     let syncPercentage = computeSyncPercentage();
-    syncPercentageElement.textContent = "Synchronization: " + syncPercentage.toFixed(2) + "%";
+    syncPercentageElement.textContent = "Sync: " + syncPercentage.toFixed(2) + "%";
 }
 
 window.onload = function() {

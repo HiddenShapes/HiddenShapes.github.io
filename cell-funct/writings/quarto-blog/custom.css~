@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+@font-face {
+    font-family: "EB Garamond";
+    src: url("./fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format("truetype"),
+	 local('EB Garamond');
+}
