@@ -52,3 +52,4 @@ function update(grid, i, j) {
 }
 
 export {initialize, update, states};
+//module.exports = {initialize, update, states};

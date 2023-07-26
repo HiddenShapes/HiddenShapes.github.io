@@ -1,47 +1,49 @@
 ---
-title: Functors between cellular automata
+title: A Categorical approach to cellular automata
 subtitle: or CA with CT
 author: Leonard Hardiman
 format:
   html:
     fontsize: 1.3em
+    html-math-method:
+      method: mathjax
     toc: true
     toc-location: left
     theme:
-      light: cosmo
-      dark: cyborg
+      light: [cosmo, light.scss] 
+      dark: [cyborg, dark.scss]
     css: custom.css
     page-layout: full
 include-before-body: header.html
+include-after-body: footer.html
 include-in-header: latexFunctions.md
 ---
 
-# Abstract
-
-$\com{[todo]}$
+This is a "living document" to track work on various aspects of cellular automata. 
 
 # Setup
 
 ## Cellular automata
-Let $S$ be a non-empty finite set of states and let $G$ be an non-empty graph. A *Cellular Automaton* (CA) on $(G,S)$ is a function,
-$$\de \colon S^{V} \rightarrow S^{V}.$$
-We call an element of $S^{V}$ a *configuration*, and call this function the *transition function*, it describes the dynamics of the automaton, mapping the current configuration (state of each vertex) to the next configuration. 
+Let $S$ be a non-empty finite set of states and let $G$ be an non-empty graph. We also consider a distinguished state $0 \in S$, called the *dead* state. A *Cellular Automaton* (CA) on $G$ is a function,
+$$\de \colon S^{V} \rightarrow S^{V},$$
+where $V$ denotes the set of vertices in $G$. We call an element of $S^{V}$ a *configuration*, and call this function the *transition function*, it describes the dynamics of the automaton, mapping the current configuration (state of each vertex) to the next configuration. 
 
 Obviously, $\de$ should be constrained by $G$, in some way. But, for now, one of the good/bad things is that everything works for an arbitrary $\de \in \End(S^{V})$. Here is a list of properties that $\delta$ will have that probably should be brought into the story:
 
-* translation invariance (requires elements of $G$ to have coordinates),
-* the notion of a "dead" cell; CA decomposition?
+* translation invariance (requires elements of $G$ to have a $\bZ^n$-action),
+* dead cells do nothing by themselves + product over death should be a product
 * local rules.
-
 
 ## Bringing in category theory
 
-For a given cellular automata $(G,S,\de)$, we consider a cateogry $\bC$ defined as follows. 
+### Initial (incorrect) attempt
 
-* $\Obj(\bC) = S^{V}$
+An initial attempt to realise a cellular automaton as a category $\bC$ might go as follows,
+
+* $\Obj(\bC) = S^{V}$ (i.e. the configurations)
 * $\Hom(a,b) = \{n \in \bN \mid \de^n(a)=b \}.$
 
-A nice feature of this construction is that composition is simply given by addition. In particular, the identity map is given by $0 \colon a \to a$, we denote this map  $\id \in \End(a)$.   
+A nice feature of this construction is that composition is simply given by addition. In particular, the identity map is given by $0 \colon a \to a$, we denote this map  $\id \in \End(a)$. In the subsequent discussion, we confuse any given CA with its associated category.
 
 We note that the $\Hom$-spaces have a fairly particular structure; for $a$ and $b$ be such that $\Hom(a,b) \neq \emptyset$ there exists $k, l \in \bN$ such that
 $$
@@ -51,13 +53,26 @@ $$
 \{k + n\cdot l \mid n \in \bN\} &\text{else.}
 \end{cases}
 $$
-Our real object of interest is the 2-category $\Cell$  of such categories (i.e. categories that arise from cellular automata). In particular, we ask the following explorative question: can we construct a non-trivial functor $F \colon \bC_1 \to \bC_2 \ $? An initial challenge in answering this question is finding the right characterisation of "trivial". This is the objective of the next section.
+
+
+Our real object of interest is the 2-category $\Cell$  of such categories (i.e. categories that arise from cellular automata). In particular, we're interested in finding non-trivial functors $F \colon \bC_1 \to \bC_2$. However this is where are current construction of $\bC$ will fail us. 
+
+## The improved attempt
+
+Quotient by the equivalence relation $(n,m) \sim (o,p)$ if $\exists k \in \mathbb{Z}$ such that $(o,p) = (n+k,m+k)$.
+
+An initial challenge in answering this question is finding the right characterisation of "trivial". This is one of the objectives of the next section.
+
+<div id="lem-describeHomSets" class="theorem lemma">
+$\com{Describe the Hom-sets.}$
+</div>
+
 
 ## Zero CA
 
-$\com{[todo]}$
+[...]
 
-# Trivial Functors
+# Various Functors
 
 To recall a functor $F\colon \bC_1 \to \bC_2$ would consist of the following data,
 
@@ -66,114 +81,310 @@ To recall a functor $F\colon \bC_1 \to \bC_2$ would consist of the following dat
 
 From now on, we will always assume that this map is the identity (an assumption which implies that $\Hom(a,b) = \Hom(F(a),F(b)), \ \forall a,b$).^[It would be perfectly possible to forgo this assumption, the cellular interpretation perhaps being some kind of "time dilation" (which could be very not trivial, depending upon the source and target configurations).]
 
-As we have fixed the behaviour of the functor on morphisms, any mapping $F\colon \Obj(\bG) \to \Obj(\bC)$ provides a candidate functor, which gives rise to a genuine functor if the following diagram is satisfied, 
+As we have fixed the behaviour of the functor on morphisms, any mapping $F\colon \Obj(\bC_1) \to \Obj(\bC_2)$ provides a candidate functor, which gives rise to a genuine functor if the following diagram is satisfied, 
 
 <div style="display: flex; justify-content: center;">
 <div style="margin-right: 120px;">
-<img id="myImage" src="./img/tikz/cd1.svg" style="width: 220%;">
+<img class=myImage src="./img/tikz/cd1.svg" style="width: 180%;">
 </div>
 </div>
-
-<script>
-    // Get the image
-    var img = document.getElementById('myImage');
-
-    // Check if the dark theme is currently active
-    if (document.body.classList.contains('dark-theme')) {
-        img.style.filter = 'invert(1)';
-    } else {
-        img.style.filter = 'invert(0)';
-    }
-
-    // Listen for changes to the body's class list
-    var observer = new MutationObserver(function() {
-        if (document.body.classList.contains('dark-theme')) {
-            img.style.filter = 'invert(1)';
-        } else {
-            img.style.filter = 'invert(0)';
-        }
-    });
-
-    // Start observing
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-</script>
-
 
 Therefore, to represent these functors in a engaging way, we'll present dynamic illustrations of this commutation at work, in the following style.
 
-<div id="canvasContainer">
+<div style="display: flex; align-items: center; justify-content: center;">
+<div style="text-align: right; margin-right: 30px;">
+$F \colon$
+</div>
+<div class="flex-container" style="display: flex; flex-direction: row; align-items: center;">
+<div class="canvasContainer" id="aCanvasContainer">
 <div class="canvas-wrapper" id="wrapper4">
-<canvas id="canvas4" width="200" height="200"></canvas>
+<canvas id="aCanvas4" width="200" height="200"></canvas>
 </div>
 <div class="canvas-wrapper" id="wrapper1">
-<canvas id="canvas1" width="200" height="200"></canvas>
+<canvas id="aCanvas1" width="200" height="200"></canvas>
 </div>
 <div class="canvas-wrapper" id="wrapper5">
-<canvas id="canvas5" width="200" height="200"></canvas>
+<canvas id="aCanvas5" width="200" height="200"></canvas>
 </div>
 <div class="canvas-wrapper" id="wrapper3">
 <div class="overlay-container">
-<canvas id="canvas3" width="200" height="200"></canvas>
-<canvas id="canvas2" width="200" height="200"></canvas>
+<canvas class="canvas-overlay" id="aCanvas3" width="200" height="200"></canvas>
+<canvas class="canvas-overlay" id="aCanvas2" width="200" height="200"></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="buttonContainer" style="padding-left: 50px;">
+<button class="playButton" id="aPlayButton">Play/Pause</button>
+</div>
+
+Here the blue arrows represent an increment in time (i.e.\ a morphism in $\bC$) and the red arrows represent the functor in question. You can click on the diagram to increment all the CAs by one (you could think of each of the pictures being moved to the left), or you can simply press the play/pause button to toggle the passage of time on and off. Also the bottom right CA is in fact an overlay of two separate semi-transparent CAs, the first being calculated by incrementing the bottom left CA, and the second by applying the functor to the top right CA. Therefore, the fact that this overlay appears as a single unified CA testifies to the fact that the red arrow represent a functor.
+
+Of course, this presentation is hard to parse without knowing the functor depicted. In this case, the functor serves principally to illustrate that relatively simple functors don't necessarily appear so. We recommend finishing this section before attempting the following exercise. 
+
+**Exercise.** Determine the functor $F$ depicted in the diagram above.
+
+## Local functors
+
+Let $\bC_1$ and $\bC_2$ be two CAs on the same graph with states $S_1$ and $S_2$ respectively. A functor $F \colon \bC_1 \to \bC_2$ is called *local* if there exists a map $f \colon S_1 \to S_2$ that induces $F$. $\com{This could be a bad name.}$
+
+## Formal trivial functors
+
+Before proceeding, we note the existence of two "formal" examples of trivial functors: 
+$$
+\textbf{0} \colon \bC \to \bot \quad \text{and} \quad \Id \colon \bC \to \bC,
+$$
+which we have depicted below.
+
+<div class="flex-container" style="display: flex; align-items: center;">
+$\textbf{0} \colon$
+<div class="canvasContainer" id="bCanvasContainer">
+<div class="canvas-wrapper" id="wrapper4">
+<canvas id="bCanvas4" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper1">
+<canvas id="bCanvas1" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper5">
+<canvas id="bCanvas5" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper3">
+<div class="overlay-container">
+<canvas class="canvas-overlay" id="bCanvas3" width="200" height="200"></canvas>
+<canvas class="canvas-overlay" id="bCanvas2" width="200" height="200"></canvas>
+</div>
+</div>
+</div>
+$\Id \colon$
+<div class="canvasContainer" id="cCanvasContainer">
+<div class="canvas-wrapper" id="wrapper4">
+<canvas id="cCanvas4" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper1">
+<canvas id="cCanvas1" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper5">
+<canvas id="cCanvas5" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper3">
+<div class="overlay-container">
+<canvas class="canvas-overlay" id="cCanvas3" width="200" height="200"></canvas>
+<canvas class="canvas-overlay" id="cCanvas2" width="200" height="200"></canvas>
+</div>
+</div>
+</div>
+</div>
+<div class="buttonContainer" style="padding-left: 20px;">
+<button class="playButton" id="bPlayButton">Play/Pause</button>
+</div>
+
+## Isomorphisms 
+
+## Equivalences
+
+In category theory, the concept of "sameness" is not best captured by requiring the existence of isomorphism, but rather an *equivalence*. We recall that an equivalence is a functor $F \colon \bC_1 \to \bC_2$ such that there exists a functor $G \colon \bC_1 \to \bC_2$ which satisfies $G \circ F \cong \id_{\bC_1}$ and $F \circ G \cong \id_{\bC_2}$. Such a $G$ is called an *inverse* to $F$ and is unique up to isomorphism.
+
+Clearly, any isomorphisms from the previous question are equivalences. However, there is at least one important class of equivalences that are not isomorphims.
+
+### Rooted paths
+
+Let $\bC$ be a CA together with a chosen configuration $a_0 \in \Obj(\bC)$. For $i \in \mathbb{N}$ we consider the following sets
+$$
+\begin{aligned}
+P_i &= \{a \in \Obj(\bC) \mid \de^i(a) = a_0\}\\
+P &= \bigcup_i P_i.
+\end{aligned}
+$$
+We call a sequence $(\pi_k) \in (P \sqcup \{\theta\})^{\bN}$ an  *$a_0$-rooted path* if 
+
+(A) $\pi_0 = a_0$,
+(B) $\pi_k = \theta$ if and only if $P_k=\emptyset$,
+(C) $\de(\pi_k) = \pi_{k-1}$,
+(D) $\length(\pi)$ is maximal with respect to all sequences satisfying the three properties above,
+
+where $\length(\pi)  = \sum_{k} \delta_{\pi_k \neq \theta}$ (which may be infinite).
+
+### Collapsing onto a path
+
+Let $\bC$ and $a_0$ be as before, and let $(\pi_k)$ be an $a_0$-rooted path. For every $a\in P$, let $k(a)$ be the minimum integer such that $a \in P_{k(a)}$. We consider the following map,
+$$
+\begin{aligned}
+F \colon \Obj(\bC) &\to \Obj(\bC)\\
+a &\mapsto 
+\begin{cases}
+\pi_{k(a)} &\text{if $a \in A$}\\
+a &\text{else.}
+\end{cases}
+\end{aligned}
+$$
+
+<div id="prp-Fextends" class="theorem proposition">
+Let $F$ be given as above. Then $F$ extends to a functor in $\End(\bC)$.<br>
+*Proof.* We have that
+
+<div style="display: flex; justify-content: center; margin-top: -20px; clear: both;">
+<div style="margin-right: 120px;">
+<img class=myImage src="./img/tikz/cd1-np.svg" style="width: 180%;">
+</div>
+</div>
+clearly commutes when $F(a) = a$ and $F(b) = b$. If $F(a) \neq a$ and $F(b) \neq b,$ then the diagram commutes by Property (C), the only case where $F(a) \neq a$ and $F(b) = b$ is when $a \in P_1$ and $b = a_0$ which implies that diagram commutes, the final case, when $F(a) = a$ and $F(b) \neq b$ never occurs by Property (D). <span class="end-proof">$\blacksquare$</span>
+</div>
+
+![The shaded region represents $A(a_0)$, the vertical axis tracks $k$ (this figure assumes $a_0$ is not recurrent) which corresponds to 'backwards time' from the cellular point of view. The functor from @prp-Fextends collapses $A_k(a_0)$ horizontally onto $(\pi_k)$, the functor from @prp-Gextends applies an arbitrary endomorphism to each horizontal slice of $A_k(a_0)$.](./img/tikz/rootedPath.svg){width=200 #fig-collapse}
+
+
+### A more general example
+
+The examples above suggest the following, more general,  construction. We consider a family of endomorphisms $(\sigma_k) \in \End(A_k)^{\bZ}$ with the property that 
+$$
+\de(\sigma_k(a)) = \sigma_{k-1}(\de(a)).
+$$
+
+We then consider the following map,
+$$
+\begin{aligned}
+G \colon \Obj(\bC) &\to \Obj(\bC)\\
+a &\mapsto 
+\begin{cases}
+\sigma_{k(a)}(a) &\text{if $a \in A$}\\
+a &\text{else.}
+\end{cases}
+\end{aligned}
+$$
+
+The proof given for @prp-Fextends also proves the following stronger result.
+
+<div id="prp-Gextends" class="theorem proposition">
+Let $G$ be given as above. $G$ extends to a functor in $\End(\bC)$.
+</div>
+
+An important property of the categorical structure in which we have embedded our cellular automata, is that $G$ is an equivalence.
+
+<div id="prp-Gequivalence" class="theorem proposition">
+Let $G$ be given as above. Then $G \cong \id_{\bC}$.<br>
+*Proof.* We construct a natural isomorphism $\Phi \colon G \to \id$ as follows,
+$$
+\Phi(a) = \begin{cases} \left(\alpha_a \ \colon G(a) \to a\right) & \text{if $a \in P,$}\\ (\id_a \colon G(a) \to a) & \text{else,} \end{cases}
+$$
+where $\alpha_a = (k(a),k(a)) \in \Hom(\sigma_{k(a)}(a),a)$; this morphism exists as both $a$ and $\sigma_{k(a)}(a)$ are in $P_{k(a)}$, implying $\de^{k(a)}(a) = \de^{k(a)}(\sigma_{k(a)}(a)) = a_0$. To check that $\Phi$ is natural we only have to check that, for $(n,m) \in \Hom(a,b)$, the following diagram commutes,
+
+<div style="display: flex; justify-content: center; margin-top: -20px; clear: both;">
+<div style="margin-right: 120px;">
+<img class=myImage src="./img/tikz/cd2.svg" style="width: 180%;">
+</div>
+</div>
+
+As is often the case in $\bC$, once the diagram has been established, it is easy to see that it commputes (due to $\bC$ not having many morphisms, see @lem-describeHomSets). For instance, the case when $a,b \in P$ can be verified by considering the following figure,
+
+![A structural representation of the case when $a,b \in P$. We can see that both the upper-right and lower-left compositions in $\mathcal{D}$ give the red span from $G(a)$ to $b$.](./img/tikz/diagram1.svg){width=200 #fig-collapse}
+
+The other cases may be verified analogously. <span class="end-proof">$\blacksquare$</span>
+</div>
+
+
+## Projection / Deformation retracts
+
+* Superfluous states of life ... ok
+* Superfluous states of death ... less ok
+
+
+# Endomorphisms of $\Cell$
+
+## Zoom out
+
+## ?
+
+# Life preserving
+
+## Product of CAs over 0
+
+Let $\bC_1$ and $\bC_2$ be two cellular automata on a graph $G$ with states $S_1,S_2$ and transition functions $\de_1,\de_2$ respectively. Their direct product (over 0) is a CA on $G$ denotes $\bC_1 \poz \bC_2$ with states
+$$
+S = S_1 \times S_2 / \langle (0,n) \sim (m,0) \mid \forall n \in S_1, m \in S_2 \rangle.
+$$
+and transition function
+$$
+\de(c)(i,j) = (\de_1(c_1), \de_2(c_2)),
+$$
+where $c_1$ and $c_2$ are the natural projections of the configuration $c \in S^V$ into $S_1^V$ and $S_2^V$ respectively.
+
+**Note:** Vassilis gives the following intuition: 'the two CAs can only interact through death'. This is correct.
+
+**Clue:** This construction should give some kind of product in $\Cell$, or $\span(\Cell)$.
+
+**Exercise:** Let $\bG$ be Conway's game of life. Show that $\bG \poz \bG = \bG$.
+
+## Shadows and support
+
+Let $\bC$ be a CA together with a configuration $a \in \Obj(\bC) = S^V$. The *shadow of $a$* is defined as follows,
+$$
+\begin{aligned}\sh(a) \colon V &\to \{0,1\} \\ v &\mapsto \begin{cases}0 & \text{if $a(v) =0,$} \\ 1 & \text{else.}\end{cases} \end{aligned}
+$$
+The *$\bC$-support* of $a$ is then given by the function
+$$
+\begin{aligned}\supp{\bC}{a} : \bN &\to \{0,1\}^V \\ i &\mapsto \sh(\de^{i}(a)),\end{aligned}
+$$
+where $\de$ is the transition function of $\bC$.
+
+
+$\com{[todo: example]}$
+
+Let $\bC_1$ and $\bC_2$ be two CAs whose underlying graphs share the same set of vertices $V$. A map (or functor) $F \colon \Obj(\bC_1) \to \Obj(\bC_2)$ is called *life preserving* if it satisfies $\supp{\bC_2}{F(a)} = \supp{\bC_1}{a}$, $\forall a \in \Obj(\bC_1)$.
+
+We note that there exist life preserving maps that are not functors. To construct an example, we consider the following new concept. 
+
+## Superfluous states
+
+Let $\bC$ be a CA with states $S$ and let $\bar{S}$ be a subset of $S$.
+
+We call $\bar{S}$ *superfluous* if there exists a local life-preserving functor $F\colon \bC \to \bar{\bC}$, where $\bar{\bC}$ is a CA with states $S \setminus \bar{S}$. An example is provided by the following set up:
+
+<div class="canvasContainer" id="supCanvasContainer">
+<div class="canvas-wrapper" id="wrapper4">
+<canvas id="supCanvas4" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper1">
+<canvas id="supCanvas1" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper5">
+<canvas id="supCanvas5" width="200" height="200"></canvas>
+</div>
+<div class="canvas-wrapper" id="wrapper3">
+<div class="overlay-container">
+<canvas id="supCanvas3" width="200" height="200"></canvas>
+<canvas id="supCanvas2" width="200" height="200"></canvas>
 </div>
 </div>
 </div>
 <div class="buttonContainer">
-<button id="playButton">Play/Pause</button>
+<button class="playButton" id="supPlayButton">Play/Pause</button>
 </div>
 
-Here the black arrows represent an increment in time (i.e.\ a morphism in $\bC$) and the red arrows represent the functor in question. You can click on the diagram to increment all the CAs by one (you could think of each of the pictures being moved to the left), or you can simply press the play/pause button to toggle the passage of time on and off. Also the bottom right CA is in fact an overlay of two separate semi-transparent CAs, the first being calculated by incrementing the bottom left CA, and the second by applying the functor to the top right CA. Therefore, the fact that this overlay appears as a single unified CA testifies to the fact that the red arrow represent a functor.
+The top CA is a simple 'colouring' of 
 
-Of course, this presentation is hard to parse without knowing the functor depicted. In this case, the functor should be considered trivial and serves principally to illustrate that trivial functors don't necessarily appear so. We recommend finishing this section before attempting the following exercise. 
+## Life equivalence
 
-**Exercise.** Determine the functor $F$ depicted in the diagram above.
+# Representation theory
 
-## Formal trivial functors
+* The set of states are given by $S = \Sym(k)$ for some $k \in \bN$.
 
-## Isomorphisms
+# Questions
 
-## Projection / Deformation retracts
+* What is the smaller number of states needed for a CA to have a given support?
+* Is there a notion of the simplest/smallest CA that has a given support?
+* If $\bC_{1}$ and $\bC_{2}$ share a support, is there a functor between them? Or a span $\bC_{1} \to \bC_{3} \leftarrow \bC_{2}$? 
 
-## Equivalences
+# Other ideas
 
-Duxere Peleus cornum. Promissa esse, duo qua caput vertice *lacrimantia* cadit,
-*tot loquaci dato*, miseram illud in petiere? *Et sagitta caro* una ullis
-pudoris, negata reposcunt timore, quid utque posses. Meum his latebras artes
-trepidamque cupiens, *debere ore* venti plena et imber nam, sed. Patriaque
-iussis.
+* Take the product of two CAs over their dead states, in particular the dead states should be 'compatible'
+* optimal CA universal prop?
+* inverse of a zoom out?
+* could convolution give a functor for some CA?
 
-    if (kbps_dhcp_bps(38, desktop_clipboard_nanometer - modemGnuHalf, applet)) {
-        mini /= ppi_desktop - networking_gigabyte.data(meme_snow);
-        wave(mouse_pup_php, icann, icq(2, regular_art));
-        nonMedia += camelcase_graphic_data;
-    } else {
-        extranet(serial, perlRgb);
-        jsf(risc.snippetMac(ocr_language, 3), kernel - 5);
-    }
-    if (3 != 4) {
-        ssd = 743548 + jreRuntimeImage;
-        oemJsf += multiEdutainmentWebsite(archie + qbe);
-    }
-    if (e_mac_mpeg + sku) {
-        opticalSpeakers *= 1;
-        cdfsHalftone.ctp_java_pci = gamma_ntfs(dslam, nic);
-    } else {
-        thunderboltUddiRuntime(aixCompile, python_ascii(pci_esports,
-                deprecated), guid);
-    }
-    var upsSpreadsheetSystem = root_registry_website.touchscreen_reader(rgb_cdfs
-            * ctr_device + graphics_python_dvr);
-    if (standbyAclHorse.vector_technology_client(peoplewareSlashdot(tiff_cd_p,
-            hostBare(46), speedKilohertz), ocr)) {
-        model.tiffClean = throughput_reader(sharewareParty.basic_ocr(1,
-                bing_executable, ide), 4);
-        hyper_pcb = 4;
-        bug = 3;
-    }
 
-Visura vera hasta natura in proceres precor carinae tela, nutu hoc nos crimina
-suem ponere **dicitur**, nulli! Nec lamina tethys ut **amictu scopulis forma**,
-deficiunt prosunt probavit? Animos quod Marsya altera; quae, sagittas [in minima
-unam](http://exsecrantiavariatis.org/) sacros ornabant lunaria, mens *nec*.
-Alcyonae illa, praestantia inbelle pervigilem: aliquid ero mihi lugubris in
-foret. Aside tutum aut mentis?
+# Clement ideas
+
+* Measuring frustration (shadow rank)
+
