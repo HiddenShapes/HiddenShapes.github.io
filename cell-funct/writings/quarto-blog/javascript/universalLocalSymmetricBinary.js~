@@ -1,4 +1,4 @@
-// Game of Amire
+// Game of Life
 
 let num_states = 2;
 let states = Array.from(Array(num_states).keys());
@@ -9,13 +9,13 @@ function initialize(width, height) {
     for (let i = 0; i < height; i++) {
         grid[i] = new Array(width);
         for (let j = 0; j < width; j++) {
-	    if (Math.random()<0.8){
+	    if (Math.random()<0.7){
 		grid[i][j] = 0
 	    }
 	    else {
 		grid[i][j] = 1
-	    }	    
-            grid[i][j] = states[Math.floor(Math.random() * states.length)];  // Assigns a random state
+	    }
+	   //grid[i][j] = states[Math.floor(Math.random() * states.length)];  // Assigns a random state
         }
     }
     return grid;
@@ -29,18 +29,25 @@ function countAliveNeighbors(grid, i, j) {
             count += grid[x][y];
         }
     }
-    //count -= grid[i][j]; // Reduce the count by one if the cell itself is alive
+    count -= grid[i][j]; // Reduce the count by one if the cell itself is alive
     return count;
 }
 
 // Function to get the next state of a cell
 function update(grid, i, j) {
     let aliveNeighbors = countAliveNeighbors(grid, i, j);
-    if (aliveNeighbors > 4) {
-	return 1
-    }
-    else {
-	return 0
+    if (grid[i][j] === 1) {
+        if (aliveNeighbors < 2 || aliveNeighbors > 3) {
+            return 0;  // The cell dies
+        } else {
+            return 1;  // The cell stays alive
+        }
+    } else {
+        if (aliveNeighbors === 3) {
+            return 1;  // The cell becomes alive
+        } else {
+            return 0;  // The cell stays dead
+        }
     }
 }
 

@@ -1,13 +1,13 @@
 // cellularAutomaton.js
 
-import {initialize as initialize1, update as update1, states as states1} from './GoA.js';
-import {update as update2, states as states2} from './GoA.js';
-import {cellFunctor} from './cellFun-id.js';
+import {initialize as initialize1, update as update1, states as states1} from './universalLocalSymmetricBinary.js';
+import {update as update2, states as states2} from './110.js';
+import {cellFunctor} from './cellFun-universalLocal.js';
 import {colors} from './colors.js'; // new import
 
-let width = 300;
-let height = 300;
-let cellSizes = [1,3]; // Size of a cell in pixels
+let width = 40;
+let height = 1;
+let cellSizes = [20,20]; // Size of a cell in pixels
 
 let grid1 = {data: initialize1(width, height)};
 let grid2 = {data: cellFunctor(grid1.data)}; // Initial grid of CA2 is obtained by applying cellFunctor to grid1
@@ -65,7 +65,7 @@ function drawAndEvolve() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < grid.data.length; i++) {
             for (let j = 0; j < grid.data[0].length; j++) {
-                ctx.fillStyle = colors[grid.data[i][j]];
+                ctx.fillStyle = colors[grid.data[i][j] % colors.length];
                 ctx.fillRect(j * currentCellSize, i * currentCellSize, currentCellSize, currentCellSize);
             }
         }
@@ -126,12 +126,17 @@ window.onload = function() {
     canvasContexts = [ctx1, ctx2, ctx3, ctx4, ctx5];
     updateFunctions = [update1, update2, () => cellFunctor(grid1.data), update1, update2];
 
+    console.log(Math.max(...grid1.data[0]))
+
     drawAndEvolve();
+
+    console.log(Math.max(...grid1.data[0]))
 
     stepButton.onclick = function() {
         if (!evolveCheckbox.checked) {
             notInitialized = 5;
             drawAndEvolve();
+            console.log(Math.max(...grid1.data[0]));
         }
     };
 };

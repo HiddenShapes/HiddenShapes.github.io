@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.119">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,7 +18,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -48,6 +48,10 @@ ul.task-list li input[type="checkbox"] {
 \DeclareMathOperator{\Cell}{\underline{\mathbb{C}\!ell}}
 \DeclareMathOperator{\Support}{Supp}
 \DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\conf}{conf}
+\DeclareMathOperator{\poz}{\overset{\circ}{\times}}
+\DeclareMathOperator{\span}{span}
+\DeclareMathOperator{\length}{length}
 \newcommand{\de}{\delta}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bG}{\mathbb{G}}
@@ -57,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
 \newcommand{\supp}[2]{\Support_{#1}(#2)}
 $$
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="custom.css">
@@ -70,10 +75,22 @@ $$
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
+  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a>
   <ul class="collapse">
-  <li><a href="#cellular-automata" id="toc-cellular-automata" class="nav-link" data-scroll-target="#cellular-automata">Cellular automata</a></li>
-  <li><a href="#bringing-in-category-theory" id="toc-bringing-in-category-theory" class="nav-link" data-scroll-target="#bringing-in-category-theory">Bringing in category theory</a></li>
+  <li><a href="#brief-introduction-to-cellular-automata" id="toc-brief-introduction-to-cellular-automata" class="nav-link" data-scroll-target="#brief-introduction-to-cellular-automata">Brief introduction to cellular automata</a></li>
+  </ul></li>
+  <li><a href="#categorical-foundations" id="toc-categorical-foundations" class="nav-link" data-scroll-target="#categorical-foundations">Categorical foundations</a>
+  <ul class="collapse">
+  <li><a href="#realising-a-dynamical-system-as-a-category" id="toc-realising-a-dynamical-system-as-a-category" class="nav-link" data-scroll-target="#realising-a-dynamical-system-as-a-category">Realising a dynamical system as a category</a>
+  <ul class="collapse">
+  <li><a href="#initial-incorrect-construction" id="toc-initial-incorrect-construction" class="nav-link" data-scroll-target="#initial-incorrect-construction">Initial (incorrect) construction</a></li>
+  <li><a href="#the-improved-construction" id="toc-the-improved-construction" class="nav-link" data-scroll-target="#the-improved-construction">The improved construction</a></li>
+  </ul></li>
+  <li><a href="#the-2-category-of-cellular-automata-cell" id="toc-the-2-category-of-cellular-automata-cell" class="nav-link" data-scroll-target="#the-2-category-of-cellular-automata-cell">The 2-category of cellular automata <span class="math inline">\(\Cell\)</span></a>
+  <ul class="collapse">
+  <li><a href="#translation-invariance" id="toc-translation-invariance" class="nav-link" data-scroll-target="#translation-invariance">Translation invariance</a></li>
+  <li><a href="#local-rules" id="toc-local-rules" class="nav-link" data-scroll-target="#local-rules">Local rules</a></li>
+  </ul></li>
   <li><a href="#zero-ca" id="toc-zero-ca" class="nav-link" data-scroll-target="#zero-ca">Zero CA</a></li>
   </ul></li>
   <li><a href="#various-functors" id="toc-various-functors" class="nav-link" data-scroll-target="#various-functors">Various Functors</a>
@@ -81,8 +98,13 @@ $$
   <li><a href="#local-functors" id="toc-local-functors" class="nav-link" data-scroll-target="#local-functors">Local functors</a></li>
   <li><a href="#formal-trivial-functors" id="toc-formal-trivial-functors" class="nav-link" data-scroll-target="#formal-trivial-functors">Formal trivial functors</a></li>
   <li><a href="#isomorphisms" id="toc-isomorphisms" class="nav-link" data-scroll-target="#isomorphisms">Isomorphisms</a></li>
+  <li><a href="#equivalences" id="toc-equivalences" class="nav-link" data-scroll-target="#equivalences">Equivalences</a>
+  <ul class="collapse">
+  <li><a href="#rooted-paths" id="toc-rooted-paths" class="nav-link" data-scroll-target="#rooted-paths">Rooted paths</a></li>
+  <li><a href="#collapsing-onto-a-path" id="toc-collapsing-onto-a-path" class="nav-link" data-scroll-target="#collapsing-onto-a-path">Collapsing onto a path</a></li>
+  <li><a href="#a-more-general-example" id="toc-a-more-general-example" class="nav-link" data-scroll-target="#a-more-general-example">A more general example</a></li>
+  </ul></li>
   <li><a href="#projection-deformation-retracts" id="toc-projection-deformation-retracts" class="nav-link" data-scroll-target="#projection-deformation-retracts">Projection / Deformation retracts</a></li>
-  <li><a href="#equivalences" id="toc-equivalences" class="nav-link" data-scroll-target="#equivalences">Equivalences</a></li>
   </ul></li>
   <li><a href="#endomorphisms-of-cell" id="toc-endomorphisms-of-cell" class="nav-link" data-scroll-target="#endomorphisms-of-cell">Endomorphisms of <span class="math inline">\(\Cell\)</span></a>
   <ul class="collapse">
@@ -91,12 +113,15 @@ $$
   </ul></li>
   <li><a href="#life-preserving" id="toc-life-preserving" class="nav-link" data-scroll-target="#life-preserving">Life preserving</a>
   <ul class="collapse">
-  <li><a href="#initial-definitions" id="toc-initial-definitions" class="nav-link" data-scroll-target="#initial-definitions">Initial definitions</a></li>
+  <li><a href="#product-of-cas-over-0" id="toc-product-of-cas-over-0" class="nav-link" data-scroll-target="#product-of-cas-over-0">Product of CAs over 0</a></li>
+  <li><a href="#shadows-and-support" id="toc-shadows-and-support" class="nav-link" data-scroll-target="#shadows-and-support">Shadows and support</a></li>
   <li><a href="#superfluous-states" id="toc-superfluous-states" class="nav-link" data-scroll-target="#superfluous-states">Superfluous states</a></li>
   <li><a href="#life-equivalence" id="toc-life-equivalence" class="nav-link" data-scroll-target="#life-equivalence">Life equivalence</a></li>
   </ul></li>
+  <li><a href="#representation-theory" id="toc-representation-theory" class="nav-link" data-scroll-target="#representation-theory">Representation theory</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   <li><a href="#other-ideas" id="toc-other-ideas" class="nav-link" data-scroll-target="#other-ideas">Other ideas</a></li>
+  <li><a href="#clement-ideas" id="toc-clement-ideas" class="nav-link" data-scroll-target="#clement-ideas">Clement ideas</a></li>
   </ul>
 </nav>
 </div>
@@ -130,23 +155,28 @@ $$
 </header>
 
 <p>This is a “living document” to track work on various aspects of cellular automata.</p>
-<section id="setup" class="level1">
-<h1>Setup</h1>
-<section id="cellular-automata" class="level2">
-<h2 class="anchored" data-anchor-id="cellular-automata">Cellular automata</h2>
+<section id="context" class="level1">
+<h1>Context</h1>
+<section id="brief-introduction-to-cellular-automata" class="level2">
+<h2 class="anchored" data-anchor-id="brief-introduction-to-cellular-automata">Brief introduction to cellular automata</h2>
 <p>Let <span class="math inline">\(S\)</span> be a non-empty finite set of states and let <span class="math inline">\(G\)</span> be an non-empty graph. We also consider a distinguished state <span class="math inline">\(0 \in S\)</span>, called the <em>dead</em> state. A <em>Cellular Automaton</em> (CA) on <span class="math inline">\(G\)</span> is a function, <span class="math display">\[\de \colon S^{V} \rightarrow S^{V},\]</span> where <span class="math inline">\(V\)</span> denotes the set of vertices in <span class="math inline">\(G\)</span>. We call an element of <span class="math inline">\(S^{V}\)</span> a <em>configuration</em>, and call this function the <em>transition function</em>, it describes the dynamics of the automaton, mapping the current configuration (state of each vertex) to the next configuration.</p>
 <p>Obviously, <span class="math inline">\(\de\)</span> should be constrained by <span class="math inline">\(G\)</span>, in some way. But, for now, one of the good/bad things is that everything works for an arbitrary <span class="math inline">\(\de \in \End(S^{V})\)</span>. Here is a list of properties that <span class="math inline">\(\delta\)</span> will have that probably should be brought into the story:</p>
 <ul>
 <li>translation invariance (requires elements of <span class="math inline">\(G\)</span> to have a <span class="math inline">\(\bZ^n\)</span>-action),</li>
-<li>dead cells do nothing by themselves</li>
+<li>dead cells do nothing by themselves + product over death should be a product</li>
 <li>local rules.</li>
 </ul>
 </section>
-<section id="bringing-in-category-theory" class="level2">
-<h2 class="anchored" data-anchor-id="bringing-in-category-theory">Bringing in category theory</h2>
-<p>For a given cellular automaton, we consider a cateogry <span class="math inline">\(\bC\)</span> defined as follows.</p>
+</section>
+<section id="categorical-foundations" class="level1">
+<h1>Categorical foundations</h1>
+<section id="realising-a-dynamical-system-as-a-category" class="level2">
+<h2 class="anchored" data-anchor-id="realising-a-dynamical-system-as-a-category">Realising a dynamical system as a category</h2>
+<section id="initial-incorrect-construction" class="level3">
+<h3 class="anchored" data-anchor-id="initial-incorrect-construction">Initial (incorrect) construction</h3>
+<p>An initial attempt to realise a cellular automaton as a category <span class="math inline">\(\bC\)</span> might go as follows,</p>
 <ul>
-<li><span class="math inline">\(\Obj(\bC) = S^{V}\)</span></li>
+<li><span class="math inline">\(\Obj(\bC) = S^{V}\)</span> (i.e.&nbsp;the configurations)</li>
 <li><span class="math inline">\(\Hom(a,b) = \{n \in \bN \mid \de^n(a)=b \}.\)</span></li>
 </ul>
 <p>A nice feature of this construction is that composition is simply given by addition. In particular, the identity map is given by <span class="math inline">\(0 \colon a \to a\)</span>, we denote this map <span class="math inline">\(\id \in \End(a)\)</span>. In the subsequent discussion, we confuse any given CA with its associated category.</p>
@@ -156,7 +186,32 @@ $$
 \{ k \} &amp; \text{if neither $a$ nor $b$ are recurrent.}\\
 \{k + n\cdot l \mid n \in \bN\} &amp;\text{else.}
 \end{cases}
-\]</span> Our real object of interest is the 2-category <span class="math inline">\(\Cell\)</span> of such categories (i.e.&nbsp;categories that arise from cellular automata). In particular, we ask the following explorative question: can we construct a non-trivial functor <span class="math inline">\(F \colon \bC_1 \to \bC_2 \ \)</span>? An initial challenge in answering this question is finding the right characterisation of “trivial”. This is one of the objectives of the next section.</p>
+\]</span></p>
+<p>Our real object of interest is the 2-category <span class="math inline">\(\Cell\)</span> of such categories (i.e.&nbsp;categories that arise from cellular automata). In particular, we’re interested in finding non-trivial functors <span class="math inline">\(F \colon \bC_1 \to \bC_2\)</span>. However this is where are current construction of <span class="math inline">\(\bC\)</span> will fail us.</p>
+</section>
+<section id="the-improved-construction" class="level3">
+<h3 class="anchored" data-anchor-id="the-improved-construction">The improved construction</h3>
+<p>Quotient by the equivalence relation <span class="math inline">\((n,m) \sim (o,p)\)</span> if <span class="math inline">\(\exists k \in \mathbb{Z}\)</span> such that <span class="math inline">\((o,p) = (n+k,m+k)\)</span>.</p>
+<p>An initial challenge in answering this question is finding the right characterisation of “trivial”. This is one of the objectives of the next section.</p>
+<div id="lem-describeHomSets" class="theorem lemma theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 1 </strong></span><span class="math inline">\(\com{Describe the Hom-sets.}\)</span></p>
+</div>
+</section>
+</section>
+<section id="the-2-category-of-cellular-automata-cell" class="level2">
+<h2 class="anchored" data-anchor-id="the-2-category-of-cellular-automata-cell">The 2-category of cellular automata <span class="math inline">\(\Cell\)</span></h2>
+<section id="translation-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="translation-invariance">Translation invariance</h3>
+<ul>
+<li>Easy</li>
+</ul>
+</section>
+<section id="local-rules" class="level3">
+<h3 class="anchored" data-anchor-id="local-rules">Local rules</h3>
+<ul>
+<li>define the ‘universal’ local CA, <span class="math inline">\(\mathcal{L}\)</span>. A CA <span class="math inline">\(\bC\)</span> is local if <span class="math inline">\(\exists L \colon \mathcal{L} \to \bC\)</span></li>
+</ul>
+</section>
 </section>
 <section id="zero-ca" class="level2">
 <h2 class="anchored" data-anchor-id="zero-ca">Zero CA</h2>
@@ -171,10 +226,10 @@ $$
 <li>a map on morphisms <span class="math inline">\(F \colon \Hom(a,b) \to \Hom(F(a),F(b))\)</span> such that <span class="math inline">\(F(\alpha + \beta) = F(\alpha) + F(\beta)\)</span>.</li>
 </ul>
 <p>From now on, we will always assume that this map is the identity (an assumption which implies that <span class="math inline">\(\Hom(a,b) = \Hom(F(a),F(b)), \ \forall a,b\)</span>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>As we have fixed the behaviour of the functor on morphisms, any mapping <span class="math inline">\(F\colon \Obj(\bG) \to \Obj(\bC)\)</span> provides a candidate functor, which gives rise to a genuine functor if the following diagram is satisfied,</p>
+<p>As we have fixed the behaviour of the functor on morphisms, any mapping <span class="math inline">\(F\colon \Obj(\bC_1) \to \Obj(\bC_2)\)</span> provides a candidate functor, which gives rise to a genuine functor if the following diagram is satisfied,</p>
 <div style="display: flex; justify-content: center;">
 <div style="margin-right: 120px;">
-<p><img class="myImage" src="./img/tikz/cd1.svg" style="width: 220%;"></p>
+<p><img class="myImage" src="./img/tikz/cd1.svg" style="width: 180%;"></p>
 </div>
 </div>
 <p>Therefore, to represent these functors in a engaging way, we’ll present dynamic illustrations of this commutation at work, in the following style.</p>
@@ -281,15 +336,100 @@ Play/Pause
 <section id="isomorphisms" class="level2">
 <h2 class="anchored" data-anchor-id="isomorphisms">Isomorphisms</h2>
 </section>
+<section id="equivalences" class="level2">
+<h2 class="anchored" data-anchor-id="equivalences">Equivalences</h2>
+<p>In category theory, the concept of “sameness” is not best captured by requiring the existence of isomorphism, but rather an <em>equivalence</em>. We recall that an equivalence is a functor <span class="math inline">\(F \colon \bC_1 \to \bC_2\)</span> such that there exists a functor <span class="math inline">\(G \colon \bC_1 \to \bC_2\)</span> which satisfies <span class="math inline">\(G \circ F \cong \id_{\bC_1}\)</span> and <span class="math inline">\(F \circ G \cong \id_{\bC_2}\)</span>. Such a <span class="math inline">\(G\)</span> is called an <em>inverse</em> to <span class="math inline">\(F\)</span> and is unique up to isomorphism.</p>
+<p>Clearly, any isomorphisms from the previous question are equivalences. However, there is at least one important class of equivalences that are not isomorphims.</p>
+<section id="rooted-paths" class="level3">
+<h3 class="anchored" data-anchor-id="rooted-paths">Rooted paths</h3>
+<p>Let <span class="math inline">\(\bC\)</span> be a CA together with a chosen configuration <span class="math inline">\(a_0 \in \Obj(\bC)\)</span>. For <span class="math inline">\(i \in \mathbb{N}\)</span> we consider the following sets <span class="math display">\[
+\begin{aligned}
+P_i &amp;= \{a \in \Obj(\bC) \mid \de^i(a) = a_0\}\\
+P &amp;= \bigcup_i P_i.
+\end{aligned}
+\]</span> We call a sequence <span class="math inline">\((\pi_k) \in (P \sqcup \{\theta\})^{\bN}\)</span> an <em><span class="math inline">\(a_0\)</span>-rooted path</em> if</p>
+<ol type="A">
+<li><span class="math inline">\(\pi_0 = a_0\)</span>,</li>
+<li><span class="math inline">\(\pi_k = \theta\)</span> if and only if <span class="math inline">\(P_k=\emptyset\)</span>,</li>
+<li><span class="math inline">\(\de(\pi_k) = \pi_{k-1}\)</span>,</li>
+<li><span class="math inline">\(\length(\pi)\)</span> is maximal with respect to all sequences satisfying the three properties above,</li>
+</ol>
+<p>where <span class="math inline">\(\length(\pi) = \sum_{k} \delta_{\pi_k \neq \theta}\)</span> (which may be infinite).</p>
+</section>
+<section id="collapsing-onto-a-path" class="level3">
+<h3 class="anchored" data-anchor-id="collapsing-onto-a-path">Collapsing onto a path</h3>
+<p>Let <span class="math inline">\(\bC\)</span> and <span class="math inline">\(a_0\)</span> be as before, and let <span class="math inline">\((\pi_k)\)</span> be an <span class="math inline">\(a_0\)</span>-rooted path. For every <span class="math inline">\(a\in P\)</span>, let <span class="math inline">\(k(a)\)</span> be the minimum integer such that <span class="math inline">\(a \in P_{k(a)}\)</span>. We consider the following map, <span class="math display">\[
+\begin{aligned}
+F \colon \Obj(\bC) &amp;\to \Obj(\bC)\\
+a &amp;\mapsto
+\begin{cases}
+\pi_{k(a)} &amp;\text{if $a \in A$}\\
+a &amp;\text{else.}
+\end{cases}
+\end{aligned}
+\]</span></p>
+<div id="prp-Fextends" class="theorem proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 1 </strong></span>Let <span class="math inline">\(F\)</span> be given as above. Then <span class="math inline">\(F\)</span> extends to a functor in <span class="math inline">\(\End(\bC)\)</span>.<br> <em>Proof.</em> We have that</p>
+<div style="display: flex; justify-content: center; margin-top: -20px; clear: both;">
+<div style="margin-right: 120px;">
+<p><img class="myImage" src="./img/tikz/cd1-np.svg" style="width: 180%;"></p>
+</div>
+</div>
+<p>clearly commutes when <span class="math inline">\(F(a) = a\)</span> and <span class="math inline">\(F(b) = b\)</span>. If <span class="math inline">\(F(a) \neq a\)</span> and <span class="math inline">\(F(b) \neq b,\)</span> then the diagram commutes by Property (C), the only case where <span class="math inline">\(F(a) \neq a\)</span> and <span class="math inline">\(F(b) = b\)</span> is when <span class="math inline">\(a \in P_1\)</span> and <span class="math inline">\(b = a_0\)</span> which implies that diagram commutes, the final case, when <span class="math inline">\(F(a) = a\)</span> and <span class="math inline">\(F(b) \neq b\)</span> never occurs by Property (D). <span class="end-proof"><span class="math inline">\(\blacksquare\)</span></span></p>
+</div>
+<div id="fig-collapse" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./img/tikz/rootedPath.svg" class="img-fluid figure-img" width="200"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: The shaded region represents <span class="math inline">\(A(a_0)\)</span>, the vertical axis tracks <span class="math inline">\(k\)</span> (this figure assumes <span class="math inline">\(a_0\)</span> is not recurrent) which corresponds to ‘backwards time’ from the cellular point of view. The functor from <a href="#prp-Fextends">Proposition&nbsp;1</a> collapses <span class="math inline">\(A_k(a_0)\)</span> horizontally onto <span class="math inline">\((\pi_k)\)</span>, the functor from <a href="#prp-Gextends">Proposition&nbsp;2</a> applies an arbitrary endomorphism to each horizontal slice of <span class="math inline">\(A_k(a_0)\)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="a-more-general-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-more-general-example">A more general example</h3>
+<p>The examples above suggest the following, more general, construction. We consider a family of endomorphisms <span class="math inline">\((\sigma_k) \in \End(A_k)^{\bZ}\)</span> with the property that <span class="math display">\[
+\de(\sigma_k(a)) = \sigma_{k-1}(\de(a)).
+\]</span></p>
+<p>We then consider the following map, <span class="math display">\[
+\begin{aligned}
+G \colon \Obj(\bC) &amp;\to \Obj(\bC)\\
+a &amp;\mapsto
+\begin{cases}
+\sigma_{k(a)}(a) &amp;\text{if $a \in A$}\\
+a &amp;\text{else.}
+\end{cases}
+\end{aligned}
+\]</span></p>
+<p>The proof given for <a href="#prp-Fextends">Proposition&nbsp;1</a> also proves the following stronger result.</p>
+<div id="prp-Gextends" class="theorem proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 2 </strong></span>Let <span class="math inline">\(G\)</span> be given as above. <span class="math inline">\(G\)</span> extends to a functor in <span class="math inline">\(\End(\bC)\)</span>.</p>
+</div>
+<p>An important property of the categorical structure in which we have embedded our cellular automata, is that <span class="math inline">\(G\)</span> is an equivalence.</p>
+<div id="prp-Gequivalence" class="theorem proposition theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 3 </strong></span>Let <span class="math inline">\(G\)</span> be given as above. Then <span class="math inline">\(G \cong \id_{\bC}\)</span>.<br> <em>Proof.</em> We construct a natural isomorphism <span class="math inline">\(\Phi \colon G \to \id\)</span> as follows, <span class="math display">\[
+\Phi(a) = \begin{cases} \left(\alpha_a \ \colon G(a) \to a\right) &amp; \text{if $a \in P,$}\\ (\id_a \colon G(a) \to a) &amp; \text{else,} \end{cases}
+\]</span> where <span class="math inline">\(\alpha_a = (k(a),k(a)) \in \Hom(\sigma_{k(a)}(a),a)\)</span>; this morphism exists as both <span class="math inline">\(a\)</span> and <span class="math inline">\(\sigma_{k(a)}(a)\)</span> are in <span class="math inline">\(P_{k(a)}\)</span>, implying <span class="math inline">\(\de^{k(a)}(a) = \de^{k(a)}(\sigma_{k(a)}(a)) = a_0\)</span>. To check that <span class="math inline">\(\Phi\)</span> is natural we only have to check that, for <span class="math inline">\((n,m) \in \Hom(a,b)\)</span>, the following diagram commutes,</p>
+<div style="display: flex; justify-content: center; margin-top: -20px; clear: both;">
+<div style="margin-right: 120px;">
+<p><img class="myImage" src="./img/tikz/cd2.svg" style="width: 180%;"></p>
+</div>
+</div>
+<p>As is often the case in <span class="math inline">\(\bC\)</span>, once the diagram has been established, it is easy to see that it commputes (due to <span class="math inline">\(\bC\)</span> not having many morphisms, see <a href="#lem-describeHomSets">Lemma&nbsp;1</a>). For instance, the case when <span class="math inline">\(a,b \in P\)</span> can be verified by considering the following figure,</p>
+<div id="fig-collapse" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./img/tikz/diagram1.svg" class="img-fluid figure-img" width="200"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: A structural representation of the case when <span class="math inline">\(a,b \in P\)</span>. We can see that both the upper-right and lower-left compositions in <span class="math inline">\(\mathcal{D}\)</span> give the red span from <span class="math inline">\(G(a)\)</span> to <span class="math inline">\(b\)</span>.</figcaption>
+</figure>
+</div>
+<p>The other cases may be verified analogously. <span class="end-proof"><span class="math inline">\(\blacksquare\)</span></span></p>
+</div>
+</section>
+</section>
 <section id="projection-deformation-retracts" class="level2">
 <h2 class="anchored" data-anchor-id="projection-deformation-retracts">Projection / Deformation retracts</h2>
 <ul>
 <li>Superfluous states of life … ok</li>
 <li>Superfluous states of death … less ok</li>
 </ul>
-</section>
-<section id="equivalences" class="level2">
-<h2 class="anchored" data-anchor-id="equivalences">Equivalences</h2>
 </section>
 </section>
 <section id="endomorphisms-of-cell" class="level1">
@@ -303,8 +443,19 @@ Play/Pause
 </section>
 <section id="life-preserving" class="level1">
 <h1>Life preserving</h1>
-<section id="initial-definitions" class="level2">
-<h2 class="anchored" data-anchor-id="initial-definitions">Initial definitions</h2>
+<section id="product-of-cas-over-0" class="level2">
+<h2 class="anchored" data-anchor-id="product-of-cas-over-0">Product of CAs over 0</h2>
+<p>Let <span class="math inline">\(\bC_1\)</span> and <span class="math inline">\(\bC_2\)</span> be two cellular automata on a graph <span class="math inline">\(G\)</span> with states <span class="math inline">\(S_1,S_2\)</span> and transition functions <span class="math inline">\(\de_1,\de_2\)</span> respectively. Their direct product (over 0) is a CA on <span class="math inline">\(G\)</span> denotes <span class="math inline">\(\bC_1 \poz \bC_2\)</span> with states <span class="math display">\[
+S = S_1 \times S_2 / \langle (0,n) \sim (m,0) \mid \forall n \in S_1, m \in S_2 \rangle.
+\]</span> and transition function <span class="math display">\[
+\de(c)(i,j) = (\de_1(c_1), \de_2(c_2)),
+\]</span> where <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are the natural projections of the configuration <span class="math inline">\(c \in S^V\)</span> into <span class="math inline">\(S_1^V\)</span> and <span class="math inline">\(S_2^V\)</span> respectively.</p>
+<p><strong>Note:</strong> Vassilis gives the following intuition: ‘the two CAs can only interact through death’. This is correct.</p>
+<p><strong>Clue:</strong> This construction should give some kind of product in <span class="math inline">\(\Cell\)</span>, or <span class="math inline">\(\span(\Cell)\)</span>.</p>
+<p><strong>Exercise:</strong> Let <span class="math inline">\(\bG\)</span> be Conway’s game of life. Show that <span class="math inline">\(\bG \poz \bG = \bG\)</span>.</p>
+</section>
+<section id="shadows-and-support" class="level2">
+<h2 class="anchored" data-anchor-id="shadows-and-support">Shadows and support</h2>
 <p>Let <span class="math inline">\(\bC\)</span> be a CA together with a configuration <span class="math inline">\(a \in \Obj(\bC) = S^V\)</span>. The <em>shadow of <span class="math inline">\(a\)</span></em> is defined as follows, <span class="math display">\[
 \begin{aligned}\sh(a) \colon V &amp;\to \{0,1\} \\ v &amp;\mapsto \begin{cases}0 &amp; \text{if $a(v) =0,$} \\ 1 &amp; \text{else.}\end{cases} \end{aligned}
 \]</span> The <em><span class="math inline">\(\bC\)</span>-support</em> of <span class="math inline">\(a\)</span> is then given by the function <span class="math display">\[
@@ -345,26 +496,39 @@ Play/Pause
 Play/Pause
 </button>
 </div>
-<p>The top game is a simple ‘colouring’ of</p>
+<p>The top CA is a simple ‘colouring’ of</p>
 </section>
 <section id="life-equivalence" class="level2">
 <h2 class="anchored" data-anchor-id="life-equivalence">Life equivalence</h2>
 </section>
 </section>
+<section id="representation-theory" class="level1">
+<h1>Representation theory</h1>
+<ul>
+<li>The set of states are given by <span class="math inline">\(S = \Sym(k)\)</span> for some <span class="math inline">\(k \in \bN\)</span>.</li>
+</ul>
+</section>
 <section id="questions" class="level1">
 <h1>Questions</h1>
 <ul>
-<li><p>What is the smaller number of states needed for a CA to have a given support?</p></li>
-<li><p>Is there a notion of the simplest/smallest CA that has a given support?</p></li>
-<li><p>If <span class="math inline">\(\bC_{1}\)</span> and <span class="math inline">\(\bC_{2}\)</span> share a support, is there a functor between them? Or a span <span class="math inline">\(\bC_{1} \to \bC_{3} \leftarrow \bC_{2}\)</span>?</p></li>
+<li>What is the smaller number of states needed for a CA to have a given support?</li>
+<li>Is there a notion of the simplest/smallest CA that has a given support?</li>
+<li>If <span class="math inline">\(\bC_{1}\)</span> and <span class="math inline">\(\bC_{2}\)</span> share a support, is there a functor between them? Or a span <span class="math inline">\(\bC_{1} \to \bC_{3} \leftarrow \bC_{2}\)</span>?</li>
 </ul>
 </section>
 <section id="other-ideas" class="level1">
 <h1>Other ideas</h1>
 <ul>
+<li>Take the product of two CAs over their dead states, in particular the dead states should be ‘compatible’</li>
 <li>optimal CA universal prop?</li>
 <li>inverse of a zoom out?</li>
-<li>Could convolution give a functor for some CA?</li>
+<li>could convolution give a functor for some CA?</li>
+</ul>
+</section>
+<section id="clement-ideas" class="level1">
+<h1>Clement ideas</h1>
+<ul>
+<li>Measuring frustration (shadow rank)</li>
 </ul>
 </section>
 
@@ -519,9 +683,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
