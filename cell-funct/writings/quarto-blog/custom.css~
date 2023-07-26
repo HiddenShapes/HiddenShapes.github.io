@@ -1,7 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
-
 @font-face {
-    font-family: "EB Garamond";
-    src: url("./fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format("truetype"),
-	 local('EB Garamond');
+    font-family: "neo_euler";
+    src: local("neo_euler"),
+	 url("./fonts/neo-euler/ams-euler.ttf") format("truetype");
 }
+
+body {
+    font-family: "neo_euler";    
+}
+
+:root {
+    --button-text-color-light: #000; /* black text for light theme */
+    --button-text-color-dark: #fff; /* white text for dark theme */
+    --button-bg-color-light: #fff; /* light gray background for light theme */
+    --button-bg-color-dark: #333; /* dark gray background for dark theme */
+}
+
+.canvasContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    grid-template-rows: repeat(2, 1fr); /* Create two rows */
+    gap: 40px; /* Add a gap between the grid items */
+    justify-content: center; /* Centers the content horizontally */
+    max-width: 420px; /* Change this according to your needs */
+    margin: 0 auto; /* This will center your grid container horizontally */
+    padding-bottom: 1em;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 38px;
+}
+
+h1 {
+    font-size: 34px; 
+}
+
+h2 {
+    font-size: 28px; 
+}
+
+.canvas-overlay{
+    opacity:0.6;
+}
+
+.canvas-wrapper {
+    position: relative;
+}
+
+#wrapper5::after {
+    content: '';
+    position: absolute;
+    top: 43%;
+    right: -30px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid blue;
+}
+
+#wrapper1::after {
+    content: '';
+    position: absolute;
+    top: 43%;
+    left: -30px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid blue;
+}
+
+#wrapper1::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 46%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid red; /* changed from black to red */
+}
+
+#wrapper4::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 46%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid red; /* changed from black to red */
+}
+
+
+.buttonContainer {
+    text-align: center;
+    width: 100%;
+}
+
+.playButton {
+    /* Adjust these as needed */
+    color: var(--button-text-color-light);
+    background-color: var(--button-bg-color-light);
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.overlay-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.overlay-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+

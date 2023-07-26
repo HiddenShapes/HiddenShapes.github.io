@@ -10,6 +10,10 @@ $$
 \DeclareMathOperator{\Cell}{\underline{\mathbb{C}\!ell}}
 \DeclareMathOperator{\Support}{Supp}
 \DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\conf}{conf}
+\DeclareMathOperator{\poz}{\overset{\circ}{\times}}
+\DeclareMathOperator{\span}{span}
+\DeclareMathOperator{\length}{length}
 \newcommand{\de}{\delta}
 \newcommand{\bC}{\mathbb{C}}
 \newcommand{\bG}{\mathbb{G}}

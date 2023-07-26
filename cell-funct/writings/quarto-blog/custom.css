@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "neo_euler";    
+    font-family: "neo_euler";
 }
 
 :root {
@@ -37,6 +37,10 @@ h1 {
 
 h2 {
     font-size: 28px; 
+}
+
+h3 {
+    font-size: 24px; 
 }
 
 .canvas-overlay{
@@ -115,5 +119,35 @@ h2 {
     left: 0;
 }
 
+ol[type="A"] {
+    counter-reset: list-counter;
+    list-style: none;
+    padding-left: 0;
+    margin-left: 20px;
+}
 
+ol[type="A"] > li {
+    counter-increment: list-counter;
+    padding-left: 0;
+    margin-left: 0;
+}
 
+ol[type="A"] > li::before {
+    content: "(" counter(list-counter, upper-alpha) ")";
+    padding-right: 5px;
+}
+
+.proof-container {
+    position: relative;
+    padding-right: 30px; /* Same as the width of end-proof, to ensure text doesn't overlap with the end-proof */
+}
+.end-proof {
+    position: absolute;
+    right: 0;
+    width: 30px; /* Set this to be the width of your end of proof symbol */
+    text-align: right;
+}
+
+.figure-caption{
+   text-align: center; 
+}
