@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'neo-euler';
-    src: url('ams-euler.eot');
-    src: url('ams-euler.eot?#iefix') format('embedded-opentype'),
-         url('ams-euler.woff') format('woff'),
-         url('ams-euler.ttf') format('truetype'),
-         url('ams-euler.svg#neo-euler') format('svg');
-}
-
