@@ -1,0 +1,13 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+  \fill[fill=blue, opacity=0.3] (0,0)--(3,0)--(1.4,2);
+  \node at (2,-0.2) {$ b $};
+  \draw[thick,opacity=0.3] (1.4,2)--(1.4,0);
+  \node at (1.55,1) {$ h $};
+  \draw[color=gray,thick,opacity=1] (0,0)--(3,0)--(1.4,2)--(0,0)--(3,0);
+\end{tikzpicture}	
+\end{document}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Rotation</title>
+    <style>
+        #rotating-svg {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <svg id="rotating-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+        <g id="rotating-group">
+            <!-- Rectangle with an arrow -->
+            <rect x="0" y="0" width="180" height="180" fill="blue"/>
+            <path d="M90 20 L120 60 L60 60 Z" fill="red"/>
+        </g>
+    </svg>
+
+    <script src="rotate.js"></script>
+</body>
+</html>
