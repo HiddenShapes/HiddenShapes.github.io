@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+@font-face {
+    font-family: "EB Garamond";
+    src: url("./fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format("truetype"),
+	 local('EB Garamond');
+}
+
+@font-face {
+    font-family: "blackout_sunrise";
+    src: local("blackout_sunrise"),
+	 url("./fonts/blackout-master/blackout_sunrise-webfont.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "blackout_midnight";
+    src: local("blackout_midnight"),
+	 url("./fonts/blackout-master/blackout_midnight-webfont.ttf") format("truetype");
+}
+
+.reveal section *  {
+    font-family: "EB Garamond";
+}
+
+.reveal section .Theorembox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #303030;
+    max-width: 96%;
+    color: #dde0eb;
+    border: 2px solid #dde0eb;
+    border-radius: 10px;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    font-size: 0.8em;
+    padding-bottom: 0.4em;
+}
+
+.reveal section h2 {
+    font-size: 1.5em !important;
+    margin-bottom: 30px;
+    margin-top: -30px;
+    text-align: center !important;
+}
+
+.reveal img-center {
+    display: block !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.reveal section .sourceCode * {
+    font-family: 'Fira Mono', monospace; 
+}
+
+.reveal section code {
+    font-family: 'Fira Mono', monospace; 
+}
+
+.reveal section .math.inline {
+    display: inline-block; 
+}
+
+#rotating-img {
+    transform-origin: 30% 50%;
+}

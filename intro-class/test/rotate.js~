@@ -1,0 +1,22 @@
+function rotateSVG() {
+    const svg = document.getElementById('rotating-svg');
+    let angle = 0;
+
+    // This function will be called on each animation frame
+    function animate() {
+        // Increment the angle
+        angle = (angle + 1) % 360;
+
+        // Apply the rotation to the SVG element
+        svg.style.transform = `rotate(${angle}deg)`;
+
+        // Request the next animation frame
+        requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+}
+
+// Start the rotation when the document is fully loaded
+document.addEventListener('DOMContentLoaded', rotateSVG);

@@ -1,0 +1,126 @@
+---
+title: Title
+subtitle: Subtitle
+format:
+  revealjs:  
+    view-distance: 10
+    mobile-view-distance: 10
+    incremental: true
+    progress: false
+    controls: true
+    template-partials:
+      - title-slide.html
+    code-summary: "code"
+    theme: black
+    width: 1200
+    height: 720
+    transition: none
+    css: custom.css
+    chalkboard:
+        theme: whiteboard
+include-before-body: header.html
+jupyter: python3
+---
+
+## Problème Géométrique
+
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img src="img/blue_square.png" style="position: absolute; top: 5.25em; left: 10em; opacity: 0.4;" width="300" height="200">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 17.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 10em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 10em; left: 17.2em;" width="25">
+</section>
+
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img src="img/blue_square.png" style="position: absolute; top: 2.75em; left: 15em; opacity: 0.5;" width="300" height="400">
+<img src="img/blue_dot.png" style="position: absolute; top: 2.4em; left: 14.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 2.4em; left: 22.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 14.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 22.2em;" width="25">
+</section>
+
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img data-id="box1" src="img/blue_square.png" style="position: absolute; top: 10.25em; left: 7.5em; opacity: 0.4;" width="500" height="100">
+<img src="img/blue_dot.png" style="position: absolute; top: 9.9em; left: 7.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 9.9em; left: 19.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 7.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 19.7em;" width="25">
+</section>
+
+<!-- AREA : 10.5 -->
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img data-id="box1" src="img/blue_shape.png" style="position: absolute; top: 5.25em; left: 7.5em; opacity: 0.4;" width="600">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 7.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 7.4em; left: 17.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 22.2em;" width="25">
+</section>
+
+<!-- AREA : 5 -->
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img data-id="box1" src="img/blue_shape2.png" style="position: absolute; top: 5.25em; left: 10em; opacity: 0.4;" width="500">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 12.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 9.9em; left: 14.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 15em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 22.2em;" width="25">
+</section>
+
+<!-- AREA : 10.5 -->
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img data-id="box1" src="img/blue_shape.png" style="position: absolute; top: 5.25em; left: 7.5em; opacity: 0.4;" width="600">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 7.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 7.4em; left: 17.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 12.5em; left: 22.2em;" width="25">
+<p data-id="text1" style="color: CornflowerBlue; position: absolute; top: 8.8em; left: 13em;"> 10.5 </p>
+</section>
+
+
+<!-- AREA : 5 -->
+<section data-auto-animate>
+<img src="img/blue_square.png" style="opacity: 0" height="720">
+<img data-id="box1" src="img/blue_shape2.png" style="position: absolute; top: 5.25em; left: 10em; opacity: 0.4;" width="500">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 12.2em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 9.9em; left: 14.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 15em; left: 9.7em;" width="25">
+<img src="img/blue_dot.png" style="position: absolute; top: 4.9em; left: 22.2em;" width="25">
+<p data-id="text1" style="color: CornflowerBlue; position: absolute; top: 9.6em; left: 13em;"> 5 </p>
+</section>
+
+<canvas style="position: absolute; top: 3.6em; left: 3.75em;" width="900" height="600" class="latticeCanvas"></canvas> 
+
+## Problème d'Analyse 
+
+<section data-auto-animate>
+<img style="opacity: 0;" src="img/tikz/triangleArea.svg" height="650"> <!--padding-->
+<img style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; filter: invert(1);" src="img/tikz/triangleArea.svg" height="500">
+</section>
+
+<section data-auto-animate data-transition="none-out">
+<img style="opacity: 0;" src="img/tikz/triangleArea.svg" height="650"> <!--padding-->
+<img style="position: absolute; top: 0; bottom: 0; left: 0; right: 50%; margin: auto; filter: invert(1);" src="img/tikz/triangleArea.svg" height="450">
+</section>
+
+<section data-transition="fade-in">
+<img style="opacity: 0;" src="img/tikz/triangleArea.svg" height="650"> <!--padding-->
+<img style="position: absolute; top: 0; bottom: 0; left: 0; right: 50.9%; margin: auto; filter: invert(1);" src="img/tikz/triangleArea2.svg" height="450">
+</section>
+
+<section data-transition="fade-in">
+<img style="opacity: 0;" src="img/tikz/triangleArea.svg" height="650"> <!--padding-->
+<img style="position: absolute; top: 0; bottom: 0; left: 0; right: 50.9%; margin: auto; filter: invert(1);" src="img/tikz/triangleArea2.svg" height="450">
+<img style="position: absolute; top: 0; bottom: 0; left: 50%; right: 0; margin: auto; filter: invert(1);" src="img/tikz/triangleArea3.svg" height="450">
+</section>
+
+
+<script src="lattice.js"></script>
+
+
+
