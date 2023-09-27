@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complex exponential and logarithm </title>
     <style>
-        /* Optional: Add some basic styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -18,22 +17,50 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 53.5%; /* Aspect Ratio */
+            margin-top: 20px;
         }
 
         iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; /* Optional: Add some spacing between the title and the iframe */
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+            }
         }
     </style>
 </head>
 
 <body>
-  <div class="container">
-    <h2>Exponentielle Complexe</h2>
-    <iframe scrolling="no" title="exp function" src="https://www.geogebra.org/material/iframe/id/hxcg6mcd/width/1536/height/821/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="1536px" height="821px" style="border:0px; margin-bottom:3em;"> </iframe>
+    <div class="container">
+        <h2>Exponentielle Complexe</h2>
+        <div class="iframe-container">
+            <iframe scrolling="no" title="exp function" src="https://www.geogebra.org/material/iframe/id/hxcg6mcd/width/1536/height/821/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" style="border:0px;"></iframe>
+        </div>
+
         <h2>Logarithme Complexe</h2>
-        <iframe scrolling="no" title="Complex Log" src="https://www.geogebra.org/material/iframe/id/hryjyu3w/width/1536/height/821/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="1536px" height="821px" style="border:0px; margin-bottom:3em;"></iframe>
+        <div class="iframe-container">
+            <iframe scrolling="no" title="Complex Log" src="https://www.geogebra.org/material/iframe/id/hryjyu3w/width/1536/height/821/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" style="border:0px;"></iframe>
+        </div>
     </div>
 </body>
 
