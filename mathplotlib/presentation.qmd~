@@ -1,0 +1,709 @@
+---
+title: Présentation Cours ICS
+subtitle: Représentation... d'un champ scalaire ...d'une courbe paramétrée ...d'un champ vectoriel
+author: Leonard Hardiman
+format:
+  revealjs:
+  
+    view-distance: 10
+    mobile-view-distance: 10
+    incremental: false
+    progress: false
+    controls: true
+    template-partials:
+      - title-slide.html
+    code-summary: "code"
+    theme: black
+    width: 1200
+    height: 720
+    transition: fade
+    css: custom.css
+    chalkboard:
+        theme: whiteboard
+include-before-body: header.html
+jupyter: python3
+---
+
+# Représentation d'un champ scalaire
+
+## Qu'est-ce qu'un champ scalaire ?
+
+La température est un exemple de <span style="color: gold;">champ scalaire</span> : il s'agit d'un scalaire dont la valeur varie selon le point de l'espace considéré : $$T=f(x,y,z).$$
+
+:::{.fragment}
+Il s'agit d'un champ scalaire de trois variables, car la température est mesurée en un point de l'espace 3D. Aujourd'hui, nous réservons notre attention aux champs scalaires de deux variables, en particulier à cet exemple:
+$$ f(x,y) = \frac{10x}{1+x^2+y^2}. $$
+:::
+
+:::{.fragment}
+Il y a deux manières de visualiser un champ scalaire de deux variables :
+
+* soit en <span style="color: gold;">2D</span> à l'aide de <span style="color: gold;">courbes de niveau</span> $(z_0 = f(x,y))$ ;
+* soit en <span style="color: gold;">3D</span> sous la forme d'une <span style="color: gold;">surface</span> permettant de visualiser la valeur $z=f(x,y)$.
+:::
+
+
+## Définition d'une grille de points en 2D
+
+```{.python code-line-numbers="1-2"}
+import numpy as np
+x = y = np.linspace(-4.,4.,41)          # nos coordonnées
+xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées
+```
+
+## Définition d'une grille de points en 2D
+
+<!--
+Note here that you're discretising, like with the functions
+-->
+
+```{.python code-line-numbers="3"}
+import numpy as np
+x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
+xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
+```
+`xv` et `yv` sont les tableaux 42 par 42 suivants :
+$$\mathsf{xv} = \begin{bmatrix} \mathsf{x_0} & \mathsf{x_0} & \cdots & \mathsf{x_0} \\ \mathsf{x_1} & \mathsf{x_1} & \cdots & \mathsf{x_1} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{x_{41}} & \mathsf{x_{41}} & \cdots & \mathsf{x_{41}} \end{bmatrix}, \quad \mathsf{yv} = \begin{bmatrix} \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \end{bmatrix}$$
+Ces derniers satisfont `(xv[i,j],yv[i,j]) = (x[i],y[j])`.
+
+::: {.fragment}
+On calcule alors la valeur de notre fonction aux points de la grille : 
+```{.python}
+fv = 10*xv/(1 + xv**2 + yv**2)
+```
+Grâce à nos coordonnées vectorisées, le calcul peut être effectué entièrement en appliquant des opérations aux tableaux, plutôt qu'en utilisant des boucles (ce qui est beaucoup plus lent).
+:::
+
+## Première visualisation 2D: courbes de niveau
+
+```{.python code-line-numbers="1-5|6-7|8"}
+import matplotlib.pyplot as plt 
+plt.title("Représentation sous la forme de courbes de niveau")
+fig = plt.figure()          # pour créer la figure
+ax = fig.gca()              # pour créer les axes ("get the current axes")
+ax.axis('equal')            # même échelle sur les deux axes
+cs = ax.contour(xv,yv,fv,9) # "contour set"
+cs.clabel(inline=True, fontsize=9)
+plt.show()
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left">
+`ax.contour` est une méthode (des axes) qui prend en entrée notre grille de coordonnées 2D (`xv,yv`), notre tableau de valeurs de fonction (`fv`) et un entier spécifiant le nombre de courbes de niveau à dessiner (`9`). <br> La méthode retourne ensuite un objet <span style="color: gold;">ContourSet</span> (essentiellement une visualisation des courbes de niveau, avec quelques méthodes utiles pour les manipuler).
+</div>
+<div class="contour-image-right">
+<img src="img/contour_plot.svg" class="invert-colors">
+</div>
+</div>
+
+## Visualisation 2D alternative: une image
+
+```{.python code-line-numbers="6"}
+import matplotlib.pyplot as plt 
+plt.title("Représentation sous la forme d'une image")
+fig = plt.figure()           # pour créer la figure
+ax = fig.gca()               # pour créer les axes ("get the current axes")
+ax.axis('equal')             # même échelle sur les deux axes
+ax.imshow(fv.T)
+
+plt.show()
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left">
+`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs de fonction <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
+
+Notez que, comme la méthode ne prend pas nos coordonnées en argument, les étiquettes x et y sont erronées.
+</div>
+<div class="contour-image-right">
+<img src="img/true_inverted_colors.svg" class="invert-colors">
+</div>
+</div>
+
+## Visualisation 2D alternative: une image
+
+```{.python code-line-numbers="6"}
+import matplotlib.pyplot as plt 
+plt.title("Représentation sous la forme d'une image")
+fig = plt.figure()           # pour créer la figure
+ax = fig.gca()               # pour créer les axes ("get the current axes")
+ax.axis('equal')             # même échelle sur les deux axes
+ax.imshow(fv.T, extent=[-4, 4, -4, 4])
+
+plt.show()
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left">
+`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs de fonction <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
+
+Notez que, comme la méthode ne prend pas nos coordonnées en argument, les étiquettes x et y sont erronées.
+
+Comme notre grille coordiante est régulière, nous pouvons corriger cela avec l'option extend, mais dans d'autres cas, ce serait plus difficile.
+
+</div>
+<div class="contour-image-right">
+<img src="img/true_inverted_colors_coord.svg" class="invert-colors">
+</div>
+</div>
+
+## Première visualisation 3D: courbes de niveau
+```{.python code-line-numbers="4"}
+import matplotlib.pyplot as plt
+plt.title("Représentation sous la forme de courbes de niveau (en 3D)")
+fig = plt.figure()              # pour créer la figure                         
+ax = plt.axes(projection='3d')  # pour créer les axes 
+
+cs = ax.contour(xv,yv,fv,9)
+
+plt.show()
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left">
+En appelant simplement la méthode `contour` sur des axes 3D, on obtient un <span style="color: gold;">ContourSet</span> qui visualise en 3D les courbes de niveau.
+
+Ici, l'altitude (coordonnée $z$) d'une courbe est donnée par sa valeur associée.
+
+</div>
+<div class="contour-image-right">
+<img src="img/contour_plot_3d.svg" class="invert-colors">
+</div>
+</div>
+
+
+## Deuxième visualisation 3D: une surface 
+
+
+```{.python code-line-numbers="1,6"}
+import matplotlib.pyplot as plt; from matplotlib import cm
+plt.title("Représentation 3D de la surface $z=f(x,y)$")
+fig = plt.figure()              # pour créer la figure 
+ax = plt.axes(projection='3d')  # pour créer les axes  
+
+ax.plot_surface(xv,yv,fv,cmap = cm.viridis)
+
+plt.show()
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left">
+Les axes 3D ont une autre méthode, `plot_surface`, qui, comme `contour`, prend `xv`, `yv` et `fv` comme argument, ainsi qu'un <span style="color: gold;">'colour map'</span>, utilisée pour traduire les valeurs de la fonction en couleurs qui sont appliquées à la surface.
+
+On peut également retrouver nos courbes de niveau.
+</div>
+<div class="contour-image-right">
+```{python}
+import numpy as np
+import plotly.graph_objects as go
+
+# Generate coordinates
+x = y = np.linspace(-4., 4., 41)
+xv, yv = np.meshgrid(x, y, indexing='ij')
+fv = 10*xv/(1 + xv**2 + yv**2)
+
+# Create the 3D surface plot
+fig = go.Figure(data=[go.Surface(
+    x=xv, 
+    y=yv, 
+    z=fv,
+    colorscale='Viridis',
+    showscale=False,
+    contours=dict(
+        x=dict(show=False, highlight=False),
+        y=dict(show=False, highlight=False),
+        z=dict(show=False, highlight=True)
+    ),
+    hoverinfo='z'  # Show only z values
+)])
+
+# Convert matplotlib view_init angles to Plotly camera position
+# elev=10, azim=60
+elev = 10  # elevation angle in degrees
+azim = 60  # azimuth angle in degrees
+
+# Convert to radians
+elev_rad = np.radians(elev)
+azim_rad = np.radians(azim)
+
+# Calculate camera position (distance of ~2.1 for good view)
+distance = 2.1
+x_eye = distance * np.cos(elev_rad) * np.cos(azim_rad)
+y_eye = distance * np.cos(elev_rad) * np.sin(azim_rad)
+z_eye = distance * np.sin(elev_rad)
+
+# Update layout with custom camera position
+fig.update_layout(
+    scene=dict(
+        xaxis_title="x",
+        yaxis_title="y", 
+        zaxis_title="z",
+        aspectmode='cube',
+        camera=dict(
+            eye=dict(x=x_eye, y=y_eye, z=z_eye)
+        ),
+        xaxis=dict(showspikes=False),
+        yaxis=dict(showspikes=False),
+        zaxis=dict(showspikes=False)
+    ),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    width=450,
+    height=450,
+    margin=dict(l=0, r=0, t=0, b=0)
+)
+
+# Make scene background transparent with dark-friendly colors
+fig.update_scenes(
+    xaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"),
+    yaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"), 
+    zaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white")
+)
+
+fig.update_layout(showlegend=False)
+fig.show(config={'displayModeBar': False})
+```
+</div>
+</div>
+
+<div style="position: absolute; top: 314px; left: 760px; color: white; background-color: #191919; padding-top: 40px; border-radius: 5px; font-size: .45em;">
+<span style="font-family: 'Liberation Sans', sans-serif !important;"> Représentation 3D de la surface $z=f(x,y)$ </span>
+</div>
+
+# Représentation d'une courbe paramétrée
+
+## Qu'est-ce qu'une courbe paramétrée ?
+
+Soit $I$ un intervalle. Une courbe paramétrée par <span style="color: gold;">le paramètre $t \in I$</span> est donnée par 
+
+<div style="margin-top: -20px;">
+$$\vec{r}(t) = 
+\begin{pmatrix}
+x(t) \\ y(t) 
+\end{pmatrix} \in \mathbb{R}^{2}, \ \text{en deux dimensions} \\[2em] \vec{r}(t) = 
+\begin{pmatrix}
+x(t) \\ y(t) \\ z(t) 
+\end{pmatrix} \in \mathbb{R}^{3}, \ \text{en trois dimensions.}
+$$
+</div>
+Pour spécifier une courbe paramétrée, il suffit donc de spécifier les fonctions <span style="color: gold;">$x(t)$</span>, <span style="color: gold;">$y(t)$</span> et potentiellement <span style="color: gold;">$z(t)$</span> (si on travail en trois dimensions).
+
+On peut considérer l'exemple en deux dimensions suivant:
+$$
+\begin{cases}
+x(t) = R\, t -d \sin(t)\\
+y(t) = R -d \cos(t),
+\end{cases}
+$$
+où $R$ et $d$ sont dans $\mathbb{R}^{*}$. Une courbe de cette forme est appelée une <span style="color: gold;">Trochoïde</span>.
+
+## Visualiser une courbe paramétrée (2D)
+
+On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelés `courbe_x` et `courbe_y`).
+
+```{.python code-line-numbers="1-2|3-4|5|6-7"}
+import numpy as np
+import matplotlib.pyplot as plt
+R = 3
+d = 4
+t = np.linspace(-2*np.pi,2*np.pi,1000)
+courbe_x = R*t - d*np.sin(t)
+courbe_y = R - d*np.cos(t)
+```
+
+:::{.fragment}
+<div class="contour-explanation-container">
+<div class="contour-text-left" style="font-size: 1em; width: 55%;">
+Puis, on passe à la visualisation:
+```{.python code-line-numbers="4"}
+fig = plt.figure() # pour créer la figure
+ax = fig.gca()     # pour créer les axes
+plt.axis('scaled')
+ax.plot(courbe_x, courbe_y, linewidth=2)
+plt.show()
+```
+
+</div>
+<div class="contour-image-right" style="padding-top:78px">
+<img src="img/trochoide_curve.svg" class="invert-colors">
+</div>
+</div>
+:::
+
+## Visualiser une courbe paramétrée (2D)
+
+On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelés `courbe_x` et `courbe_y`).
+
+```{.python code-line-numbers="6-7"}
+import numpy as np
+import matplotlib.pyplot as plt
+R = 3
+d = 4
+t = np.linspace(-2*np.pi,2*np.pi,1000)
+courbe_x = R*t - d*np.sin(t)
+courbe_y = R - d*np.cos(t)
+```
+
+<div class="contour-explanation-container">
+<div class="contour-text-left" style="font-size: 1em; width: 55%;">
+Puis, on passe à la visualisation:
+```{.python code-line-numbers="4"}
+fig = plt.figure() # pour créer la figure
+ax = fig.gca()     # pour créer les axes
+plt.axis('scaled')
+ax.plot(courbe_x, courbe_y, linewidth=2)
+plt.show()
+```
+:::{.fragment}
+Une <span style="color: gold;">trochoïde</span> est la courbe tracée par un point situé à l'extrémité d'un segment de longueur $d$ qui tourne avec un cercle de rayon $R$ lorsqu'il roule sur une droite. La <span style="color: gold;">cardioïde</span> est le cas particulier où <span style="color: gold;">$d = R$</span>.
+:::
+
+</div>
+<div class="contour-image-right" style="padding-top:78px">
+<img src="img/trochoide_curve.svg" class="invert-colors">
+</div>
+</div>
+
+::: {style="position: absolute; top: 440px; left: 670px; z-index: 1000; pointer-events: none;"}
+```{python}
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# Parameters
+R = 3  # radius of rolling circle
+d = 4  # distance from center to tracing point
+num_frames = 2 #150 for final
+max_theta = 4 * np.pi  # two complete rotations
+
+# Generate theta values for animation
+theta_values = np.linspace(0, max_theta, num_frames)
+
+# Create figure
+fig = go.Figure()
+
+# Calculate trochoid curve points for full animation
+theta_full = np.linspace(0, max_theta, 1000)
+x_trochoid_full = R * theta_full - d * np.sin(theta_full)
+y_trochoid_full = R - d * np.cos(theta_full)
+
+# Add the complete trochoid curve (initially hidden)
+fig.add_trace(go.Scatter(
+    x=x_trochoid_full,
+    y=y_trochoid_full,
+    mode='lines',
+    line=dict(color='lightgray', width=1, dash='dot'),
+    name='Complete Trochoid',
+    visible=False
+))
+
+# Initialize empty traces for animation
+fig.add_trace(go.Scatter(x=[], y=[], mode='lines', 
+                         line=dict(color='yellow', width=3), 
+                         name='Trochoid'))
+
+fig.add_trace(go.Scatter(x=[], y=[], mode='lines', 
+                         line=dict(color='white', width=2), 
+                         name='Rolling Circle'))
+
+fig.add_trace(go.Scatter(x=[], y=[], mode='markers+lines', 
+                         marker=dict(size=8, color='yellow'), 
+                         line=dict(color='white', width=1),
+                         name='Tracing Point'))
+
+fig.add_trace(go.Scatter(x=[], y=[], mode='markers', 
+                         marker=dict(size=6, color='white'), 
+                         name='Circle Center'))
+
+# Add baseline
+baseline_x = np.linspace(-5, max_theta * R + 5, 100)
+baseline_y = np.zeros_like(baseline_x)
+fig.add_trace(go.Scatter(x=baseline_x, y=baseline_y, 
+                         mode='lines', 
+                         line=dict(color='white', width=2), 
+                         name='Baseline'))
+
+# Create frames for animation
+frames = []
+for i, theta in enumerate(theta_values):
+    # Current position of circle center
+    center_x = R * theta
+    center_y = R
+    
+    # Current position of tracing point
+    trace_x = R * theta - d * np.sin(theta)
+    trace_y = R - d * np.cos(theta)
+    
+    # Generate circle points
+    circle_theta = np.linspace(0, 2 * np.pi, 100)
+    circle_x = center_x + R * np.cos(circle_theta)
+    circle_y = center_y + R * np.sin(circle_theta)
+    
+    # Trochoid points up to current position
+    theta_current = theta_values[:i+1]
+    x_trochoid = R * theta_current - d * np.sin(theta_current)
+    y_trochoid = R - d * np.cos(theta_current)
+    
+    # Create frame
+    frame = go.Frame(
+        data=[
+            go.Scatter(x=x_trochoid_full, y=y_trochoid_full),  # Complete curve (hidden)
+            go.Scatter(x=x_trochoid, y=y_trochoid),  # Current trochoid
+            go.Scatter(x=circle_x, y=circle_y),  # Rolling circle
+            go.Scatter(x=[center_x, trace_x], y=[center_y, trace_y]),  # Line to tracing point
+            go.Scatter(x=[center_x], y=[center_y]),  # Circle center
+            go.Scatter(x=baseline_x, y=baseline_y)  # Baseline
+        ],
+        name=str(i)
+    )
+    frames.append(frame)
+
+fig.frames = frames
+
+# Add minimal animation controls - just play button with symbol
+fig.update_layout(
+    updatemenus=[{
+        'type': 'buttons',
+        'buttons': [
+            {
+                'label': '▶',
+                'method': 'animate',
+                'args': [None, {
+                    'frame': {'duration': 50, 'redraw': True},
+                    'mode': 'immediate',
+                    'transition': {'duration': 0}
+                }]
+            }
+        ],
+        'direction': 'left',
+        'pad': {'r': 10, 't': 10},
+        'showactive': False,
+        'x': 0.02,  # Horizontal position (0-1, left to right)
+        'xanchor': 'left',
+        'y': 0.78,  # Vertical position (0-1, bottom to top) - moved down
+        'yanchor': 'top'
+    }]
+)
+
+# Update layout with transparent background and minimal UI
+fig.update_layout(
+    title='',
+    xaxis_title='',
+    yaxis_title='',
+    width=480,
+    showlegend=False,
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    xaxis=dict(
+        range=[-2, max_theta * R + 2],
+        showgrid=False,
+        showticklabels=False,
+        zeroline=False,
+        showline=False
+    ),
+    yaxis=dict(
+        range=[-8, 10], 
+        scaleanchor="x", 
+        scaleratio=1,
+        showgrid=False,
+        showticklabels=False,
+        zeroline=False,
+        showline=False
+    ),
+    margin=dict(l=0, r=0, t=50, b=0)  # Increased top margin for button spacing
+)
+
+# Show the figure without toolbar
+fig.show(config={'displayModeBar': False})
+```
+:::
+
+## Visualiser une courbe paramétrée (3D)
+
+Comme précédemment, on définit tout d'abord nos fonctions.
+
+<div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
+<div class="contour-text-left" style="font-size: 1em; width: 54%; margin-top: 20px;">
+```{.python code-line-numbers="3,5-7"}
+import numpy as np
+import matplotlib.pyplot as plt
+t = np.linspace(-2*np.pi,2*np.pi,100)
+courbe_x = 1 + np.cos(t) 
+courbe_y = np.sin(t)
+courbe_z = 2*np.sin(t/2)
+```
+On considère donc ici la courbe paramétrée
+$$
+\begin{cases}
+x(t) = 1 + \cdot \cos(t)\\
+y(t) = \sin(t)\\
+z(t) = 2 \sin\left(\frac{t}{2}\right),
+\end{cases}
+$$
+où $t \in [-2\pi,2\pi]$. <span class="fragment">On passe à la visualisation:
+```{.python code-line-numbers="2-3"}
+fig = plt.figure() 
+ax = plt.axes(projection='3d')
+ax.plot(courbe_x, courbe_y, courbe_z)
+plt.show()
+```</span>
+</div>
+<div class="contour-image-right-sphere" style="font-size:.9em;">
+```{python}
+import numpy as np
+import plotly.graph_objects as go
+
+# Create parameter arrays
+t = np.linspace(0, 4*np.pi, 1000)  # Parameter for Viviani curve
+phi = np.linspace(0, 2*np.pi, 50)  # Azimuthal angle
+theta = np.linspace(0, np.pi, 25)  # Polar angle
+
+# Viviani curve (the intersection)
+x_curve = 1 + np.cos(t)
+y_curve = np.sin(t)
+z_curve = 2 * np.sin(t/2)
+
+# Sphere (radius 2, centered at origin)
+# x = 2*cos(phi)sin(theta), y = 2*sin(phi)sin(theta), z = 2*cos(theta)
+phi_sphere, theta_sphere = np.meshgrid(phi, theta)
+x_sphere = 2 * np.cos(phi_sphere) * np.sin(theta_sphere)
+y_sphere = 2 * np.sin(phi_sphere) * np.sin(theta_sphere)
+z_sphere = 2 * np.cos(theta_sphere)
+
+# Cylinder (radius 1, axis along z, centered at x=1, y=0)
+# One side tangent to sphere at x=2, other side passes through center at x=0
+z_cyl = np.linspace(-2, 2, 25)
+phi_cyl, z_cyl_mesh = np.meshgrid(phi, z_cyl)
+x_cylinder = 1 + np.cos(phi_cyl)  # This gives x from 0 to 2
+y_cylinder = np.sin(phi_cyl)
+z_cylinder = z_cyl_mesh
+
+# Set up camera angles (similar to your previous plot)
+elev = 20  # elevation angle in degrees
+azim = 45  # azimuth angle in degrees
+
+# Convert to radians
+elev_rad = np.radians(elev)
+azim_rad = np.radians(azim)
+
+# Calculate camera position
+distance = 2  # Reduced distance for closer view
+x_eye = distance * np.cos(elev_rad) * np.cos(azim_rad)
+y_eye = distance * np.cos(elev_rad) * np.sin(azim_rad)
+z_eye = distance * np.sin(elev_rad)
+
+# Create the figure
+fig = go.Figure()
+
+# Add wireframe sphere (initially invisible)
+fig.add_trace(go.Surface(
+    x=x_sphere, 
+    y=y_sphere, 
+    z=z_sphere,
+    showscale=False,
+    opacity=0.3,
+    colorscale=[[0, 'lightblue'], [1, 'lightblue']],
+    hoverinfo='skip',
+    surfacecolor=np.ones_like(x_sphere),  # Uniform color
+    contours=dict(
+        x=dict(show=False, highlight=False),
+        y=dict(show=False, highlight=False),
+        z=dict(show=False, highlight=False)
+    ),
+    visible=False,  # Initially hidden
+    name='Sphere'
+))
+
+# Add wireframe cylinder (initially invisible)
+fig.add_trace(go.Surface(
+    x=x_cylinder, 
+    y=y_cylinder, 
+    z=z_cylinder,
+    showscale=False,
+    opacity=0.3,
+    colorscale=[[0, 'lightgreen'], [1, 'lightgreen']],
+    hoverinfo='skip',
+    surfacecolor=np.ones_like(x_cylinder),  # Uniform color
+    contours=dict(
+        x=dict(show=False, highlight=False),
+        y=dict(show=False, highlight=False),
+        z=dict(show=False, highlight=False)
+    ),
+    visible=False,  # Initially hidden
+    name='Cylinder'
+))
+
+# Add the Viviani curve
+fig.add_trace(go.Scatter3d(
+    x=x_curve,
+    y=y_curve, 
+    z=z_curve,
+    mode='lines',
+    line=dict(color='red', width=6),
+    hoverinfo='skip',
+    name='Viviani Curve'
+))
+
+# Update layout with same styling as your original plot
+fig.update_layout(
+    scene=dict(
+        xaxis_title="x",
+        yaxis_title="y", 
+        zaxis_title="z",
+        aspectmode='cube',
+        camera=dict(
+            eye=dict(x=x_eye, y=y_eye, z=z_eye)
+        ),
+        xaxis=dict(showspikes=False, range=[-3, 3]),
+        yaxis=dict(showspikes=False, range=[-3, 3]),
+        zaxis=dict(showspikes=False, range=[-3, 3])
+    ),
+    paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
+    plot_bgcolor='rgba(0,0,0,0)',   # Transparent plot area
+    width=600,
+    height=600,
+    margin=dict(l=0, r=0, t=0, b=0)  # Remove all margins
+)
+
+# Make scene background transparent with dark-friendly colors
+fig.update_scenes(
+    xaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"),
+    yaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"), 
+    zaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white")
+)
+
+# Remove the toolbar/menu and legend, add toggle buttons
+fig.update_layout(
+    showlegend=False,
+    updatemenus=[
+        dict(
+            type="buttons",
+            direction="left",
+            buttons=list([
+                dict(
+                    args=[{"visible": [False, False, True]}],
+                    label="○",
+                    method="restyle"
+                ),
+                dict(
+                    args=[{"visible": [True, True, True]}],
+                    label="◐",
+                    method="restyle"
+                )
+            ]),
+            pad={"r": 10, "t": 10},
+            showactive=True,
+            x=0.01,
+            xanchor="left",
+            y=0.99,
+            yanchor="top",
+            active=0  # Start with surfaces hidden (first button active)
+        ),
+    ]
+)
+
+fig.show(config={'displayModeBar': False})
+```
+</div>
+</div>
+
