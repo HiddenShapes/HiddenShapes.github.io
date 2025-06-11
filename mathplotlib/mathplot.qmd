@@ -1,0 +1,35 @@
+---
+title: Test
+subtitle: Test2
+format:
+  revealjs:
+    view-distance: 10
+    mobile-view-distance: 10
+    incremental: true
+    progress: false
+    controls: true
+    template-partials:
+      - title-slide.html
+    code-summary: "code"
+    theme: black
+    width: 1200
+    height: 720
+    transition: none
+    css: custom.css
+    chalkboard:
+        theme: whiteboard
+include-before-body: header.html
+jupyter: python3
+---
+
+# Représentation d'un champ scalaire
+
+## Définition d'une grille de points en 2D
+
+dwdw
+
+```{python}
+import numpy as np
+x = y = np.linspace(-4.,4.,41)
+xv, yv = np.meshgrid(x,y,indexing='ij')
+```
