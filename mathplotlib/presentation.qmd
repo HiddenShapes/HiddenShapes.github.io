@@ -31,15 +31,15 @@ jupyter: python3
 Un <span style="color: gold;">champ scalaire</span> est un scalaire (autrement dit un nombre) dont la valeur varie selon le point de l'espace considéré. Par exemple, la température est un <span style="color: gold;">champ scalaire</span> : $$T=f(x,y,z).$$
 
 :::{.fragment}
-La température est un champ scalaire de trois variables, car la température est mesurée en un point de l'espace 3D. Aujourd'hui, nous réservons notre attention aux champs scalaires de deux variables, en particulier à cet exemple:
+La température est un champ scalaire de trois variables, car la température est mesurée en un point de l'espace 3D. Aujourd'hui, nous concentrons notre attention sur les champs scalaires de deux variables, en particulier à cet exemple:
 $$ f(x,y) = \frac{10x}{1+x^2+y^2}. $$
 :::
 
 :::{.fragment}
-Il y a deux manières de visualiser un champ scalaire de deux variables :
+Il y a plusieurs manières de visualiser un champ scalaire de deux variables :
 
-* soit en <span style="color: gold;">2D</span> à l'aide de <span style="color: gold;">courbes de niveau</span> $(z_0 = f(x,y))$ ;
-* soit en <span style="color: gold;">3D</span> sous la forme d'une <span style="color: gold;">surface</span> permettant de visualiser la valeur $z=f(x,y)$.
+* en <span style="color: gold;">2D</span> à l'aide de <span style="color: gold;">courbes de niveau</span> $(z_0 = f(x,y))$ ou en <span style="color: gold;">image</span>;
+* en <span style="color: gold;">3D</span> sous la forme d'une <span style="color: gold;">surface</span> permettant de visualiser la valeur $z=f(x,y)$.
 :::
 
 
@@ -62,8 +62,8 @@ import numpy as np
 x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
 xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
 ```
-`xv` et `yv` sont les tableaux 42 par 42 suivants :
-$$\mathsf{xv} = \begin{bmatrix} \mathsf{x_0} & \mathsf{x_0} & \cdots & \mathsf{x_0} \\ \mathsf{x_1} & \mathsf{x_1} & \cdots & \mathsf{x_1} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{x_{41}} & \mathsf{x_{41}} & \cdots & \mathsf{x_{41}} \end{bmatrix}, \quad \mathsf{yv} = \begin{bmatrix} \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{41}} \end{bmatrix}$$
+`xv` et `yv` sont les tableaux 41 par 41 suivants :
+$$\mathsf{xv} = \begin{bmatrix} \mathsf{x_0} & \mathsf{x_0} & \cdots & \mathsf{x_0} \\ \mathsf{x_1} & \mathsf{x_1} & \cdots & \mathsf{x_1} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{x_{40}} & \mathsf{x_{40}} & \cdots & \mathsf{x_{40}} \end{bmatrix}, \quad \mathsf{yv} = \begin{bmatrix} \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \end{bmatrix}$$
 Ces derniers satisfont `(xv[i,j],yv[i,j]) = (x[i],y[j])`.
 
 ::: {.fragment}
@@ -144,9 +144,9 @@ plt.show()
 ```{.python code-line-numbers="6"}
 import matplotlib.pyplot as plt 
 plt.title("Représentation sous la forme d'une image")
-fig = plt.figure()           # pour créer la figure
-ax = fig.gca()               # pour créer les axes ("get the current axes")
-ax.axis('equal')             # même échelle sur les deux axes
+fig = plt.figure()          # pour créer la figure
+ax = fig.gca()              # pour créer les axes ("get the current axes")
+ax.axis('equal')            # même échelle sur les deux axes
 ax.imshow(fv.T)
 
 plt.show()
@@ -168,9 +168,9 @@ Notez que, comme la méthode ne prend pas nos coordonnées en argument, les éti
 ```{.python code-line-numbers="6"}
 import matplotlib.pyplot as plt 
 plt.title("Représentation sous la forme d'une image")
-fig = plt.figure()           # pour créer la figure
-ax = fig.gca()               # pour créer les axes ("get the current axes")
-ax.axis('equal')             # même échelle sur les deux axes
+fig = plt.figure()          # pour créer la figure
+ax = fig.gca()              # pour créer les axes ("get the current axes")
+ax.axis('equal')            # même échelle sur les deux axes
 ax.imshow(fv.T, extent=[-4, 4, -4, 4])
 
 plt.show()
@@ -329,8 +329,9 @@ x(t) \\ y(t) \\ z(t)
 \end{pmatrix} \in \mathbb{R}^{3}, \ \text{en trois dimensions.}
 $$
 </div>
-Pour spécifier une courbe paramétrée, il suffit donc de spécifier les fonctions <span style="color: gold;">$x(t)$</span>, <span style="color: gold;">$y(t)$</span> et potentiellement <span style="color: gold;">$z(t)$</span> (si on travail en trois dimensions).
+Pour spécifier une courbe paramétrée, il suffit donc de spécifier les fonctions <span style="color: gold;">$x(t)$</span>, <span style="color: gold;">$y(t)$</span> et potentiellement <span style="color: gold;">$z(t)$</span> (si on travaille en trois dimensions).
 
+:::{.fragment}
 On peut considérer l'exemple en deux dimensions suivant:
 $$
 \begin{cases}
@@ -338,18 +339,19 @@ x(t) = R\, t -d \sin(t)\\
 y(t) = R -d \cos(t),
 \end{cases}
 $$
-où $R$ et $d$ sont dans $\mathbb{R}^{*}$. Une courbe de cette forme est appelée une <span style="color: gold;">Trochoïde</span>.
+où $R$ et $d$ sont dans $\mathbb{R}^{>0}$. Une courbe de cette forme est appelée une <span style="color: gold;">Trochoïde</span>.
+:::
 
 ## Visualiser une courbe paramétrée (2D)
 
-On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelés `courbe_x` et `courbe_y`).
+On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelées `courbe_x` et `courbe_y`).
 
 ```{.python code-line-numbers="1-2|3-4|5|6-7"}
 import numpy as np
 import matplotlib.pyplot as plt
 R = 3
 d = 4
-t = np.linspace(-2*np.pi,2*np.pi,1000)
+t = np.linspace(-2*np.pi,2*np.pi,100)
 courbe_x = R*t - d*np.sin(t)
 courbe_y = R - d*np.cos(t)
 ```
@@ -375,14 +377,14 @@ plt.show()
 
 ## Visualiser une courbe paramétrée (2D)
 
-On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelés `courbe_x` et `courbe_y`).
+On commence par construire nos fonctions $x(t)$ et $y(t)$ (ici appelées `courbe_x` et `courbe_y`).
 
 ```{.python code-line-numbers="6-7"}
 import numpy as np
 import matplotlib.pyplot as plt
 R = 3
 d = 4
-t = np.linspace(-2*np.pi,2*np.pi,1000)
+t = np.linspace(-2*np.pi,2*np.pi,100)
 courbe_x = R*t - d*np.sin(t)
 courbe_y = R - d*np.cos(t)
 ```
@@ -567,7 +569,7 @@ Comme précédemment, on définit tout d'abord nos fonctions.
 
 <div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
 <div class="contour-text-left" style="font-size: 1em; width: 54%; margin-top: 20px;">
-```{.python code-line-numbers="3,5-7"}
+```{.python code-line-numbers="4-6"}
 import numpy as np
 import matplotlib.pyplot as plt
 t = np.linspace(-2*np.pi,2*np.pi,100)
@@ -596,7 +598,7 @@ Comme précédemment, on définit tout d'abord nos fonctions.
 
 <div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
 <div class="contour-text-left" style="font-size: 1em; width: 54%; margin-top: 20px;">
-```{.python code-line-numbers="3,5-7"}
+```{.python code-line-numbers="4-6"}
 import numpy as np
 import matplotlib.pyplot as plt
 t = np.linspace(-2*np.pi,2*np.pi,100)
