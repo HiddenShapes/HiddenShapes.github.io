@@ -143,7 +143,7 @@ plt.show()
 
 <div class="contour-explanation-container">
 <div class="contour-text-left">
-`ax.contour` est une méthode (des axes) qui prend en entrée notre grille de coordonnées 2D (`xv,yv`), notre tableau de valeurs de fonction (`fv`) et un entier spécifiant le nombre de courbes de niveau à dessiner (`9`). <br> La méthode retourne ensuite un objet <span style="color: gold;">ContourSet</span> (essentiellement une visualisation des courbes de niveau, avec quelques méthodes utiles pour les manipuler).
+`ax.contour` est une méthode (des axes) qui prend en entrée notre grille de coordonnées 2D (`xv,yv`), notre tableau de valeurs du champ scalaire (`fv`) et un entier spécifiant le nombre de courbes de niveau à dessiner (`9`). <br> La méthode retourne ensuite un objet <span style="color: gold;">ContourSet</span> (essentiellement une visualisation des courbes de niveau, avec quelques méthodes utiles pour les manipuler).
 </div>
 <div class="contour-image-right">
 </div>
@@ -165,7 +165,7 @@ plt.show()
 
 <div class="contour-explanation-container">
 <div class="contour-text-left">
-`ax.contour` est une méthode (des axes) qui prend en entrée notre grille de coordonnées 2D (`xv,yv`), notre tableau de valeurs de fonction (`fv`) et un entier spécifiant le nombre de courbes de niveau à dessiner (`9`). <br> La méthode retourne ensuite un objet <span style="color: gold;">ContourSet</span> (essentiellement une visualisation des courbes de niveau, avec quelques méthodes utiles pour les manipuler).
+`ax.contour` est une méthode (des axes) qui prend en entrée notre grille de coordonnées 2D (`xv,yv`), notre tableau de valeurs du champ scalaire (`fv`) et un entier spécifiant le nombre de courbes de niveau à dessiner (`9`). <br> La méthode retourne ensuite un objet <span style="color: gold;">ContourSet</span> (essentiellement une visualisation des courbes de niveau, avec quelques méthodes utiles pour les manipuler).
 </div>
 <div class="contour-image-right">
 <img src="img/contour_plot.svg" class="invert-colors">
@@ -188,7 +188,7 @@ plt.show()
 
 <div class="contour-explanation-container">
 <div class="contour-text-left">
-`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs de fonction <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
+`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs du champ scalaire <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
 
 Notez que, comme la méthode ne prend pas nos coordonnées en argument, les étiquettes x et y sont erronées.
 </div>
@@ -212,7 +212,7 @@ plt.show()
 
 <div class="contour-explanation-container">
 <div class="contour-text-left">
-`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs de fonction <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
+`ax.imshow` est une méthode (des axes) qui prend notre tableau de valeurs du champ scalaire <span style="color: gold;">transposé</span> (`fv.T`). La transposition est nécessaire car `imshow` traite le premier axe comme y (lignes) et le deuxième comme x (colonnes), contrairement à `contour` qui suit la convention mathématique.
 
 Notez que, comme la méthode ne prend pas nos coordonnées en argument, les étiquettes x et y sont erronées.
 
@@ -265,7 +265,7 @@ plt.show()
 
 <div class="contour-explanation-container">
 <div class="contour-text-left">
-Les axes 3D ont une autre méthode, `plot_surface`, qui, comme `contour`, prend `xv`, `yv` et `fv` comme argument, ainsi qu'un <span style="color: gold;">'colour map'</span>, utilisée pour traduire les valeurs de la fonction en couleurs qui sont appliquées à la surface.
+Les axes 3D ont une autre méthode, `plot_surface`, qui, comme `contour`, prend `xv`, `yv` et `fv` comme argument, ainsi qu'un <span style="color: gold;">'colour map'</span>, utilisée pour traduire les valeurs du champ scalaire en couleurs qui sont appliquées à la surface.
 
 On peut également retrouver nos courbes de niveau.
 </div>
