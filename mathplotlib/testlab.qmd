@@ -24,198 +24,68 @@ include-before-body: header.html
 jupyter: python3
 ---
 
-## Visualiser une courbe paramétrée (3D)
+## Définition d'une grille de points en 2D
 
-Comme précédemment, on définit tout d'abord nos fonctions.
+<!--
+Note here that you're discretising, like with the functions
+-->
+
+```{.python code-line-numbers="1-2"}
+import numpy as np
+x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
+xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
+```
+`x` et `y` sont des tableaux unidimensionnels de taille 41 dont les éléments sont <span style="color: gold;">régulièrement espacés</span>:
+$$\mathsf{x} = \begin{bmatrix} \mathsf{x_0}, & \mathsf{x_1}, & \cdots, & \mathsf{x_{40}} \end{bmatrix}, \quad \mathsf{y} = \begin{bmatrix} \mathsf{y_0}, & \mathsf{y_1}, & \cdots, & \mathsf{y_{40}} \end{bmatrix}, \quad \mathsf{x_0} = \mathsf{y_0} = -4, \ \mathsf{x_{40}} = \mathsf{y_{40}} = 4.$$
 
 <div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
-<div class="contour-text-left" style="font-size: 1em; width: 54%; margin-top: 20px;">
-```{.python code-line-numbers="3,5-7"}
-import numpy as np
-import matplotlib.pyplot as plt
-t = np.linspace(-2*np.pi,2*np.pi,100)
-courbe_x = 1 + np.cos(t) 
-courbe_y = np.sin(t)
-courbe_z = 2*np.sin(t/2)
-```
-On considère donc ici la courbe paramétrée
+<div class="contour-text-left" style="font-size: 1em; width: 44%; margin-top: 0px;">
+:::{.fragment}
+On veut créer un tableau bidimensionnel `fv` tel que
 $$
-\begin{cases}
-x(t) = 1 + \cdot \cos(t)\\
-y(t) = \sin(t)\\
-z(t) = 2 \sin\left(\frac{t}{2}\right),
-\end{cases}
+\mathsf{fv[i,j]} = f(\mathsf{\mathsf{x_i},\mathsf{y_j}})
 $$
-où $t \in [-2\pi,2\pi]$. On passe à la visualisation:
-```{.python code-line-numbers="2-3"}
-fig = plt.figure() 
-ax = plt.axes(projection='3d')
-ax.plot(courbe_x, courbe_y, courbe_z)
-plt.show()
-```
+où $f$ est notre champ scalaire et $\mathsf{i}$ et $\mathsf{j}$ sont des entiers entre $0$ et $40$. 
+:::
 </div>
-<div class="contour-image-right-sphere" style="font-size:.9em;">
-```{python}
+<div class="contour-image-right" style="font-size: 1em; width: 56%; margin-top: 0px;"> 
+:::{.fragment}
+Une solution (peut-être la plus naïve) consisterait à utiliser des boucles : 
+```{.python}
+fv = np.zeros((len(x), len(y)))
+
+for i in range(len(x)):
+    for j in range(len(y)):
+        fv[i, j] = 10 * x[i] / (1 + x[i]**2 + y[j]**2)
+```
+mais cela peut être assez lent, car nous n'exploitons pas le fait que nous effectuons le même calcul à chaque itération...
+:::
+</div>
+</div>
+
+
+## Définition d'une grille de points en 2D
+
+<!--
+Note here that you're discretising, like with the functions
+-->
+
+```{.python code-line-numbers="3"}
 import numpy as np
-import plotly.graph_objects as go
-
-# Create parameter arrays
-t = np.linspace(0, 4*np.pi, 1000)  # Parameter for Viviani curve
-phi = np.linspace(0, 2*np.pi, 50)  # Azimuthal angle
-theta = np.linspace(0, np.pi, 25)  # Polar angle
-
-# Viviani curve (the intersection)
-x_curve = 1 + np.cos(t)
-y_curve = np.sin(t)
-z_curve = 2 * np.sin(t/2)
-
-# Sphere (radius 2, centered at origin)
-# x = 2*cos(phi)sin(theta), y = 2*sin(phi)sin(theta), z = 2*cos(theta)
-phi_sphere, theta_sphere = np.meshgrid(phi, theta)
-x_sphere = 2 * np.cos(phi_sphere) * np.sin(theta_sphere)
-y_sphere = 2 * np.sin(phi_sphere) * np.sin(theta_sphere)
-z_sphere = 2 * np.cos(theta_sphere)
-
-# Cylinder (radius 1, axis along z, centered at x=1, y=0)
-# One side tangent to sphere at x=2, other side passes through center at x=0
-z_cyl = np.linspace(-2, 2, 25)
-phi_cyl, z_cyl_mesh = np.meshgrid(phi, z_cyl)
-x_cylinder = 1 + np.cos(phi_cyl)  # This gives x from 0 to 2
-y_cylinder = np.sin(phi_cyl)
-z_cylinder = z_cyl_mesh
-
-# Set up camera angles (similar to your previous plot)
-elev = 20  # elevation angle in degrees
-azim = 45  # azimuth angle in degrees
-
-# Convert to radians
-elev_rad = np.radians(elev)
-azim_rad = np.radians(azim)
-
-# Calculate camera position
-distance = 2  # Reduced distance for closer view
-x_eye = distance * np.cos(elev_rad) * np.cos(azim_rad)
-y_eye = distance * np.cos(elev_rad) * np.sin(azim_rad)
-z_eye = distance * np.sin(elev_rad)
-
-# Create the figure
-fig = go.Figure()
-
-# Add wireframe sphere (initially invisible)
-fig.add_trace(go.Surface(
-    x=x_sphere, 
-    y=y_sphere, 
-    z=z_sphere,
-    showscale=False,
-    opacity=0.3,
-    colorscale=[[0, 'lightblue'], [1, 'lightblue']],
-    hoverinfo='skip',
-    surfacecolor=np.ones_like(x_sphere),  # Uniform color
-    contours=dict(
-        x=dict(show=False, highlight=False),
-        y=dict(show=False, highlight=False),
-        z=dict(show=False, highlight=False)
-    ),
-    visible=False,  # Initially hidden
-    name='Sphere'
-))
-
-# Add wireframe cylinder (initially invisible)
-fig.add_trace(go.Surface(
-    x=x_cylinder, 
-    y=y_cylinder, 
-    z=z_cylinder,
-    showscale=False,
-    opacity=0.3,
-    colorscale=[[0, 'lightgreen'], [1, 'lightgreen']],
-    hoverinfo='skip',
-    surfacecolor=np.ones_like(x_cylinder),  # Uniform color
-    contours=dict(
-        x=dict(show=False, highlight=False),
-        y=dict(show=False, highlight=False),
-        z=dict(show=False, highlight=False)
-    ),
-    visible=False,  # Initially hidden
-    name='Cylinder'
-))
-
-# Add the Viviani curve
-fig.add_trace(go.Scatter3d(
-    x=x_curve,
-    y=y_curve, 
-    z=z_curve,
-    mode='lines',
-    line=dict(color='red', width=6),
-    hoverinfo='skip',
-    name='Viviani Curve'
-))
-
-# Update layout with same styling as your original plot
-fig.update_layout(
-    scene=dict(
-        xaxis_title="x",
-        yaxis_title="y", 
-        zaxis_title="z",
-        aspectmode='cube',
-        camera=dict(
-            eye=dict(x=x_eye, y=y_eye, z=z_eye)
-        ),
-        xaxis=dict(showspikes=False, range=[-3, 3]),
-        yaxis=dict(showspikes=False, range=[-3, 3]),
-        zaxis=dict(showspikes=False, range=[-3, 3])
-    ),
-    paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
-    plot_bgcolor='rgba(0,0,0,0)',   # Transparent plot area
-    width=600,
-    height=600,
-    margin=dict(l=0, r=0, t=0, b=0)  # Remove all margins
-)
-
-# Make scene background transparent with dark-friendly colors
-fig.update_scenes(
-    xaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"),
-    yaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white"), 
-    zaxis=dict(backgroundcolor="rgba(0,0,0,0)", gridcolor="white", color="white")
-)
-
-# Remove the toolbar/menu and legend, add toggle buttons
-fig.update_layout(
-    showlegend=False,
-    updatemenus=[
-        dict(
-            type="buttons",
-            direction="left",
-            buttons=list([
-                dict(
-                    args=[{"visible": [False, False, True]}],
-                    label="○",
-                    method="restyle"
-                ),
-                dict(
-                    args=[{"visible": [True, True, True]}],
-                    label="◐",
-                    method="restyle"
-                )
-            ]),
-            pad={"r": 10, "t": 10},
-            showactive=True,
-            x=0.01,
-            xanchor="left",
-            y=0.99,
-            yanchor="top",
-            active=0  # Start with surfaces hidden (first button active)
-        ),
-    ]
-)
-
-fig.show(config={'displayModeBar': False})
+x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
+xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
 ```
-</div>
-</div>
+Une meilleure solution consiste à utiliser des coordonnées vectorisées, `xv` et `yv`, qui sont les deux tableaux suivants :
 
+:::{style="margin-top: -30px;"}
+$$\mathsf{xv} = \begin{bmatrix} \mathsf{x_0} & \mathsf{x_0} & \cdots & \mathsf{x_0} \\ \mathsf{x_1} & \mathsf{x_1} & \cdots & \mathsf{x_1} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{x_{40}} & \mathsf{x_{40}} & \cdots & \mathsf{x_{40}} \end{bmatrix}, \quad \mathsf{yv} = \begin{bmatrix} \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \end{bmatrix}$$
+:::
+Ces derniers satisfont `( xv[i,j] , yv[i,j] ) = ( x[i] , y[j] )`.
 
-
-
-
-# test
-
+::: {.fragment}
+On peut alors créer le tableau `fv` en calculant directement avec les coordonnées vectorisées:
+```{.python}
+fv = 10*xv/(1 + xv**2 + yv**2)
+```
+Maintenant, le calcul est effectué entièrement en appliquant des opérations à des tableaux, ce qui exploite les optimisations C de `numpy`.
+:::
