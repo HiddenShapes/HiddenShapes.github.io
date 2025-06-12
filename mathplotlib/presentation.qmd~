@@ -144,9 +144,9 @@ plt.show()
 ```{.python code-line-numbers="6"}
 import matplotlib.pyplot as plt 
 plt.title("Représentation sous la forme d'une image")
-fig = plt.figure()           # pour créer la figure
-ax = fig.gca()               # pour créer les axes ("get the current axes")
-ax.axis('equal')             # même échelle sur les deux axes
+fig = plt.figure()          # pour créer la figure
+ax = fig.gca()              # pour créer les axes ("get the current axes")
+ax.axis('equal')            # même échelle sur les deux axes
 ax.imshow(fv.T)
 
 plt.show()
@@ -168,9 +168,9 @@ Notez que, comme la méthode ne prend pas nos coordonnées en argument, les éti
 ```{.python code-line-numbers="6"}
 import matplotlib.pyplot as plt 
 plt.title("Représentation sous la forme d'une image")
-fig = plt.figure()           # pour créer la figure
-ax = fig.gca()               # pour créer les axes ("get the current axes")
-ax.axis('equal')             # même échelle sur les deux axes
+fig = plt.figure()          # pour créer la figure
+ax = fig.gca()              # pour créer les axes ("get the current axes")
+ax.axis('equal')            # même échelle sur les deux axes
 ax.imshow(fv.T, extent=[-4, 4, -4, 4])
 
 plt.show()
@@ -598,7 +598,7 @@ Comme précédemment, on définit tout d'abord nos fonctions.
 
 <div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
 <div class="contour-text-left" style="font-size: 1em; width: 54%; margin-top: 20px;">
-```{.python code-line-numbers="3,5-7"}
+```{.python code-line-numbers="4-6"}
 import numpy as np
 import matplotlib.pyplot as plt
 t = np.linspace(-2*np.pi,2*np.pi,100)
