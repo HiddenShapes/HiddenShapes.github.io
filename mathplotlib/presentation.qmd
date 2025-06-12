@@ -42,14 +42,45 @@ Il y a plusieurs manières de visualiser un champ scalaire de deux variables :
 * en <span style="color: gold;">3D</span> sous la forme d'une <span style="color: gold;">surface</span> permettant de visualiser la valeur $z=f(x,y)$.
 :::
 
-
 ## Définition d'une grille de points en 2D
+
+<!--
+Note here that you're discretising, like with the functions
+-->
 
 ```{.python code-line-numbers="1-2"}
 import numpy as np
-x = y = np.linspace(-4.,4.,41)          # nos coordonnées
-xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées
+x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
+xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
 ```
+`x` et `y` sont des tableaux unidimensionnels de taille 41 dont les éléments sont <span style="color: gold;">régulièrement espacés</span>:
+$$\mathsf{x} = \begin{bmatrix} \mathsf{x_0}, & \mathsf{x_1}, & \cdots, & \mathsf{x_{40}} \end{bmatrix}, \quad \mathsf{y} = \begin{bmatrix} \mathsf{y_0}, & \mathsf{y_1}, & \cdots, & \mathsf{y_{40}} \end{bmatrix}, \quad \mathsf{x_0} = \mathsf{y_0} = -4, \ \mathsf{x_{40}} = \mathsf{y_{40}} = 4.$$
+
+<div class="contour-explanation-container" style="display: flex; align-items: flex-start;">
+<div class="contour-text-left" style="font-size: 1em; width: 44%; margin-top: 0px;">
+:::{.fragment}
+On veut créer un tableau bidimensionnel `fv` tel que
+$$
+\mathsf{fv[i,j]} = f(\mathsf{\mathsf{x_i},\mathsf{y_j}})
+$$
+où $f$ est notre champ scalaire et $\mathsf{i}$ et $\mathsf{j}$ sont des entiers entre $0$ et $40$. 
+:::
+</div>
+<div class="contour-image-right" style="font-size: 1em; width: 56%; margin-top: 0px;"> 
+:::{.fragment}
+Une solution (peut-être la plus naïve) consisterait à utiliser des boucles : 
+```{.python}
+fv = np.zeros((len(x), len(y)))
+
+for i in range(len(x)):
+    for j in range(len(y)):
+        fv[i, j] = 10 * x[i] / (1 + x[i]**2 + y[j]**2)
+```
+mais cela peut être assez lent, car nous n'exploitons pas le fait que nous effectuons le même calcul à chaque itération...
+:::
+</div>
+</div>
+
 
 ## Définition d'une grille de points en 2D
 
@@ -62,16 +93,19 @@ import numpy as np
 x = y = np.linspace(-4.,4.,41)          # nos coordonnées             
 xv, yv = np.meshgrid(x,y,indexing='ij') # nos coordonnées vectorisées 
 ```
-`xv` et `yv` sont les tableaux 41 par 41 suivants :
+Une meilleure solution consiste à utiliser des coordonnées vectorisées, `xv` et `yv`, qui sont les deux tableaux suivants :
+
+:::{style="margin-top: -30px;"}
 $$\mathsf{xv} = \begin{bmatrix} \mathsf{x_0} & \mathsf{x_0} & \cdots & \mathsf{x_0} \\ \mathsf{x_1} & \mathsf{x_1} & \cdots & \mathsf{x_1} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{x_{40}} & \mathsf{x_{40}} & \cdots & \mathsf{x_{40}} \end{bmatrix}, \quad \mathsf{yv} = \begin{bmatrix} \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \\ \vdots & \vdots & \ddots & \vdots \\ \mathsf{y_0} & \mathsf{y_1} & \cdots & \mathsf{y_{40}} \end{bmatrix}$$
-Ces derniers satisfont `(xv[i,j],yv[i,j]) = (x[i],y[j])`.
+:::
+Ces derniers satisfont `( xv[i,j] , yv[i,j] ) = ( x[i] , y[j] )`.
 
 ::: {.fragment}
-On calcule alors la valeur de notre fonction aux points de la grille : 
+On peut alors créer le tableau `fv` en calculant directement avec les coordonnées vectorisées:
 ```{.python}
 fv = 10*xv/(1 + xv**2 + yv**2)
 ```
-Grâce à nos coordonnées vectorisées, le calcul peut être effectué entièrement en appliquant des opérations aux tableaux, plutôt qu'en utilisant des boucles (ce qui est beaucoup plus lent).
+Maintenant, le calcul est effectué entièrement en appliquant des opérations à des tableaux, ce qui exploite les optimisations C de `numpy`.
 :::
 
 ## Première visualisation 2D: courbes de niveau

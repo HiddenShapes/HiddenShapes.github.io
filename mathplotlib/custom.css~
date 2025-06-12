@@ -88,13 +88,13 @@
 .contour-explanation-container {
     position: relative;
     width: 100%;
-    min-height: 400px;
+    margin-bottom: 40px;
 }
 
 .contour-text-left {
     width: 50%;
     padding-right: 20px;
-    font-size: 0.8em 
+    font-size: 0.82em 
 }
 
 .contour-image-right {
