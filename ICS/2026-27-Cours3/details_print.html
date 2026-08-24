@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Leonard Hardiman et Ghid Maatouk">
+
+<title>Annexe A : La fonction print() en Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="details_print_files/libs/clipboard/clipboard.min.js"></script>
+<script src="details_print_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="details_print_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="details_print_files/libs/quarto-html/popper.min.js"></script>
+<script src="details_print_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="details_print_files/libs/quarto-html/anchor.min.js"></script>
+<link href="details_print_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="details_print_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="details_print_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="details_print_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="details_print_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+<link rel="stylesheet" href="custom-doc.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#utilisation-de-base" id="toc-utilisation-de-base" class="nav-link active" data-scroll-target="#utilisation-de-base">1 Utilisation de base</a></li>
+  <li><a href="#caractères-déchappement" id="toc-caractères-déchappement" class="nav-link" data-scroll-target="#caractères-déchappement">2 Caractères d’échappement</a></li>
+  <li><a href="#le-paramètre-end" id="toc-le-paramètre-end" class="nav-link" data-scroll-target="#le-paramètre-end">3 Le paramètre <code>end</code></a></li>
+  <li><a href="#le-paramètre-sep" id="toc-le-paramètre-sep" class="nav-link" data-scroll-target="#le-paramètre-sep">4 Le paramètre <code>sep</code></a></li>
+  <li><a href="#formatage-avec-les-f-strings" id="toc-formatage-avec-les-f-strings" class="nav-link" data-scroll-target="#formatage-avec-les-f-strings">5 Formatage avec les f-strings</a>
+  <ul class="collapse">
+  <li><a href="#formatage-numérique" id="toc-formatage-numérique" class="nav-link" data-scroll-target="#formatage-numérique">5.1 Formatage numérique</a></li>
+  </ul></li>
+  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">6 Résumé</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+          scale: 100,
+          linebreaks: { automatic: true },
+      		mtextFontInherit: true
+        }});
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Annexe A : La fonction <code>print()</code> en Python</h1>
+<p class="subtitle lead">Fiche de référence</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Leonard Hardiman et Ghid Maatouk </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="utilisation-de-base" class="level1">
+<h1>1 Utilisation de base</h1>
+<p><code>print</code> peut afficher des chaînes de caractères, des nombres et des expressions :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bonjour le monde !'</span>)      <span class="co"># un str</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)                        <span class="co"># un int</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">3.14</span>)                      <span class="co"># un float</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Résultat :'</span>, <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)       <span class="co"># plusieurs arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Bonjour le monde !
+42
+3.14
+Résultat : 5</code></pre>
+</section>
+<section id="caractères-déchappement" class="level1">
+<h1>2 Caractères d’échappement</h1>
+<p>Les <code>str</code> en Python sont délimitées par des guillemets simples (<code>'</code>) ou doubles (<code>"</code>). Mais que se passe-t-il si on veut inclure un guillemet <strong>à l’intérieur</strong> du <code>str</code> lui-même ?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'l'</span>homme<span class="st">')   # erreur : Python croit que le str s'</span>arrête au <span class="dv">2</span><span class="er">ème</span> <span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le même problème se pose avec d’autres caractères qui ont une signification spéciale pour Python, comme le backslash <code>\</code>.</p>
+<p>Pour résoudre ça, on <strong>échappe</strong> le caractère problématique : on le fait précéder d’un backslash <code>\</code>, ce qui indique à Python de le traiter comme un caractère ordinaire, et non comme un signal. C’est ce qu’on appelle un <strong>caractère d’échappement</strong>.</p>
+<p>Les caractères d’échappement commencent par un <strong>backslash</strong> (<code>\</code>) et permettent d’inclure des caractères spéciaux dans les chaînes :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Séquence</th>
+<th>Effet</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>\n</code></td>
+<td>Nouvelle ligne</td>
+<td><code>print('A\nB')</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\t</code></td>
+<td>Tabulation</td>
+<td><code>print('X\tY')</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\\</code></td>
+<td>Backslash littéral</td>
+<td><code>print('C:\\Users')</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>\'</code></td>
+<td>Guillemet simple</td>
+<td><code>print('l\'homme')</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>\"</code></td>
+<td>Guillemet double</td>
+<td><code>print("il dit \"oui\"")</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne</span><span class="ch">\n</span><span class="st">Deuxième ligne'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nom:</span><span class="ch">\t</span><span class="st">Jean</span><span class="ch">\n</span><span class="st">Âge:</span><span class="ch">\t</span><span class="st">25'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Il a dit : </span><span class="ch">\'</span><span class="st">Bonjour !</span><span class="ch">\'</span><span class="st">'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il a dit : 'Bonjour !'"</span>)    <span class="co"># pas besoin de \ ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Première ligne
+Deuxième ligne
+Nom:    Jean
+Âge:    25
+Il a dit : 'Bonjour !'
+Il a dit : 'Bonjour !'</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si la chaîne ne contient que des guillemets simples, on peut utiliser des guillemets doubles pour la délimiter (et inversement), évitant ainsi le besoin d’échapper.</p>
+</div>
+</div>
+</section>
+<section id="le-paramètre-end" class="level1">
+<h1>3 Le paramètre <code>end</code></h1>
+<p>Par défaut, chaque appel à <code>print</code> ajoute <code>'\n'</code> à la fin. Le paramètre <code>end</code> permet de changer ce comportement :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Deuxième ligne'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Sans nouvelle ligne'</span>, end<span class="op">=</span><span class="st">' '</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'suite sur la même ligne'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avec un point'</span>, end<span class="op">=</span><span class="st">'.'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' Fin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Première ligne
+Deuxième ligne
+---
+Sans nouvelle ligne suite sur la même ligne
+Avec un point. Fin</code></pre>
+<div class="callout callout-style-default callout-note callout-titled" title="Remarque">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remarque
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>end=''</code> (chaîne vide) permet de ne rien ajouter à la fin, ce qui est utile pour construire une sortie caractère par caractère.</p>
+</div>
+</div>
+</section>
+<section id="le-paramètre-sep" class="level1">
+<h1>4 Le paramètre <code>sep</code></h1>
+<p>Quand <code>print</code> reçoit plusieurs arguments, il les sépare par un <strong>espace</strong> par défaut. Le paramètre <code>sep</code> permet de personnaliser ce séparateur :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)              <span class="co"># séparateur par défaut</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">' | '</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bond'</span>, <span class="st">'James Bond'</span>, sep<span class="op">=</span><span class="st">', '</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2024</span>, <span class="dv">12</span>, <span class="dv">25</span>, sep<span class="op">=</span><span class="st">'/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>a b c
+a-b-c
+a | b | c
+Bond, James Bond
+2024/12/25</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Hors programme">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hors programme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La section 5 est fournie à titre indicatif uniquement. Son contenu <strong>ne sera pas demandé à l’examen</strong>.</p>
+</div>
+</div>
+</section>
+<section id="formatage-avec-les-f-strings" class="level1">
+<h1>5 Formatage avec les f-strings</h1>
+<p>Les <strong>f-strings</strong> (<em>formatted string literals</em>) permettent d’insérer des variables et des expressions directement dans une chaîne en les plaçant entre accolades <code>{}</code> :</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Alice'</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Bonjour </span><span class="sc">{</span>nom<span class="sc">}</span><span class="ss">, tu as </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> ans'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>hauteur <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>aire <span class="op">=</span> base <span class="op">*</span> hauteur <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Triangle: base=</span><span class="sc">{</span>base<span class="sc">}</span><span class="ss">, hauteur=</span><span class="sc">{</span>hauteur<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Aire = </span><span class="sc">{</span>aire<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Bonjour Alice, tu as 25 ans
+Triangle: base=5, hauteur=3
+Aire = 7.5</code></pre>
+<section id="formatage-numérique" class="level2">
+<h2 class="anchored" data-anchor-id="formatage-numérique">5.1 Formatage numérique</h2>
+<p>On peut contrôler l’affichage des nombres avec des <strong>spécificateurs de format</strong> après <code>:</code> :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Syntaxe</th>
+<th>Effet</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>{x:.2f}</code></td>
+<td>2 décimales</td>
+<td><code>3.14</code></td>
+</tr>
+<tr class="even">
+<td><code>{x:.4f}</code></td>
+<td>4 décimales</td>
+<td><code>3.1416</code></td>
+</tr>
+<tr class="odd">
+<td><code>{x:,}</code></td>
+<td>Séparateur de milliers</td>
+<td><code>1,234,567</code></td>
+</tr>
+<tr class="even">
+<td><code>{x:.1%}</code></td>
+<td>Pourcentage</td>
+<td><code>75.0%</code></td>
+</tr>
+<tr class="odd">
+<td><code>{x:&gt;10}</code></td>
+<td>Aligné à droite (10 car.)</td>
+<td><code>hello</code></td>
+</tr>
+<tr class="even">
+<td><code>{x:0&gt;5}</code></td>
+<td>Zéros à gauche</td>
+<td><code>00042</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159265</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 2 décimales: </span><span class="sc">{</span>pi<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 4 décimales: </span><span class="sc">{</span>pi<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>grand_nombre <span class="op">=</span> <span class="dv">1234567</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Avec séparateurs: </span><span class="sc">{</span>grand_nombre<span class="sc">:,}</span><span class="ss">'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'En pourcentage: </span><span class="sc">{</span><span class="fl">0.75</span><span class="sc">:.1%}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Pi avec 2 décimales: 3.14
+Pi avec 4 décimales: 3.1416
+Avec séparateurs: 1,234,567
+En pourcentage: 75.0%</code></pre>
+</section>
+</section>
+<section id="résumé" class="level1">
+<h1>6 Résumé</h1>
+<p>Un appel avec tous les arguments à imprimer ressemble à ceci :</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(objet_1, objet_2, ..., sep<span class="op">=</span><span class="st">' '</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="bu">file</span><span class="op">=</span>sys.stdout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="Paramètres">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Paramètres
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><code>objet_1, objet_2, ...</code></strong> : Un ou plusieurs objets à afficher, séparés par des virgules.</li>
+<li><strong><code>sep</code></strong> : Le séparateur inséré <em>entre</em> les objets (par défaut : un espace <code>' '</code>).</li>
+<li><strong><code>end</code></strong> : Le caractère ajouté <em>après</em> le dernier objet (par défaut : une nouvelle ligne <code>'\n'</code>).</li>
+<li><strong><code>file</code></strong> : Le flux de sortie (par défaut : la console).</li>
+</ul>
+</div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ce que je veux faire</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Afficher du texte</td>
+<td><code>print('texte')</code></td>
+</tr>
+<tr class="even">
+<td>Afficher plusieurs valeurs</td>
+<td><code>print(a, b, c)</code></td>
+</tr>
+<tr class="odd">
+<td>Changer le séparateur</td>
+<td><code>print(a, b, sep='-')</code></td>
+</tr>
+<tr class="even">
+<td>Rester sur la même ligne</td>
+<td><code>print(x, end='')</code></td>
+</tr>
+<tr class="odd">
+<td>Insérer une variable dans du texte</td>
+<td><code>print(f'val = {x}')</code></td>
+</tr>
+<tr class="even">
+<td>Formater un nombre</td>
+<td><code>print(f'{pi:.2f}')</code></td>
+</tr>
+<tr class="odd">
+<td>Nouvelle ligne dans une chaîne</td>
+<td><code>'\n'</code></td>
+</tr>
+<tr class="even">
+<td>Tabulation dans une chaîne</td>
+<td><code>'\t'</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+@font-face {
+    font-family: "EB Garamond";
+    src: url("fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format("truetype"),
+	 local('EB Garamond');
+}
+
+@font-face {
+    font-family: "blackout_sunrise";
+    src: local("blackout_sunrise"),
+	 url("fonts/blackout-master/blackout_sunrise-webfont.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "blackout_midnight";
+    src: local("blackout_midnight"),
+	 url("fonts/blackout-master/blackout_midnight-webfont.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatbol.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatita.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+.reveal section *  {
+    font-family: Palatino, blackout_midnight;
+    font-size: 34px
+}
+
+.reveal section.smaller *:not(h2):not(.title-code):not(code) {
+    font-size: 1em; /* or whatever size you want */
+}
+.reveal section.smaller code {
+    font-size: 0.75em; /* or whatever size you want for code */
+}
+
+
+.reveal section .Theorembox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #303030;
+    max-width: 96%;
+    color: #dde0eb;
+    border: 2px solid #dde0eb;
+    border-radius: 10px;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-bottom: 0.4em;
+}
+
+.reveal section h2 {
+    font-size: 1.5em !important;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    text-align: center !important;
+}
+
+.reveal section.smaller h2 {
+    font-size: 2em !important;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    text-align: center !important;
+}
+
+.invert-colors{
+    filter: invert(1);
+}
+
+.img-center {
+    display: block !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.reveal section .sourceCode * {
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+}
+
+.reveal section .small-code .sourceCode {
+    line-height: 1;
+}
+
+.reveal section .small-code .sourceCode * {
+    font-size: 22px;
+    line-height: inherit;
+}
+
+.reveal section code {
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+}
+
+.reveal section p {
+    /* font-family: 'Fira Mono', monospace; */
+}
+
+.reveal section ul, ol, li {
+}
+
+.reveal section .math.inline {
+    display: inline-block; 
+}
+
+.remark {
+    font-weight: bold;
+    color: #669aed;
+}
+
+.attention {
+    font-weight: bold;
+    color: #669aed;
+}
+
+.contour-explanation-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.contour-text-left {
+    width: 50%;
+    padding-right: 20px;
+}
+
+.contour-image-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+}
+
+.contour-image-right-sphere {
+    position: absolute;
+    top: 0;
+    right: -135px;
+    width: 55%;
+}
+
+.reveal strong {
+    color: gold;
+    font-weight: normal;
+}
+
+.strong-blue {
+    color: lightblue;
+    font-weight: bold;
+}
+
+.reveal a {
+    color: #80c4f2 ; /* Light blue */
+    font-weight: normal;
+}
+
+.reveal a:hover {
+    color: #659bbf; /* Slightly darker on hover */
+}
+
+.env-box {
+    width: 90%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.env-title {
+    color: #80c4f2;
+    padding: 0.5em 0.75em;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-bottom: 1px solid #ccc;
+}
+
+.env-body {
+    padding: .3em;
+    font-size: 1em;
+}
+
+.reveal .center-container {
+    width: 80% !important;
+    margin: 0 auto !important;
+    text-align: center;
+}
+
+
+.reveal .title-code {
+    font-family: 'Fira Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 1em;
+}
+
+.inline {
+  vertical-align: middle;
+}
+
+.blue-numbered {
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.blue-numbered li {
+  display: block;
+  margin-bottom: 0.5em;
+  padding-left: 1.5em;
+  position: relative;
+}
+
+.blue-numbered li:before {
+  content: "(" counter(item) ")";
+  counter-increment: item;
+  color: lightblue;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.reveal .r-stack > * {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.reveal .r-stack img {
+  background-color: white;
+}
+
+
+/* ==========================================================================
+   Layout blocks ported from MAN-ICS (2025-26) for the 2026-27 slides.
+   Colours/typography follow the ICS theme above; only the structural
+   rules are borrowed.
+   ========================================================================== */
+
+/* Vertically centred slide (used for the "deux problèmes" roadmap slide) */
+.center-vertical {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
+
+/* Small italic caption tying a heading to the boxes underneath */
+.connector {
+    text-align: center;
+    font-size: 0.55em;
+    color: #94a3b8;
+    font-style: italic;
+    margin: 0.4em 0 0.5em;
+    letter-spacing: 0.03em;
+}
+
+/* Two side-by-side themed panels */
+.split-row {
+    display: flex;
+    gap: 0.8em;
+    align-items: stretch;
+}
+.split-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 0.6em 0.8em;
+}
+.split-data {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1.5px solid rgba(96, 165, 250, 0.5);
+}
+.split-process {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1.5px solid rgba(251, 191, 36, 0.5);
+}
+.split-header {
+    font-weight: 700;
+    margin-bottom: 0.15em;
+}
+.split-data .split-header    { color: #60a5fa; }
+.split-process .split-header { color: #fbbf24; }
+.split-subtitle {
+    font-size: 0.65em !important;
+    color: #94a3b8;
+    margin-bottom: 0.5em;
+}
+
+/* Emphasis / de-emphasis of one panel in the pair */
+.split-highlight {
+    border-width: 2px;
+    box-shadow: 0 0 18px rgba(96, 165, 250, 0.3);
+    transform: scale(1.02);
+}
+.split-highlight.split-data {
+    border-color: rgba(96, 165, 250, 0.8);
+    background: rgba(59, 130, 246, 0.18);
+}
+.split-highlight.split-process {
+    border-color: rgba(251, 191, 36, 0.8);
+    background: rgba(251, 191, 36, 0.18);
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.3);
+}
+.split-dimmed { opacity: 0.35; }
+
+/* Pill labels inside the panels */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+}
+.tag {
+    font-size: 0.5em !important;
+    font-weight: 500;
+    padding: 0.25em 0.6em;
+    border-radius: 20px;
+    display: inline-block;
+}
+.tag-blue  { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+.tag-amber { background: rgba(251, 191, 36, 0.2); color: #fde68a; }
+
+/* Slide tables: sized to their content and centred, rather than stretched
+   across the full slide width as the reveal default does. */
+.reveal section table {
+    width: auto;
+    margin: 0.7em auto;
+    border-collapse: collapse;
+}
+.reveal section table th,
+.reveal section table td {
+    padding: 0.2em 1.4em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.reveal section table th {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+/* Arrow linking two side-by-side skeletons, e.g. the for/while archetypes.
+   Nudged down so it sits against the code rather than the column top. */
+.arrow-between {
+    display: block;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1;
+    color: #669aed;
+    margin-top: 0.9em;
+}
+
+/* Progressive line highlighting -- code-line-numbers="1|2|3" -- also switches
+   on Pandoc's line numbering as a side effect. Adding .no-line-numbers to the
+   block hides the gutter and reclaims its space, leaving just the highlight.
+   Selectors are qualified with .numberSource to outrank the line-highlight
+   plugin's own stylesheet. */
+.reveal pre.numberSource.no-line-numbers {
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
+}
+.reveal pre.numberSource.no-line-numbers code > span {
+    left: 0;
+}
+.reveal pre.numberSource.no-line-numbers code > span > a:first-child::before {
+    content: none;
+    padding: 0;
+    width: 0;
+}
