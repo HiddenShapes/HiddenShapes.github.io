@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="800"
+   height="800"
+   version="1.1"
+   id="svg70"
+   sodipodi:docname="resume.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs74" />
+  <sodipodi:namedview
+     id="namedview72"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.28375"
+     inkscape:cx="317.81889"
+     inkscape:cy="385.58909"
+     inkscape:window-width="3440"
+     inkscape:window-height="1407"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg70" />
+  <!-- Big outer circle - Problème -->
+  <circle
+     cx="400"
+     cy="400"
+     r="350"
+     fill="#e8f4f8"
+     stroke="#2c5f7c"
+     stroke-width="3"
+     id="circle2" />
+  <text
+     x="400"
+     y="100"
+     font-size="28"
+     font-weight="bold"
+     text-anchor="middle"
+     fill="#2c5f7c"
+     id="text4">problème</text>
+  <!-- Algorithme circles -->
+  <!-- Algorithme 1 (top left) -->
+  <!-- Implémentation circles for Algorithme 1 -->
+  <g
+     id="g470">
+    <circle
+       cx="244.2337"
+       cy="286.81705"
+       r="120"
+       fill="#b3d9e8"
+       stroke="#1e4d66"
+       stroke-width="2"
+       id="circle6" />
+    <text
+       x="240.92613"
+       y="205.81049"
+       font-size="20px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#1e4d66"
+       id="text8">Algo A</text>
+    <g
+       id="g348"
+       transform="translate(-15.80757,-21.062561)">
+      <circle
+         cx="204.2337"
+         cy="306.81705"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle10" />
+      <text
+         x="204.2337"
+         y="313.81705"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text12">implémen.</text>
+    </g>
+    <g
+       id="g344"
+       transform="translate(0.29515616,-31.049173)">
+      <circle
+         cx="284.2337"
+         cy="306.81705"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle14" />
+      <text
+         x="284.2337"
+         y="313.81705"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text16"><tspan
+           sodipodi:role="line"
+           id="tspan286"
+           x="284.2337"
+           y="313.81705">implémen.</tspan><tspan
+           sodipodi:role="line"
+           id="tspan288"
+           x="284.2337"
+           y="328.81705" /></text>
+    </g>
+    <g
+       id="g352"
+       transform="translate(8.5382179,2.5225171)">
+      <circle
+         cx="244.2337"
+         cy="356.81705"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle18" />
+      <text
+         x="244.2337"
+         y="363.81705"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text20">implémen.</text>
+    </g>
+  </g>
+  <!-- Algorithme 2 (top right) -->
+  <!-- Implémentation circles for Algorithme 2 -->
+  <g
+     id="g426"
+     transform="translate(14.252678,-22.358812)">
+    <circle
+       cx="520"
+       cy="300"
+       r="120"
+       fill="#b3d9e8"
+       stroke="#1e4d66"
+       stroke-width="2"
+       id="circle22" />
+    <text
+       x="514.77545"
+       y="228.68793"
+       font-size="20px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#1e4d66"
+       id="text24">Algo B</text>
+    <g
+       id="g360"
+       transform="translate(-6.2652142,13.902751)">
+      <circle
+         cx="480"
+         cy="320"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle26" />
+      <text
+         x="480"
+         y="327"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text28">implémen.</text>
+    </g>
+    <g
+       id="g356"
+       transform="translate(64.416991,-66.276168)">
+      <circle
+         cx="520"
+         cy="370"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle34" />
+      <text
+         x="520"
+         y="377"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text36">implémen.</text>
+    </g>
+  </g>
+  <!-- Algorithme 3 (bottom left) -->
+  <!-- Implémentation circles for Algorithme 3 -->
+  <g
+     id="g455"
+     transform="translate(-8.9794305,-5.9183301)">
+    <circle
+       cx="280"
+       cy="550"
+       r="120"
+       fill="#b3d9e8"
+       stroke="#1e4d66"
+       stroke-width="2"
+       id="circle38" />
+    <text
+       x="278.74332"
+       y="477.48599"
+       font-size="20px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#1e4d66"
+       id="text40">Algo C</text>
+    <g
+       id="g416"
+       transform="translate(-32.88705,-15.704114)">
+      <circle
+         cx="250"
+         cy="560"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle42" />
+      <text
+         x="250"
+         y="567"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text44">implémen.</text>
+    </g>
+    <g
+       id="g408"
+       transform="translate(38.032498,-18.591772)">
+      <circle
+         cx="295.9299"
+         cy="556.16296"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle46" />
+      <text
+         x="295.9299"
+         y="563.16296"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text48">implémen.</text>
+    </g>
+    <g
+       id="g412"
+       transform="translate(13.936222,16.230526)">
+      <circle
+         cx="280"
+         cy="610"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle50" />
+      <text
+         x="280"
+         y="617"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text52">implémen.</text>
+    </g>
+  </g>
+  <!-- Algorithme 4 (bottom right) -->
+  <!-- Implémentation circles for Algorithme 4 -->
+  <g
+     id="g442"
+     transform="translate(5.930501,-9.7157985)">
+    <circle
+       cx="520"
+       cy="550"
+       r="120"
+       fill="#b3d9e8"
+       stroke="#1e4d66"
+       stroke-width="2"
+       id="circle54" />
+    <text
+       x="521.55792"
+       y="473.49988"
+       font-size="20px"
+       font-weight="bold"
+       text-anchor="middle"
+       fill="#1e4d66"
+       id="text56">Algo D</text>
+    <g
+       id="g400"
+       transform="translate(-29.317795,-25.438169)">
+      <circle
+         cx="490"
+         cy="560"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle58" />
+      <text
+         x="490"
+         y="567"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text60">implémen.</text>
+    </g>
+    <g
+       id="g364"
+       transform="translate(14.05185,-44.437683)">
+      <circle
+         cx="550"
+         cy="560"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle62" />
+      <text
+         x="550"
+         y="567"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text64">implémen.</text>
+    </g>
+    <g
+       id="g364-3"
+       transform="translate(34.837512,33.993427)">
+      <circle
+         cx="550"
+         cy="560"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle62-6" />
+      <text
+         x="550"
+         y="567"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text64-7">implémen.</text>
+    </g>
+    <g
+       id="g404"
+       transform="translate(-18.034932,-0.84286758)">
+      <circle
+         cx="520"
+         cy="610"
+         r="35"
+         fill="#4a90a4"
+         stroke="#0f3347"
+         stroke-width="1.5"
+         id="circle66" />
+      <text
+         x="520"
+         y="617"
+         font-size="12px"
+         text-anchor="middle"
+         fill="#ffffff"
+         id="text68"><tspan
+           sodipodi:role="line"
+           id="tspan529"
+           x="520"
+           y="617">implémen.</tspan></text>
+    </g>
+  </g>
+</svg>

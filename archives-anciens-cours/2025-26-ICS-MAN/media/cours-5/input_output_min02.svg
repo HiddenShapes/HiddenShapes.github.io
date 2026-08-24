@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 100">
+  <!-- Input label -->
+  <text x="10" y="60" font-family="Recursive" font-weight="bold" font-size="24" fill="#d4d4d4">[8, 33, 5, -20, 0]</text>
+
+  <!-- Arrow 1 -->
+  <polygon points="272,37 314,37 314,27 344,50 314,73 314,63 272,63" fill="#6898c8"/>
+
+  <!-- Box -->
+  <rect x="354" y="8" width="248" height="84" fill="none" stroke="#cccccc" stroke-width="2.5"/>
+  <text x="478" y="54" font-family="Recursive" font-weight="bold" font-size="19"
+        fill="#d4d4d4" text-anchor="middle">calculate_min</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="612,37 654,37 654,27 684,50 654,73 654,63 612,63" fill="#6898c8"/>
+
+  <!-- Output label -->
+  <text x="697" y="60" font-family="Recursive" font-weight="bold" font-size="24" fill="#d4d4d4">-20</text>
+</svg>

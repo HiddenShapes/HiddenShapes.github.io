@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 110">
+  <!-- "Entrée" label -->
+  <text x="10" y="65" font-family="Recursive" font-weight="bold" font-size="26" fill="#d4d4d4">Entrée</text>
+
+  <!-- Arrow 1 -->
+  <polygon points="110,41 156,41 156,29 190,55 156,81 156,69 110,69" fill="#6898c8"/>
+
+  <!-- Box -->
+  <rect x="200" y="16" width="255" height="78" fill="none" stroke="#cccccc" stroke-width="2.5"/>
+  <text x="327" y="61" font-family="Recursive" font-weight="bold" font-size="22"
+        fill="#d4d4d4" text-anchor="middle">Algorithme</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="465,41 511,41 511,29 545,55 511,81 511,69 465,69" fill="#6898c8"/>
+
+  <!-- "Sortie" label -->
+  <text x="557" y="65" font-family="Recursive" font-weight="bold" font-size="26" fill="#d4d4d4">Sortie</text>
+</svg>

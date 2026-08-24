@@ -1,0 +1,291 @@
+body {
+  font-size: 18px;
+}
+
+.cell-output {
+    border-left: 4px solid lightgray; 
+    padding-left: 10px;
+}
+
+.remark {
+    font-weight: bold;
+    color: #214a6b;
+}
+
+.attention {
+    font-weight: bold;
+    color: #7d0b26;
+}
+
+.title-code {
+    font-family: 'Fira Mono', monospace;
+}
+
+.img-center {
+    display: block !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+.blue-numbered {
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.blue-numbered li {
+  display: block;
+  margin-bottom: 0.5em;
+  padding-left: .5em;
+  position: relative;
+}
+
+.blue-numbered li:before {
+  content: "(" counter(item) ")";
+  counter-increment: item;
+  color: darkblue;
+  position: absolute;
+  left: -1em;
+}
+
+
+.strong-blue {
+    color: darkblue;
+}
+
+.invert-colors-doc{
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* ──────────────────────────────────────────
+   Two-column split: Structures / Traitement
+   Adapted for Flatly (light) HTML documents
+   ────────────────────────────────────────── */
+
+/* Connector label between definition and boxes */
+.connector {
+  text-align: center;
+  font-size: 0.95em;
+  color: #6c757d;
+  font-style: italic;
+  margin: 1.2em 0;
+  letter-spacing: 0.03em;
+}
+
+/* Flex row for the two boxes */
+.split-row {
+  display: flex;
+  gap: 1.2em;
+  align-items: stretch;
+}
+
+@media (max-width: 600px) {
+  .split-row {
+    flex-direction: column;
+  }
+}
+
+/* Shared box styling */
+.split-box {
+  flex: 1;
+  border-radius: 8px;
+  padding: 1.2em 1.4em;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Left box: data structures (blue) */
+.split-data {
+  background: #eff6ff;
+  border: 1.5px solid #93c5fd;
+}
+
+/* Right box: data processing (amber) */
+.split-process {
+  background: #fffbeb;
+  border: 1.5px solid #fcd34d;
+}
+
+/* Box header (icon + title) */
+.split-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+.split-data .split-header { color: #2563eb; }
+.split-process .split-header { color: #b45309; }
+
+/* Subtitle / guiding question */
+.split-subtitle {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 0.8em;
+}
+
+/* Tag container */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+/* Shared tag pill styling */
+.tag {
+  font-size: 0.82em;
+  font-weight: 500;
+  padding: 0.3em 0.75em;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Blue tags (data structures) */
+.tag-blue {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+}
+
+/* Amber tags (processing) */
+.tag-amber {
+  background: rgba(180, 83, 9, 0.1);
+  color: #92400e;
+}
+
+/* ──────────────────────────────────────────
+   Highlight / Dim states for split boxes
+   ────────────────────────────────────────── */
+
+/* Highlighted box: stronger border + subtle shadow */
+.split-highlight {
+  border-width: 2px;
+  transform: scale(1.02);
+}
+.split-highlight.split-data {
+  border-color: #3b82f6;
+  background: #dbeafe;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2);
+}
+.split-highlight.split-process {
+  border-color: #f59e0b;
+  background: #fef3c7;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
+}
+
+/* Dimmed box: reduced opacity */
+.split-dimmed {
+  opacity: 0.35;
+}
+
+/* ──────────────────────────────────────────
+   Vertical centering (for standalone pages)
+   ────────────────────────────────────────── */
+.center-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60vh;
+}
+/* ──────────────────────────────────────────
+   Definition / theorem environment boxes
+   ────────────────────────────────────────── */
+
+.env-box {
+  background: #f8f9fa;
+  border-left: 4px solid #2c3e50;
+  border-radius: 6px;
+  padding: 1em 1.4em;
+  margin: 1.2em 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.env-title {
+  font-weight: 700;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #2c3e50;
+  margin-bottom: 0.5em;
+}
+
+.env-body {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #495057;
+}
+
+/* ──────────────────────────────────────────
+   Frame viewer (click-through image sequence)
+   ────────────────────────────────────────── */
+
+.frame-viewer {
+  margin: 1.2em 0;
+  outline: none;
+}
+
+.frame-viewer > .frame {
+  text-align: center;
+}
+
+.frame-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 0.6em;
+}
+
+.frame-counter {
+  font-variant-numeric: tabular-nums;
+  color: #6c757d;
+  min-width: 4.5em;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.frame-viewer .frame-prev,
+.frame-viewer .frame-next {
+  min-width: 8em;
+}
+
+/* ──────────────────────────────────────────
+   Spoiler (click-to-reveal blurred content)
+   ────────────────────────────────────────── */
+
+.spoiler {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 1em 0;
+}
+
+.spoiler:not(.revealed) > :not(.spoiler-overlay) {
+  filter: blur(6px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.spoiler-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  font-weight: 600;
+  color: #214a6b;
+  font-size: 1.05em;
+  transition: background 0.15s;
+}
+
+.spoiler-overlay:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.spoiler.revealed .spoiler-overlay {
+  display: none;
+}
+
+.highlight-red,
+.highlight-red code {
+    color: red;
+}
+
