@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 691.5 218.63422"
+   version="1.1"
+   id="svg1080"
+   sodipodi:docname="appels_fonctions.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   width="691.5"
+   height="218.63422"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1082"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.91138093"
+     inkscape:cx="393.35912"
+     inkscape:cy="285.28137"
+     inkscape:window-width="1920"
+     inkscape:window-height="1167"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1080"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs976">
+    <marker
+       id="red-arrow"
+       markerWidth="10"
+       markerHeight="8"
+       refX="9"
+       refY="4"
+       orient="auto">
+      <polygon
+         points="10,4 0,8 0,0 "
+         fill="#ff4444"
+         id="polygon970" />
+    </marker>
+    <marker
+       id="blue-arrow"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="10,3.5 0,7 0,0 "
+         fill="#4a7ab5"
+         id="polygon973" />
+    </marker>
+    <marker
+       id="red-arrow-3"
+       markerWidth="10"
+       markerHeight="8"
+       refX="9"
+       refY="4"
+       orient="auto">
+      <polygon
+         points="0,8 0,0 10,4 "
+         fill="#ff4444"
+         id="polygon970-1" />
+    </marker>
+    <marker
+       id="red-arrow-7"
+       markerWidth="10"
+       markerHeight="8"
+       refX="9"
+       refY="4"
+       orient="auto">
+      <polygon
+         points="0,8 0,0 10,4 "
+         fill="#ff4444"
+         id="polygon970-5" />
+    </marker>
+  </defs>
+  <!-- Code box -->
+  <!-- def g(x): -->
+  <!--     return x**2 -->
+  <!-- def f(x,y): -->
+  <!--     s = x+y -->
+  <!--     return g(s)+1 -->
+  <!-- x = f(2,3) -->
+  <!-- === Call stack diagram === -->
+  <!-- g horizontal line -->
+  <line
+     x1="353.80865"
+     y1="3.7221069"
+     x2="553.21075"
+     y2="3.7221069"
+     stroke="#4a7ab5"
+     stroke-width="1.10416"
+     id="line1040" />
+  <!-- g label -->
+  <!-- f horizontal line -->
+  <line
+     x1="160"
+     y1="88.722107"
+     x2="615.07654"
+     y2="88.722107"
+     stroke="#4a7ab5"
+     stroke-width="1.40324"
+     id="line1044" />
+  <!-- f label -->
+  <!-- bottom / main level line -->
+  <line
+     x1="0"
+     y1="175.72211"
+     x2="670"
+     y2="175.72211"
+     stroke="#4a7ab5"
+     stroke-width="1"
+     id="line1048" />
+  <!-- temps arrow -->
+  <line
+     x1="591.37866"
+     y1="194.88341"
+     x2="659.37866"
+     y2="194.88341"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     marker-end="url(#blue-arrow)"
+     id="line1050" />
+  <text
+     x="599.37866"
+     y="208.88341"
+     font-family="sans-serif"
+     font-size="14px"
+     fill="#4a7ab5"
+     id="text1052"
+     style="font-size:14px;font-family:sans-serif;fill:#4a7ab5"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:Recursive;-inkscape-font-specification:'Recursive, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       id="tspan18417">temps</tspan></text>
+  <!-- Dot on f-line at g(s) call point -->
+  <!-- g(s) label below dot -->
+  <!-- Dot at bottom level for f(2,3) call -->
+  <!-- f(2,3) label below dot -->
+  <text
+     x="127.76791"
+     y="192.35693"
+     font-family="'Courier New', Courier, monospace"
+     font-size="15px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text1060"
+     style="font-weight:bold;font-size:15px;font-family:'Courier New', Courier, monospace;fill:#cccccc"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan21383">f(2,3)</tspan></text>
+  <text
+     x="117.5274"
+     y="93.851227"
+     font-family="'Courier New', Courier, monospace"
+     font-size="15px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text1060-6"
+     style="font-weight:bold;font-size:15px;font-family:'Courier New', Courier, monospace;fill:#cccccc"><tspan
+       sodipodi:role="line"
+       id="tspan18094"
+       x="117.5274"
+       y="93.851227"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400">f</tspan><tspan
+       sodipodi:role="line"
+       id="tspan18096"
+       x="117.5274"
+       y="112.60123" /></text>
+  <text
+     x="339.11612"
+     y="108.6488"
+     font-family="'Courier New', Courier, monospace"
+     font-size="15px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text1060-2"
+     style="font-weight:bold;font-size:15px;font-family:'Courier New', Courier, monospace;fill:#cccccc"><tspan
+       sodipodi:role="line"
+       id="tspan14552"
+       x="339.11612"
+       y="108.6488"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400">g(5)</tspan></text>
+  <text
+     x="314.49915"
+     y="9.080719"
+     font-family="'Courier New', Courier, monospace"
+     font-size="15px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text1060-2-9"
+     style="font-weight:bold;font-size:15px;font-family:'Courier New', Courier, monospace;fill:#cccccc"><tspan
+       sodipodi:role="line"
+       id="tspan14552-8"
+       x="314.49915"
+       y="9.080719"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400">g</tspan><tspan
+       sodipodi:role="line"
+       x="314.49915"
+       y="27.830719"
+       id="tspan16118" /></text>
+  <!-- Arrow: call to f — from bottom dot up-left to f-line start -->
+  <text
+     x="85.174995"
+     y="127.01967"
+     font-family="sans-serif"
+     font-size="15px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text1064"
+     style="font-style:italic;font-weight:bold;font-size:15px;font-family:sans-serif;fill:#ff4444"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan9205">x=2</tspan></text>
+  <text
+     x="283.20108"
+     y="42.222733"
+     font-family="sans-serif"
+     font-size="15px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text1064-3"
+     style="font-style:italic;font-weight:bold;font-size:15px;font-family:sans-serif;fill:#ff4444"><tspan
+       sodipodi:role="line"
+       id="tspan10829"
+       x="283.20108"
+       y="42.222733"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400">x=5</tspan></text>
+  <text
+     x="85.174995"
+     y="146.01967"
+     font-family="sans-serif"
+     font-size="15px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text1066"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400;fill:#ff4444">y=3</text>
+  <!-- Arrow: call to g — from f-line dot up-left to g-line start -->
+  <path
+     d="m 352.08469,87.884087 c -49.87278,-29.96 -38.98242,-55.46142 -0.13155,-82.7399301"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path1068"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 158.28306,173.31053 c -49.87277,-29.96 -38.98241,-55.46142 -0.13155,-82.739933"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow-7)"
+     id="path1068-7"
+     sodipodi:nodetypes="cc"
+     style="marker-end:url(#red-arrow-7)" />
+  <!-- Arrow: return from g (25) — from g-line end down-right to f-line -->
+  <path
+     d="m 553.21075,3.7221069 c 40.57339,9.5166801 40.83761,51.5109101 0.461,85.0000001"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path1072"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 615.07654,88.722107 c 40.57339,9.51668 40.83761,51.510913 0.461,85.000003"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow-3)"
+     id="path1072-8"
+     sodipodi:nodetypes="cc"
+     style="marker-end:url(#red-arrow-3)" />
+  <text
+     x="593.5965"
+     y="39.954803"
+     font-family="sans-serif"
+     font-size="15px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text1074"
+     style="font-style:italic;font-weight:bold;font-size:15px;font-family:sans-serif;fill:#ff4444"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan13649">25</tspan></text>
+  <circle
+     cx="355"
+     cy="88.722107"
+     r="5"
+     fill="#4a7ab5"
+     id="circle1054" />
+  <circle
+     cx="160"
+     cy="175.72211"
+     r="5"
+     fill="#4a7ab5"
+     id="circle1058" />
+  <!-- Arrow: return from f (26) — from f-line end down-right to bottom level -->
+  <text
+     x="654.56165"
+     y="120.71063"
+     font-family="sans-serif"
+     font-size="15px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text1078"
+     style="font-style:italic;font-weight:bold;font-size:15px;font-family:sans-serif;fill:#ff4444"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan14857">26</tspan></text>
+</svg>

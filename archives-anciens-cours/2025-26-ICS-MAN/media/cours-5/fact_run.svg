@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 900 375"
+   version="1.1"
+   id="svg83095"
+   sodipodi:docname="fact_run.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview83097"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.4192255"
+     inkscape:cx="522.46807"
+     inkscape:cy="238.51037"
+     inkscape:window-width="1920"
+     inkscape:window-height="1200"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg83095" />
+  <defs
+     id="defs83013">
+    <marker
+       id="red-arrow"
+       markerWidth="10"
+       markerHeight="8"
+       refX="9"
+       refY="4"
+       orient="auto">
+      <polygon
+         points="10,4 0,8 0,0"
+         fill="#ff4444"
+         id="polygon83007" />
+    </marker>
+    <marker
+       id="blue-arrow"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="10,3.5 0,7 0,0"
+         fill="#4a7ab5"
+         id="polygon83010" />
+    </marker>
+  </defs>
+  <!-- Main / bottom level line -->
+  <line
+     x1="36"
+     y1="325"
+     x2="856"
+     y2="325"
+     stroke="#4a7ab5"
+     stroke-width="1"
+     id="line83015" />
+  <!-- fact(3) line [y=253] -->
+  <line
+     x1="86"
+     y1="261"
+     x2="796"
+     y2="261"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     id="line83017" />
+  <text
+     x="18"
+     y="265"
+     font-family="Recursive"
+     font-size="15px"
+     fill="#999999"
+     id="text83019">fact</text>
+  <!-- fact(2) line [y=178] -->
+  <line
+     x1="161"
+     y1="194"
+     x2="661"
+     y2="194"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     id="line83021" />
+  <text
+     x="93"
+     y="198"
+     font-family="Recursive"
+     font-size="15px"
+     fill="#999999"
+     id="text83023">fact</text>
+  <!-- fact(1) line [y=103] -->
+  <line
+     x1="236"
+     y1="127"
+     x2="526"
+     y2="127"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     id="line83025" />
+  <text
+     x="168"
+     y="131"
+     font-family="Recursive"
+     font-size="15px"
+     fill="#999999"
+     id="text83027">fact</text>
+  <!-- fact(0) line [y=28] -->
+  <line
+     x1="311"
+     y1="60"
+     x2="406"
+     y2="60"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     id="line83029" />
+  <text
+     x="243"
+     y="64"
+     font-family="Recursive"
+     font-size="15px"
+     fill="#999999"
+     id="text83031">fact</text>
+  <!-- Left dots (sub-call points) -->
+  <!-- main: x=fact(3) called -->
+  <text
+     x="46"
+     y="345"
+     font-family="Recursive"
+     font-size="13px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text83035"
+     style="font-weight:bold;font-size:13px;font-family:Recursive;fill:#cccccc"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan93090">x = fact(3)</tspan></text>
+  <!-- fact(3): f=fact(n-1) call -->
+  <text
+     x="118"
+     y="281"
+     font-family="Recursive"
+     font-size="13px"
+     fill="#cccccc"
+     id="text83039">f = fact(2)</text>
+  <!-- fact(2): f=fact(n-1) call -->
+  <text
+     x="193"
+     y="214"
+     font-family="Recursive"
+     font-size="13px"
+     fill="#cccccc"
+     id="text83043">f = fact(1)</text>
+  <!-- fact(1): f=fact(n-1) call -->
+  <text
+     x="268"
+     y="147"
+     font-family="Recursive"
+     font-size="13px"
+     fill="#cccccc"
+     id="text83047">f = fact(0)</text>
+  <!-- Right dots (return landing points) -->
+  <!-- fact(1) receives "1" from fact(0) -->
+  <!-- fact(2) receives "1" from fact(1) -->
+  <!-- fact(3) receives "2" from fact(2) -->
+  <!-- main receives "6" from fact(3): print(x) -->
+  <text
+     x="761"
+     y="345"
+     font-family="Recursive"
+     font-size="13px"
+     font-weight="bold"
+     fill="#cccccc"
+     id="text83057"
+     style="font-weight:bold;font-size:13px;font-family:Recursive;fill:#cccccc"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;font-family:Recursive;-inkscape-font-specification:'Recursive, @MONO=1.00,wght=400';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'MONO' 1, 'wght' 400"
+       id="tspan98120">print(x)</tspan></text>
+  <!-- Call arrows (upward, curve left) -->
+  <!-- n=3: main → fact(3) -->
+  <path
+     d="M 86,323 C 43,304 46,276 86,262"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83059" />
+  <text
+     x="21"
+     y="296"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83061">n=3</text>
+  <!-- n=2: fact(3) dot → fact(2) -->
+  <path
+     d="m 161,259 c -43,-19 -40,-49 0,-64"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83063" />
+  <text
+     x="96"
+     y="229"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83065">n=2</text>
+  <!-- n=1: fact(2) dot → fact(1) -->
+  <path
+     d="m 236,192 c -43,-19 -40,-49 0,-64"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83067" />
+  <text
+     x="171"
+     y="162"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83069">n=1</text>
+  <!-- n=0: fact(1) dot → fact(0) -->
+  <path
+     d="M 311,125 C 268,106 271,76 311,61"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83071" />
+  <text
+     x="246"
+     y="95"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83073">n=0</text>
+  <!-- Return arrows (downward, curve right) -->
+  <!-- 1: fact(0) → fact(1) right dot -->
+  <path
+     d="m 406,61 c 38,19 35,50 0,65"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83075" />
+  <text
+     x="436"
+     y="79"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83077">1</text>
+  <!-- 1: fact(1) → fact(2) right dot -->
+  <path
+     d="m 526,128 c 38,19 35,50 0,65"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83079" />
+  <text
+     x="556"
+     y="147"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83081">1</text>
+  <!-- 2: fact(2) → fact(3) right dot -->
+  <path
+     d="m 661,195 c 38,19 35,50 0,65"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83083" />
+  <text
+     x="691"
+     y="214"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83085">2</text>
+  <!-- 6: fact(3) → main print(x) dot -->
+  <path
+     d="m 796,262 c 38,19 35,47 0,62"
+     stroke="#ff4444"
+     stroke-width="2.5"
+     fill="none"
+     marker-end="url(#red-arrow)"
+     id="path83087" />
+  <text
+     x="826"
+     y="280"
+     font-family="Recursive"
+     font-size="14px"
+     font-weight="bold"
+     font-style="italic"
+     fill="#ff4444"
+     id="text83089">6</text>
+  <!-- temps arrow -->
+  <line
+     x1="632"
+     y1="346"
+     x2="720"
+     y2="346"
+     stroke="#4a7ab5"
+     stroke-width="1.5"
+     marker-end="url(#blue-arrow)"
+     id="line83091" />
+  <text
+     x="642"
+     y="360"
+     font-family="Recursive"
+     font-size="13px"
+     fill="#4a7ab5"
+     id="text83093">temps</text>
+  <circle
+     cx="311"
+     cy="127"
+     r="5"
+     fill="#4a7ab5"
+     id="circle83045" />
+  <circle
+     cx="236"
+     cy="194"
+     r="5"
+     fill="#4a7ab5"
+     id="circle83041" />
+  <circle
+     cx="161"
+     cy="261"
+     r="5"
+     fill="#4a7ab5"
+     id="circle83037" />
+  <circle
+     cx="86"
+     cy="325"
+     r="5"
+     fill="#4a7ab5"
+     id="circle83033" />
+</svg>
