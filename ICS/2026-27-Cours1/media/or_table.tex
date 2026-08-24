@@ -1,0 +1,22 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{array}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\setmonofont{Fira Code}
+
+% Define a custom command for Fira Code text
+\newcommand{\firatt}[1]{\texttt{#1}}
+% Define colored boolean values
+\newcommand{\firatrue}{\textcolor{green}{\firatt{True}}}
+\newcommand{\firafalse}{\textcolor{red}{\firatt{False}}}
+
+\begin{document}
+
+\begin{tabular}{c|cc}
+\firatt{OR} & \firafalse & \firatrue \\
+\hline
+\firafalse & \firafalse & \firatrue \\
+\firatrue & \firatrue & \firatrue \\
+\end{tabular}
+
+\end{document}
