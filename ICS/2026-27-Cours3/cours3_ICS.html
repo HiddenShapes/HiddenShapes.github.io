@@ -216,6 +216,9 @@ Leonard Hardiman et Ghid Maatouk
 </div>
 
 </section>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
+</section>
 <section id="les-fonctions-dans-python" class="slide level2">
 <h2>Les fonctions dans Python</h2>
 <p>La manière principale d’exploiter les données en Python consiste à utiliser les <strong>fonctions</strong> :</p>
@@ -227,33 +230,6 @@ Leonard Hardiman et Ghid Maatouk
 <span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a>fonction(input_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Une fonction implémente une <strong>procédure</strong> qui peut être appelée plusieurs fois sur différentes données (<code>input_data</code>). Le <code>input_data</code> sera une collection d’objets, chacun ayant un certain type.</p>
-</section>
-<section id="un-premier-exemple" class="slide level2">
-<h2>Un premier exemple</h2>
-<!-- runner | split: 65 | height: 278px | font-size: 26px | theme: dark | placeholder: ""
-code:
-def aire_triangle(base, hauteur):
-    aire = base * hauteur / 2
-    return aire
-
-b = 9; h = 3
-
-print("L'aire vaut", aire_triangle(b, h))
-code:
-def aire_triangle(base, hauteur):
-    aire = base * hauteur / 2
-    return aire
-
-b = 12; h = 17
-
-print("L'aire vaut", aire_triangle(b, h))
--->
-<p><span class="remark">Remarque.</span> Les fonctions interrompent le flux normal du programme :</p>
-<ul>
-<li>la <strong>définition</strong> de la fonction est initialement ignorée ;</li>
-<li>lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;</li>
-<li>une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).</li>
-</ul>
 </section>
 <section id="définir-une-fonction" class="slide level2">
 <h2>Définir une fonction</h2>
@@ -310,8 +286,36 @@ print(a, b, c)
 -->
 <p><span class="remark">Remarque.</span> Une fonction qui retourne plusieurs objets séparés par des virgules retourne en réalité un <strong>tuple</strong> : <code>a, b = double_et_triple(5)</code> est donc l’unpacking vu au Cours 2.</p>
 </section>
-<section id="résumé-le-double-rôle-des-fonctions" class="slide level2">
-<h2>Résumé : le double rôle des fonctions</h2>
+<section id="flux-dexécution-dune-fonction" class="slide level2">
+<h2>Flux d’exécution d’une fonction</h2>
+<!-- runner | split: 65 | height: 278px | font-size: 26px | theme: dark | placeholder: ""
+code:
+def aire_triangle(base, hauteur):
+    aire = base * hauteur / 2
+    return aire
+
+b = 9; h = 3
+
+print("L'aire vaut", aire_triangle(b, h))
+code:
+def aire_triangle(base, hauteur):
+    aire = base * hauteur / 2
+    return aire
+
+b = 12; h = 17
+
+print("L'aire vaut", aire_triangle(b, h))
+-->
+<p><span class="remark">Remarque.</span> Les fonctions interrompent le flux normal du programme :</p>
+<ul>
+<li>la <strong>définition</strong> de la fonction est initialement ignorée ;</li>
+<li>lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;</li>
+<li>une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).</li>
+</ul>
+<p>LEO: Add picture (python tutor-y)</p>
+</section>
+<section id="note-le-double-rôle-des-fonctions" class="slide level2">
+<h2>Note : le double rôle des fonctions</h2>
 <p>Ceci nous amène à un concept (que je trouve utile).</p>
 <div class="env-box">
 <div class="env-title">
@@ -374,7 +378,7 @@ x = 7
 print('x vaut', x, 'et son type est', type(x))
 -->
 <p><span class="remark">Remarque.</span> Nous utilisons <code>print</code> depuis le Cours 1 sans jamais dire ce qu’elle est. C’est une fonction, et elle illustre que les fonctions ne se limitent pas à ce qu’elles retournent : elles peuvent <strong>faire quelque chose</strong> avant.</p>
-<p>Pour les détails sur son utilisation (<code>\n</code>, <code>end</code>, <code>sep</code>, f-strings), voir <a href="details_print.html">l’Annexe A</a>.</p>
+<p>Pour les détails sur son utilisation, voir <a href="details_print.html">l’Annexe A</a>.</p>
 </section>
 <section id="illustration-du-casting-avec-print" class="slide level2">
 <h2>Illustration du casting avec print</h2>
