@@ -4,145 +4,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Informatique et Calcul Scientifique — 2026-27</title>
-<meta name="description" content="Diapositives du cours d'Informatique et Calcul Scientifique, année 2026-27.">
-<style>
-  @font-face{
-    font-family:"EB Garamond";
-    src:url("assets/fonts/EBGaramond-VariableFont_wght.ttf") format("truetype-variations");
-    font-weight:400 800; font-style:normal; font-display:swap;
-  }
-  @font-face{
-    font-family:"Blackout Sunrise";
-    src:url("assets/fonts/blackout_sunrise-webfont.ttf") format("truetype");
-    font-weight:400; font-style:normal; font-display:swap;
-  }
-  :root{
-    --bg:#0f1216; --panel:#171b22; --panel-hi:#1e242c; --line:#2b323d;
-    --text:#dde0eb; --muted:#94a3b8; --accent:#669aed; --accent-soft:#80c4f2; --amber:#fbbf24;
-    --serif:"EB Garamond",Palatino,"Palatino Linotype",Georgia,serif;
-    --mono:ui-monospace,SFMono-Regular,"Fira Mono",Menlo,Consolas,monospace;
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--text);
-    font-family:var(--serif); font-size:19px; line-height:1.6;
-    background-image:radial-gradient(ellipse 80% 55% at 50% -10%, rgba(102,154,237,.16), transparent 70%);
-    background-repeat:no-repeat;
-  }
-  .wrap{max-width:1000px; margin:0 auto; padding:clamp(2.5rem,7vw,5.5rem) clamp(1.1rem,4vw,2rem) 4rem}
-  header{border-bottom:1px solid var(--line); padding-bottom:2.2rem; margin-bottom:2.8rem}
-  .eyebrow{
-    font-family:var(--mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
-    color:var(--accent); margin:0 0 1rem
-  }
-  h1{
-    font-family:"Blackout Sunrise",var(--serif); font-weight:400;
-    font-size:clamp(2.1rem,6.5vw,3.6rem); line-height:1.08; letter-spacing:.01em;
-    margin:0 0 .9rem; color:#fff;
-  }
-  .lead{font-size:clamp(1.02rem,2.4vw,1.2rem); color:var(--muted); margin:0 0 .6rem; max-width:60ch}
-  .authors{font-size:.95rem; color:var(--muted); margin:0; font-style:italic}
-  .grid{display:grid; gap:1.4rem; grid-template-columns:1fr}
-  @media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
-  .card{
-    display:flex; flex-direction:column; background:var(--panel);
-    border:1px solid var(--line); border-radius:12px; padding:1.6rem 1.5rem 1.5rem;
-    transition:border-color .18s ease, transform .18s ease, background .18s ease;
-  }
-  .card:hover{border-color:var(--accent); background:var(--panel-hi); transform:translateY(-3px)}
-  @media(prefers-reduced-motion:reduce){.card{transition:none} .card:hover{transform:none}}
-  .num{
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
-    color:var(--accent); margin:0 0 .55rem
-  }
-  .card h2{font-size:1.45rem; margin:0 0 .5rem; color:#fff; font-weight:600; line-height:1.2}
-  .card p{margin:0 0 1.15rem; color:var(--muted); font-size:.97rem; line-height:1.55}
-  ul.topics{list-style:none; margin:0 0 1.5rem; padding:0; display:flex; flex-wrap:wrap; gap:.4rem}
-  ul.topics li{
-    font-family:var(--mono); font-size:.7rem; color:var(--accent-soft);
-    background:rgba(102,154,237,.11); border:1px solid rgba(102,154,237,.24);
-    border-radius:5px; padding:.22rem .5rem; line-height:1.4;
-  }
-  .actions{margin-top:auto; display:flex; flex-direction:column; gap:.55rem; align-items:flex-start}
-  .btn{
-    display:inline-block; font-family:var(--mono); font-size:.79rem; letter-spacing:.05em;
-    text-decoration:none; color:#0f1216; background:var(--accent);
-    padding:.55rem 1rem; border-radius:7px; transition:background .18s ease;
-  }
-  .btn:hover{background:#8ab4f4}
-  .btn-alt{
-    display:inline-block; font-family:var(--mono); font-size:.74rem;
-    text-decoration:none; color:var(--amber); border-bottom:1px dotted rgba(251,191,36,.5);
-    padding-bottom:1px;
-  }
-  .btn-alt:hover{color:#fde68a; border-bottom-style:solid}
-  .btn:focus-visible,.btn-alt:focus-visible{outline:2px solid var(--accent-soft); outline-offset:3px}
-  footer{
-    margin-top:3.5rem; padding-top:1.6rem; border-top:1px solid var(--line);
-    color:var(--muted); font-size:.88rem;
-  }
-  footer a{color:var(--accent); text-decoration:none}
-  footer a:hover{text-decoration:underline}
-</style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <p class="eyebrow">Année 2026&ndash;27</p>
-    <h1>Informatique et<br>Calcul Scientifique</h1>
-    <p class="lead">Les diapositives du cours, publiées au fur et à mesure des séances. Chaque jeu de diapositives s&rsquo;ouvre directement dans le navigateur&nbsp;: utilisez les flèches du clavier pour naviguer.</p>
-    <p class="authors">Leonard Hardiman et Ghid Maatouk</p>
-  </header>
+<h1>Informatique et Calcul Scientifique</h1>
 
-  <main>
-    <div class="grid">
+<p>Diapositives du cours, année 2026-27.<br>
+Leonard Hardiman et Ghid Maatouk</p>
 
-      <article class="card">
-        <p class="num">Cours 01</p>
-        <h2>Premiers pas en Python</h2>
-        <p>Ce qu&rsquo;est l&rsquo;informatique, comment Python exécute un programme, puis les objets, les variables et le premier flux de contrôle.</p>
-        <ul class="topics">
-          <li>types</li><li>casting</li><li>variables</li><li>affectation</li><li>if / else / elif</li>
-        </ul>
-        <div class="actions">
-          <a class="btn" href="2026-27-Cours1/cours1_ICS.html">Voir les diapositives</a>
-        </div>
-      </article>
+<p>Les diapositives sont mises en ligne après chaque séance. Elles s'ouvrent
+directement dans le navigateur ; utilisez les flèches du clavier pour naviguer.</p>
 
-      <article class="card">
-        <p class="num">Cours 02</p>
-        <h2>Conditions et boucles</h2>
-        <p>Les conditions booléennes en détail, puis l&rsquo;itération sous toutes ses formes et les premières structures itérables.</p>
-        <ul class="topics">
-          <li>booléens</li><li>while</li><li>for</li><li>range</li><li>str</li><li>tuples</li><li>packing</li>
-        </ul>
-        <div class="actions">
-          <a class="btn" href="2026-27-Cours2/cours2_ICS.html">Voir les diapositives</a>
-        </div>
-      </article>
+<hr>
 
-      <article class="card">
-        <p class="num">Cours 03</p>
-        <h2>Fonctions, portée et modules</h2>
-        <p>Définir et appeler ses propres fonctions, comprendre où vivent les variables, et réutiliser du code grâce aux modules.</p>
-        <ul class="topics">
-          <li>def</li><li>return</li><li>paramètres</li><li>portée</li><li>global</li><li>import</li>
-        </ul>
-        <div class="actions">
-          <a class="btn" href="2026-27-Cours3/cours3_ICS.html">Voir les diapositives</a>
-          <a class="btn-alt" href="2026-27-Cours3/details_print.html">Annexe A &mdash; la fonction print()</a>
-        </div>
-      </article>
+<h2>Cours 1 — Premiers pas en Python</h2>
+<p><a href="2026-27-Cours1/cours1_ICS.html">Diapositives du cours 1</a></p>
+<p>Qu'est-ce que l'informatique, comment Python exécute un programme, les objets
+et les types, les variables et l'affectation, le casting, puis le flux de
+contrôle : <code>if</code> / <code>else</code> / <code>elif</code>.</p>
 
-    </div>
-  </main>
+<h2>Cours 2 — Conditions et boucles</h2>
+<p><a href="2026-27-Cours2/cours2_ICS.html">Diapositives du cours 2</a></p>
+<p>Les conditions booléennes en détail, les boucles <code>while</code> et
+<code>for</code>, la fonction <code>range</code>, les boucles imbriquées, puis
+les premières structures itérables : <code>str</code>, tuples, packing et
+unpacking.</p>
 
-  <footer>
-    <p>Les diapositives sont mises en ligne après chaque séance. &mdash; <a href="/">hidden-shapes.com</a></p>
-  </footer>
+<h2>Cours 3 — Fonctions, portée et modules</h2>
+<p><a href="2026-27-Cours3/cours3_ICS.html">Diapositives du cours 3</a></p>
+<p>Définir et appeler ses propres fonctions, <code>return</code>, les paramètres
+optionnels, la portée des variables et <code>global</code>, puis la modularité
+et l'import de modules.</p>
+<p>Annexe : <a href="2026-27-Cours3/details_print.html">la fonction print()</a></p>
 
-</div>
+<hr>
+
+<p><a href="/">hidden-shapes.com</a></p>
+
 </body>
 </html>
