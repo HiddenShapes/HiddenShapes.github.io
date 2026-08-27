@@ -227,26 +227,6 @@ Leonard Hardiman et Ghid Maatouk
 <div class="fragment">
 <p>Qu’affiche le code suivant ?</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span> <span class="op">&lt;</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- runner | split: 60 | height: 260px | font-size: 22px | theme: dark | placeholder: ""
-code:
-x = 7
-y = str(x)
-
-if x == y:
-    print('égaux')
-else:
-    print('différents :', type(x), type(y))
-code:
-a = '3'
-b = 4
-print(a * b)
-
-***
-
-x = 3 < 4
-print(x)
-
--->
 </div>
 </section>
 <section id="les-conditions-booléennes" class="slide level2">
@@ -261,34 +241,11 @@ print(x)
 <li>pour tester l’égalité des valeurs de deux objets : <code>==</code>, <code>!=</code>.</li>
 </ul></li>
 </ul>
-<!-- runner | split: 70 | height: 140px | font-size: 22px | theme: dark | placeholder: ""
-code:
-x = 4
-print(x <= 3)
-code:
-print(type(4) == type(7))
-print(type(4) == float)
--->
 <p><span class="attention">Attention.</span> <code>==</code> <strong>teste</strong> une égalité, alors que <code>=</code> <strong>affecte</strong> une variable. Confondre les deux est une des erreurs les plus courantes.</p>
 </section>
 <section id="comparaisons-de-str" class="slide level2">
 <h2>Comparaisons de <span class="title-code">str</span></h2>
 <p>Les opérateurs de comparaison fonctionnent aussi avec les <code>str</code>.</p>
-<!-- runner | split: 70 | height: 180px | font-size: 22px | theme: dark | placeholder: ""
-code:
-print('hello' == 'hello')
-print('hello' != 'world')
-print('hello' == 'Hello')
-code:
-print('a' < 'b')  # Ordre lexicographique (alphabétique)
-print('zebre' < 'escargot')
-code:
-print('Banane' < 'abricot')  # Attention aux majuscules !
-print('eBay' < 'eau')
-code:
-print('abc' < 'abcd')  # Plus court vient avant
-print('z' > 'abc')     # Premier caractère compte
--->
 <ul>
 <li>L’égalité (<code>==</code>) est sensible à la casse.</li>
 <li>L’ordre suit l’ordre lexicographique (comme dans un dictionnaire).</li>
@@ -304,19 +261,6 @@ print('z' > 'abc')     # Premier caractère compte
 <li>Le nombre <code>0</code> (<code>float</code> ou <code>int</code>) est casté en <code>False</code>, et tout autre nombre en <code>True</code>.</li>
 <li>Un <code>str</code> vide est casté en <code>False</code>, et tout autre <code>str</code> en <code>True</code>.</li>
 </ul>
-<!-- runner | split: 70 | height: 280px | font-size: 22px | theme: dark | placeholder: ""
-code:
-import random
-
-x = random.randint(0, 99)
-
-if x % 2:
-    parité = 'impair'
-else:
-    parité = 'pair'
-
-print(x, 'est', parité)
--->
 <p>En général, si un objet a une valeur « vide », il sera casté en <code>False</code>, sinon en <code>True</code>.</p>
 </section>
 <section id="combiner-des-expressions-booléennes" class="slide level2">
@@ -325,31 +269,12 @@ print(x, 'est', parité)
 <div class="center-container">
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><img data-src="media/and_table.svg" class="invert-colors" height="170"></p>
-<p><img data-src="media/or_table.svg" class="invert-colors" height="170"></p>
+<p><img data-src="media/and_table.svg" class="invert-colors" height="145"></p>
+<p><img data-src="media/or_table.svg" class="invert-colors" height="145"></p>
 </div><div class="column" style="width:40%;">
-<p><img data-src="media/not_table.svg" class="invert-colors" height="170"></p>
+<p><img data-src="media/not_table.svg" class="invert-colors" height="145"></p>
 </div></div>
 </div>
-<!-- runner | split: 70 | height: 420px | font-size: 22px | theme: dark | placeholder: ""
-code:
-import random
-
-x = random.randint(-50, 50)
-
-if x % 2 and x > 0:
-    description = 'impair et positif'
-elif x % 2 and x < 0:
-    description = 'impair et négatif'
-elif x > 0:
-    description = 'pair et positif'
-elif x < 0:
-    description = 'pair et négatif'
-else:
-    description = 'pair, positif et négatif'
-
-print(x, 'est', description)
--->
 <p>Le fonctionnement de ces combinaisons est intuitif, mais nous le précisons ici à titre de référence.</p>
 </section>
 <section id="boucles-et-itérations" class="slide level2">
@@ -372,17 +297,6 @@ print(x, 'est', description)
 <li>Tant que <code>conditionA</code> est vraie, <code>blocA</code> est exécuté, puis <code>conditionA</code> est <strong>réévaluée</strong>.</li>
 <li>Dès que <code>conditionA</code> devient fausse, la boucle s’arrête et le programme continue.</li>
 </ul>
-<!-- runner | split: 70 | height: 330px | font-size: 22px | theme: dark | placeholder: ""
-code:
-n = 5
-print('Début du compte à rebours depuis', n)
-
-while n > 0:
-    print(n)
-    n = n - 1  # Décrémentation importante !
-
-print('Décollage !')
--->
 <p><span class="remark">Remarque.</span> N’oubliez pas les deux-points après la condition et l’indentation du bloc de code.</p>
 </section>
 <section id="attention-aux-boucles-infinies" class="slide level2">
@@ -407,18 +321,6 @@ print('Décollage !')
 <li>un <strong>accumulateur</strong>, qui retient la somme des nombres déjà traités ;</li>
 <li>un <strong>compteur</strong>, qui retient le prochain nombre à ajouter.</li>
 </ul>
-<!-- runner | split: 70 | height: 340px | font-size: 22px | theme: dark | placeholder: ""
-code:
-n = 10
-somme = 0
-compteur = 1
-
-while compteur <= n:
-    somme = somme + compteur
-    compteur += 1
-
-print(somme)
--->
 <p><span class="remark">Explication.</span> À chaque itération, on ajoute le compteur à l’accumulateur, puis on incrémente le compteur. La boucle s’arrête quand le compteur dépasse <code>n</code>.</p>
 </div>
 </section>
@@ -434,53 +336,10 @@ print(somme)
 <li>sans <code>break</code>, on met directement la condition d’arrêt dans le <code>while</code>.</li>
 </ul></li>
 </ul>
-<!-- runner | split: 70 | height: 340px | font-size: 22px | theme: dark | placeholder: ""
-code:
-a, b = 4, 6
-x = 1
-
-while True:
-    if x % a == 0 and x % b == 0:
-        break
-    x = x + 1
-
-print(x)
-code:
-a, b = 4, 6
-x = 1
-
-while not (x % a == 0 and x % b == 0):
-    x = x + 1
-
-print(x)
--->
 <p><span class="remark">Remarque.</span> L’instruction <code>break</code> peut être utile, mais en général il vaut mieux l’éviter. Souvent, il vaut mieux être plus précis lors du choix de notre condition <code>while</code>.</p>
 </div>
 <div class="fragment">
 <p>Cela dit, <code>break</code> permet une chose qu’une condition <code>while</code> ne permet pas : <strong>sortir au milieu du bloc</strong>. La condition d’un <code>while</code> n’est testée qu’<strong>en haut</strong> de la boucle, donc la fin du bloc est toujours exécutée avant de sortir.</p>
-<!-- runner | split: 70 | height: 260px | font-size: 22px | theme: dark | placeholder: ""
-code:
-import random
-
-x = 0
-
-while x != 1:
-    print('début')
-    x = random.randint(0,10)
-    print('fin')
--->
-<!-- runner | split: 70 | height: 280px | font-size: 22px | theme: dark | placeholder: ""
-code:
-import random
-
-x = 0
-
-while True:
-    print('début')
-    x = random.randint(0,10)
-    if x == 1 : break
-    print('fin')
--->
 </div>
 </section>
 <section id="introduction-aux-boucles-for" class="slide level2">
@@ -493,17 +352,6 @@ while True:
 <li><code>itérable</code> est une structure que l’on peut parcourir ; par exemple <code>range(4)</code>, qui contient les valeurs <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>.</li>
 <li>À chaque itération, <code>variable</code> prend la valeur suivante de la séquence, puis <code>blocA</code> est exécuté.</li>
 </ul>
-<!-- runner | split: 70 | height: 260px | font-size: 22px | theme: dark | placeholder: ""
-code:
-for i in range(5):
-    print('Bonjour!')
-code:
-for i in range(5):
-    if not i % 2:
-        print('Bonjour')
-    else:
-        print('Bonne nuit!!')
--->
 </section>
 <section id="la-fonction-range" class="slide level2">
 <h2>La fonction <span class="title-code">range</span></h2>
@@ -527,21 +375,6 @@ for i in range(5):
 <li><code>i</code>, <code>j</code> et <code>k</code> doivent tous être des nombres entiers.</li>
 <li>Le pas <code>k</code> peut être négatif, mais pas <code>0</code>.</li>
 </ul>
-<!-- runner | split: 70 | height: 110px | font-size: 22px | theme: dark | placeholder: ""
-code:
-for i in range(-2, 11, 3):
-    print(i, end=' ')
--->
-<!-- runner | split: 70 | height: 250px | font-size: 22px | theme: dark | placeholder: ""
-code:
-n = 3
-print('Début du compte à', n)
-
-for i in range(n, 0, -1):
-    print(i)
-
-print('Décollage !')
--->
 <p><span class="remark">Remarque.</span> <code>range(0, n, 1)</code>, <code>range(0, n)</code> et <code>range(n)</code> sont identiques.</p>
 </section>
 <section id="boucle-while-vs-boucle-for" class="slide level2">
@@ -559,18 +392,6 @@ print('Décollage !')
 <span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
 <span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">+=</span> pas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<!-- runner | split: 70 | height: 310px | font-size: 22px | theme: dark | placeholder: ""
-code:
-for i in range(3, 12, 2):
-    print(i, end=' ')
-
-print('\n----------')
-
-k = 3
-while k < 12:
-    print(k, end=' ')
-    k += 2
--->
 <p>Quand utiliser chaque type ?</p>
 <ul>
 <li>Boucle <code>for</code> : quand on <strong>connaît le nombre d’itérations à l’avance</strong> ;</li>
@@ -587,18 +408,6 @@ while k < 12:
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variable1 <span class="kw">in</span> itérable1:</span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variable2 <span class="kw">in</span> itérable2:</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>        blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- runner | split: 50 | height: 180px | font-size: 20px | theme: dark | placeholder: ""
-code:
-for i in range(1, 4):
-    for j in range(1, 5):
-        print(i, '+', j, '=', i+j, end='; ')
-    print()  # nouvelle ligne
-code:
-for i in range(1, 4):
-    for j in range(i+1, 7):
-        print((i,j), end=' | ')
-    print()  # nouvelle ligne
--->
 <p><span class="remark">Remarque.</span> Le nombre d’itérations de la boucle intérieure peut dépendre de la variable d’itération de la boucle extérieure.</p>
 </section>
 <section id="autres-structures-itérables" class="slide level2">
@@ -614,43 +423,10 @@ for i in range(1, 4):
 </section>
 <section id="str-itération-et-indexage" class="slide level2">
 <h2><span class="title-code">str</span> : itération et indexage</h2>
-<!-- runner | split: 70 | height: 260px | font-size: 22px | theme: dark | placeholder: ""
-code:
-for c in 'pizza':
-    print(c, end=' ')
-code:
-for c in 'pizza':
-    print(c * 3, end=' ')
--->
 <ul>
 <li>Les <code>str</code> sont aussi des objets <strong>indexables</strong>. En particulier, nous pouvons les indexer par <code>i</code> pour obtenir le <code>i</code>ème caractère.</li>
-</ul>
-<!-- runner | split: 70 | height: 120px | font-size: 20px | theme: dark | placeholder: ""
-code:
-s = "J'ai l'impression que nous ne sommes plus au Kansas"
-print(s[0])
-code:
-s = "J'ai l'impression que nous ne sommes plus au Kansas"
-print(s[6])
--->
-<ul>
 <li>Nous pouvons donc indexer une <code>str</code> par n’importe quel entier de <code>0</code> à <code>n-1</code>, où <code>n</code> est la longueur de la <code>str</code>. Cela donne une autre façon de parcourir les caractères d’une <code>str</code>, qui nous permet aussi de parcourir à l’envers.</li>
 </ul>
-<!-- runner | split: 70 | height: 180px | font-size: 20px | theme: dark | placeholder: ""
-code:
-s = "J'ai l'impression que nous ne sommes plus au Kansas"
-for i in range(len(s)):
-    print(s[i], end='')
-code:
-s = "J'ai l'impression que nous ne sommes plus au Kansas"
-n = len(s)
-for i in range(n):
-    print(s[n-1-i], end='')
-code:
-s = "J'ai l'impression que nous ne sommes plus au Kansas"
-for i in range(len(s)-1, -1, -1):
-    print(s[i], end='')
--->
 <p><span class="remark">Remarque.</span> <code>len</code> est un outil intégré à Python qui donne la longueur de plusieurs structures différentes. Nous verrons au Cours 3 qu’il s’agit d’une fonction.</p>
 </section>
 <section id="les-tuples" class="slide level2 smaller">
@@ -658,47 +434,10 @@ for i in range(len(s)-1, -1, -1):
 <ul>
 <li>Un <strong>tuple</strong> est une structure qui permet de regrouper plusieurs objets dans un seul objet.</li>
 <li>Les tuples se créent avec des <strong>parenthèses</strong> <code>()</code> et les éléments sont séparés par des virgules. Ils peuvent contenir des éléments de <strong>types différents</strong> : <code>int</code>, <code>float</code>, <code>str</code>…</li>
-</ul>
-<!-- runner | split: 60 | height: 200px | font-size: 22px | theme: dark | placeholder: ""
-code:
-coordonnées = (3, 7)
-print(coordonnées)
-
-personne = ('Leonard', 32, 'Espion')
-print(personne)
--->
-<ul>
 <li>Comme les <code>str</code>, les tuples sont indexables : on peut accéder à chaque élément par sa position, l’indexation commençant à <code>0</code>.</li>
-</ul>
-<!-- runner | split: 70 | height: 220px | font-size: 22px | theme: dark | placeholder: ""
-code:
-point = (10, 20, 30)
-print('x =', point[0])
-print('y =', point[1])
-print('z =', point[2])
-
-print('Longueur du tuple:', len(point))
--->
-<ul>
 <li>Ils sont aussi itérables, donc on peut les parcourir avec une boucle <code>for</code>.</li>
-</ul>
-<!-- runner | split: 55 | height: 190px | font-size: 22px | theme: dark | placeholder: ""
-code:
-choses = ('La fondue', 'La raclette', 3.14)
-
-for chose in choses:
-    print(chose)
--->
-<ul>
 <li>On peut aussi les parcourir en utilisant les indices.</li>
 </ul>
-<!-- runner | split: 70 | height: 220px | font-size: 22px | theme: dark | placeholder: ""
-code:
-températures = (18, 22, 25, 19)
-
-for i in range(len(températures)):
-    print('Jour', i+1, ':', températures[i], '°C')
--->
 <p><span class="remark">Remarque.</span> Comme pour les <code>str</code>, essayer d’accéder à un index qui n’existe pas provoque une <strong>erreur</strong>. De même, on peut faire des calculs sur un tuple : <code>len</code>, <code>max</code>, <code>min</code>, <code>sum</code>…</p>
 </section>
 <section id="packing-et-unpacking" class="slide level2">
@@ -720,26 +459,9 @@ for i in range(len(températures)):
 <h2>Remarques sur le Packing/Unpacking</h2>
 <p>En fait, vous avez déjà utilisé le unpacking de tuples sans le savoir : dans les <strong>affectations multiples</strong> du Cours 1.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>  <span class="co"># Crée un tuple (1, 2, 3) puis le unpack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- runner | split: 65 | height: 200px | font-size: 22px | theme: dark | placeholder: ""
-code:
-a, b, c = 1, 2, 3  # Crée un tuple (1, 2, 3) puis le unpack
-print('a =', a)
-print('b =', b)
-print('c =', c)
--->
 <div class="fragment">
 <p><span class="remark">Remarque.</span> En réfléchissant aux tuples, on voit que l’affectation multiple permet d’<strong>échanger</strong> les valeurs de deux variables, sans avoir besoin d’une variable temporaire.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x  <span class="co"># Équivaut à : x, y = (y, x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- runner | split: 65 | height: 220px | font-size: 22px | theme: dark | placeholder: ""
-code:
-x = 10
-y = 20
-print('Avant échange:', 'x =', x, 'y =', y)
-
-x, y = y, x  # Équivaut à : x, y = (y, x)
-
-print('Après échange:', 'x =', x, 'y =', y)
--->
 
 </div>
 </section>

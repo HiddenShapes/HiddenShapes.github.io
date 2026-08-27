@@ -218,17 +218,34 @@ Leonard Hardiman et Ghid Maatouk
 </section>
 <section id="motivation" class="slide level2">
 <h2>Motivation</h2>
+<p>Reprenons le calcul du PPCM : et si on voulait <strong>additionner</strong> deux PPCMs ?</p>
+<div class="fragment">
+<div class="sourceCode" id="cb1" data-code-line-numbers="1-5|7-9|11"><pre class="sourceCode numberSource python numberLines number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>a, b <span class="op">=</span> <span class="dv">4</span>, <span class="dv">6</span></span>
+<span id="cb1-2"><a href=""></a>x <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-3"><a href=""></a><span class="cf">while</span> <span class="kw">not</span> (x <span class="op">%</span> a <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x <span class="op">%</span> b <span class="op">==</span> <span class="dv">0</span>):</span>
+<span id="cb1-4"><a href=""></a>    x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href=""></a>p1 <span class="op">=</span> x</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a>a, b <span class="op">=</span> <span class="dv">10</span>, <span class="dv">15</span></span>
+<span id="cb1-8"><a href=""></a><span class="co"># ici, on recopie les lignes 2 à 4</span></span>
+<span id="cb1-9"><a href=""></a>p2 <span class="op">=</span> x</span>
+<span id="cb1-10"><a href=""></a></span>
+<span id="cb1-11"><a href=""></a><span class="bu">print</span>(p1 <span class="op">+</span> p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><span class="remark">Le problème.</span> Le même calcul est écrit deux fois, car il faut les deux résultats à la fois. On aimerait l’écrire une seule fois et l’appeler à volonté : c’est le rôle d’une <strong>fonction</strong>.</p>
+</div>
 </section>
 <section id="les-fonctions-dans-python" class="slide level2">
 <h2>Les fonctions dans Python</h2>
-<p>La manière principale d’exploiter les données en Python consiste à utiliser les <strong>fonctions</strong> :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(x):</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [...]           <span class="co"># exploiter les données</span></span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> [...]  <span class="co"># stocker les données</span></span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a>fonction(input_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En générale, l’exploiter des données en Python passe par les <strong>fonctions</strong> :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(x):</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [...]           <span class="co"># exploiter les données</span></span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> [...]  <span class="co"># stocker les données</span></span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>fonction(input_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Une fonction implémente une <strong>procédure</strong> qui peut être appelée plusieurs fois sur différentes données (<code>input_data</code>). Le <code>input_data</code> sera une collection d’objets, chacun ayant un certain type.</p>
 </section>
 <section id="définir-une-fonction" class="slide level2">
@@ -238,81 +255,96 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Le corps de la fonction doit suivre : c’est un bloc de code indenté.</p></li>
 <li><p>Le corps peut contenir une ou plusieurs instructions <code>return</code>. Ces instructions terminent l’exécution de la fonction et retournent un objet.</p></li>
 </ul>
-<div class="sourceCode" id="cb2" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
-<span id="cb2-2"><a href=""></a>    [corps de la fonction]</span>
-<span id="cb2-3"><a href=""></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
+<span id="cb3-2"><a href=""></a>    [corps de la fonction]</span>
+<span id="cb3-3"><a href=""></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="remark">Remarque.</span> Une fonction peut prendre zéro paramètre.</p>
 </section>
-<section id="appeler-une-fonction" class="slide level2">
-<h2>Appeler une fonction</h2>
+<section id="appeler-une-fonction-et-return" class="slide level2">
+<h2>Appeler une fonction et <span class="title-code">return</span></h2>
 <ul>
 <li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
 <li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
+<li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</p></li>
+<li><p>Si l’instruction <code>return x, y</code> est exécutée, la fonction retourne les <strong>deux</strong> objets <code>x</code> et <code>y</code>, qui peuvent être affectés à deux variables — et de même pour n’importe quel nombre d’objets.</p></li>
 </ul>
-<!-- runner | split: 65 | height: 370px | font-size: 26px | theme: dark | placeholder: ""
-code:
-def vol_cylindre(r, h):
-    v = 3.14 * r**2 * h
-    return v
-
-v1 = vol_cylindre(2, 5)
-print(v1)
-
-v2 = vol_cylindre(5, 2)
-print(v2)
--->
-</section>
-<section id="return" class="slide level2">
-<h2><span class="title-code">return</span></h2>
-<ul>
-<li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction, et l’appel de la fonction <strong>devient</strong> l’objet retourné.</p></li>
-<li><p>Si aucune instruction <code>return</code> n’est exécutée, la fonction retourne l’objet <code>None</code>.</p></li>
-<li><p>Si l’instruction <code>return x, y</code> est exécutée, la fonction retourne les <strong>deux</strong> objets <code>x</code> et <code>y</code>, qui peuvent être affectés à deux variables. De même, une fonction peut retourner n’importe quel nombre d’objets.</p></li>
-</ul>
-<!-- runner | split: 65 | height: 200px | font-size: 26px | theme: dark | placeholder: ""
-code:
-def double_et_triple(x):
-    return 2*x, 3*x
-
-a, b = double_et_triple(5)
-print(a)
-print(b)
-code:
-def double_triple_et_carré(x):
-    return 2*x, 3*x, x**2
-
-a, b, c = double_triple_et_carré(5)
-print(a, b, c)
--->
-<p><span class="remark">Remarque.</span> Une fonction qui retourne plusieurs objets séparés par des virgules retourne en réalité un <strong>tuple</strong> : <code>a, b = double_et_triple(5)</code> est donc l’unpacking vu au Cours 2.</p>
+<p><span class="remark">Remarque.</span> Une fonction qui retourne plusieurs objets séparés par des virgules retourne en réalité un <strong>tuple</strong>.</p>
 </section>
 <section id="flux-dexécution-dune-fonction" class="slide level2">
 <h2>Flux d’exécution d’une fonction</h2>
-<!-- runner | split: 65 | height: 278px | font-size: 26px | theme: dark | placeholder: ""
-code:
-def aire_triangle(base, hauteur):
-    aire = base * hauteur / 2
-    return aire
-
-b = 9; h = 3
-
-print("L'aire vaut", aire_triangle(b, h))
-code:
-def aire_triangle(base, hauteur):
-    aire = base * hauteur / 2
-    return aire
-
-b = 12; h = 17
-
-print("L'aire vaut", aire_triangle(b, h))
--->
-<p><span class="remark">Remarque.</span> Les fonctions interrompent le flux normal du programme :</p>
+<p>Les fonctions interrompent <strong>le flux</strong> normal du programme :</p>
+<div class="flux-layout">
+<div class="flux-text">
 <ul>
-<li>la <strong>définition</strong> de la fonction est initialement ignorée ;</li>
-<li>lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;</li>
-<li>une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).</li>
+<li>
+la <strong>définition</strong> de la fonction est initialement ignorée ;
+</li>
+<li class="fragment" data-fragment-index="1">
+lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
+</li>
+<li class="fragment" data-fragment-index="2">
+une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
+</li>
 </ul>
-<p>LEO: Add picture (python tutor-y)</p>
+</div>
+<div class="flux-code">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(<span class="bu">bool</span>, x):</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">bool</span>:</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> <span class="dv">2</span></span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">False</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="flux-band fragment" data-fragment-index="1">
+
+</div>
+<div class="flux-sub fragment" data-fragment-index="3">
+<code class="sourceCode python">b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> <span class="flux-value">2</span> <span class="op">+</span> a</code>
+</div>
+<svg class="flux-arrow fragment fade-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 372,30 H 528 Q 548,30 548,50 V 146 Q 548,166 528,166 H 45 Q 25,166 25,184"></path> </g> <circle cx="372" cy="30" r="4.5" fill="#ffd700"></circle> <path d="M 25,198 L 16,181 L 34,181 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 281,228 V 184 Q 281,174 291,174 H 538 Q 548,174 548,164 V 76 Q 548,66 538,66 H 227"></path> </g> <circle cx="281" cy="228" r="4.5" fill="#ffd700"></circle> <path d="M 209,66 L 226,57 L 226,75 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment" data-fragment-index="2" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 284,138 H 538 Q 548,138 548,148 V 164 Q 548,174 538,174 H 291 Q 281,174 281,184 V 210"></path> </g> <circle cx="284" cy="138" r="4.5" fill="#ffd700"></circle> <path d="M 281,227 L 272,210 L 290,210 Z" fill="#ffd700"></path>
+</svg>
+</div>
+</div>
+</section>
+<section id="flux-dexécution-dune-fonction-1" class="slide level2">
+<h2>Flux d’exécution d’une fonction</h2>
+<p>Les fonctions interrompent <strong>le flux</strong> normal du programme :</p>
+<div class="flux-layout">
+<div class="flux-text">
+<ul>
+<li>
+la <strong>définition</strong> de la fonction est initialement ignorée ;
+</li>
+<li>
+lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
+</li>
+<li>
+une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
+</li>
+</ul>
+</div>
+<div class="flux-result">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(<span class="bu">bool</span>, x):</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">bool</span>:</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> <span class="dv">2</span></span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">False</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
+<span id="cb5-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="flux-out">
+<span class="flux-out-label">Sortie</span>12
+</div>
+</div>
+</div>
 </section>
 <section id="note-le-double-rôle-des-fonctions" class="slide level2">
 <h2>Note : le double rôle des fonctions</h2>
@@ -329,16 +361,6 @@ Double rôle des fonctions
 </ul>
 </div>
 </div>
-<!-- runner | split: 65 | height: 200px | font-size: 26px | theme: dark | placeholder: ""
-code:
-def fonction(x, y):
-    somme = x + y
-    print('Je vais retourner la somme')
-    return somme
-
-resultat = fonction(3, 4)
-print(resultat)
--->
 </section>
 <section id="paramètres-optionnels" class="slide level2">
 <h2>Paramètres optionnels</h2>
@@ -347,62 +369,46 @@ print(resultat)
 <li><p>Les paramètres optionnels doivent être spécifiés <strong>après</strong> les paramètres obligatoires dans la définition de la fonction.</p></li>
 <li><p>Lors de l’appel, si aucun argument n’est fourni pour un paramètre optionnel, la valeur par défaut est utilisée.</p></li>
 </ul>
-<!-- runner | split: 60 | height: 180px | font-size: 22px | theme: dark | placeholder: ""
-code:
-def saluer(nom = 'toi'):
-    print('salut', nom, '!')
-
-saluer('Sam')
-saluer()
-code:
-def laBise(pers1, pers2, n = 3):
-    print(pers1, 'et', pers2, 'se font la bise!')
-    print('mwah ' * n)
-
-laBise('Bernard', 'Bianca')
--->
+<div class="sourceCode" id="cb6" data-code-line-numbers="1|4|5"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="kw">def</span> fonction(obligatoire, optionnel <span class="op">=</span> défaut):</span>
+<span id="cb6-2"><a href=""></a>    [corps de la fonction]</span>
+<span id="cb6-3"><a href=""></a></span>
+<span id="cb6-4"><a href=""></a>fonction(x)        <span class="co"># optionnel prend la valeur défaut</span></span>
+<span id="cb6-5"><a href=""></a>fonction(x, y)     <span class="co"># optionnel prend la valeur y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="la-fonction-print" class="slide level2">
 <h2>La fonction <span class="title-code">print</span></h2>
 <p><code>print</code> permet au programme d’afficher des informations à l’écran.</p>
 <ul>
-<li>On lui donne un ou plusieurs objets, séparés par des virgules,</li>
-<li>elle affiche le <code>str</code> associé à chacun d’eux, séparés par un espace,</li>
-<li>elle retourne l’objet <code>None</code>.</li>
+<li><p>On lui donne un ou plusieurs objets, séparés par des virgules,</p></li>
+<li><p>elle affiche le <code>str</code> associé à chacun d’eux, séparés par un espace.</p></li>
+<li><p><code>print</code> peut accepter plusieurs types ([give list of examples here]).</p>
+<p><strong>Explication :</strong> <code>print</code> applique (en interne) <code>str</code> sur tout objet qu’on lui donne. Donc si un objet peut être casté en <code>str</code>, <code>print</code> peut l’afficher !</p></li>
+<li><p>elle retourne l’objet <code>None</code>.</p></li>
 </ul>
-<!-- runner | split: 65 | height: 140px | font-size: 26px | theme: dark | placeholder: ""
-code:
-print('Le résultat est', 42)
-code:
-x = 7
-print('x vaut', x, 'et son type est', type(x))
--->
 <p><span class="remark">Remarque.</span> Nous utilisons <code>print</code> depuis le Cours 1 sans jamais dire ce qu’elle est. C’est une fonction, et elle illustre que les fonctions ne se limitent pas à ce qu’elles retournent : elles peuvent <strong>faire quelque chose</strong> avant.</p>
-<p>Pour les détails sur son utilisation, voir <a href="details_print.html">l’Annexe A</a>.</p>
-</section>
-<section id="illustration-du-casting-avec-print" class="slide level2">
-<h2>Illustration du casting avec print</h2>
-<p>En fait, <code>print</code> peut accepter plusieurs types car elle exploite le casting.</p>
-<!-- runner | split: 65 | height: 110px | font-size: 26px | theme: dark | placeholder: ""
-code:
-print("Ocean's", 5*5-7-7)
--->
-<p><code>print</code> applique (en interne) <code>str</code> sur tout objet qu’on lui donne. Donc si un objet peut être casté en <code>str</code>, <code>print</code> peut l’afficher !</p>
 </section>
 <section id="paramètres-optionnels-la-fonction-print" class="slide level2">
 <h2>Paramètres optionnels : la fonction <span class="title-code">print</span></h2>
+<p>La fonction <code>print</code> admet deux paramètres optionnels : <code>sep</code> et <code>end</code>.</p>
 <ul>
-<li><p>Nous venons de voir que la fonction <code>print</code> admet deux paramètres optionnels : <code>end</code> et <code>sep</code>.</p></li>
-<li><p>Si une valeur est fournie pour <code>sep</code> dans l’appel, cette valeur sert de séparateur entre les arguments passés à <code>print</code> ; sinon la valeur par défaut (un espace) est prise. De même pour <code>end</code>.</p></li>
+<li><p><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</p></li>
+<li><p><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</p></li>
 </ul>
-<!-- runner | split: 60 | height: 170px | font-size: 22px | theme: dark | placeholder: ""
-code:
-print('chou', 'fleur')
-print('chou', 'fleur', end = '!')
-print('chou', 'fleur', sep = '-')
-print('chou', 'fleur', sep = '-', end = ':)')
--->
 <p><span class="remark">Remarque.</span> La fonction <code>print</code> est un exemple assez spécial, car il faut explicitement nommer <code>end</code> et <code>sep</code> dans l’appel.</p>
+<p>Pour des détails sur l’utilisation avancée de <code>print</code>, voir <a href="details_print.html">l’Annexe A</a>.</p>
+</section>
+<section id="nombre-variable-de-paramètres" class="slide level2">
+<h2>Nombre variable de paramètres</h2>
+<ul>
+<li><p>Nous venons de voir que <code>print</code> accepte <strong>autant d’objets qu’on veut</strong>. On peut écrire nos propres fonctions ainsi, en mettant l’opérateur <code>*</code> (dit « étoile ») devant le dernier paramètre.</p></li>
+<li><p>Python <strong>emballe</strong> alors tous les arguments restants dans un <code>tuple</code>, que la fonction manipule comme n’importe quel autre : <code>len</code>, indexage, boucle <code>for</code>…</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être fournis <strong>par leur nom</strong> lors de l’appel.</li>
+</ul>
+<p><span class="remark">Important.</span> Cette règle évite l’ambiguïté : sinon Python ne peut pas savoir si un argument fait partie du tuple <code>*args</code> ou s’il correspond à un paramètre suivant.</p>
+</div>
 </section>
 <section id="portée-de-variables" class="slide level2">
 <h2>Portée de variables</h2>
@@ -414,43 +420,12 @@ print('chou', 'fleur', sep = '-', end = ':)')
 <li><p>Les règles pour déterminer la portée d’une variable sont les suivantes.</p></li>
 </ul>
 </section>
-<section id="portée-de-variables-règle-i" class="slide level2">
-<h2>Portée de variables : Règle I</h2>
-<p>Une variable locale à une fonction n’est <strong>pas accessible</strong> hors de cette fonction.</p>
-<!-- runner | height: 230px | font-size: 22px | theme: dark | placeholder: ""
-code: error
-def fonction():
-    v = 3
-    print("Dans la fonction, v vaut", v)
-
-fonction()
-print("À l'extérieur de la fonction, v vaut", v)
--->
-</section>
-<section id="portée-de-variables-règle-ii" class="slide level2">
-<h2>Portée de variables : Règle II</h2>
-<p>Une variable globale <strong>est accessible</strong> à l’intérieur d’une fonction.</p>
-<!-- runner | height: 170px | font-size: 20px | theme: dark | placeholder: ""
-code:
-def fonction():
-    print("Dans la fonction, v vaut", v)
-
-v = 43
-fonction()
--->
+<section id="portée-de-variables-règles-i-et-ii" class="slide level2">
+<h2>Portée de variables : Règles I et II</h2>
+<p><span class="remark">Règle I.</span> Une variable locale à une fonction n’est <strong>pas accessible</strong> hors de cette fonction.</p>
+<p><span class="remark">Règle II.</span> Une variable globale <strong>est accessible</strong> à l’intérieur d’une fonction.</p>
 <div class="fragment">
 <p><span class="attention">Attention.</span> Si on essaye de réaffecter une variable globale dans une fonction, Python va créer une variable <strong>locale</strong> qui a le même nom.</p>
-<!-- runner | height: 260px | font-size: 20px | theme: dark | placeholder: ""
-code:
-def fonction():
-    v = 2
-    print("Dans la fonction, v vaut", v)
-
-v = 43
-print("Avant l'appel, v vaut", v)
-fonction()
-print("Après l'appel, v vaut", v)
--->
 </div>
 </section>
 <section id="lanalogie-des-registres" class="slide level2">
@@ -467,18 +442,6 @@ print("Après l'appel, v vaut", v)
 <h2><span class="title-code">global</span></h2>
 <p>Si, dans une fonction, on veut pouvoir réaffecter une variable définie globalement, il faut la déclarer comme globale <strong>dans la fonction</strong>, <strong>avant de l’affecter</strong>.</p>
 <p>Ceci indiquera à l’interpréteur Python de ne pas enregistrer cette variable dans le registre local à la fonction, mais de toujours consulter le registre global pour accéder à l’objet référencé par cette variable.</p>
-<!-- runner | height: 310px | font-size: 22px | theme: dark | placeholder: ""
-code:
-def fonction():
-    global v
-    v = 5
-    print('dans f, v vaut', v)
-
-v = 3
-print('avant f, v vaut', v)
-fonction()
-print('après f, v vaut', v)
--->
 </section>
 <section id="modularité" class="slide level2">
 <h2>Modularité</h2>
@@ -520,21 +483,6 @@ print('après f, v vaut', v)
 </tr>
 </tbody>
 </table>
-<!-- runner | split: 65 | height: 150px | font-size: 22px | theme: dark | placeholder: ""
-code:
-from math import sqrt
-x = 9
-print('La racine carrée de', x, 'vaut', sqrt(x))
-code:
-from random import *
-print('Voici un nombre aléatoire :', randint(0, 10))
-code:
-import math
-print('cos(pi) =', math.cos(math.pi))
-code:
-import math as m
-print('cos(pi) =', m.cos(m.pi))
--->
 <p><span class="remark">Remarque.</span> La deuxième méthode est la moins recommandée, car elle risque d’effacer des fonctions locales.</p>
 </section>
 <section id="modules-courants" class="slide level2">
@@ -575,31 +523,29 @@ print('cos(pi) =', m.cos(m.pi))
 <section id="utilisation-de-modules" class="slide level2">
 <h2>Utilisation de modules</h2>
 <p>Écrivons un programme qui génère deux points aléatoires sur la grille de coordonnées entières, puis calcule la distance entre ces deux points.</p>
-<div class="fragment">
+<section>
+</section>
+<section data-auto-animate="">
+<img src="media/blue_square.png" style="opacity: 0" width="720"> <img src="media/blue_dot.png" id="dot1" style="position: absolute; top: calc(3.6em + 48px - 25px); left: calc(3.75em + 150px - 12.5px);" width="25"> <img src="media/blue_dot.png" id="dot2" style="position: absolute; top: calc(3.6em + 248px - 25px); left: calc(3.75em + 450px - 12.5px);" width="25"> <svg id="connectionSvg" style="position: absolute; top: 3.6em; left: 3.75em; pointer-events: none;" width="900" height="600"> <line id="connectionLine" x1="150" y1="48" x2="450" y2="248" stroke="blue" stroke-width="2" stroke-dasharray="5,5"></line> </svg>
+</section>
+<section data-auto-animate="">
+<img src="media/blue_square.png" style="opacity: 0" width="720"> <img src="media/blue_dot.png" id="dot1" style="position: absolute; top: calc(3.6em + 348px - 25px); left: calc(3.75em + 50px - 12.5px);" width="25"> <img src="media/blue_dot.png" id="dot2" style="position: absolute; top: calc(3.6em + 48px - 25px); left: calc(3.75em + 650px - 12.5px);" width="25"> <svg id="connectionSvg" style="position: absolute; top: 3.6em; left: 3.75em; pointer-events: none;" width="900" height="600"> <line id="connectionLine" x1="50" y1="348" x2="650" y2="48" stroke="blue" stroke-width="2" stroke-dasharray="5,5"></line> </svg>
+</section>
+<section data-auto-animate="">
+<img src="media/blue_square.png" style="opacity: 0" width="720"> <img src="media/blue_dot.png" id="dot1" style="position: absolute; top: calc(3.6em + 248px - 25px); left: calc(3.75em + 750px - 12.5px);" width="25"> <img src="media/blue_dot.png" id="dot2" style="position: absolute; top: calc(3.6em + 148px - 25px); left: calc(3.75em + 150px - 12.5px);" width="25"> <svg id="connectionSvg" style="position: absolute; top: 3.6em; left: 3.75em; pointer-events: none;" width="900" height="600"> <line id="connectionLine" x1="750" y1="248" x2="150" y2="148" stroke="blue" stroke-width="2" stroke-dasharray="5,5"></line> </svg>
+</section>
+<section class="lattice-off">
 <ul>
-<li><code>random</code> nous donne les coordonnées, <code>math</code> nous donne la racine carrée ;</li>
-<li>une fonction <code>distance</code> isole le calcul, et le reste du programme s’occupe de l’affichage.</li>
+<li>
+<code>random</code> nous donne les coordonnées, <code>math</code> nous donne la racine carrée ;
+</li>
+<li>
+une fonction <code>distance</code> isole le calcul, et le reste du programme s’occupe de l’affichage.
+</li>
 </ul>
-<!-- runner | split: 70 | height: 480px | font-size: 22px | theme: dark | placeholder: ""
-code:
-import math
-import random
-
-def distance(x1, y1, x2, y2):
-    "Retourne la distance entre deux points"
-    return math.sqrt((x2-x1)**2 + (y2-y1)**2)
-
-# Générer deux points aléatoires
-x1, y1 = random.randint(0, 8), random.randint(0, 4)
-x2, y2 = random.randint(0, 8), random.randint(0, 4)
-
-# Afficher les 2 points et leur distance
-print('Point 1: (', x1, ', ', y1, ')', sep='')
-print('Point 2: (', x2, ', ', y2, ')', sep='')
-dist = distance(x1, y1, x2, y2)
-print('Distance: ', dist)
--->
-</div>
+</section>
+<canvas style="position: absolute; top: 3.6em; left: 3.75em;" width="900" height="600" class="latticeCanvas">
+</canvas>
 </section>
 <section id="exemple-final" class="slide level2">
 <h2>Exemple final</h2>
@@ -614,26 +560,8 @@ print('Distance: ', dist)
 <li>Une boucle parcourt les entiers de <code>1</code> à <code>n</code>, une autre parcourt les caractères de chaque adjectif.</li>
 <li>Un <code>if</code> ne laisse passer que les consonnes.</li>
 </ul>
-<!-- runner | split: 75 | height: 460px | font-size: 18px | theme: dark | placeholder: ""
-code:
-def adjectif_numéral(i):
-    noms = ('un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf')
-    return noms[i-1]
-
-def afficher_numéraux_sans_voyelles(n):
-    if not (type(n) == int and 0 < n < 10):
-        print('Erreur: n doit être un entier entre 1 et 9 inclus')
-        return False
-    for i in range(1, n+1):
-        s = adjectif_numéral(i)
-        for c in s:
-            if c not in 'aeiou':
-                print(c, end='')
-        print()
-
-afficher_numéraux_sans_voyelles(7)
--->
 <p><span class="remark">Remarque.</span> Le mot-clé <code>in</code> peut également être utilisé pour créer des conditions booléennes.</p>
+<script src="lattice.js"></script>
 
 </div>
 </section>
