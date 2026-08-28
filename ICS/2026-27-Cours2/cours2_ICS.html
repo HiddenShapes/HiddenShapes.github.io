@@ -417,9 +417,9 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Mais ce n’est pas la seule ! En fait, nous en avons déjà vu une (<code>str</code>).</p></li>
 <li><p>Nous en verrons aujourd’hui une autre (<code>tuple</code>) et bien d’autres encore après !</p></li>
 </ul>
-<div style="text-align: center;">
-<p><span style="font-size: 6em;">:-D</span></p>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python no-line-numbers code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variable <span class="kw">in</span> itérable:</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [corps de la boucle]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="remark">Remarque.</span> L’anatomie de la boucle ne change jamais : seule la case <code>itérable</code> change. À chaque tour, <code>variable</code> prend l’élément suivant, quel que soit le type de la structure parcourue.</p>
 </section>
 <section id="str-itération-et-indexage" class="slide level2">
 <h2><span class="title-code">str</span> : itération et indexage</h2>
@@ -446,22 +446,35 @@ Leonard Hardiman et Ghid Maatouk
 <p>Python permet aussi de <strong>unpack</strong> (déballer) un tuple en affectant ses éléments à plusieurs variables en une seule fois. Par exemple, les deux codes suivants sont équivalents :</p>
 <div class="columns">
 <div class="column" style="width:57%;">
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coordonnées  <span class="co"># Unpacking du tuple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:43%;">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> coordonnées[<span class="dv">0</span>]</span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> coordonnées[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coordonnées  <span class="co"># Unpacking du tuple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:43%;">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> coordonnées[<span class="dv">0</span>]</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> coordonnées[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <p><span class="remark">Attention.</span> Python peut seulement faire un unpacking si le nombre de variables à gauche est exactement la longueur du <code>tuple</code> à droite.</p>
 </section>
 <section id="remarques-sur-le-packingunpacking" class="slide level2">
 <h2>Remarques sur le Packing/Unpacking</h2>
 <p>En fait, vous avez déjà utilisé le unpacking de tuples sans le savoir : dans les <strong>affectations multiples</strong> du Cours 1.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>  <span class="co"># Crée un tuple (1, 2, 3) puis le unpack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>  <span class="co"># Crée un tuple (1, 2, 3) puis le unpack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> En réfléchissant aux tuples, on voit que l’affectation multiple permet d’<strong>échanger</strong> les valeurs de deux variables, sans avoir besoin d’une variable temporaire.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x  <span class="co"># Équivaut à : x, y = (y, x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x  <span class="co"># Équivaut à : x, y = (y, x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conditions-dappartenance-in" class="slide level2">
+<h2>Conditions d’appartenance : <span class="title-code">in</span></h2>
+<ul>
+<li><p>Nous avons maintenant vu trois structures itérables : <code>range</code>, <code>str</code> et <code>tuple</code>.</p></li>
+<li><p>Pour chacune d’elles, l’opérateur <code>in</code> fabrique une <strong>condition booléenne</strong> : <code>objet in itérable</code> s’évalue à <code>True</code> si <code>objet</code> est un des éléments que parcourrait une boucle <code>for</code>, et à <code>False</code> sinon.</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>L’opérateur <code>not in</code> en est la négation, et ces conditions se combinent avec <code>and</code>, <code>or</code> et <code>not</code> comme toutes les autres.</li>
+</ul>
+<p><span class="remark">Remarque.</span> Pour les <code>str</code>, <code>in</code> teste en fait la présence d’une <strong>sous-chaîne</strong> entière, et pas seulement d’un seul caractère : <code>'zz' in 'pizza'</code> s’évalue à <code>True</code>.</p>
 
 </div>
 </section>

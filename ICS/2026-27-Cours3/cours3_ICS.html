@@ -226,8 +226,8 @@ Leonard Hardiman et Ghid Maatouk
 <span id="cb1-4"><a href=""></a>    x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb1-5"><a href=""></a>p1 <span class="op">=</span> x</span>
 <span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a>a, b <span class="op">=</span> <span class="dv">10</span>, <span class="dv">15</span></span>
-<span id="cb1-8"><a href=""></a><span class="co"># ici, on recopie les lignes 2 à 4</span></span>
+<span id="cb1-7"><a href=""></a>c, d <span class="op">=</span> <span class="dv">10</span>, <span class="dv">15</span></span>
+<span id="cb1-8"><a href=""></a><span class="co"># ici, on recopie les lignes 2 à 4, en renommant a, b en c, d</span></span>
 <span id="cb1-9"><a href=""></a>p2 <span class="op">=</span> x</span>
 <span id="cb1-10"><a href=""></a></span>
 <span id="cb1-11"><a href=""></a><span class="bu">print</span>(p1 <span class="op">+</span> p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -238,7 +238,7 @@ Leonard Hardiman et Ghid Maatouk
 </section>
 <section id="les-fonctions-dans-python" class="slide level2">
 <h2>Les fonctions dans Python</h2>
-<p>En générale, l’exploiter des données en Python passe par les <strong>fonctions</strong> :</p>
+<p>En général, l’exploitation des données en Python passe par les <strong>fonctions</strong> :</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(x):</span>
 <span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [...]           <span class="co"># exploiter les données</span></span>
 <span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
@@ -266,7 +266,7 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
 <li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
 <li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</p></li>
-<li><p>Si l’instruction <code>return x, y</code> est exécutée, la fonction retourne les <strong>deux</strong> objets <code>x</code> et <code>y</code>, qui peuvent être affectés à deux variables — et de même pour n’importe quel nombre d’objets.</p></li>
+<li><p>Si l’instruction <code>return x, y</code> est exécutée, la fonction retourne les <strong>deux</strong> objets <code>x</code> et <code>y</code>, qui peuvent être affectés à deux variables, et de même pour n’importe quel nombre d’objets.</p></li>
 </ul>
 <p><span class="remark">Remarque.</span> Une fonction qui retourne plusieurs objets séparés par des virgules retourne en réalité un <strong>tuple</strong>.</p>
 </section>
@@ -277,7 +277,7 @@ Leonard Hardiman et Ghid Maatouk
 <div class="flux-text">
 <ul>
 <li>
-la <strong>définition</strong> de la fonction est initialement ignorée ;
+le <strong>corps</strong> de la fonction est initialement ignoré ;
 </li>
 <li class="fragment" data-fragment-index="1">
 lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
@@ -346,19 +346,20 @@ une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retou
 </div>
 </div>
 </section>
-<section id="note-le-double-rôle-des-fonctions" class="slide level2">
-<h2>Note : le double rôle des fonctions</h2>
-<p>Ceci nous amène à un concept (que je trouve utile).</p>
+<section id="note-deux-questions-à-ne-pas-confondre" class="slide level2">
+<h2>Note : deux questions à ne pas confondre</h2>
+<p>Ceci nous amène à une distinction (que je trouve utile).</p>
 <div class="env-box">
 <div class="env-title">
-Double rôle des fonctions
+Les deux questions
 </div>
 <div class="env-body">
-<p>En Python, les fonctions ont deux rôles distincts :</p>
+<p>Devant n’importe quel appel de fonction, on peut se poser deux questions :</p>
 <ul>
-<li>elles peuvent <strong>faire quelque chose</strong> (un effet),</li>
-<li>elles peuvent <strong>devenir</strong> un objet (une valeur de retour).</li>
+<li><strong>que fait-elle ?</strong> son <em>effet</em> : afficher quelque chose, modifier une variable, dessiner…</li>
+<li><strong>que retourne-t-elle ?</strong> la <em>valeur</em> que l’appel prend une fois exécuté.</li>
 </ul>
+<p>Les deux réponses sont indépendantes : <code>print</code> fait beaucoup mais ne retourne rien.</p>
 </div>
 </div>
 </section>
@@ -381,11 +382,11 @@ Double rôle des fonctions
 <ul>
 <li><p>On lui donne un ou plusieurs objets, séparés par des virgules,</p></li>
 <li><p>elle affiche le <code>str</code> associé à chacun d’eux, séparés par un espace.</p></li>
-<li><p><code>print</code> peut accepter plusieurs types ([give list of examples here]).</p>
+<li><p><code>print</code> peut accepter plusieurs types : <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>NoneType</code>, <code>tuple</code>…</p>
 <p><strong>Explication :</strong> <code>print</code> applique (en interne) <code>str</code> sur tout objet qu’on lui donne. Donc si un objet peut être casté en <code>str</code>, <code>print</code> peut l’afficher !</p></li>
 <li><p>elle retourne l’objet <code>None</code>.</p></li>
 </ul>
-<p><span class="remark">Remarque.</span> Nous utilisons <code>print</code> depuis le Cours 1 sans jamais dire ce qu’elle est. C’est une fonction, et elle illustre que les fonctions ne se limitent pas à ce qu’elles retournent : elles peuvent <strong>faire quelque chose</strong> avant.</p>
+<p><span class="remark">Remarque.</span> Nous utilisons <code>print</code> depuis le Cours 1 sans jamais dire ce qu’elle est. C’est une fonction, et elle illustre que les fonctions ne se limitent pas à ce qu’elles retournent : elles peuvent se contenter de <strong>faire quelque chose</strong>.</p>
 </section>
 <section id="paramètres-optionnels-la-fonction-print" class="slide level2">
 <h2>Paramètres optionnels : la fonction <span class="title-code">print</span></h2>
@@ -394,20 +395,20 @@ Double rôle des fonctions
 <li><p><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</p></li>
 <li><p><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</p></li>
 </ul>
-<p><span class="remark">Remarque.</span> La fonction <code>print</code> est un exemple assez spécial, car il faut explicitement nommer <code>end</code> et <code>sep</code> dans l’appel.</p>
 <p>Pour des détails sur l’utilisation avancée de <code>print</code>, voir <a href="details_print.html">l’Annexe A</a>.</p>
 </section>
 <section id="nombre-variable-de-paramètres" class="slide level2">
 <h2>Nombre variable de paramètres</h2>
 <ul>
-<li><p>Nous venons de voir que <code>print</code> accepte <strong>autant d’objets qu’on veut</strong>. On peut écrire nos propres fonctions ainsi, en mettant l’opérateur <code>*</code> (dit « étoile ») devant le dernier paramètre.</p></li>
-<li><p>Python <strong>emballe</strong> alors tous les arguments restants dans un <code>tuple</code>, que la fonction manipule comme n’importe quel autre : <code>len</code>, indexage, boucle <code>for</code>…</p></li>
+<li><p>Nous venons de voir que <code>print</code> accepte <strong>autant d’objets qu’on veut</strong>. On peut écrire nos propres fonctions ainsi, en mettant l’opérateur <code>*</code> devant le dernier paramètre.</p></li>
+<li><p>Python <strong>pack</strong> alors tous les arguments restants dans un <code>tuple</code>, que la fonction manipule comme n’importe quel autre : <code>len</code>, indexage, boucle <code>for</code>…</p></li>
 </ul>
 <div class="fragment">
 <ul>
 <li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être fournis <strong>par leur nom</strong> lors de l’appel.</li>
 </ul>
 <p><span class="remark">Important.</span> Cette règle évite l’ambiguïté : sinon Python ne peut pas savoir si un argument fait partie du tuple <code>*args</code> ou s’il correspond à un paramètre suivant.</p>
+<p><span class="remark">Remarque.</span> C’est exactement ce qui explique pourquoi il faut nommer <code>sep</code> et <code>end</code> dans un appel à <code>print</code> : sa définition est <code>print(*objets, sep = ' ', end = '\n')</code>.</p>
 </div>
 </section>
 <section id="portée-de-variables" class="slide level2">
