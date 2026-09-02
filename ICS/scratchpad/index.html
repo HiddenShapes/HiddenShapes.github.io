@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICS 2026-27 (brouillon)</title>
+<meta name="description" content="Diapositives en cours de préparation, cours d'Informatique et Calcul Scientifique, année 2026-27.">
+<style>
+  @font-face{
+    font-family:"EB Garamond";
+    src:url("../assets/fonts/EBGaramond-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight:400 800; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Blackout Sunrise";
+    src:url("../assets/fonts/blackout_sunrise-webfont.ttf") format("truetype");
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  :root{
+    --bg:#0f1216; --panel:#171b22; --panel-hi:#1e242c; --line:#2b323d;
+    --text:#dde0eb; --muted:#94a3b8; --accent:#669aed; --accent-soft:#80c4f2; --amber:#fbbf24;
+    --serif:"EB Garamond",Palatino,"Palatino Linotype",Georgia,serif;
+    --mono:ui-monospace,SFMono-Regular,"Fira Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--serif); font-size:19px; line-height:1.6;
+    background-image:radial-gradient(ellipse 80% 55% at 50% -10%, rgba(251,191,36,.13), transparent 70%);
+    background-repeat:no-repeat;
+  }
+  .wrap{max-width:1000px; margin:0 auto; padding:clamp(2.5rem,7vw,5.5rem) clamp(1.1rem,4vw,2rem) 4rem}
+  header{border-bottom:1px solid var(--line); padding-bottom:2.2rem; margin-bottom:2.8rem}
+  .eyebrow{
+    font-family:var(--mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--amber); margin:0 0 1rem
+  }
+  h1{
+    font-family:"Blackout Sunrise",var(--serif); font-weight:400;
+    font-size:clamp(2.1rem,6.5vw,3.6rem); line-height:1.08; letter-spacing:.01em;
+    margin:0 0 .9rem; color:#fff;
+  }
+  .lead{font-size:clamp(1.02rem,2.4vw,1.2rem); color:var(--muted); margin:0 0 .6rem; max-width:62ch}
+  .authors{font-size:.95rem; color:var(--muted); margin:0; font-style:italic}
+  .banner{
+    border:1px solid rgba(251,191,36,.35); background:rgba(251,191,36,.07);
+    border-radius:10px; padding:.9rem 1.15rem; margin:0 0 2.4rem;
+    font-size:.95rem; color:var(--text);
+  }
+  .banner strong{color:var(--amber)}
+  h2.section{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted); font-weight:400; margin:3.4rem 0 1.4rem;
+    padding-bottom:.7rem; border-bottom:1px solid var(--line);
+  }
+  h2.section:first-of-type{margin-top:0}
+  .grid{display:grid; gap:1.4rem; grid-template-columns:1fr}
+  @media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .card{
+    display:flex; flex-direction:column; background:var(--panel);
+    border:1px solid var(--line); border-radius:12px; padding:1.6rem 1.5rem 1.5rem;
+    transition:border-color .18s ease, transform .18s ease, background .18s ease;
+  }
+  .card:hover{border-color:var(--accent); background:var(--panel-hi); transform:translateY(-3px)}
+  @media(prefers-reduced-motion:reduce){.card{transition:none} .card:hover{transform:none}}
+  .num{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
+    color:var(--accent); margin:0 0 .55rem
+  }
+  .card h3{font-size:1.45rem; margin:0 0 .5rem; color:#fff; font-weight:600; line-height:1.2}
+  ul.topics{list-style:none; margin:0 0 1.5rem; padding:0; display:flex; flex-wrap:wrap; gap:.4rem}
+  ul.topics li{
+    font-family:var(--mono); font-size:.7rem; color:var(--accent-soft);
+    background:rgba(102,154,237,.11); border:1px solid rgba(102,154,237,.24);
+    border-radius:5px; padding:.22rem .5rem; line-height:1.4;
+  }
+  .actions{margin-top:auto; display:flex; flex-direction:column; gap:.55rem; align-items:flex-start}
+  .btn{
+    display:inline-block; font-family:var(--mono); font-size:.79rem; letter-spacing:.05em;
+    text-decoration:none; color:#0f1216; background:var(--accent);
+    padding:.55rem 1rem; border-radius:7px; transition:background .18s ease;
+  }
+  .btn:hover{background:#8ab4f4}
+  .btn-alt{
+    display:inline-block; font-family:var(--mono); font-size:.74rem;
+    text-decoration:none; color:var(--amber); border-bottom:1px dotted rgba(251,191,36,.5);
+    padding-bottom:1px;
+  }
+  .btn-alt:hover{color:#fde68a; border-bottom-style:solid}
+  .btn:focus-visible,.btn-alt:focus-visible,.arch a:focus-visible{outline:2px solid var(--accent-soft); outline-offset:3px}
+  .arch{display:grid; gap:1.1rem; grid-template-columns:1fr; align-items:start}
+  @media(min-width:760px){.arch{grid-template-columns:repeat(2,1fr)}}
+  .arch section{
+    background:var(--panel); border:1px solid var(--line);
+    border-left:3px solid rgba(251,191,36,.4);
+    border-radius:10px; padding:1.25rem 1.4rem;
+  }
+  .arch h3{font-size:1.1rem; margin:0 0 .2rem; color:#fff; font-weight:600}
+  .arch p.meta{font-family:var(--mono); font-size:.7rem; color:var(--muted); margin:0 0 .9rem}
+  .arch ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.45rem}
+  .arch a{
+    font-family:var(--mono); font-size:.78rem; color:var(--accent-soft);
+    text-decoration:none; border-bottom:1px dotted rgba(128,196,242,.4); padding-bottom:1px;
+  }
+  .arch a:hover{color:#fff; border-bottom-style:solid}
+  .note{font-size:.9rem; color:var(--muted); margin:1.2rem 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Brouillon &middot; Année 2026&ndash;27</p>
+    <h1>ICS</h1>
+    <p class="authors">Leonard Hardiman et Ghid Maatouk</p>
+  </header>
+
+  <p class="banner">
+    <strong>Version de travail.</strong> Ces diapositives sont en cours de
+    préparation et peuvent changer d'un jour à l'autre. Chaque cours est
+    publié sur la page officielle une fois qu'il est finalisé.
+  </p>
+
+  <main>
+
+    <h2 class="section">Cours 2026&ndash;27</h2>
+    <div class="grid">
+
+      <article class="card">
+        <p class="num">Cours 01</p>
+        <h3>Premiers pas en Python</h3>
+        <ul class="topics">
+          <li>types</li><li>variables</li><li>if/else/elif</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="2026-27-Cours1/cours1_ICS.html">Slides</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="num">Cours 02</p>
+        <h3>Conditions et boucles</h3>
+        <ul class="topics">
+          <li>booléens</li><li>boucles</li><li>tuples</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="2026-27-Cours2/cours2_ICS.html">Slides</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="num">Cours 03</p>
+        <h3>Fonctions, portée et modules</h3>
+        <ul class="topics">
+          <li>fonctions</li><li>portée</li><li>modules</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="2026-27-Cours3/cours3_ICS.html">Slides</a>
+          <a class="btn-alt" href="2026-27-Cours3/details_print.html">Annexe A : la fonction print()</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="num">Cours 04</p>
+        <h3>Listes, mutabilité et copie</h3>
+        <ul class="topics">
+          <li>listes</li><li>mutabilité</li><li>copie</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="2026-27-Cours4/cours4_ICS.html">Slides</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="num">Cours 05</p>
+        <h3>Listes de listes et dictionnaires</h3>
+        <ul class="topics">
+          <li>tableaux</li><li>dictionnaires</li><li>compréhensions</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="2026-27-Cours5/cours5_ICS.html">Slides</a>
+          <a class="btn-alt" href="2026-27-Cours5/comprehension_avancee.html">Compréhensions avancées</a>
+        </div>
+      </article>
+
+    </div>
+
+    <h2 class="section">Anciens cours (archives)</h2>
+    <div class="arch">
+
+      <section>
+        <h3>ICS-MAN 2025&ndash;26</h3>
+        <p class="meta">13 cours</p>
+        <ul>
+          <li><a href="../../archives-anciens-cours/2025-26-ICS-MAN/all-notes.html">Notes complètes</a></li>
+          <li><a href="../../archives-anciens-cours/2025-26-ICS-MAN/comprehension_avancee.html">Compréhension avancée</a></li>
+          <li><a href="../../archives-anciens-cours/2025-26-ICS-MAN/indexage_avance.html">Indexage avancé</a></li>
+          <li><a href="../../archives-anciens-cours/2025-26-ICS-MAN/details_print.html">La fonction print()</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>ICS 2025&ndash;26</h3>
+        <p class="meta">6 cours</p>
+        <ul>
+          <li><a href="../../archives-anciens-cours/2025-26-ICS/all-notes.html">Notes partielles</a></li>
+        </ul>
+      </section>
+
+    </div>
+    <p class="note">
+      Ces pages ne sont plus mises à jour. Le contenu, la structure et la
+      numérotation des cours ont changé depuis
+      (<a class="btn-alt" href="../../archives-anciens-cours/">index des archives</a>).
+    </p>
+
+  </main>
+
+</div>
+</body>
+</html>
