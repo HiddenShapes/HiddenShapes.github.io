@@ -395,8 +395,8 @@ Les deux questions
 <li><p><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</p></li>
 <li><p><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</p></li>
 </ul>
-<p>Pour des détails sur l’utilisation avancée de <code>print</code>, voir <a href="details_print.html">cette page</a>.</p>
-<p><span class="remark">Remarque.</span> Écrire <code>sep = '-'</code> dans l’appel, c’est lier un argument à un paramètre <strong>par son nom</strong>. Voir <a href="arguments_nommes.html">cette page</a> sur les arguments nommés.</p>
+<p><span class="remark">Remarque.</span> Écrire <code>sep = '-'</code> dans l’appel, c’est lier un argument à un paramètre par son nom. Voir <a href="arguments_nommes.html">cette page</a> sur les <strong>arguments nommés</strong>.</p>
+<p><span class="remark">Attention.</span> L’utilisation plus avancée de <code>print</code> (caractères d’échappement, f-strings, formatage des nombres) est décrite sur <a href="details_print.html">cette page</a>.</p>
 </section>
 <section id="nombre-variable-de-paramètres" class="slide level2">
 <h2>Nombre variable de paramètres</h2>
@@ -406,10 +406,9 @@ Les deux questions
 </ul>
 <div class="fragment">
 <ul>
-<li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être fournis <strong>par leur nom</strong> lors de l’appel.</li>
+<li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être des <strong>arguments nommés</strong>.</li>
 </ul>
-<p><span class="remark">Important.</span> Cette règle évite l’ambiguïté : sinon Python ne peut pas savoir si un argument fait partie du tuple <code>*args</code> ou s’il correspond à un paramètre suivant.</p>
-<p><span class="remark">Remarque.</span> C’est exactement ce qui explique pourquoi il faut nommer <code>sep</code> et <code>end</code> dans un appel à <code>print</code> : sa définition est <code>print(*objets, sep = ' ', end = '\n')</code>.</p>
+<p><span class="remark">Important.</span> Cette règle évite l’ambiguïté : sinon Python ne peut pas savoir si un argument fait partie du tuple <code>*args</code> ou s’il correspond à un paramètre suivant. Voir <a href="arguments_nommes.html">cette page</a> pour une explication détaillée et un exemple.</p>
 </div>
 </section>
 <section id="portée-de-variables" class="slide level2">
