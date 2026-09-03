@@ -83,15 +83,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#utilisation-de-base" id="toc-utilisation-de-base" class="nav-link active" data-scroll-target="#utilisation-de-base">1 Utilisation de base</a></li>
-  <li><a href="#caractères-déchappement" id="toc-caractères-déchappement" class="nav-link" data-scroll-target="#caractères-déchappement">2 Caractères d’échappement</a></li>
-  <li><a href="#le-paramètre-end" id="toc-le-paramètre-end" class="nav-link" data-scroll-target="#le-paramètre-end">3 Le paramètre <code>end</code></a></li>
-  <li><a href="#le-paramètre-sep" id="toc-le-paramètre-sep" class="nav-link" data-scroll-target="#le-paramètre-sep">4 Le paramètre <code>sep</code></a></li>
-  <li><a href="#formatage-avec-les-f-strings" id="toc-formatage-avec-les-f-strings" class="nav-link" data-scroll-target="#formatage-avec-les-f-strings">5 Formatage avec les f-strings</a>
-  <ul class="collapse">
-  <li><a href="#formatage-numérique" id="toc-formatage-numérique" class="nav-link" data-scroll-target="#formatage-numérique">5.1 Formatage numérique</a></li>
-  </ul></li>
-  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">6 Résumé</a></li>
+  <li><a href="#utilisation-de-base" id="toc-utilisation-de-base" class="nav-link active" data-scroll-target="#utilisation-de-base">Utilisation de base</a></li>
+  <li><a href="#caractères-déchappement" id="toc-caractères-déchappement" class="nav-link" data-scroll-target="#caractères-déchappement">Caractères d’échappement</a></li>
+  <li><a href="#le-paramètre-end" id="toc-le-paramètre-end" class="nav-link" data-scroll-target="#le-paramètre-end">Le paramètre <code>end</code></a></li>
+  <li><a href="#le-paramètre-sep" id="toc-le-paramètre-sep" class="nav-link" data-scroll-target="#le-paramètre-sep">Le paramètre <code>sep</code></a></li>
+  <li><a href="#formatage-avec-les-f-strings" id="toc-formatage-avec-les-f-strings" class="nav-link" data-scroll-target="#formatage-avec-les-f-strings">Formatage avec les f-strings</a></li>
+  <li><a href="#formatage-numérique" id="toc-formatage-numérique" class="nav-link" data-scroll-target="#formatage-numérique">Formatage numérique</a></li>
+  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">Résumé</a></li>
   </ul>
 </nav>
 </div>
@@ -131,22 +129,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="utilisation-de-base" class="level1">
-<h1>1 Utilisation de base</h1>
+<section id="utilisation-de-base" class="level2">
+<h2 class="anchored" data-anchor-id="utilisation-de-base">Utilisation de base</h2>
 <p><code>print</code> peut afficher des chaînes de caractères, des nombres et des expressions :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bonjour le monde !'</span>)      <span class="co"># un str</span></span>
+<div id="badef0f8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bonjour le monde !'</span>)      <span class="co"># un str</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)                        <span class="co"># un int</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">3.14</span>)                      <span class="co"># un float</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Résultat :'</span>, <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)       <span class="co"># plusieurs arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Bonjour le monde !
 42
 3.14
 Résultat : 5</code></pre>
+</div>
+</div>
 </section>
-<section id="caractères-déchappement" class="level1">
-<h1>2 Caractères d’échappement</h1>
+<section id="caractères-déchappement" class="level2">
+<h2 class="anchored" data-anchor-id="caractères-déchappement">Caractères d’échappement</h2>
 <p>Les <code>str</code> en Python sont délimitées par des guillemets simples (<code>'</code>) ou doubles (<code>"</code>). Mais que se passe-t-il si on veut inclure un guillemet <strong>à l’intérieur</strong> du <code>str</code> lui-même ?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'l'</span>homme<span class="st">')   # erreur : Python croit que le str s'</span>arrête au <span class="dv">2</span><span class="er">ème</span> <span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6e375288" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'l'</span>homme<span class="st">')   # erreur : Python croit que le str se termine au deuxième guillemet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[2], line 1</span>
+<span class="ansi-red-fg">    print('l'homme')   # erreur : Python croit que le str se termine au deuxième guillemet</span>
+                  ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 1)
+</pre>
+</div>
+</div>
+</div>
 <p>Le même problème se pose avec d’autres caractères qui ont une signification spéciale pour Python, comme le backslash <code>\</code>.</p>
 <p>Pour résoudre ça, on <strong>échappe</strong> le caractère problématique : on le fait précéder d’un backslash <code>\</code>, ce qui indique à Python de le traiter comme un caractère ordinaire, et non comme un signal. C’est ce qu’on appelle un <strong>caractère d’échappement</strong>.</p>
 <p>Les caractères d’échappement commencent par un <strong>backslash</strong> (<code>\</code>) et permettent d’inclure des caractères spéciaux dans les chaînes :</p>
@@ -186,90 +199,67 @@ Résultat : 5</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne</span><span class="ch">\n</span><span class="st">Deuxième ligne'</span>)</span>
+<div id="5165ec1f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne</span><span class="ch">\n</span><span class="st">Deuxième ligne'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nom:</span><span class="ch">\t</span><span class="st">Jean</span><span class="ch">\n</span><span class="st">Âge:</span><span class="ch">\t</span><span class="st">25'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Il a dit : </span><span class="ch">\'</span><span class="st">Bonjour !</span><span class="ch">\'</span><span class="st">'</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il a dit : 'Bonjour !'"</span>)    <span class="co"># pas besoin de \ ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Première ligne
 Deuxième ligne
 Nom:    Jean
 Âge:    25
 Il a dit : 'Bonjour !'
 Il a dit : 'Bonjour !'</code></pre>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Si la chaîne ne contient que des guillemets simples, on peut utiliser des guillemets doubles pour la délimiter (et inversement), évitant ainsi le besoin d’échapper.</p>
-</div>
-</div>
+<p><span class="remark">Remarque.</span> Si la chaîne ne contient que des guillemets simples, on peut utiliser des guillemets doubles pour la délimiter (et inversement), évitant ainsi le besoin d’échapper.</p>
 </section>
-<section id="le-paramètre-end" class="level1">
-<h1>3 Le paramètre <code>end</code></h1>
+<section id="le-paramètre-end" class="level2">
+<h2 class="anchored" data-anchor-id="le-paramètre-end">Le paramètre <code>end</code></h2>
 <p>Par défaut, chaque appel à <code>print</code> ajoute <code>'\n'</code> à la fin. Le paramètre <code>end</code> permet de changer ce comportement :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne'</span>)</span>
+<div id="4f4f81fc" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne'</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Deuxième ligne'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Sans nouvelle ligne'</span>, end<span class="op">=</span><span class="st">' '</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'suite sur la même ligne'</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avec un point'</span>, end<span class="op">=</span><span class="st">'.'</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' Fin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Première ligne
 Deuxième ligne
 ---
 Sans nouvelle ligne suite sur la même ligne
 Avec un point. Fin</code></pre>
-<div class="callout callout-style-default callout-note callout-titled" title="Remarque">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remarque
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><code>end=''</code> (chaîne vide) permet de ne rien ajouter à la fin, ce qui est utile pour construire une sortie caractère par caractère.</p>
-</div>
-</div>
+<p><span class="remark">Remarque.</span> <code>end=''</code> (chaîne vide) permet de ne rien ajouter à la fin, ce qui est utile pour construire une sortie caractère par caractère.</p>
 </section>
-<section id="le-paramètre-sep" class="level1">
-<h1>4 Le paramètre <code>sep</code></h1>
+<section id="le-paramètre-sep" class="level2">
+<h2 class="anchored" data-anchor-id="le-paramètre-sep">Le paramètre <code>sep</code></h2>
 <p>Quand <code>print</code> reçoit plusieurs arguments, il les sépare par un <strong>espace</strong> par défaut. Le paramètre <code>sep</code> permet de personnaliser ce séparateur :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)              <span class="co"># séparateur par défaut</span></span>
+<div id="3a56e621" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)              <span class="co"># séparateur par défaut</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">'-'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">' | '</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bond'</span>, <span class="st">'James Bond'</span>, sep<span class="op">=</span><span class="st">', '</span>)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2024</span>, <span class="dv">12</span>, <span class="dv">25</span>, sep<span class="op">=</span><span class="st">'/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>a b c
 a-b-c
 a | b | c
 Bond, James Bond
 2024/12/25</code></pre>
-<div class="callout callout-style-default callout-tip callout-titled" title="Hors programme">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hors programme
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La section 5 est fournie à titre indicatif uniquement. Son contenu <strong>ne sera pas demandé à l’examen</strong>.</p>
 </div>
 </div>
 </section>
-<section id="formatage-avec-les-f-strings" class="level1">
-<h1>5 Formatage avec les f-strings</h1>
+<section id="formatage-avec-les-f-strings" class="level2">
+<h2 class="anchored" data-anchor-id="formatage-avec-les-f-strings">Formatage avec les f-strings</h2>
+<p><span class="remark">Hors programme.</span> Cette section et la suivante sont fournies à titre indicatif uniquement. Leur contenu <strong>ne sera pas demandé à l’examen</strong>.</p>
 <p>Les <strong>f-strings</strong> (<em>formatted string literals</em>) permettent d’insérer des variables et des expressions directement dans une chaîne en les plaçant entre accolades <code>{}</code> :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Alice'</span></span>
+<div id="4fbc3313" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Alice'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Bonjour </span><span class="sc">{</span>nom<span class="sc">}</span><span class="ss">, tu as </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> ans'</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -278,11 +268,15 @@ Hors programme
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>aire <span class="op">=</span> base <span class="op">*</span> hauteur <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Triangle: base=</span><span class="sc">{</span>base<span class="sc">}</span><span class="ss">, hauteur=</span><span class="sc">{</span>hauteur<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Aire = </span><span class="sc">{</span>aire<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Bonjour Alice, tu as 25 ans
 Triangle: base=5, hauteur=3
 Aire = 7.5</code></pre>
+</div>
+</div>
+</section>
 <section id="formatage-numérique" class="level2">
-<h2 class="anchored" data-anchor-id="formatage-numérique">5.1 Formatage numérique</h2>
+<h2 class="anchored" data-anchor-id="formatage-numérique">Formatage numérique</h2>
 <p>On peut contrôler l’affichage des nombres avec des <strong>spécificateurs de format</strong> après <code>:</code> :</p>
 <table class="caption-top table">
 <thead>
@@ -325,41 +319,33 @@ Aire = 7.5</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159265</span></span>
+<div id="8e0c7271" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159265</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 2 décimales: </span><span class="sc">{</span>pi<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 4 décimales: </span><span class="sc">{</span>pi<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>grand_nombre <span class="op">=</span> <span class="dv">1234567</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Avec séparateurs: </span><span class="sc">{</span>grand_nombre<span class="sc">:,}</span><span class="ss">'</span>)</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'En pourcentage: </span><span class="sc">{</span><span class="fl">0.75</span><span class="sc">:.1%}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Pi avec 2 décimales: 3.14
 Pi avec 4 décimales: 3.1416
 Avec séparateurs: 1,234,567
 En pourcentage: 75.0%</code></pre>
+</div>
+</div>
 </section>
-</section>
-<section id="résumé" class="level1">
-<h1>6 Résumé</h1>
+<section id="résumé" class="level2">
+<h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
 <p>Un appel avec tous les arguments à imprimer ressemble à ceci :</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(objet_1, objet_2, ..., sep<span class="op">=</span><span class="st">' '</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span>, <span class="bu">file</span><span class="op">=</span>sys.stdout)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled" title="Paramètres">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Paramètres
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p><span class="remark">Paramètres.</span></p>
 <ul>
 <li><strong><code>objet_1, objet_2, ...</code></strong> : Un ou plusieurs objets à afficher, séparés par des virgules.</li>
 <li><strong><code>sep</code></strong> : Le séparateur inséré <em>entre</em> les objets (par défaut : un espace <code>' '</code>).</li>
 <li><strong><code>end</code></strong> : Le caractère ajouté <em>après</em> le dernier objet (par défaut : une nouvelle ligne <code>'\n'</code>).</li>
 <li><strong><code>file</code></strong> : Le flux de sortie (par défaut : la console).</li>
 </ul>
-</div>
-</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
