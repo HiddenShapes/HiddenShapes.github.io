@@ -200,6 +200,59 @@
       		mtextFontInherit: true
         }});
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
   <div class="reveal">
     <div class="slides">
 
