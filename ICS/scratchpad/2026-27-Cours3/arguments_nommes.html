@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="arguments-positionnels" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-positionnels">Arguments positionnels</h2>
 <p>On a vu en cours que lors de l’appel d’une fonction, les valeurs des arguments de l’appel sont liées aux paramètres de la fonction dans l’ordre où les paramètres sont définis. On dit que dans cet appel, les arguments sont <strong>positionnels</strong>.</p>
-<div id="4dbad336" class="cell" data-execution_count="1">
+<div id="be65a2e7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vol_cylindre(h, r):</span>
@@ -151,7 +151,7 @@ je calcule le volume d'un cylindre de rayon 3 et hauteur 5
 <section id="arguments-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-nommés">Arguments nommés</h2>
 <p>Cependant, on peut, dans l’appel de la fonction, lier explicitement un argument à un paramètre, et ceci dans n’importe quel ordre. On parle d’arguments <strong>nommés</strong>.</p>
-<div id="3e09dc04" class="cell" data-execution_count="2">
+<div id="b5e6ea67" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(r <span class="op">=</span> <span class="dv">3</span>, h <span class="op">=</span> <span class="dv">5</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">**************</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(h <span class="op">=</span> <span class="dv">3</span>, r <span class="op">=</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -170,7 +170,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="mélanger-arguments-positionnels-et-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="mélanger-arguments-positionnels-et-nommés">Mélanger arguments positionnels et nommés</h2>
 <p>On peut aussi, dans l’appel de la fonction, nommer explicitement certains arguments mais pas tous (toujours pour des raisons de lisibilité). Mais dans ce cas, les arguments nommés doivent apparaître <strong>après</strong> tous les arguments positionnels.</p>
-<div id="615ab354" class="cell" data-execution_count="3">
+<div id="f8d3053c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg):</span>
@@ -214,7 +214,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 </div>
 </div>
 <p>Que se passe-t-il si un argument nommé apparaît <strong>avant</strong> un argument positionnel ? Python refuse même de lire le programme :</p>
-<div id="41dce9dc" class="cell" data-execution_count="4">
+<div id="36802c29" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moyenne(x <span class="op">=</span> <span class="dv">2</span>, <span class="dv">1</span>, alg <span class="op">=</span> <span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -230,7 +230,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="deux-distinctions-à-ne-pas-confondre" class="level2">
 <h2 class="anchored" data-anchor-id="deux-distinctions-à-ne-pas-confondre">Deux distinctions à ne pas confondre</h2>
 <p>Avoir deux genres de paramètres, obligatoire ou par défaut, et avoir deux genres d’arguments, positionnels ou nommés, sont en principe deux choses différentes, qui ne sont pas mutuellement exclusives.</p>
-<div id="90deaee7" class="cell" data-execution_count="5">
+<div id="39329e6d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg <span class="op">=</span> <span class="va">True</span>):</span>
@@ -254,30 +254,34 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="quand-nommer-devient-obligatoire" class="level2">
 <h2 class="anchored" data-anchor-id="quand-nommer-devient-obligatoire">Quand nommer devient obligatoire</h2>
 <p>Par contre, il y a un cas où le fait d’avoir un paramètre optionnel nous oblige, dans l’appel, à nommer l’argument correspondant : c’est lorsqu’on a une fonction avec un nombre variable d’arguments et un paramètre optionnel. Dans ce cas, si on veut fournir un argument correspondant au paramètre optionnel, il faut le nommer pour éviter l’ambiguité :</p>
-<div id="af58859f" class="cell" data-execution_count="6">
+<div id="b7f9a493" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(<span class="op">*</span>nombres, somme_ou_produit <span class="op">=</span> <span class="dv">0</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    prend un nombre variable d'arguments</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    calcule leur somme si somme_ou_produit vaut 0 et leur produit si somme_ou_produit = 1</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> somme_ou_produit <span class="op">==</span> <span class="dv">0</span>: <span class="co">#je calcule la somme des éléments du tuple nombres</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> nombres:</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> x</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="co">#je calcule le produit des éléments du tuple nombres</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> nombres:</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            result <span class="op">*=</span> x</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># cet appel calcule la somme de 3, 4, 5, et 1</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># si on pensait calculer le produit de 3, 4, et 5, c'est raté!</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>))</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># là, en nommant le dernier argument, on indique que c'est l'argument lié au paramètre optionnel et pas un</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co"># élément additionnel du tuple nombres</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, somme_ou_produit <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">    calcule leur somme si somme_ou_produit vaut 0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    et leur produit si somme_ou_produit = 1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> somme_ou_produit <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># je calcule la somme des éléments du tuple nombres</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> nombres:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> x</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># je calcule le produit des éléments du tuple nombres</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> nombres:</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            result <span class="op">*=</span> x</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># cet appel calcule la somme de 3, 4, 5, et 1</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># si on pensait calculer le produit de 3, 4, et 5, c'est raté!</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># là, en nommant le dernier argument, on indique que c'est</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># l'argument lié au paramètre optionnel et pas un élément</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># additionnel du tuple nombres</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, somme_ou_produit <span class="op">=</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>13
 60</code></pre>
