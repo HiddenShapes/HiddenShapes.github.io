@@ -218,20 +218,30 @@ Leonard Hardiman et Ghid Maatouk
 </section>
 <section id="listes-en-python" class="slide level2">
 <h2>Listes en Python</h2>
-<p>Une <strong>liste</strong> Python est une structure de données qui permet de regrouper des objets de manière ordonnée, comme un <code>tuple</code>. Mais à la différence des <code>tuple</code>, les listes sont <strong>mutables</strong> : on peut les modifier après leur création.</p>
-<p>On déclare une liste avec des <strong>crochets droits</strong> :</p>
+<ul>
+<li><p>Une <strong>liste</strong> Python est une structure de données qui permet de regrouper des objets de manière ordonnée, comme un <code>tuple</code>. Mais à la différence des <code>tuple</code>, les listes sont <strong>mutables</strong> : on peut les modifier après leur création.</p></li>
+<li><p>On déclare une liste avec des <strong>crochets droits</strong>.</p></li>
+</ul>
 <p><span class="remark">Remarque.</span> Les éléments d’une liste n’ont pas besoin d’être du même type… mais une bonne pratique en Python est que les listes ne contiennent que des éléments du même type.</p>
 </section>
-<section id="lindexage-et-litération-sur-les-listes" class="slide level2">
-<h2>L’indexage et l’itération sur les listes</h2>
-<p>Comme les <code>tuple</code> et les <code>str</code>, les listes sont <strong>indexables</strong>, et donc <strong>itérables</strong>. Cela fonctionne exactement comme sur les <code>tuple</code> : <code>L[0]</code> donne le premier élément, et une boucle <code>for</code> parcourt les éléments dans l’ordre.</p>
-<p><span class="remark">Remarque.</span> L’indexage en Python peut être plus sophistiqué : indices négatifs, tranches, pas, etc. Voir l’<strong>Annexe B</strong> pour plus de détails.</p>
+<section id="accéder-aux-éléments-dune-liste" class="slide level2">
+<h2>Accéder aux éléments d’une liste</h2>
+<ul>
+<li><p>Comme les <code>tuple</code> et les <code>str</code>, les listes sont <strong>indexables</strong>. Cela fonctionne exactement comme sur les <code>tuple</code> : <code>L[0]</code> donne le premier élément.</p>
+<p><span class="remark">Remarque.</span> L’indexage en Python peut être plus sophistiqué : indices négatifs, tranches, pas, etc. Voir la fiche sur l’indexage avancé pour plus de détails.</p></li>
+<li><p>Les listes sont donc aussi <strong>itérables</strong>: une boucle <code>for</code> parcourt les éléments dans l’ordre.</p>
+<p><span class="remark">Remarque.</span> On peut accéder à la <strong>longueur</strong> d’une liste avec la fonction <code>len()</code>.</p></li>
+<li><p>On peut vérifier l’<strong>appartenance</strong> d’un élément à une liste avec le mot-clé <code>in</code>.</p></li>
+</ul>
 </section>
-<section id="appartenance-et-concaténation" class="slide level2">
-<h2>Appartenance et concaténation</h2>
-<p>On peut vérifier l’<strong>appartenance</strong> d’un élément à une liste avec le mot-clé <code>in</code>.</p>
-<p>On peut <strong>concaténer</strong> deux listes avec <code>+</code> et <code>*</code>. Ces opérations créent une <strong>nouvelle</strong> liste.</p>
-<p><span class="remark">Remarque.</span> La concaténation fonctionne de la même manière pour les <code>tuple</code> et les <code>str</code>.</p>
+<section id="création-de-nouvelles-listes" class="slide level2">
+<h2>Création de nouvelles listes</h2>
+<ul>
+<li>L’opérateur <code>in</code> teste l’<strong>appartenance</strong> : <code>x in L</code> s’évalue à <code>True</code> si <code>x</code> est un des éléments de <code>L</code>, exactement comme pour les <code>str</code> et les <code>tuple</code>.</li>
+<li>On peut <strong>concaténer</strong> deux listes avec <code>+</code>, et répéter une liste avec <code>*</code>. Ces opérations ne modifient ni l’une ni l’autre des listes de départ : elles créent une <strong>nouvelle</strong> liste.</li>
+<li>La méthode <code>L.copy()</code> crée elle aussi une nouvelle liste, contenant les mêmes éléments que <code>L</code>.</li>
+</ul>
+<p><span class="remark">Remarque.</span> La concaténation fonctionne de la même manière pour les <code>tuple</code> et les <code>str</code>. Nous reviendrons en fin de cours sur ce que « nouvelle liste » signifie exactement.</p>
 </section>
 <section id="mutabilité-des-listes" class="slide level2">
 <h2>Mutabilité des listes</h2>
@@ -258,6 +268,7 @@ Leonard Hardiman et Ghid Maatouk
 <ul>
 <li>S’agissant d’une <strong>méthode</strong>, son appel est différent des fonctions habituelles. Pour appliquer <code>append</code> sur une liste <code>L</code>, on utilise la syntaxe <code>L.append(valeur)</code>.</li>
 </ul>
+<p><span class="remark">Remarque.</span> Une manière courante de créer une liste est de commencer par une liste vide et de la faire grandir avec des <code>append</code> successifs dans une boucle <code>for</code>.</p>
 </section>
 <section id="insérer-un-élément-en-milieu-de-liste" class="slide level2">
 <h2>Insérer un élément en milieu de liste</h2>
@@ -288,8 +299,8 @@ Leonard Hardiman et Ghid Maatouk
 <p><span class="attention">Attention.</span> Étonnamment, <code>L1 += L2</code> n’est pas équivalent à <code>L1 = L1 + L2</code>, mais fonctionne exactement comme <code>L1.extend(L2)</code>. Dans le doute, n’utilisez pas <code>+=</code> ou <code>*=</code> sur des objets mutables.</p>
 </div>
 </section>
-<section id="calculs-sur-les-séquences-objets-indexables" class="slide level2 smaller">
-<h2>Calculs sur les séquences (objets indexables)</h2>
+<section id="calculs-sur-les-objets-indexables" class="slide level2 smaller">
+<h2>Calculs sur les objets indexables</h2>
 <ul>
 <li>Pour toutes les séquences (<code>str</code>, <code>tuple</code>, listes, …) :
 <ul>
@@ -305,14 +316,9 @@ Leonard Hardiman et Ghid Maatouk
 </ul></li>
 </ul>
 </section>
-<section id="copier-une-liste" class="slide level2">
-<h2>Copier une liste</h2>
-<p>Pour une liste <code>L1</code>, l’instruction <code>L2 = L1.copy()</code> crée une <strong>nouvelle liste</strong> contenant les mêmes valeurs que <code>L1</code>, et affecte cette nouvelle liste à la variable <code>L2</code>.</p>
-<p>Comme les listes <code>L1</code> et <code>L2</code> ne sont pas le même objet, elles évoluent de manière <strong>indépendante</strong>.</p>
-</section>
 <section id="représentation-de-listes-en-mémoire" class="slide level2">
 <h2>Représentation de listes en mémoire</h2>
-<p>Faire une copie d’une <strong>liste de listes</strong> produit un comportement surprenant : selon la façon dont on modifie <code>L1</code>, la copie <code>L2</code> suit ou ne suit pas la modification.</p>
+<p><span class="remark">Rappel.</span> <code>L2 = L1.copy()</code> crée une <strong>nouvelle liste</strong>, qui n’est pas le même objet que <code>L1</code> : les deux évoluent donc de manière <strong>indépendante</strong>. Pourtant, avec une <strong>liste de listes</strong>, la copie suit parfois les modifications de <code>L1</code>, et parfois non.</p>
 <div class="fragment">
 <p>Pour comprendre, il faut réfléchir à la façon dont les listes Python sont implémentées en mémoire.</p>
 <ul>
