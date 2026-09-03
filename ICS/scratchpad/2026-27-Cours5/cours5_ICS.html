@@ -134,6 +134,59 @@
       		mtextFontInherit: true
         }});
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
   <div class="reveal">
     <div class="slides">
 
@@ -169,24 +222,18 @@ Leonard Hardiman et Ghid Maatouk
 <li><code>T[i]</code> est la ligne d’indice <code>i</code>, qui est elle-même une liste ;</li>
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
-<svg viewbox="0 0 780 250" xmlns="http://www.w3.org/2000/svg" style="height: 244px; display: block; margin: 10px auto 0 auto;">
-<g style="font-family: 'Fira Mono', monospace; font-size: 20px" fill="#94a3b8" text-anchor="middle"> <text x="255" y="34">0</text> <text x="345" y="34">1</text> <text x="435" y="34">2</text> <text x="525" y="34">3</text> </g> <!-- une bande par ligne : chaque ligne est une liste --> <g fill="#669aed" opacity="0.10"> <rect x="206" y="44" width="368" height="52"></rect> <rect x="206" y="96" width="368" height="52"></rect> <rect x="206" y="148" width="368" height="52"></rect> </g> <!-- les cellules --> <g fill="none" stroke="#55596a" stroke-width="1.5"> <rect x="210" y="44" width="90" height="52"></rect><rect x="300" y="44" width="90" height="52"></rect><rect x="390" y="44" width="90" height="52"></rect><rect x="480" y="44" width="90" height="52"></rect> <rect x="210" y="96" width="90" height="52"></rect><rect x="300" y="96" width="90" height="52"></rect><rect x="390" y="96" width="90" height="52"></rect><rect x="480" y="96" width="90" height="52"></rect> <rect x="210" y="148" width="90" height="52"></rect><rect x="300" y="148" width="90" height="52"></rect><rect x="390" y="148" width="90" height="52"></rect><rect x="480" y="148" width="90" height="52"></rect> </g> <!-- les valeurs --> <g style="font-family: 'Fira Mono', monospace; font-size: 22px" fill="#dde0eb" text-anchor="middle"> <text x="255" y="78">1</text><text x="345" y="78">2</text><text x="435" y="78">3</text><text x="525" y="78">4</text> <text x="255" y="130">5</text><text x="345" y="130">6</text><text x="435" y="130">7</text><text x="525" y="130">8</text> <text x="255" y="182">9</text><text x="345" y="182">10</text><text x="435" y="182">11</text><text x="525" y="182">12</text> </g> <!-- les lignes, nommées --> <g style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#669aed" text-anchor="end"> <text x="196" y="78">T[0]</text> <text x="196" y="130">T[1]</text> <text x="196" y="182">T[2]</text> </g> <!-- la cellule d'indices (1, 2) --> <rect x="390" y="96" width="90" height="52" fill="#ffd700" fill-opacity="0.16" stroke="#ffd700" stroke-width="3"></rect> <path d="M 580,122 H 600" fill="none" stroke="#ffd700" stroke-width="2"></path> <text x="608" y="130" style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#ffd700">T[1][2]</text>
-</svg>
-<p><span class="attention">Attention.</span> Rien n’oblige les lignes à avoir la même longueur : c’est à nous de garantir que notre liste de listes est bien un tableau.</p>
+
+<img data-src="media/05-tableau-2d.svg" class="img-center invert-colors-doc r-stretch" style="width:88.0%"><p><span class="attention">Attention.</span> Rien n’oblige les lignes à avoir la même longueur : c’est à nous de garantir que notre liste de listes est bien un tableau.</p>
 </section>
 <section id="un-tableau-à-trois-dimensions" class="slide level2">
 <h2>Un tableau à trois dimensions</h2>
 <p>Rien n’empêche d’aller plus loin : si les éléments de chaque ligne sont eux-mêmes des listes, on obtient un tableau à <strong>trois dimensions</strong>, c’est-à-dire une liste de tableaux.</p>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<svg viewbox="-20 0 800 250" xmlns="http://www.w3.org/2000/svg" style="height: 268px; display: block; margin: 10px auto 0 auto;">
-<text x="-20" y="60" style="font-family: 'Fira Mono', monospace; font-size: 34px" fill="#dde0eb">T</text> <rect x="10" y="30" width="760" height="180" rx="12" fill="none" stroke="#55596a" stroke-width="1.5" stroke-dasharray="6 6"></rect> <!-- les trois tableaux --> <g fill="#669aed" opacity="0.08"> <rect x="74" y="70" width="180" height="132"></rect> <rect x="324" y="70" width="180" height="132"></rect> <rect x="574" y="70" width="180" height="132"></rect> </g> <g fill="none" stroke="#55596a" stroke-width="1.5"> <rect x="74" y="70" width="60" height="44"></rect><rect x="134" y="70" width="60" height="44"></rect><rect x="194" y="70" width="60" height="44"></rect> <rect x="74" y="114" width="60" height="44"></rect><rect x="134" y="114" width="60" height="44"></rect><rect x="194" y="114" width="60" height="44"></rect> <rect x="74" y="158" width="60" height="44"></rect><rect x="134" y="158" width="60" height="44"></rect><rect x="194" y="158" width="60" height="44"></rect> <rect x="324" y="70" width="60" height="44"></rect><rect x="384" y="70" width="60" height="44"></rect><rect x="444" y="70" width="60" height="44"></rect> <rect x="324" y="114" width="60" height="44"></rect><rect x="384" y="114" width="60" height="44"></rect><rect x="444" y="114" width="60" height="44"></rect> <rect x="324" y="158" width="60" height="44"></rect><rect x="384" y="158" width="60" height="44"></rect><rect x="444" y="158" width="60" height="44"></rect> <rect x="574" y="70" width="60" height="44"></rect><rect x="634" y="70" width="60" height="44"></rect><rect x="694" y="70" width="60" height="44"></rect> <rect x="574" y="114" width="60" height="44"></rect><rect x="634" y="114" width="60" height="44"></rect><rect x="694" y="114" width="60" height="44"></rect> <rect x="574" y="158" width="60" height="44"></rect><rect x="634" y="158" width="60" height="44"></rect><rect x="694" y="158" width="60" height="44"></rect> </g> <g style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#669aed"> <text x="74" y="60">T[0]</text> <text x="324" y="60">T[1]</text> <text x="574" y="60">T[2]</text> </g> <!-- la cellule d'indices (1, 2, 2) --> <rect x="444" y="158" width="60" height="44" fill="#ffd700" fill-opacity="0.16" stroke="#ffd700" stroke-width="3"></rect> <path d="M 474,204 V 218" fill="none" stroke="#ffd700" stroke-width="2"></path> <text x="474" y="243" style="font-family: 'Fira Mono', monospace; font-size: 24px" fill="#ffd700" text-anchor="middle">T[1][2][2]</text>
-</svg>
+<p><img src="media/05-tableau-3d-1.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
 </div>
 <div class="fragment" data-fragment-index="1">
-<svg viewbox="-20 36 800 250" xmlns="http://www.w3.org/2000/svg" style="height: 268px; display: block; margin: 10px auto 0 auto;">
-<g transform="translate(379,43) matrix(1,0,0.5,1,0,0)"> <rect x="0" y="0" width="168" height="102" fill="#191919"></rect> <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.06"></rect> <g fill="none" stroke="#4b5060" stroke-width="1.5"> <rect x="0" y="0" width="56" height="34"></rect><rect x="56" y="0" width="56" height="34"></rect><rect x="112" y="0" width="56" height="34"></rect> <rect x="0" y="34" width="56" height="34"></rect><rect x="56" y="34" width="56" height="34"></rect><rect x="112" y="34" width="56" height="34"></rect> <rect x="0" y="68" width="56" height="34"></rect><rect x="56" y="68" width="56" height="34"></rect><rect x="112" y="68" width="56" height="34"></rect> </g> </g> <g transform="translate(264.5,94) matrix(1,0,0.5,1,0,0)"> <rect x="0" y="0" width="168" height="102" fill="#191919"></rect> <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.09"></rect> <g fill="none" stroke="#575c6d" stroke-width="1.5"> <rect x="0" y="0" width="56" height="34"></rect><rect x="56" y="0" width="56" height="34"></rect><rect x="112" y="0" width="56" height="34"></rect> <rect x="0" y="34" width="56" height="34"></rect><rect x="56" y="34" width="56" height="34"></rect><rect x="112" y="34" width="56" height="34"></rect> <rect x="0" y="68" width="56" height="34"></rect><rect x="56" y="68" width="56" height="34"></rect><rect x="112" y="68" width="56" height="34"></rect> </g> <rect x="112" y="68" width="56" height="34" fill="#ffd700" fill-opacity="0.16" stroke="#ffd700" stroke-width="3"></rect> </g> <g transform="translate(150,145) matrix(1,0,0.5,1,0,0)"> <rect x="0" y="0" width="168" height="102" fill="#191919"></rect> <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.12"></rect> <g fill="none" stroke="#656b7d" stroke-width="1.5"> <rect x="0" y="0" width="56" height="34"></rect><rect x="56" y="0" width="56" height="34"></rect><rect x="112" y="0" width="56" height="34"></rect> <rect x="0" y="34" width="56" height="34"></rect><rect x="56" y="34" width="56" height="34"></rect><rect x="112" y="34" width="56" height="34"></rect> <rect x="0" y="68" width="56" height="34"></rect><rect x="56" y="68" width="56" height="34"></rect><rect x="112" y="68" width="56" height="34"></rect> </g> </g> <g style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#669aed" text-anchor="end"> <text x="140" y="171">T[0]</text> <text x="254.5" y="120">T[1]</text> <text x="369" y="69">T[2]</text> </g> <path d="M 483.5,196 L 534,226" fill="none" stroke="#ffd700" stroke-width="2"></path> <text x="542" y="234" style="font-family: 'Fira Mono', monospace; font-size: 24px" fill="#ffd700">T[1][2][2]</text>
-</svg>
+<p><img src="media/05-tableau-3d-2.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
 </div>
 </div>
 <ul>

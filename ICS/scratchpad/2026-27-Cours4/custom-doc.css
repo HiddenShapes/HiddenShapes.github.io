@@ -52,3 +52,49 @@ body {
 .strong-blue {
     color: darkblue;
 }
+
+
+/* ──────────────────────────────────────────
+   Dark-theme figures on the light notes page
+   (the slides' own .invert-colors goes the
+   other way and must NOT be defined here)
+   ────────────────────────────────────────── */
+
+.invert-colors-doc {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* ──────────────────────────────────────────
+   Frame viewer: a slide animation becomes one
+   image per step, clicked through in place
+   ────────────────────────────────────────── */
+
+.frame-viewer {
+  margin: 1.2em 0;
+  outline: none;
+}
+
+.frame-viewer > .frame {
+  text-align: center;
+}
+
+.frame-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 0.6em;
+}
+
+.frame-counter {
+  font-variant-numeric: tabular-nums;
+  color: #6c757d;
+  min-width: 4.5em;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.frame-viewer .frame-prev,
+.frame-viewer .frame-next {
+  min-width: 8em;
+}

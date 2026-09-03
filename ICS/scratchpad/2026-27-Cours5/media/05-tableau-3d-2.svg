@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="250" viewBox="-20 36 800 250" xmlns="http://www.w3.org/2000/svg">
+  <!-- Les trois tableaux, vus comme des plans empilés : chaque plan est cisaillé
+       (x devient x + y/2) puis translaté. Les décalages (114.5, -51) sont choisis
+       pour que les lignes d'un plan tombent à mi-chemin de celles du plan voisin,
+       sinon les grilles s'alignent et se lisent comme une seule surface. On dessine
+       du fond vers l'avant, et les plans du fond sont plus sombres. -->
+  <g transform="translate(379,43) matrix(1,0,0.5,1,0,0)">
+    <rect x="0" y="0" width="168" height="102" fill="#191919"/>
+    <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.06"/>
+    <g fill="none" stroke="#4b5060" stroke-width="1.5">
+      <rect x="0" y="0" width="56" height="34"/><rect x="56" y="0" width="56" height="34"/><rect x="112" y="0" width="56" height="34"/>
+      <rect x="0" y="34" width="56" height="34"/><rect x="56" y="34" width="56" height="34"/><rect x="112" y="34" width="56" height="34"/>
+      <rect x="0" y="68" width="56" height="34"/><rect x="56" y="68" width="56" height="34"/><rect x="112" y="68" width="56" height="34"/>
+    </g>
+  </g>
+  <g transform="translate(264.5,94) matrix(1,0,0.5,1,0,0)">
+    <rect x="0" y="0" width="168" height="102" fill="#191919"/>
+    <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.09"/>
+    <g fill="none" stroke="#575c6d" stroke-width="1.5">
+      <rect x="0" y="0" width="56" height="34"/><rect x="56" y="0" width="56" height="34"/><rect x="112" y="0" width="56" height="34"/>
+      <rect x="0" y="34" width="56" height="34"/><rect x="56" y="34" width="56" height="34"/><rect x="112" y="34" width="56" height="34"/>
+      <rect x="0" y="68" width="56" height="34"/><rect x="56" y="68" width="56" height="34"/><rect x="112" y="68" width="56" height="34"/>
+    </g>
+    <rect x="112" y="68" width="56" height="34" fill="#ffd700" fill-opacity="0.16" stroke="#ffd700" stroke-width="3"/>
+  </g>
+  <g transform="translate(150,145) matrix(1,0,0.5,1,0,0)">
+    <rect x="0" y="0" width="168" height="102" fill="#191919"/>
+    <rect x="0" y="0" width="168" height="102" fill="#669aed" opacity="0.12"/>
+    <g fill="none" stroke="#656b7d" stroke-width="1.5">
+      <rect x="0" y="0" width="56" height="34"/><rect x="56" y="0" width="56" height="34"/><rect x="112" y="0" width="56" height="34"/>
+      <rect x="0" y="34" width="56" height="34"/><rect x="56" y="34" width="56" height="34"/><rect x="112" y="34" width="56" height="34"/>
+      <rect x="0" y="68" width="56" height="34"/><rect x="56" y="68" width="56" height="34"/><rect x="112" y="68" width="56" height="34"/>
+    </g>
+  </g>
+  <g style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#669aed" text-anchor="end">
+    <text x="140" y="171">T[0]</text>
+    <text x="254.5" y="120">T[1]</text>
+    <text x="369" y="69">T[2]</text>
+  </g>
+  <path d="M 483.5,196 L 534,226" fill="none" stroke="#ffd700" stroke-width="2"/>
+  <text x="542" y="234" style="font-family: 'Fira Mono', monospace; font-size: 24px" fill="#ffd700">T[1][2][2]</text>
+</svg>

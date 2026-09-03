@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="780" height="250" viewBox="0 0 780 250" xmlns="http://www.w3.org/2000/svg">
+  <!-- en-têtes de colonnes -->
+  <g style="font-family: 'Fira Mono', monospace; font-size: 20px" fill="#94a3b8" text-anchor="middle">
+    <text x="255" y="34">0</text>
+    <text x="345" y="34">1</text>
+    <text x="435" y="34">2</text>
+    <text x="525" y="34">3</text>
+  </g>
+  <!-- une bande par ligne : chaque ligne est une liste -->
+  <g fill="#669aed" opacity="0.10">
+    <rect x="206" y="44" width="368" height="52"/>
+    <rect x="206" y="96" width="368" height="52"/>
+    <rect x="206" y="148" width="368" height="52"/>
+  </g>
+  <!-- les cellules -->
+  <g fill="none" stroke="#55596a" stroke-width="1.5">
+    <rect x="210" y="44" width="90" height="52"/><rect x="300" y="44" width="90" height="52"/><rect x="390" y="44" width="90" height="52"/><rect x="480" y="44" width="90" height="52"/>
+    <rect x="210" y="96" width="90" height="52"/><rect x="300" y="96" width="90" height="52"/><rect x="390" y="96" width="90" height="52"/><rect x="480" y="96" width="90" height="52"/>
+    <rect x="210" y="148" width="90" height="52"/><rect x="300" y="148" width="90" height="52"/><rect x="390" y="148" width="90" height="52"/><rect x="480" y="148" width="90" height="52"/>
+  </g>
+  <!-- les valeurs -->
+  <g style="font-family: 'Fira Mono', monospace; font-size: 22px" fill="#dde0eb" text-anchor="middle">
+    <text x="255" y="78">1</text><text x="345" y="78">2</text><text x="435" y="78">3</text><text x="525" y="78">4</text>
+    <text x="255" y="130">5</text><text x="345" y="130">6</text><text x="435" y="130">7</text><text x="525" y="130">8</text>
+    <text x="255" y="182">9</text><text x="345" y="182">10</text><text x="435" y="182">11</text><text x="525" y="182">12</text>
+  </g>
+  <!-- les lignes, nommées -->
+  <g style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#669aed" text-anchor="end">
+    <text x="196" y="78">T[0]</text>
+    <text x="196" y="130">T[1]</text>
+    <text x="196" y="182">T[2]</text>
+  </g>
+  <!-- la cellule d'indices (1, 2) -->
+  <rect x="390" y="96" width="90" height="52" fill="#ffd700" fill-opacity="0.16" stroke="#ffd700" stroke-width="3"/>
+  <path d="M 580,122 H 600" fill="none" stroke="#ffd700" stroke-width="2"/>
+  <text x="608" y="130" style="font-family: 'Fira Mono', monospace; font-size: 21px" fill="#ffd700">T[1][2]</text>
+</svg>
