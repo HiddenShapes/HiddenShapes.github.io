@@ -253,6 +253,54 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+<script>
+/* Light/dark toggle for the slides. The button lives on the title slide; the
+   choice is remembered per browser so a lecturer sets it once. Applied before
+   the slides are painted so switching does not flash.
+   No-ops on the notes pages, which have no title slide. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  function apply(theme) {
+    root.classList.toggle('ics-light', theme === 'light');
+    var btn = document.querySelector('.ics-theme-toggle');
+    if (btn) {
+      var light = theme === 'light';
+      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
+      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'light' ? 'light' : 'dark');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('#title-slide');
+    if (!title) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    title.appendChild(btn);
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+    });
+    /* reveal binds space/enter to slide navigation */
+    btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+  });
+})();
+</script>
   <div class="reveal">
     <div class="slides">
 
