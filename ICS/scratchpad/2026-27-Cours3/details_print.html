@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
 /* Light/dark switch for the slides. Light is the default; the choice is
    remembered per browser so a lecturer who prefers dark sets it once. Applied
    before the slides are painted so it does not flash.
-   The switch is a small pill pinned to the top-right of the viewport, faint
-   until you hover it and a little brighter while the title slide is up.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
    Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
 
-    /* a touch more visible while the title slide is up, so it is findable */
+    /* the switch is only visible while the title slide is up */
     function markTitle() {
       var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
       btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="utilisation-de-base" class="level2">
 <h2 class="anchored" data-anchor-id="utilisation-de-base">Utilisation de base</h2>
 <p><code>print</code> peut afficher des chaînes de caractères, des nombres et des expressions :</p>
-<div id="ca5ac3bf" class="cell" data-execution_count="1">
+<div id="86ed9c66" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bonjour le monde !'</span>)      <span class="co"># un str</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)                        <span class="co"># un int</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">3.14</span>)                      <span class="co"># un float</span></span>
@@ -272,7 +272,7 @@ Résultat : 5</code></pre>
 <section id="caractères-déchappement" class="level2">
 <h2 class="anchored" data-anchor-id="caractères-déchappement">Caractères d’échappement</h2>
 <p>Les <code>str</code> en Python sont délimitées par des guillemets simples (<code>'</code>) ou doubles (<code>"</code>). Mais que se passe-t-il si on veut inclure un guillemet <strong>à l’intérieur</strong> du <code>str</code> lui-même ?</p>
-<div id="ad3722ac" class="cell" data-execution_count="2">
+<div id="64b911c1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'l'</span>homme<span class="st">')   # erreur : Python croit que le str se termine au deuxième guillemet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -323,7 +323,7 @@ Résultat : 5</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="4bd40e37" class="cell" data-execution_count="3">
+<div id="9848b6d6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne</span><span class="ch">\n</span><span class="st">Deuxième ligne'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nom:</span><span class="ch">\t</span><span class="st">Jean</span><span class="ch">\n</span><span class="st">Âge:</span><span class="ch">\t</span><span class="st">25'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Il a dit : </span><span class="ch">\'</span><span class="st">Bonjour !</span><span class="ch">\'</span><span class="st">'</span>)</span>
@@ -342,7 +342,7 @@ Il a dit : 'Bonjour !'</code></pre>
 <section id="le-paramètre-end" class="level2">
 <h2 class="anchored" data-anchor-id="le-paramètre-end">Le paramètre <code>end</code></h2>
 <p>Par défaut, chaque appel à <code>print</code> ajoute <code>'\n'</code> à la fin. Le paramètre <code>end</code> permet de changer ce comportement :</p>
-<div id="30dfa728" class="cell" data-execution_count="4">
+<div id="387b47c1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne'</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Deuxième ligne'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
@@ -363,7 +363,7 @@ Avec un point. Fin</code></pre>
 <section id="le-paramètre-sep" class="level2">
 <h2 class="anchored" data-anchor-id="le-paramètre-sep">Le paramètre <code>sep</code></h2>
 <p>Quand <code>print</code> reçoit plusieurs arguments, il les sépare par un <strong>espace</strong> par défaut. Le paramètre <code>sep</code> permet de personnaliser ce séparateur :</p>
-<div id="8db7c2bf" class="cell" data-execution_count="5">
+<div id="c1d00c30" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)              <span class="co"># séparateur par défaut</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">'-'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">' | '</span>)</span>
@@ -382,7 +382,7 @@ Bond, James Bond
 <h2 class="anchored" data-anchor-id="formatage-avec-les-f-strings">Formatage avec les f-strings</h2>
 <p><span class="remark">Hors programme.</span> Cette section et la suivante sont fournies à titre indicatif uniquement. Leur contenu <strong>ne sera pas demandé à l’examen</strong>.</p>
 <p>Les <strong>f-strings</strong> (<em>formatted string literals</em>) permettent d’insérer des variables et des expressions directement dans une chaîne en les plaçant entre accolades <code>{}</code> :</p>
-<div id="b9c2aadf" class="cell" data-execution_count="6">
+<div id="5cecebc9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Alice'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Bonjour </span><span class="sc">{</span>nom<span class="sc">}</span><span class="ss">, tu as </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> ans'</span>)</span>
@@ -443,7 +443,7 @@ Aire = 7.5</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="d142d83b" class="cell" data-execution_count="7">
+<div id="e4bbaa24" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159265</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 2 décimales: </span><span class="sc">{</span>pi<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 4 décimales: </span><span class="sc">{</span>pi<span class="sc">:.4f}</span><span class="ss">'</span>)</span>

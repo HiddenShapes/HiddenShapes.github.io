@@ -587,15 +587,16 @@
    header.html) puts .ics-light on <html> and remembers the choice in
    localStorage, so a lecturer who prefers dark sets it once.
 
-   Only the slide chrome flips: background, prose, headings, links, boxes.
-   Code blocks deliberately stay dark. The flux overlays are positioned in the
-   code block's own pixel space and drawn in gold against #191919, and the
-   syntax palette is a dark one; recolouring all of that would mean redrawing
-   the overlays for no real gain. Dark code on a light slide is legible and
-   reads as intentional.
+   Everything flips: background, prose, headings, links, boxes and code. The
+   flux overlays of cours 3 (the highlight band, the substituted line, the
+   arrows) are positioned in the code block's own pixel space, so only their
+   colours change here, never their geometry: touch nothing but the colours in
+   that group or every arrow path has to be recomputed.
    ========================================================================== */
 
 html.ics-light {
+    --ics-code-bg: #e9e9e2;
+    --ics-code-fg: #22262b;
     --r-background-color: #f7f7f4;
     --r-main-color: #1c2126;
     --r-heading-color: #0f1419;
@@ -658,9 +659,9 @@ html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
 /* The toggle itself.
    A small track-and-knob switch pinned to the top-right of the viewport. It
    sits outside .reveal, so slide styling does not reach it and it does not
-   scale with the deck. Faint by default so it stays out of the way during a
-   lecture, brighter on the title slide and on hover. Knob to the right means
-   light. */
+   scale with the deck. Shown on the title slide only, so nothing sits in the
+   corner during the lecture; the script in header.html adds .on-title while
+   that slide is up. Knob to the right means light. */
 .ics-theme-toggle {
     position: fixed;
     top: 14px;
@@ -675,14 +676,18 @@ html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
     border: 1px solid rgba(221, 224, 235, .5);
     background: rgba(255, 255, 255, .10);
     cursor: pointer;
-    opacity: .28;
+    opacity: 0;
+    pointer-events: none;
     -webkit-appearance: none;
     appearance: none;
     transition: opacity .2s ease, background .15s ease, border-color .15s ease;
 }
-.ics-theme-toggle.on-title { opacity: .85; }
-.ics-theme-toggle:hover,
-.ics-theme-toggle:focus-visible {
+.ics-theme-toggle.on-title {
+    opacity: .85;
+    pointer-events: auto;
+}
+.ics-theme-toggle.on-title:hover,
+.ics-theme-toggle.on-title:focus-visible {
     opacity: 1;
     border-color: rgba(221, 224, 235, .95);
     background: rgba(255, 255, 255, .20);
@@ -702,8 +707,8 @@ html.ics-light .ics-theme-toggle {
     border-color: rgba(28, 33, 38, .4);
     background: rgba(28, 33, 38, .07);
 }
-html.ics-light .ics-theme-toggle:hover,
-html.ics-light .ics-theme-toggle:focus-visible {
+html.ics-light .ics-theme-toggle.on-title:hover,
+html.ics-light .ics-theme-toggle.on-title:focus-visible {
     border-color: rgba(28, 33, 38, .8);
     background: rgba(28, 33, 38, .14);
 }
@@ -754,40 +759,91 @@ html.ics-light {
     --quarto-hl-wa-color: #6a3d9a;  /* warning      */
 }
 
+/* Code blocks. The dark theme paints the block #191919 in three places (the
+   reveal theme, quarto's dark highlight sheet and the flux rules), and colours
+   unclassed spans #f8f8f2; each of those needs answering. The token spans are
+   left alone: they read --quarto-hl-*, which is already the light palette
+   above, so :not([class]) keeps this off them. */
 html.ics-light .reveal pre,
-html.ics-light .reveal .flux-sub,
+html.ics-light .reveal pre code,
+html.ics-light .reveal pre.sourceCode code,
+html.ics-light .reveal div.sourceCode,
+html.ics-light .reveal .flux-code pre code,
+html.ics-light .reveal .flux-result pre code,
+html.ics-light .reveal div.flux-sub,
+html.ics-light .reveal .flux-out,
+html.ics-light .reveal .column-output-location .column:first-of-type div.sourceCode {
+    background-color: var(--ics-code-bg);
+}
+
+html.ics-light .reveal pre,
+html.ics-light .reveal pre code,
+html.ics-light .reveal pre.sourceCode code,
+html.ics-light .reveal div.sourceCode,
+html.ics-light .reveal div.sourceCode pre.sourceCode,
+html.ics-light .reveal .flux-out,
+html.ics-light .reveal code span:not([class]),
+html.ics-light .reveal pre > code.sourceCode > span:not([class]),
+/* the line-highlight plugin puts a class on the line it highlights, which
+   takes those line spans out of the :not([class]) above */
+html.ics-light .reveal code span.highlight-line {
+    color: var(--ics-code-fg);
+}
+
+
+/* Quarto's dark highlight sheet writes the token colours as literals, not as
+   var(--quarto-hl-*), so redefining the variables is not enough on its own:
+   each token class has to be pointed back at its own variable. */
+html.ics-light .reveal code span.al { color: var(--quarto-hl-al-color); }
+html.ics-light .reveal code span.an { color: var(--quarto-hl-an-color); }
+html.ics-light .reveal code span.at { color: var(--quarto-hl-at-color); }
+html.ics-light .reveal code span.bn { color: var(--quarto-hl-bn-color); }
+html.ics-light .reveal code span.bu { color: var(--quarto-hl-bu-color); }
+html.ics-light .reveal code span.ch { color: var(--quarto-hl-ch-color); }
+html.ics-light .reveal code span.co { color: var(--quarto-hl-co-color); }
+html.ics-light .reveal code span.cv { color: var(--quarto-hl-cv-color); }
+html.ics-light .reveal code span.cn { color: var(--quarto-hl-cn-color); }
+html.ics-light .reveal code span.cf { color: var(--quarto-hl-cf-color); }
+html.ics-light .reveal code span.dt { color: var(--quarto-hl-dt-color); }
+html.ics-light .reveal code span.dv { color: var(--quarto-hl-dv-color); }
+html.ics-light .reveal code span.do { color: var(--quarto-hl-do-color); }
+html.ics-light .reveal code span.er { color: var(--quarto-hl-er-color); }
+html.ics-light .reveal code span.ex { color: var(--quarto-hl-ex-color); }
+html.ics-light .reveal code span.fl { color: var(--quarto-hl-fl-color); }
+html.ics-light .reveal code span.fu { color: var(--quarto-hl-fu-color); }
+html.ics-light .reveal code span.im { color: var(--quarto-hl-im-color); }
+html.ics-light .reveal code span.in { color: var(--quarto-hl-in-color); }
+html.ics-light .reveal code span.kw { color: var(--quarto-hl-kw-color); }
+html.ics-light .reveal code span.op { color: var(--quarto-hl-op-color); }
+html.ics-light .reveal code span.ot { color: var(--quarto-hl-ot-color); }
+html.ics-light .reveal code span.pp { color: var(--quarto-hl-pp-color); }
+html.ics-light .reveal code span.re { color: var(--quarto-hl-re-color); }
+html.ics-light .reveal code span.sc { color: var(--quarto-hl-sc-color); }
+html.ics-light .reveal code span.ss { color: var(--quarto-hl-ss-color); }
+html.ics-light .reveal code span.st { color: var(--quarto-hl-st-color); }
+html.ics-light .reveal code span.va { color: var(--quarto-hl-va-color); }
+html.ics-light .reveal code span.vs { color: var(--quarto-hl-vs-color); }
+html.ics-light .reveal code span.wa { color: var(--quarto-hl-wa-color); }
+
+/* Flux overlays: colour only, never geometry. Gold on #191919 becomes amber
+   on the light block; the returned value and the output rule follow the
+   light palette's red and blue. */
+html.ics-light .reveal .flux-code .flux-band {
+    background: rgba(180, 120, 10, .22);
+}
+html.ics-light .reveal .flux-code .flux-arrow g {
+    stroke: #b45309;
+}
+html.ics-light .reveal .flux-code .flux-arrow > circle,
+html.ics-light .reveal .flux-code .flux-arrow > path {
+    fill: #b45309;
+}
+html.ics-light .reveal .flux-code div.flux-sub .flux-value {
+    color: #c0392b;
+}
 html.ics-light .reveal .flux-out {
-    /* these three keep a dark background, so their unhighlighted text has to
-       keep the dark theme's colour too */
-    color: #fff;
-    --quarto-hl-al-color: #f07178;
-    --quarto-hl-an-color: #d4d0ab;
-    --quarto-hl-at-color: #00e0e0;
-    --quarto-hl-bn-color: #d4d0ab;
-    --quarto-hl-bu-color: #abe338;
-    --quarto-hl-ch-color: #abe338;
-    --quarto-hl-co-color: #f8f8f2;
-    --quarto-hl-cv-color: #ffd700;
-    --quarto-hl-cn-color: #ffd700;
-    --quarto-hl-cf-color: #ffa07a;
-    --quarto-hl-dt-color: #ffa07a;
-    --quarto-hl-dv-color: #d4d0ab;
-    --quarto-hl-do-color: #f8f8f2;
-    --quarto-hl-er-color: #f07178;
-    --quarto-hl-ex-color: #00e0e0;
-    --quarto-hl-fl-color: #d4d0ab;
-    --quarto-hl-fu-color: #ffa07a;
-    --quarto-hl-im-color: #abe338;
-    --quarto-hl-in-color: #d4d0ab;
-    --quarto-hl-kw-color: #ffa07a;
-    --quarto-hl-op-color: #ffa07a;
-    --quarto-hl-ot-color: #00e0e0;
-    --quarto-hl-pp-color: #dcc6e0;
-    --quarto-hl-re-color: #00e0e0;
-    --quarto-hl-sc-color: #abe338;
-    --quarto-hl-ss-color: #abe338;
-    --quarto-hl-st-color: #abe338;
-    --quarto-hl-va-color: #00e0e0;
-    --quarto-hl-vs-color: #abe338;
-    --quarto-hl-wa-color: #dcc6e0;
+    border-left-color: #1565c0;
+}
+html.ics-light .reveal .flux-out-label {
+    color: #1565c0;
 }

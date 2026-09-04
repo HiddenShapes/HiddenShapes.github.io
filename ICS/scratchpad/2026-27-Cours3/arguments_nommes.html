@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
 /* Light/dark switch for the slides. Light is the default; the choice is
    remembered per browser so a lecturer who prefers dark sets it once. Applied
    before the slides are painted so it does not flash.
-   The switch is a small pill pinned to the top-right of the viewport, faint
-   until you hover it and a little brighter while the title slide is up.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
    Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
 
-    /* a touch more visible while the title slide is up, so it is findable */
+    /* the switch is only visible while the title slide is up */
     function markTitle() {
       var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
       btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="arguments-positionnels" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-positionnels">Arguments positionnels</h2>
 <p>On a vu en cours que lors de l’appel d’une fonction, les valeurs des arguments de l’appel sont liées aux paramètres de la fonction dans l’ordre où les paramètres sont définis. On dit que dans cet appel, les arguments sont <strong>positionnels</strong>.</p>
-<div id="afdbf0da" class="cell" data-execution_count="1">
+<div id="7255fcac" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vol_cylindre(h, r):</span>
@@ -275,7 +275,7 @@ je calcule le volume d'un cylindre de rayon 3 et hauteur 5
 <section id="arguments-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-nommés">Arguments nommés</h2>
 <p>Cependant, on peut, dans l’appel de la fonction, lier explicitement un argument à un paramètre, et ceci dans n’importe quel ordre. On parle d’arguments <strong>nommés</strong>.</p>
-<div id="dc7bbe31" class="cell" data-execution_count="2">
+<div id="ce834feb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(r <span class="op">=</span> <span class="dv">3</span>, h <span class="op">=</span> <span class="dv">5</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">**************</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(h <span class="op">=</span> <span class="dv">3</span>, r <span class="op">=</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -294,7 +294,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="mélanger-arguments-positionnels-et-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="mélanger-arguments-positionnels-et-nommés">Mélanger arguments positionnels et nommés</h2>
 <p>On peut aussi, dans l’appel de la fonction, nommer explicitement certains arguments mais pas tous (toujours pour des raisons de lisibilité). Mais dans ce cas, les arguments nommés doivent apparaître <strong>après</strong> tous les arguments positionnels.</p>
-<div id="1813a3d3" class="cell" data-execution_count="3">
+<div id="02723cec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg):</span>
@@ -338,7 +338,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 </div>
 </div>
 <p>Que se passe-t-il si un argument nommé apparaît <strong>avant</strong> un argument positionnel ? Python refuse même de lire le programme :</p>
-<div id="7b8de16d" class="cell" data-execution_count="4">
+<div id="7151ccf9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moyenne(x <span class="op">=</span> <span class="dv">2</span>, <span class="dv">1</span>, alg <span class="op">=</span> <span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -354,7 +354,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="deux-distinctions-à-ne-pas-confondre" class="level2">
 <h2 class="anchored" data-anchor-id="deux-distinctions-à-ne-pas-confondre">Deux distinctions à ne pas confondre</h2>
 <p>Avoir deux genres de paramètres, obligatoire ou par défaut, et avoir deux genres d’arguments, positionnels ou nommés, sont en principe deux choses différentes, qui ne sont pas mutuellement exclusives.</p>
-<div id="b7cbbd15" class="cell" data-execution_count="5">
+<div id="815ed685" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg <span class="op">=</span> <span class="va">True</span>):</span>
@@ -378,7 +378,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="quand-nommer-devient-obligatoire" class="level2">
 <h2 class="anchored" data-anchor-id="quand-nommer-devient-obligatoire">Quand nommer devient obligatoire</h2>
 <p>Par contre, il y a un cas où le fait d’avoir un paramètre optionnel nous oblige, dans l’appel, à nommer l’argument correspondant : c’est lorsqu’on a une fonction avec un nombre variable d’arguments et un paramètre optionnel. Dans ce cas, si on veut fournir un argument correspondant au paramètre optionnel, il faut le nommer pour éviter l’ambiguité :</p>
-<div id="17ee74d3" class="cell" data-execution_count="6">
+<div id="2785cdac" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(<span class="op">*</span>nombres, somme_ou_produit <span class="op">=</span> <span class="dv">0</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    prend un nombre variable d'arguments</span></span>
