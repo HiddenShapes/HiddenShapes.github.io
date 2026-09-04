@@ -537,7 +537,7 @@ variable = expression
 <ul>
 <li>Python <strong>évalue</strong> d’abord l’expression à droite.</li>
 <li>Ceci aboutit à un certain objet, que Python stocke en mémoire (s’il n’est pas déjà stocké).</li>
-<li>Finalement, Python <strong>affecte</strong> la variable à gauche comme référence à cet objet.</li>
+<li>Finalement, Python <strong>affecte</strong> cet objet à la variable de gauche.</li>
 </ul>
 </div><div class="column" style="width:55%;">
 <div class="r-stack">
@@ -565,11 +565,11 @@ variable = expression
 <p>À la 2<sup>ième</sup> ligne :</p>
 <ul>
 <li>Python évalue l’expression <code>x</code>, cette expression s’évalue à 5.</li>
-<li>Python affecte alors <code>y</code> comme référence à 5.</li>
+<li>Python affecte alors 5 à <code>y</code>.</li>
 </ul>
 <p>À la 3<sup>ième</sup> ligne :</p>
 <ul>
-<li>La variable <code>x</code> est <strong>réaffectée</strong> à 10.</li>
+<li>La variable <code>x</code> est <strong>réaffectée</strong> : elle désigne maintenant 10.</li>
 </ul>
 <p><span class="remark">Résumé.</span> <code>x = y</code> ne crée pas un lien entre <code>x</code> et <code>y</code>, mais seulement un lien entre <code>x</code> et <strong>l’objet référencé</strong> par <code>y</code>.</p>
 </section>
@@ -583,7 +583,7 @@ variable = expression
 </section>
 <section id="affectation-avec-opération" class="slide level2">
 <h2>Affectation avec opération</h2>
-<p>Si <code>x</code> est déjà une variable, il n’y a aucune raison pour que nous ne puissions pas la réaffecter à une expression qui contient <code>x</code> !</p>
+<p>Si <code>x</code> est déjà une variable, il n’y a aucune raison pour que nous ne puissions pas lui réaffecter une expression qui contient <code>x</code> !</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
