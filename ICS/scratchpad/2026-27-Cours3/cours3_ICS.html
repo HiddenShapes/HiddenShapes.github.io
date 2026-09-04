@@ -258,8 +258,8 @@ document.addEventListener('DOMContentLoaded', function () {
 /* Light/dark switch for the slides. Light is the default; the choice is
    remembered per browser so a lecturer who prefers dark sets it once. Applied
    before the slides are painted so it does not flash.
-   The switch is a small pill pinned to the top-right of the viewport, faint
-   until you hover it and a little brighter while the title slide is up.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
    Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
 
-    /* a touch more visible while the title slide is up, so it is findable */
+    /* the switch is only visible while the title slide is up */
     function markTitle() {
       var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
       btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
