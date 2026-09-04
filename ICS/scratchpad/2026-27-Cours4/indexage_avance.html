@@ -99,6 +99,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         }});
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
+
+<script>
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, faint
+   until you hover it and a little brighter while the title slide is up.
+   Deck pages only: the notes pages load the same header. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
+  function apply(theme) {
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
+    if (btn) {
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'dark' ? 'dark' : 'light');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+    });
+    /* reveal binds space, enter and the arrows to slide navigation */
+    btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* a touch more visible while the title slide is up, so it is findable */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
+  });
+})();
+</script>
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Indexage avancé en Python</h1>
@@ -132,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="center-container">
 <p><img src="media/list_index_negatif.png" class="invert-colors" style="display: block !important; margin-left: auto !important; margin-right: auto !important;" height="140"></p>
 </div>
-<div id="b1b5eb3e" class="cell" data-execution_count="1">
+<div id="9b1b1439" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[-1] ='</span>, L[<span class="op">-</span><span class="dv">1</span>])</span>
@@ -146,7 +270,7 @@ L[-3] = 1</code></pre>
 </div></li>
 </ul>
 <p><span class="remark">Remarque.</span> Si on essaie d’accéder à un index <code>i</code> trop grand ou trop petit, une erreur est générée.</p>
-<div id="083ddcef" class="cell" data-execution_count="2">
+<div id="b3758758" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -162,7 +286,7 @@ Cell <span class="ansi-green-fg">In[2], line 3</span>
 </div>
 </div>
 </div>
-<div id="82d204c2" class="cell" data-execution_count="3">
+<div id="38c4f220" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L[<span class="op">-</span><span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -184,7 +308,7 @@ Cell <span class="ansi-green-fg">In[3], line 3</span>
 <p>On peut aussi utiliser l’indexabilité pour accéder à une <strong>sous-liste</strong> de la liste : c’est le <strong>slicing</strong>.</p>
 <ul>
 <li><p><code>L[i:j]</code> crée une <strong>nouvelle liste</strong> avec les éléments de <code>L</code> entre les indices <code>i</code> (inclus) et <code>j</code> (exclus).</p>
-<div id="0767c671" class="cell" data-execution_count="4">
+<div id="cc1fa0dd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">70</span>, <span class="dv">90</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[2:4] ='</span>, L[<span class="dv">2</span>:<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -193,7 +317,7 @@ Cell <span class="ansi-green-fg">In[3], line 3</span>
 </div>
 </div></li>
 <li><p>Si <code>i</code> est omis, il est pris à <code>0</code> par défaut. Si <code>j</code> est omis, il est pris à <code>len(L)</code> par défaut. <code>L[:]</code> est donc une copie de la liste <code>L</code>.</p>
-<div id="f4d9678c" class="cell" data-execution_count="5">
+<div id="1a9321cf" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[2:] ='</span>, L[<span class="dv">2</span>:])</span>
@@ -205,7 +329,7 @@ L[:2] = [10, 20]
 L[:]  = [10, 20, 30, 40, 50, 60, 70]</code></pre>
 </div>
 </div>
-<div id="d20fb332" class="cell" data-execution_count="6">
+<div id="e536b46a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">70</span>, <span class="dv">90</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[:] is L ='</span>, L[:] <span class="kw">is</span> L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -214,7 +338,7 @@ L[:]  = [10, 20, 30, 40, 50, 60, 70]</code></pre>
 </div>
 </div></li>
 <li><p>On peut utiliser des <strong>indices négatifs</strong> dans les tranches :</p>
-<div id="86920a13" class="cell" data-execution_count="7">
+<div id="d93a3a30" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[-3:] ='</span>, L[<span class="op">-</span><span class="dv">3</span>:])</span>
@@ -225,7 +349,7 @@ L[:-1] = [10, 20, 30, 40, 50, 60]</code></pre>
 </div>
 </div></li>
 <li><p>On peut aussi définir un <strong>pas</strong> pour le slicing : <code>L[i:j:k]</code> est une liste contenant les éléments de <code>L</code> d’indices <code>i</code>, <code>i + k</code>, <code>i + 2k</code>, <code>...</code> jusqu’à <code>j</code> exclus. Attention, comme pour <code>range()</code>, <strong>le pas peut être négatif</strong> !</p>
-<div id="d26193a3" class="cell" data-execution_count="8">
+<div id="417f9eec" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[2:6:2] ='</span>, L[<span class="dv">2</span>:<span class="dv">6</span>:<span class="dv">2</span>])</span>
@@ -235,7 +359,7 @@ L[:-1] = [10, 20, 30, 40, 50, 60]</code></pre>
 L[::2]   = [10, 30, 50, 70]</code></pre>
 </div>
 </div>
-<div id="319ae482" class="cell" data-execution_count="9">
+<div id="140baf5a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[6:1:-2] ='</span>, L[<span class="dv">6</span>:<span class="dv">1</span>:<span class="op">-</span><span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -245,7 +369,7 @@ L[::2]   = [10, 30, 50, 70]</code></pre>
 </div></li>
 </ul>
 <p><span class="remark">Remarque.</span> <code>L[::-1]</code> est un idiome courant pour obtenir une copie inversée d’une liste.</p>
-<div id="0c5e6b57" class="cell" data-execution_count="10">
+<div id="82222b98" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[::-1]   ='</span>, L[::<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -257,7 +381,7 @@ L[::2]   = [10, 30, 50, 70]</code></pre>
 <section id="le-slicing-sur-dautres-objets-indexables" class="level2">
 <h2 class="anchored" data-anchor-id="le-slicing-sur-dautres-objets-indexables">Le slicing sur d’autres objets indexables</h2>
 <p>Tout ce qui précède fonctionne de manière identique pour tous les objets indexables : chaînes de caractères (<code>str</code>), <code>tuple</code>, <code>range</code>, etc.</p>
-<div id="9327a9d9" class="cell" data-execution_count="11">
+<div id="9fa10e8d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Bonjour"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'s[3:]   ='</span>, s[<span class="dv">3</span>:])</span>
@@ -271,7 +395,7 @@ s[::2]  = Bnor
 s[::-1] = ruojnoB</code></pre>
 </div>
 </div>
-<div id="3012539c" class="cell" data-execution_count="12">
+<div id="ca609581" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'t[1:4]  ='</span>, t[<span class="dv">1</span>:<span class="dv">4</span>])</span>
@@ -281,7 +405,7 @@ s[::-1] = ruojnoB</code></pre>
 t[::-1] = (50, 40, 30, 20, 10)</code></pre>
 </div>
 </div>
-<div id="4dbc2a7c" class="cell" data-execution_count="13">
+<div id="ac1ad064" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="bu">range</span>(<span class="dv">10</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'r[2:7]  ='</span>, r[<span class="dv">2</span>:<span class="dv">7</span>])</span>

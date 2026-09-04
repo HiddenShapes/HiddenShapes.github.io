@@ -161,21 +161,28 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-/* Light/dark toggle for the slides. The button lives on the title slide; the
-   choice is remembered per browser so a lecturer sets it once. Applied before
-   the slides are painted so switching does not flash.
-   No-ops on the notes pages, which have no title slide. */
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, faint
+   until you hover it and a little brighter while the title slide is up.
+   Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
   var root = document.documentElement;
 
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
   function apply(theme) {
-    root.classList.toggle('ics-light', theme === 'light');
-    var btn = document.querySelector('.ics-theme-toggle');
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
     if (btn) {
-      var light = theme === 'light';
-      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
-      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
     }
     /* canvas drawings cannot follow CSS, so they listen for this */
     document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
@@ -183,16 +190,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
-  apply(stored === 'light' ? 'light' : 'dark');
+  apply(stored === 'dark' ? 'dark' : 'light');
 
   document.addEventListener('DOMContentLoaded', function () {
-    var title = document.querySelector('#title-slide');
-    if (!title) return;
-
-    var btn = document.createElement('button');
+    btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ics-theme-toggle';
-    title.appendChild(btn);
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -200,10 +209,24 @@ document.addEventListener('DOMContentLoaded', function () {
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
     });
-    /* reveal binds space/enter to slide navigation */
+    /* reveal binds space, enter and the arrows to slide navigation */
     btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* a touch more visible while the title slide is up, so it is findable */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
   });
 })();
 </script>
@@ -237,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="un-exemple-liste-de-listes" class="level2">
 <h2 class="anchored" data-anchor-id="un-exemple-liste-de-listes">Un exemple : liste de listes</h2>
 <p>Les éléments d’une liste peuvent être de n’importe quel <strong>type</strong> ; en particulier, ils peuvent être à leur tour <strong>des listes</strong>.</p>
-<div id="89f7fff8" class="cell" data-execution_count="1">
+<div id="ac59336c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'M[0] ='</span>, M[<span class="dv">0</span>])</span>
@@ -251,7 +274,7 @@ M[1] = [1, 3, 5]</code></pre>
 <li><p><code>M[i]</code> est la sous-liste d’indice <code>i</code>, et <code>M[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</p></li>
 <li><p>Pour parcourir tous les éléments, il faut deux boucles <code>for</code> imbriquées : la première parcourt les sous-listes, la seconde les éléments de chacune d’elles.</p></li>
 </ul>
-<div id="47a506f9" class="cell" data-execution_count="2">
+<div id="2564c89c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'M[1][2] ='</span>, M[<span class="dv">1</span>][<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -259,7 +282,7 @@ M[1] = [1, 3, 5]</code></pre>
 <pre><code>M[1][2] = 5</code></pre>
 </div>
 </div>
-<div id="176f256a" class="cell" data-execution_count="3">
+<div id="9be891a0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ligne <span class="kw">in</span> M:</span>
@@ -280,7 +303,7 @@ M[1] = [1, 3, 5]</code></pre>
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
 <p><img src="media/05-tableau-2d.svg" class="img-center invert-colors-doc img-fluid" style="width:88.0%"></p>
-<div id="f22ad9af" class="cell" data-execution_count="4">
+<div id="5f2a9190" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>],</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]</span>
@@ -311,7 +334,7 @@ T[1][2] = 7
 <li><code>T[k]</code> est un tableau entier, <code>T[k][i]</code> une de ses lignes, et <code>T[k][i][j]</code> un de ses éléments.</li>
 <li>Il faut alors <strong>trois</strong> boucles <code>for</code> imbriquées pour parcourir tous les éléments.</li>
 </ul>
-<div id="e45cb7c6" class="cell" data-execution_count="5">
+<div id="30c3048a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 classes, 3 élèves par classe, 2 devoirs par élève</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[[<span class="fl">5.5</span>, <span class="fl">4.0</span>], [<span class="fl">6.0</span>, <span class="fl">5.0</span>], [<span class="fl">4.5</span>, <span class="fl">4.0</span>]],</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     [[<span class="fl">3.5</span>, <span class="fl">5.0</span>], [<span class="fl">6.0</span>, <span class="fl">6.0</span>], [<span class="fl">5.0</span>, <span class="fl">4.5</span>]]]</span>
@@ -325,7 +348,7 @@ Son élève 1 : [6.0, 5.0]
 Son devoir 0 : 6.0</code></pre>
 </div>
 </div>
-<div id="f7f48432" class="cell" data-execution_count="6">
+<div id="eae41d6a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[[<span class="fl">5.5</span>, <span class="fl">4.0</span>], [<span class="fl">6.0</span>, <span class="fl">5.0</span>], [<span class="fl">4.5</span>, <span class="fl">4.0</span>]],</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>     [[<span class="fl">3.5</span>, <span class="fl">5.0</span>], [<span class="fl">6.0</span>, <span class="fl">6.0</span>], [<span class="fl">5.0</span>, <span class="fl">4.5</span>]]]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,7 +373,7 @@ Son devoir 0 : 6.0</code></pre>
 <section id="dictionnaires" class="level2">
 <h2 class="anchored" data-anchor-id="dictionnaires">Dictionnaires</h2>
 <p>Nous avons vu que certaines structures en Python sont <strong>indexables</strong>, c’est-à-dire qu’on peut accéder à l’une de leurs valeurs en les indexant avec un nombre :</p>
-<div id="c11518de" class="cell" data-execution_count="7">
+<div id="3ed31c99" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> [<span class="st">'James'</span>, <span class="st">'Bond'</span>, <span class="dv">32</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -362,7 +385,7 @@ Son devoir 0 : 6.0</code></pre>
 <li>Un dictionnaire (<code>dict</code>) est une structure de données qui permet d’indexer des objets (les valeurs) non pas avec des entiers <code>0</code>, <code>1</code>, <code>2</code>, … mais avec des <strong>clés</strong>.</li>
 <li>Il s’agit d’un ensemble de paires <code>clé: valeur</code>, écrit entre <strong>accolades</strong>.</li>
 </ul>
-<div id="06b2c593" class="cell" data-execution_count="8">
+<div id="f989486a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> {<span class="st">'nom'</span>: <span class="st">'Bond'</span>, <span class="st">'prénom'</span>: <span class="st">'James'</span>, <span class="st">'âge'</span>: <span class="dv">32</span>}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="st">'âge'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -378,7 +401,7 @@ Son devoir 0 : 6.0</code></pre>
 <li><strong>rempli</strong>, avec la syntaxe <code>d = {clé_1: valeur_1, ..., clé_n: valeur_n}</code>.</li>
 </ul>
 <p>Les clés peuvent être n’importe quel objet <strong>non mutable</strong> : <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>tuple</code>… mais pas une liste. Elles doivent également être <strong>uniques</strong> : si la même clé apparaît plusieurs fois, seule la dernière paire est gardée.</p>
-<div id="09355ba1" class="cell" data-execution_count="9">
+<div id="17fdceba" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">123</span>, <span class="st">'b'</span>: <span class="dv">345</span>}</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> {(<span class="dv">1</span>, <span class="dv">2</span>): <span class="dv">123</span>, (<span class="dv">3</span>, <span class="dv">4</span>): <span class="dv">345</span>}</span>
@@ -389,7 +412,7 @@ Son devoir 0 : 6.0</code></pre>
 <pre><code>123 123 123 123</code></pre>
 </div>
 </div>
-<div id="251cc336" class="cell" data-execution_count="10">
+<div id="c6de0e93" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {[<span class="dv">1</span>, <span class="dv">2</span>]: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -402,7 +425,7 @@ Cell <span class="ansi-green-fg">In[10], line 1</span>
 </div>
 </div>
 </div>
-<div id="52bbf5a4" class="cell" data-execution_count="11">
+<div id="7875a920" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>, <span class="dv">1</span>: <span class="dv">456</span>}</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -414,14 +437,14 @@ Cell <span class="ansi-green-fg">In[10], line 1</span>
 <section id="accéder-à-un-élément" class="level2">
 <h2 class="anchored" data-anchor-id="accéder-à-un-élément">Accéder à un élément</h2>
 <p>On accède à l’élément de clé <code>clé</code> du dictionnaire <code>d</code> avec la syntaxe <code>d[clé]</code>, à condition qu’un tel élément existe. Sinon, Python produit une <strong>erreur</strong>.</p>
-<div id="36b9b2e4" class="cell" data-execution_count="12">
+<div id="730502bb" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>poire</code></pre>
 </div>
 </div>
-<div id="d07bc7e8" class="cell" data-execution_count="13">
+<div id="5e4ebae9" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">30</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -437,7 +460,7 @@ Cell <span class="ansi-green-fg">In[13], line 2</span>
 </div>
 </div>
 <p>Pour éviter l’erreur, on peut exécuter l’instruction <code>d.get(clé)</code> : la méthode <code>get</code> de la classe <code>dict</code> retourne l’élément de clé <code>clé</code> si un tel élément existe, et retourne <code>None</code> autrement.</p>
-<div id="7c907145" class="cell" data-execution_count="14">
+<div id="4640702f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.get(<span class="dv">10</span>))</span>
@@ -455,7 +478,7 @@ None</code></pre>
 <li><p><strong>Supprimer :</strong> <code>del d[clé]</code> supprime l’élément de clé <code>clé</code>, et produit une erreur si celle-ci n’existe pas.</p></li>
 <li><p><strong>Appartenance :</strong> <code>clé in d</code> vérifie si la clé existe dans le dictionnaire <code>d</code>.</p></li>
 </ul>
-<div id="5eec1471" class="cell" data-execution_count="15">
+<div id="1dc18da0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insérer un élément</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>}</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">20</span>] <span class="op">=</span> <span class="st">'pomme'</span></span>
@@ -464,7 +487,7 @@ None</code></pre>
 <pre><code>Après insertion : {10: 'poire', 20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="0cc616db" class="cell" data-execution_count="16">
+<div id="69295bf0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifier un élément</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">10</span>] <span class="op">=</span> <span class="st">'fraise'</span></span>
@@ -473,7 +496,7 @@ None</code></pre>
 <pre><code>Après modification : {10: 'fraise', 20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="197ad8cb" class="cell" data-execution_count="17">
+<div id="1e319960" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer un élément</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> d[<span class="dv">10</span>]</span>
@@ -482,7 +505,7 @@ None</code></pre>
 <pre><code>Après suppression : {20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="ba97ceae" class="cell" data-execution_count="18">
+<div id="cde14e13" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier l'appartenance</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'pomme'</span>: <span class="st">'malus'</span>, <span class="st">'poire'</span>: <span class="st">'pyrus'</span>}</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pomme in d :'</span>, <span class="st">'pomme'</span> <span class="kw">in</span> d)</span>
@@ -500,7 +523,7 @@ fraise in d : False</code></pre>
 <ul>
 <li>Les éléments du dictionnaire sont alors parcourus dans le même ordre que celui dans lequel il a été rempli.</li>
 </ul>
-<div id="6b4c8434" class="cell" data-execution_count="19">
+<div id="04c00126" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -514,7 +537,7 @@ La Bavaria</code></pre>
 </div>
 </div>
 <p>Parcourir les clés d’un dictionnaire nous donne accès également aux valeurs associées, puisque la valeur associée à <code>clé</code> est <code>d[clé]</code>.</p>
-<div id="521fd4b3" class="cell" data-execution_count="20">
+<div id="2d4c6933" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -536,7 +559,7 @@ d[La Bavaria] = 5</code></pre>
 <li><code>d.values()</code> : itère sur les <strong>valeurs</strong> ;</li>
 <li><code>d.items()</code> : itère sur les <strong>paires (clé, valeur)</strong>, sous forme de tuples.</li>
 </ul>
-<div id="89e503f6" class="cell" data-execution_count="21">
+<div id="3f082d54" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les clés</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -548,7 +571,7 @@ Les Brasseurs
 La Bavaria</code></pre>
 </div>
 </div>
-<div id="96f562f1" class="cell" data-execution_count="22">
+<div id="2f098f76" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les valeurs</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -560,7 +583,7 @@ La Bavaria</code></pre>
 5</code></pre>
 </div>
 </div>
-<div id="6851f11d" class="cell" data-execution_count="23">
+<div id="85faa05a" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les paires (clé, valeur)</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -572,7 +595,7 @@ La Bavaria</code></pre>
 ('La Bavaria', 5)</code></pre>
 </div>
 </div>
-<div id="16d276af" class="cell" data-execution_count="24">
+<div id="06d6b96c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Décomposer et utiliser les paires</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -596,7 +619,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 <p><code>[exp(var) for var in iter]</code> &nbsp;&nbsp;&nbsp;&nbsp; <code>{clé: valeur for var in iter}</code></p>
 </div>
 <p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code>, et <code>iter</code> est un objet itérable.</p>
-<div id="e2487a1c" class="cell" data-execution_count="25">
+<div id="98290c5e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de liste</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">2</span> <span class="op">*</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, L)</span>
@@ -611,7 +634,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
-<div id="01fdfada" class="cell" data-execution_count="26">
+<div id="dae226ca" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de dictionnaire</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {i: i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)}</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, d)</span>
@@ -626,7 +649,7 @@ Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 </div>
 </div>
-<div id="0c499808" class="cell" data-execution_count="27">
+<div id="58d39a64" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de liste</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [c <span class="op">+</span> <span class="st">'a'</span> <span class="cf">for</span> c <span class="kw">in</span> <span class="st">'pizza'</span>]</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -634,7 +657,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <pre><code>['pa', 'ia', 'za', 'za', 'aa']</code></pre>
 </div>
 </div>
-<div id="da999dbf" class="cell" data-execution_count="28">
+<div id="9f59ca97" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de dictionnaire</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mots <span class="op">=</span> [<span class="st">'chat'</span>, <span class="st">'chien'</span>, <span class="st">'oiseau'</span>]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {mot: <span class="bu">len</span>(mot) <span class="cf">for</span> mot <span class="kw">in</span> mots}</span>
@@ -653,7 +676,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <li>Tout le problème est le choix des <strong>clés</strong>. Les deux restes <code>a % 3</code> et <code>b % 5</code> déterminent à eux seuls le groupe d’une paire : le tuple <code>(a % 3, b % 5)</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</li>
 <li>Chaque valeur est la <strong>liste</strong> des paires du groupe, qu’il faut créer vide la première fois que sa clé apparaît.</li>
 </ul>
-<div id="82622d16" class="cell" data-execution_count="29">
+<div id="be019ba8" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grouper_paires(paires):</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Regroupe les paires par (reste de a modulo 3, reste de b modulo 5)"</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    groupes <span class="op">=</span> {}</span>
@@ -670,7 +693,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <pre><code>{(1, 2): [(1, 2), (4, 7), (7, 2), (10, 12)]}</code></pre>
 </div>
 </div>
-<div id="6d36ce07" class="cell" data-execution_count="30">
+<div id="21a53f80" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grouper_paires(paires):</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    groupes <span class="op">=</span> {}</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> paire <span class="kw">in</span> paires:</span>

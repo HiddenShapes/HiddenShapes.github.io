@@ -189,21 +189,28 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-/* Light/dark toggle for the slides. The button lives on the title slide; the
-   choice is remembered per browser so a lecturer sets it once. Applied before
-   the slides are painted so switching does not flash.
-   No-ops on the notes pages, which have no title slide. */
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, faint
+   until you hover it and a little brighter while the title slide is up.
+   Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
   var root = document.documentElement;
 
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
   function apply(theme) {
-    root.classList.toggle('ics-light', theme === 'light');
-    var btn = document.querySelector('.ics-theme-toggle');
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
     if (btn) {
-      var light = theme === 'light';
-      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
-      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
     }
     /* canvas drawings cannot follow CSS, so they listen for this */
     document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
@@ -211,16 +218,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
-  apply(stored === 'light' ? 'light' : 'dark');
+  apply(stored === 'dark' ? 'dark' : 'light');
 
   document.addEventListener('DOMContentLoaded', function () {
-    var title = document.querySelector('#title-slide');
-    if (!title) return;
-
-    var btn = document.createElement('button');
+    btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ics-theme-toggle';
-    title.appendChild(btn);
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -228,10 +237,24 @@ document.addEventListener('DOMContentLoaded', function () {
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
     });
-    /* reveal binds space/enter to slide navigation */
+    /* reveal binds space, enter and the arrows to slide navigation */
     btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* a touch more visible while the title slide is up, so it is findable */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
   });
 })();
 </script>
