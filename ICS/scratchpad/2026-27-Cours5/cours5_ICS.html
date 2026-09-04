@@ -187,6 +187,54 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+<script>
+/* Light/dark toggle for the slides. The button lives on the title slide; the
+   choice is remembered per browser so a lecturer sets it once. Applied before
+   the slides are painted so switching does not flash.
+   No-ops on the notes pages, which have no title slide. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  function apply(theme) {
+    root.classList.toggle('ics-light', theme === 'light');
+    var btn = document.querySelector('.ics-theme-toggle');
+    if (btn) {
+      var light = theme === 'light';
+      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
+      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'light' ? 'light' : 'dark');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('#title-slide');
+    if (!title) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    title.appendChild(btn);
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+    });
+    /* reveal binds space/enter to slide navigation */
+    btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+  });
+})();
+</script>
   <div class="reveal">
     <div class="slides">
 
@@ -223,17 +271,17 @@ Leonard Hardiman et Ghid Maatouk
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
 
-<img data-src="media/05-tableau-2d.svg" class="img-center invert-colors-doc r-stretch" style="width:88.0%"><p><span class="attention">Attention.</span> Rien n’oblige les lignes à avoir la même longueur : c’est à nous de garantir que notre liste de listes est bien un tableau.</p>
+<img data-src="media/05-tableau-2d.svg" class="img-center dark-figure invert-colors-doc r-stretch" style="width:88.0%"><p><span class="attention">Attention.</span> Rien n’oblige les lignes à avoir la même longueur : c’est à nous de garantir que notre liste de listes est bien un tableau.</p>
 </section>
 <section id="un-tableau-à-trois-dimensions" class="slide level2">
 <h2>Un tableau à trois dimensions</h2>
 <p>Rien n’empêche d’aller plus loin : si les éléments de chaque ligne sont eux-mêmes des listes, on obtient un tableau à <strong>trois dimensions</strong>, c’est-à-dire une liste de tableaux.</p>
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-<p><img src="media/05-tableau-3d-1.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
+<p><img class="dark-figure" src="media/05-tableau-3d-1.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
 </div>
 <div class="fragment" data-fragment-index="1">
-<p><img src="media/05-tableau-3d-2.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
+<p><img class="dark-figure" src="media/05-tableau-3d-2.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
 </div>
 </div>
 <ul>

@@ -578,3 +578,190 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
+
+
+/* ==========================================================================
+   Light theme
+   --------------------------------------------------------------------------
+   Toggled from the title slide (see the script in header.html), which puts
+   .ics-light on <html> and remembers the choice in localStorage.
+
+   Only the slide chrome flips: background, prose, headings, links, boxes.
+   Code blocks deliberately stay dark. The flux overlays are positioned in the
+   code block's own pixel space and drawn in gold against #191919, and the
+   syntax palette is a dark one; recolouring all of that would mean redrawing
+   the overlays for no real gain. Dark code on a light slide is legible and
+   reads as intentional.
+   ========================================================================== */
+
+html.ics-light {
+    --r-background-color: #f7f7f4;
+    --r-main-color: #1c2126;
+    --r-heading-color: #0f1419;
+    --r-link-color: #1565c0;
+    --r-link-color-hover: #0d47a1;
+    --r-selection-background-color: #b9d7f5;
+    --r-selection-color: #0f1419;
+    --r-overlay-element-bg-color: 20, 20, 20;
+    --r-overlay-element-fg-color: 255, 255, 255;
+}
+
+html.ics-light .reveal-viewport { background: #f7f7f4; }
+
+/* Emphasis: gold and lightblue are unreadable on a pale ground. */
+html.ics-light .reveal strong      { color: #a35b00; }
+html.ics-light .strong-blue        { color: #1d4ed8; }
+html.ics-light .remark,
+html.ics-light .attention          { color: #1d4ed8; }
+html.ics-light .reveal a           { color: #1565c0; }
+html.ics-light .reveal a:hover     { color: #0d47a1; }
+html.ics-light .arrow-between      { color: #1d4ed8; }
+
+/* Muted greys need more contrast against white than against #191919. */
+html.ics-light .connector,
+html.ics-light .split-subtitle     { color: #5a6675; }
+
+/* Boxes */
+html.ics-light .reveal section .Theorembox {
+    background: #eef1f5;
+    color: #1c2126;
+    border-color: #5a6675;
+}
+html.ics-light .env-box            { border-color: #c7ccd4; }
+html.ics-light .env-title {
+    color: #1565c0;
+    border-bottom-color: #c7ccd4;
+}
+
+html.ics-light .split-data         { background: rgba(59, 130, 246, .10); }
+html.ics-light .split-process      { background: rgba(180, 120, 10, .10);
+                                     border-color: rgba(163, 91, 0, .45); }
+html.ics-light .split-data .split-header    { color: #1d4ed8; }
+html.ics-light .split-process .split-header { color: #92400e; }
+
+html.ics-light .tag-blue  { background: rgba(59, 130, 246, .16); color: #1e40af; }
+html.ics-light .tag-amber { background: rgba(180, 120, 10, .16); color: #92400e; }
+
+/* Table rules are white-on-dark by default. */
+html.ics-light .reveal section table th,
+html.ics-light .reveal section table td { border-bottom-color: rgba(0, 0, 0, .18); }
+html.ics-light .reveal section table th { border-bottom-color: rgba(0, 0, 0, .45); }
+
+/* Figures. .invert-colors marks an asset that was drawn for a light page and
+   is inverted to sit on the dark slides; on a light slide it is shown as
+   drawn. .dark-figure is the opposite case, a figure drawn for the dark
+   slides, so it is the one that has to flip. */
+html.ics-light .invert-colors { filter: none; }
+html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
+
+/* The toggle itself */
+/* '.reveal section *' sets the family and size for everything inside a slide,
+   so the button has to out-specify it rather than merely follow it. */
+.reveal section button.ics-theme-toggle {
+    /* The title slide is sized to its content and centred, so the button is
+       laid out under the title block rather than pinned to a slide corner. */
+    display: block;
+    margin: 2.4em auto 0;
+    z-index: 40;
+    font-family: 'Fira Mono', monospace !important;
+    font-size: 17px !important;
+    letter-spacing: .04em;
+    line-height: 1;
+    padding: .7em 1.4em;
+    border-radius: 999px;
+    border: 1px solid rgba(221, 224, 235, .55);
+    background: rgba(255, 255, 255, .10);
+    color: #dde0eb;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.reveal section button.ics-theme-toggle:hover {
+    background: rgba(255, 255, 255, .20);
+    border-color: rgba(221, 224, 235, .9);
+}
+html.ics-light .reveal section button.ics-theme-toggle {
+    border-color: rgba(28, 33, 38, .45);
+    background: rgba(28, 33, 38, .06);
+    color: #1c2126;
+}
+html.ics-light .reveal section button.ics-theme-toggle:hover {
+    background: rgba(28, 33, 38, .13);
+    border-color: rgba(28, 33, 38, .75);
+}
+
+/* --------------------------------------------------------------------------
+   Syntax colours in light mode.
+
+   Inline code sits directly on the slide, so on a pale ground it needs a
+   dark-on-light palette; the dark one washes out. Code blocks keep their dark
+   background, so they keep the dark palette: the variables are simply
+   re-declared on the block, and inheritance does the rest.
+   -------------------------------------------------------------------------- */
+
+html.ics-light {
+    --quarto-hl-al-color: #c0392b;  /* alert        */
+    --quarto-hl-an-color: #7a5c00;  /* annotation   */
+    --quarto-hl-at-color: #00707a;  /* attribute    */
+    --quarto-hl-bn-color: #7a5c00;  /* base n       */
+    --quarto-hl-bu-color: #2e7d32;  /* builtin      */
+    --quarto-hl-ch-color: #2e7d32;  /* char         */
+    --quarto-hl-co-color: #6b7280;  /* comment      */
+    --quarto-hl-cv-color: #7a5c00;  /* comment var  */
+    --quarto-hl-cn-color: #7a5c00;  /* constant     */
+    --quarto-hl-cf-color: #b03a00;  /* control flow */
+    --quarto-hl-dt-color: #b03a00;  /* data type    */
+    --quarto-hl-dv-color: #7a5c00;  /* decimal      */
+    --quarto-hl-do-color: #6b7280;  /* documentation*/
+    --quarto-hl-er-color: #c0392b;  /* error        */
+    --quarto-hl-ex-color: #00707a;  /* extension    */
+    --quarto-hl-fl-color: #7a5c00;  /* float        */
+    --quarto-hl-fu-color: #b03a00;  /* function     */
+    --quarto-hl-im-color: #2e7d32;  /* import       */
+    --quarto-hl-in-color: #7a5c00;  /* information  */
+    --quarto-hl-kw-color: #b03a00;  /* keyword      */
+    --quarto-hl-op-color: #b03a00;  /* operator     */
+    --quarto-hl-ot-color: #00707a;  /* other        */
+    --quarto-hl-pp-color: #6a3d9a;  /* preprocessor */
+    --quarto-hl-re-color: #00707a;  /* regex        */
+    --quarto-hl-sc-color: #2e7d32;  /* special char */
+    --quarto-hl-ss-color: #2e7d32;  /* special str  */
+    --quarto-hl-st-color: #2e7d32;  /* string       */
+    --quarto-hl-va-color: #00707a;  /* variable     */
+    --quarto-hl-vs-color: #2e7d32;  /* verbatim str */
+    --quarto-hl-wa-color: #6a3d9a;  /* warning      */
+}
+
+html.ics-light .reveal pre,
+html.ics-light .reveal .flux-sub,
+html.ics-light .reveal .flux-out {
+    --quarto-hl-al-color: #f07178;
+    --quarto-hl-an-color: #d4d0ab;
+    --quarto-hl-at-color: #00e0e0;
+    --quarto-hl-bn-color: #d4d0ab;
+    --quarto-hl-bu-color: #abe338;
+    --quarto-hl-ch-color: #abe338;
+    --quarto-hl-co-color: #f8f8f2;
+    --quarto-hl-cv-color: #ffd700;
+    --quarto-hl-cn-color: #ffd700;
+    --quarto-hl-cf-color: #ffa07a;
+    --quarto-hl-dt-color: #ffa07a;
+    --quarto-hl-dv-color: #d4d0ab;
+    --quarto-hl-do-color: #f8f8f2;
+    --quarto-hl-er-color: #f07178;
+    --quarto-hl-ex-color: #00e0e0;
+    --quarto-hl-fl-color: #d4d0ab;
+    --quarto-hl-fu-color: #ffa07a;
+    --quarto-hl-im-color: #abe338;
+    --quarto-hl-in-color: #d4d0ab;
+    --quarto-hl-kw-color: #ffa07a;
+    --quarto-hl-op-color: #ffa07a;
+    --quarto-hl-ot-color: #00e0e0;
+    --quarto-hl-pp-color: #dcc6e0;
+    --quarto-hl-re-color: #00e0e0;
+    --quarto-hl-sc-color: #abe338;
+    --quarto-hl-ss-color: #abe338;
+    --quarto-hl-st-color: #abe338;
+    --quarto-hl-va-color: #00e0e0;
+    --quarto-hl-vs-color: #abe338;
+    --quarto-hl-wa-color: #dcc6e0;
+}
