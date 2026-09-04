@@ -197,14 +197,24 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.appendChild(knob);
     document.body.appendChild(btn);
 
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       var next = root.classList.contains('ics-light') ? 'dark' : 'light';
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
+      btn.blur();
     });
-    /* reveal binds space, enter and the arrows to slide navigation */
-    btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
 
@@ -256,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>On peut créer une liste de manière concise en utilisant la <strong>compréhension de listes</strong>. On utilise la syntaxe suivante :</p>
 <p><code>[exp(var) for var in iter]</code></p>
 <p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code> et <code>iter</code> est un objet itérable (une liste, <code>range</code>, <code>tuple</code>, <code>str</code>, …).</p>
-<div id="827b7002" class="cell" data-execution_count="1">
+<div id="aad90f8a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">2</span> <span class="op">*</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension:'</span>, L)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -271,7 +281,7 @@ Traditionnelle: [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
 <p>On peut itérer sur n’importe quel objet itérable.</p>
-<div id="daef6f8f" class="cell" data-execution_count="2">
+<div id="84499d58" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [c <span class="op">+</span> <span class="st">'a'</span> <span class="cf">for</span> c <span class="kw">in</span> <span class="st">'pizza'</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -284,7 +294,7 @@ Traditionnelle: [0, 2, 4, 6, 8]</code></pre>
 <p>On peut également ajouter une <strong>condition</strong> dans la compréhension de listes. La syntaxe devient :</p>
 <p><code>[exp(var) for var in iter if condition(var)]</code></p>
 <p>où <code>condition(var)</code> est une expression booléenne qui <strong>filtre</strong> les éléments de <code>iter</code> : seuls les éléments pour lesquels la condition est <code>True</code> sont inclus dans la liste résultante.</p>
-<div id="83edfe2f" class="cell" data-execution_count="3">
+<div id="43d34b23" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension:'</span>, L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -300,7 +310,7 @@ Traditionnelle: [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
 <p>Un autre exemple : on extrait toutes les voyelles d’une phrase.</p>
-<div id="81a60b2b" class="cell" data-execution_count="4">
+<div id="32cbd0aa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"it's the dance of the ducks"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>voyelles <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> s <span class="cf">if</span> c <span class="kw">in</span> <span class="st">'aeiouy'</span>]</span>
@@ -324,7 +334,7 @@ Traditionnelle: ['i', 'e', 'a', 'e', 'o', 'e', 'u']</code></pre>
 <p><code>[exp(var1, var2) for var1 in iter1 for var2 in iter2]</code></p>
 <p>où <code>var1</code> parcourt <code>iter1</code> et, pour chaque valeur de <code>var1</code>, <code>var2</code> parcourt <code>iter2</code>. L’ordre des boucles dans la compréhension est le même que dans la version traditionnelle avec des boucles imbriquées : la première boucle <code>for</code> est la boucle extérieure.</p>
 <p>Dans cet exemple, on combine chaque voyelle avec chaque consonne pour former toutes les paires possibles.</p>
-<div id="68c47378" class="cell" data-execution_count="5">
+<div id="f94434c1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>voyelles <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'o'</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>consonnes <span class="op">=</span> [<span class="st">'n'</span>, <span class="st">'h'</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>combis <span class="op">=</span> [v <span class="op">+</span> c <span class="cf">for</span> v <span class="kw">in</span> voyelles <span class="cf">for</span> c <span class="kw">in</span> consonnes]</span>
@@ -342,7 +352,7 @@ Traditionnelle: ['an', 'ah', 'on', 'oh']</code></pre>
 </div>
 </div>
 <p>On peut également créer des nouvelles structures dans <code>exp(var1, var2)</code>. Ici, on génère tous les tuples <code>(x, y)</code> d’une grille :</p>
-<div id="b21ca0af" class="cell" data-execution_count="6">
+<div id="2770549e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> [(x, y) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>) <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension:'</span>, coords)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -362,7 +372,7 @@ Traditionnelle: [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]</code></pre>
 <h2 class="anchored" data-anchor-id="compréhension-de-dictionnaire-rappel">Compréhension de dictionnaire : rappel</h2>
 <p>Comme pour les listes, on peut créer un dictionnaire de manière concise avec une compréhension. La syntaxe utilise des accolades et une paire <code>clé: valeur</code> :</p>
 <p><code>{clé: valeur for var in iter}</code></p>
-<div id="67c27d7d" class="cell" data-execution_count="7">
+<div id="775730a7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {i: i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)}</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension:'</span>, d)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -380,7 +390,7 @@ Traditionnelle: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <section id="compréhension-de-dictionnaire-avec-condition" class="level2">
 <h2 class="anchored" data-anchor-id="compréhension-de-dictionnaire-avec-condition">Compréhension de dictionnaire avec condition</h2>
 <p>Comme pour les listes, on peut ajouter une condition <code>if</code> pour filtrer les éléments. Ici, on ne garde que les nombres pairs entre 1 et 10, et on associe à chacun son carré :</p>
-<div id="5619ed43" class="cell" data-execution_count="8">
+<div id="80add56e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Carrés des pairs:'</span>, d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
