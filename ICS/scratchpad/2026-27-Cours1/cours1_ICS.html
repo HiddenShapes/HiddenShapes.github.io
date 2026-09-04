@@ -297,14 +297,24 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.appendChild(knob);
     document.body.appendChild(btn);
 
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       var next = root.classList.contains('ics-light') ? 'dark' : 'light';
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
+      btn.blur();
     });
-    /* reveal binds space, enter and the arrows to slide navigation */
-    btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
 
