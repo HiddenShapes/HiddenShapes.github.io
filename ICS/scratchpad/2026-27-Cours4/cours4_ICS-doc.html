@@ -166,21 +166,28 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-/* Light/dark toggle for the slides. The button lives on the title slide; the
-   choice is remembered per browser so a lecturer sets it once. Applied before
-   the slides are painted so switching does not flash.
-   No-ops on the notes pages, which have no title slide. */
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, faint
+   until you hover it and a little brighter while the title slide is up.
+   Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
   var root = document.documentElement;
 
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
   function apply(theme) {
-    root.classList.toggle('ics-light', theme === 'light');
-    var btn = document.querySelector('.ics-theme-toggle');
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
     if (btn) {
-      var light = theme === 'light';
-      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
-      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
     }
     /* canvas drawings cannot follow CSS, so they listen for this */
     document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
@@ -188,16 +195,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
-  apply(stored === 'light' ? 'light' : 'dark');
+  apply(stored === 'dark' ? 'dark' : 'light');
 
   document.addEventListener('DOMContentLoaded', function () {
-    var title = document.querySelector('#title-slide');
-    if (!title) return;
-
-    var btn = document.createElement('button');
+    btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ics-theme-toggle';
-    title.appendChild(btn);
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -205,10 +214,24 @@ document.addEventListener('DOMContentLoaded', function () {
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
     });
-    /* reveal binds space/enter to slide navigation */
+    /* reveal binds space, enter and the arrows to slide navigation */
     btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* a touch more visible while the title slide is up, so it is findable */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
   });
 })();
 </script>
@@ -245,28 +268,28 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><p>Une <strong>liste</strong> Python est une structure de données qui permet de regrouper des objets de manière ordonnée, comme un <code>tuple</code>. Mais à la différence des <code>tuple</code>, les listes sont <strong>mutables</strong> : on peut les modifier après leur création.</p></li>
 <li><p>On déclare une liste avec des <strong>crochets droits</strong>.</p></li>
 </ul>
-<div id="0066722d" class="cell" data-execution_count="1">
+<div id="bf018273" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L ='</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L = [1, 2, 3]</code></pre>
 </div>
 </div>
-<div id="fd9ce286" class="cell" data-execution_count="2">
+<div id="0f56eb0e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L ='</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L = ['a', 'b', 'c']</code></pre>
 </div>
 </div>
-<div id="fe3c56c9" class="cell" data-execution_count="3">
+<div id="acde5e2c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="st">'a'</span>, <span class="dv">2</span>, <span class="st">'b'</span>, <span class="dv">3</span>, <span class="st">'c'</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L ='</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L = [1, 'a', 2, 'b', 3, 'c']</code></pre>
 </div>
 </div>
-<div id="e9cfc107" class="cell" data-execution_count="4">
+<div id="620a8c80" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>]]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L ='</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -284,21 +307,21 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><span class="remark">Remarque.</span> On peut accéder à la <strong>longueur</strong> d’une liste avec la fonction <code>len()</code>.</p></li>
 <li><p>On peut vérifier l’<strong>appartenance</strong> d’un élément à une liste avec le mot-clé <code>in</code>.</p></li>
 </ul>
-<div id="32797546" class="cell" data-execution_count="5">
+<div id="b0220be6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'t[0] ='</span>, t[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>t[0] = a</code></pre>
 </div>
 </div>
-<div id="af0e710b" class="cell" data-execution_count="6">
+<div id="18dd7963" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[0] ='</span>, L[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>L[0] = a</code></pre>
 </div>
 </div>
-<div id="ab32fce4" class="cell" data-execution_count="7">
+<div id="a84f30bc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> t:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s, end<span class="op">=</span><span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -306,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <pre><code>abcd</code></pre>
 </div>
 </div>
-<div id="d78c114d" class="cell" data-execution_count="8">
+<div id="af21d74c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> L:</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s, end<span class="op">=</span><span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -320,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li>L’opérateur <code>in</code> teste l’<strong>appartenance</strong> : <code>x in L</code> s’évalue à <code>True</code> si <code>x</code> est un des éléments de <code>L</code>, exactement comme pour les <code>str</code> et les <code>tuple</code>.</li>
 </ul>
-<div id="21bf7f07" class="cell" data-execution_count="9">
+<div id="93f69103" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'2 in L:'</span>, <span class="dv">2</span> <span class="kw">in</span> L)</span>
@@ -335,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li>On peut <strong>concaténer</strong> deux listes avec <code>+</code>, et répéter une liste avec <code>*</code>. Ces opérations ne modifient ni l’une ni l’autre des listes de départ : elles créent une <strong>nouvelle</strong> liste.</li>
 </ul>
-<div id="0c82e896" class="cell" data-execution_count="10">
+<div id="15aa32b3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -351,7 +374,7 @@ L1 est inchangée : [1, 2]</code></pre>
 <ul>
 <li>La méthode <code>L.copy()</code> crée elle aussi une nouvelle liste, contenant les mêmes éléments que <code>L</code>.</li>
 </ul>
-<div id="3c62c278" class="cell" data-execution_count="11">
+<div id="d7a0e288" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -379,7 +402,7 @@ L1 est inchangée : [1, 2]</code></pre>
 <section id="modifier-un-élément-dune-liste" class="level2">
 <h2 class="anchored" data-anchor-id="modifier-un-élément-dune-liste">Modifier un élément d’une liste</h2>
 <p>On peut modifier l’élément d’indice <code>i</code> d’une liste <code>L</code> avec l’instruction <code>L[i] = nouvelle_valeur</code>.</p>
-<div id="6fa55edb" class="cell" data-execution_count="12">
+<div id="53d2c8bf" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Avant :"</span>, L)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -390,7 +413,7 @@ L1 est inchangée : [1, 2]</code></pre>
 Après : [1, 3, 'A', 7, 9, 11]</code></pre>
 </div>
 </div>
-<div id="db5b1e8c" class="cell" data-execution_count="13">
+<div id="5224dff8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Avant :"</span>, L)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -421,14 +444,14 @@ Cell <span class="ansi-green-fg">In[13], line 4</span>
 <ul>
 <li>S’agissant d’une <strong>méthode</strong>, son appel est différent des fonctions habituelles. Pour appliquer <code>append</code> sur une liste <code>L</code>, on utilise la syntaxe <code>L.append(valeur)</code>.</li>
 </ul>
-<div id="41448e9c" class="cell" data-execution_count="14">
+<div id="36d7a835" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L, <span class="st">'est de longueur'</span>, <span class="bu">len</span>(L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1] est de longueur 2</code></pre>
 </div>
 </div>
-<div id="d3d543ab" class="cell" data-execution_count="15">
+<div id="58d47b3d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>L.append(<span class="dv">10</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L, <span class="st">'est de longueur'</span>, <span class="bu">len</span>(L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -436,7 +459,7 @@ Cell <span class="ansi-green-fg">In[13], line 4</span>
 <pre><code>[0, 1, 10] est de longueur 3</code></pre>
 </div>
 </div>
-<div id="1012fdb6" class="cell" data-execution_count="16">
+<div id="2a561c05" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>L.append(<span class="dv">10</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>L.append(<span class="dv">13</span>)</span>
@@ -453,7 +476,7 @@ Cell <span class="ansi-green-fg">In[13], line 4</span>
 <ul>
 <li>Tous les éléments après <code>i</code> sont décalés vers la droite. L’élément qui était à l’indice <code>i</code> est maintenant à l’indice <code>i+1</code>.</li>
 </ul>
-<div id="e56bc749" class="cell" data-execution_count="17">
+<div id="b0f48e10" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avant:'</span>, L)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -469,7 +492,7 @@ Après insert(2, 'a'): [1, 3, 'a', 5, 7]</code></pre>
 <section id="enlever-un-élément-dune-liste" class="level2">
 <h2 class="anchored" data-anchor-id="enlever-un-élément-dune-liste">Enlever un élément d’une liste</h2>
 <p>La méthode <code>pop</code> permet d’enlever un élément de la fin d’une liste. Elle modifie la liste et <strong>retourne</strong> l’élément enlevé.</p>
-<div id="04a3c73b" class="cell" data-execution_count="18">
+<div id="45df22d5" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avant pop():'</span>, L)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -480,7 +503,7 @@ Après insert(2, 'a'): [1, 3, 'a', 5, 7]</code></pre>
 Après pop(): [3, 6]</code></pre>
 </div>
 </div>
-<div id="47b4357f" class="cell" data-execution_count="19">
+<div id="429073ca" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pop() retourne l'objet enlevé</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'b'</span>]</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L ='</span>, L)</span>
@@ -494,7 +517,7 @@ L = ['a', 'c', 'd']</code></pre>
 </div>
 </div>
 <p><code>pop</code> peut aussi prendre un indice comme argument : <code>L.pop(i)</code> enlève l’élément à l’indice <code>i</code> et décale les éléments suivants vers la gauche.</p>
-<div id="71ca366b" class="cell" data-execution_count="20">
+<div id="9cda45ff" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> L.pop(<span class="dv">2</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"on a pop l'élément"</span>, x)</span>
@@ -511,7 +534,7 @@ L = ['a', 'c', 'd']</code></pre>
 <ul>
 <li>La méthode <code>L.remove(x)</code> enlève le <strong>premier</strong> élément de valeur <code>x</code> dans la liste <code>L</code>, si un tel élément existe. Elle retourne <code>None</code>.</li>
 </ul>
-<div id="ca0e9083" class="cell" data-execution_count="21">
+<div id="cb7df50f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">3</span>]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avant remove(3):'</span>, L)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -531,7 +554,7 @@ Après remove(3) encore: [1, 5, 7]</code></pre>
 <section id="étendre-une-liste" class="level2">
 <h2 class="anchored" data-anchor-id="étendre-une-liste">Étendre une liste</h2>
 <p>Pour des listes <code>L1</code> et <code>L2</code>, <code>L1.extend(L2)</code> ajoute tous les éléments de <code>L2</code> à la fin de <code>L1</code>. Elle modifie donc <code>L1</code> et laisse <code>L2</code> telle quelle.</p>
-<div id="9076e80c" class="cell" data-execution_count="22">
+<div id="67b176f8" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>]</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>]</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Avant extend :'</span>)</span>
@@ -569,7 +592,7 @@ Après L1.extend(L2):
 <li><code>L.reverse()</code> inverse l’ordre des éléments de <code>L</code>.</li>
 </ul></li>
 </ul>
-<div id="2307ed4e" class="cell" data-execution_count="23">
+<div id="31fd9351" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">8</span>]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Longueur:'</span>, <span class="bu">len</span>(L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -577,7 +600,7 @@ Après L1.extend(L2):
 <pre><code>Longueur: 6</code></pre>
 </div>
 </div>
-<div id="5dd3fe48" class="cell" data-execution_count="24">
+<div id="7f2efad7" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">8</span>]</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>m, M <span class="op">=</span> <span class="bu">min</span>(L), <span class="bu">max</span>(L)</span>
@@ -586,7 +609,7 @@ Après L1.extend(L2):
 <pre><code>m = 2 , M = 10</code></pre>
 </div>
 </div>
-<div id="64e0e30a" class="cell" data-execution_count="25">
+<div id="b92c61b9" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">8</span>]</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nombre de 6 dans L:'</span>, L.count(<span class="dv">6</span>))</span>
@@ -596,7 +619,7 @@ Après L1.extend(L2):
 Nombre de 1 dans L: 0</code></pre>
 </div>
 </div>
-<div id="1aa125b4" class="cell" data-execution_count="26">
+<div id="544b5ad8" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">8</span>]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Index de 6:'</span>, L.index(<span class="dv">6</span>))</span>
@@ -606,7 +629,7 @@ Nombre de 1 dans L: 0</code></pre>
 Index de 10: 2</code></pre>
 </div>
 </div>
-<div id="11af8ea9" class="cell" data-execution_count="27">
+<div id="1550ae4c" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">8</span>]</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Liste originale:'</span>, L)</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -625,7 +648,7 @@ La liste triée: [2, 4, 6, 6, 8, 10]</code></pre>
 <section id="représentation-de-listes-en-mémoire" class="level2">
 <h2 class="anchored" data-anchor-id="représentation-de-listes-en-mémoire">Représentation de listes en mémoire</h2>
 <p><span class="remark">Rappel.</span> <code>L2 = L1.copy()</code> crée une <strong>nouvelle liste</strong>, qui n’est pas le même objet que <code>L1</code> : les deux évoluent donc de manière <strong>indépendante</strong>. Pourtant, avec une <strong>liste de listes</strong>, la copie suit parfois les modifications de <code>L1</code>, et parfois non.</p>
-<div id="8c341f47" class="cell" data-execution_count="28">
+<div id="35954f8d" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>]</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -640,10 +663,10 @@ La liste triée: [2, 4, 6, 6, 8, 10]</code></pre>
 L1 = [2, 4, 6, 8] L2 = [2, 4, 6, 8]
 L1 == L2: True
 L1 et L2 ne sont pas le même objet:
-id(L1) = 133436369967488 ; id(L2) = 133436369937344</code></pre>
+id(L1) = 129406101854464 ; id(L2) = 129406100183936</code></pre>
 </div>
 </div>
-<div id="dbdb2aeb" class="cell" data-execution_count="29">
+<div id="a9bdc798" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>]</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>L1.pop()</span>
@@ -654,7 +677,7 @@ id(L1) = 133436369967488 ; id(L2) = 133436369937344</code></pre>
 <pre><code>L1 = [2, 4, 6] L2 = [2, 42, 6, 8]</code></pre>
 </div>
 </div>
-<div id="10fe0d3e" class="cell" data-execution_count="30">
+<div id="f8e60b8f" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement prévisible</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
@@ -666,7 +689,7 @@ id(L1) = 133436369967488 ; id(L2) = 133436369937344</code></pre>
 L2 = [[1, 3], [2, 4]]</code></pre>
 </div>
 </div>
-<div id="9b8b8efb" class="cell" data-execution_count="31">
+<div id="fe8120a6" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement bizarre ?</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
@@ -771,7 +794,7 @@ L2 = [[1, 3, 5], [2, 4]]</code></pre>
 <section id="copie-profonde" class="level2">
 <h2 class="anchored" data-anchor-id="copie-profonde">Copie profonde</h2>
 <p>Pour faire une « vraie » copie, ou <strong>copie profonde</strong>, d’une liste de listes (qui va copier chacune des sous-listes au lieu de pointer vers les mêmes), on utilise la fonction <code>deepcopy</code> du module <code>copy</code>.</p>
-<div id="5a66b9d3" class="cell" data-execution_count="32">
+<div id="a99d6c97" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Copie superficielle</span></span>
@@ -788,7 +811,7 @@ L1 = [[1, 3, 5], [2, 4]]
 L2 = [[1, 3, 5], [2, 4]]</code></pre>
 </div>
 </div>
-<div id="86999584" class="cell" data-execution_count="33">
+<div id="a8c21b08" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Copie profonde</span></span>

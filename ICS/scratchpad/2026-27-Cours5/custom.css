@@ -583,8 +583,9 @@
 /* ==========================================================================
    Light theme
    --------------------------------------------------------------------------
-   Toggled from the title slide (see the script in header.html), which puts
-   .ics-light on <html> and remembers the choice in localStorage.
+   Light is the default. The switch in the top-right corner (see the script in
+   header.html) puts .ics-light on <html> and remembers the choice in
+   localStorage, so a lecturer who prefers dark sets it once.
 
    Only the slide chrome flips: background, prose, headings, links, boxes.
    Code blocks deliberately stay dark. The flux overlays are positioned in the
@@ -654,39 +655,61 @@ html.ics-light .reveal section table th { border-bottom-color: rgba(0, 0, 0, .45
 html.ics-light .invert-colors { filter: none; }
 html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
 
-/* The toggle itself */
-/* '.reveal section *' sets the family and size for everything inside a slide,
-   so the button has to out-specify it rather than merely follow it. */
-.reveal section button.ics-theme-toggle {
-    /* The title slide is sized to its content and centred, so the button is
-       laid out under the title block rather than pinned to a slide corner. */
+/* The toggle itself.
+   A small track-and-knob switch pinned to the top-right of the viewport. It
+   sits outside .reveal, so slide styling does not reach it and it does not
+   scale with the deck. Faint by default so it stays out of the way during a
+   lecture, brighter on the title slide and on hover. Knob to the right means
+   light. */
+.ics-theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 1000;
     display: block;
-    margin: 2.4em auto 0;
-    z-index: 40;
-    font-family: 'Fira Mono', monospace !important;
-    font-size: 17px !important;
-    letter-spacing: .04em;
-    line-height: 1;
-    padding: .7em 1.4em;
+    width: 40px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
     border-radius: 999px;
-    border: 1px solid rgba(221, 224, 235, .55);
+    border: 1px solid rgba(221, 224, 235, .5);
     background: rgba(255, 255, 255, .10);
-    color: #dde0eb;
     cursor: pointer;
-    transition: background .15s ease, border-color .15s ease, color .15s ease;
+    opacity: .28;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: opacity .2s ease, background .15s ease, border-color .15s ease;
 }
-.reveal section button.ics-theme-toggle:hover {
+.ics-theme-toggle.on-title { opacity: .85; }
+.ics-theme-toggle:hover,
+.ics-theme-toggle:focus-visible {
+    opacity: 1;
+    border-color: rgba(221, 224, 235, .95);
     background: rgba(255, 255, 255, .20);
-    border-color: rgba(221, 224, 235, .9);
 }
-html.ics-light .reveal section button.ics-theme-toggle {
-    border-color: rgba(28, 33, 38, .45);
-    background: rgba(28, 33, 38, .06);
-    color: #1c2126;
+.ics-theme-toggle .ics-theme-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #dde0eb;
+    transition: transform .18s ease, background .15s ease;
 }
-html.ics-light .reveal section button.ics-theme-toggle:hover {
-    background: rgba(28, 33, 38, .13);
-    border-color: rgba(28, 33, 38, .75);
+
+html.ics-light .ics-theme-toggle {
+    border-color: rgba(28, 33, 38, .4);
+    background: rgba(28, 33, 38, .07);
+}
+html.ics-light .ics-theme-toggle:hover,
+html.ics-light .ics-theme-toggle:focus-visible {
+    border-color: rgba(28, 33, 38, .8);
+    background: rgba(28, 33, 38, .14);
+}
+html.ics-light .ics-theme-toggle .ics-theme-knob {
+    background: #1c2126;
+    transform: translateX(18px);
 }
 
 /* --------------------------------------------------------------------------
@@ -734,6 +757,9 @@ html.ics-light {
 html.ics-light .reveal pre,
 html.ics-light .reveal .flux-sub,
 html.ics-light .reveal .flux-out {
+    /* these three keep a dark background, so their unhighlighted text has to
+       keep the dark theme's colour too */
+    color: #fff;
     --quarto-hl-al-color: #f07178;
     --quarto-hl-an-color: #d4d0ab;
     --quarto-hl-at-color: #00e0e0;

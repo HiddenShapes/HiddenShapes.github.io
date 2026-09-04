@@ -255,21 +255,28 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-/* Light/dark toggle for the slides. The button lives on the title slide; the
-   choice is remembered per browser so a lecturer sets it once. Applied before
-   the slides are painted so switching does not flash.
-   No-ops on the notes pages, which have no title slide. */
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, faint
+   until you hover it and a little brighter while the title slide is up.
+   Deck pages only: the notes pages load the same header. */
 (function () {
   var KEY = 'ics-slide-theme';
   var root = document.documentElement;
 
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
   function apply(theme) {
-    root.classList.toggle('ics-light', theme === 'light');
-    var btn = document.querySelector('.ics-theme-toggle');
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
     if (btn) {
-      var light = theme === 'light';
-      btn.textContent = light ? 'Thème sombre' : 'Thème clair';
-      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
     }
     /* canvas drawings cannot follow CSS, so they listen for this */
     document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
@@ -277,16 +284,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
-  apply(stored === 'light' ? 'light' : 'dark');
+  apply(stored === 'dark' ? 'dark' : 'light');
 
   document.addEventListener('DOMContentLoaded', function () {
-    var title = document.querySelector('#title-slide');
-    if (!title) return;
-
-    var btn = document.createElement('button');
+    btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ics-theme-toggle';
-    title.appendChild(btn);
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -294,10 +303,24 @@ document.addEventListener('DOMContentLoaded', function () {
       try { localStorage.setItem(KEY, next); } catch (e2) {}
       apply(next);
     });
-    /* reveal binds space/enter to slide navigation */
+    /* reveal binds space, enter and the arrows to slide navigation */
     btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
 
     apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* a touch more visible while the title slide is up, so it is findable */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
   });
 })();
 </script>
@@ -328,8 +351,7 @@ Leonard Hardiman et Ghid Maatouk
 <p><strong>CO 020, CO 021, CO 023 (salles avec ordinateurs)<br> CM 1 104, CM 1 106 (salles sans ordinateurs). </strong></p>
 </div>
 <ul>
-<li>Ils prendront la forme de travaux pratiques sur ordinateur et sont accessibles sur la plateforme <a href="https://noto.epfl.ch">Noto</a> de l’Epfl.</li>
-<li>N’hésitez pas à poser vos questions sur le <a href="https://edstem.org/eu/courses/2595/discussion">forum du cours</a> !</li>
+<li>Les exercices sont des travaux pratiques sur ordinateur et sont accessibles sur la plateforme <a href="https://noto.epfl.ch">Noto</a> de l’Epfl.</li>
 </ul>
 </section>
 <section id="plan-du-cours" class="slide level2">
@@ -340,7 +362,6 @@ Leonard Hardiman et Ghid Maatouk
 <li>Introduction à l’algorithmique</li>
 </ul>
 <p>Aucun prérequis n’est demandé !</p>
-<p>La matière sera évaluée à <strong>la fin de chaque partie</strong>.</p>
 </section>
 <section id="quest-ce-que-linformatique" class="slide level2">
 <h2>Qu’est-ce que l’informatique ?</h2>
@@ -387,7 +408,7 @@ Comment exploiter l’information ?
 <li>Pour communiquer avec la machine, on utilise un <strong>langage de programmation</strong>.</li>
 </ul>
 
-<img src="./media/compiler_pipeline.png" class="r-stretch"></section>
+<img class="dark-figure r-stretch" src="./media/compiler_pipeline.png"></section>
 <section id="le-langage-python" class="slide level2">
 <h2>Le langage Python</h2>
 <p>Le langage que nous allons utiliser dans le cadre de ce cours est le langage Python, car il est…</p>
@@ -411,7 +432,7 @@ Comment exploiter l’information ?
 <li>Les <strong>commentaires</strong> (précédés de <code>#</code>) sont ignorés, même au milieu d’une ligne</li>
 </ul>
 <div class="fragment">
-<p><span class="remark">Remarque.</span> <code>print</code> est l’outil qui permet d’afficher une ou plusieurs valeurs (séparées par des virgules). Nous l’utiliserons dès maintenant pour voir ce que fait notre code ; nous y reviendrons en détail plus tard.</p>
+<p><span class="remark">Remarque.</span> <code>print</code> est l’outil qui permet d’afficher une ou plusieurs valeurs. Nous l’utiliserons dès maintenant pour voir ce que fait notre code ; nous y reviendrons en détail plus tard.</p>
 </div>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> Dans un notebook Jupyter (et dans la plupart des interpréteurs interactifs), la valeur de la <strong>dernière ligne</strong> d’une cellule s’affiche automatiquement, même sans <code>print</code>. C’est une commodité de l’interpréteur, pas une règle de Python.</p>
@@ -601,7 +622,7 @@ Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : u
 </section>
 <section id="linstruction-else" class="slide level2">
 <h2>L’instruction <span class="title-code">else</span></h2>
-<p>L’instruction <code>else</code> suit une instruction <code>if</code> (facultativement) et permet d’exécuter un bloc alternatif lorsque la condition du <code>if</code> est évaluée à <code>False</code>.</p>
+<p>L’instruction <code>else</code> (facultativement) suit une instruction <code>if</code> et permet d’exécuter un bloc alternatif lorsque la condition du <code>if</code> est évaluée à <code>False</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
 <span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
 <span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -614,7 +635,7 @@ Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : u
 </section>
 <section id="linstruction-elif" class="slide level2">
 <h2>L’instruction <span class="title-code">elif</span></h2>
-<p>L’instruction <code>elif</code> (contraction de «else if») permet de tester <strong>plusieurs conditions successives</strong> après un <code>if</code> initial.</p>
+<p>L’instruction <code>elif</code> (contraction de «else if»), également facultative, permet de tester <strong>plusieurs conditions successives</strong> après un <code>if</code> initial.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> conditionB:</span>
