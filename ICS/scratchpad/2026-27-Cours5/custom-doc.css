@@ -98,3 +98,32 @@ body {
 .frame-viewer .frame-next {
   min-width: 8em;
 }
+
+/* ──────────────────────────────────────────
+   Two figures side by side. They are matched
+   on height, not width: their aspect ratios
+   are too far apart for .columns to line them
+   up. Override --fig-h inline for a different
+   common height.
+   ────────────────────────────────────────── */
+
+.fig-row {
+  --fig-h: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+  margin: 1.5em 0;
+}
+
+.fig-row > p {
+  margin: 0;
+}
+
+.fig-row img {
+  height: var(--fig-h);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}

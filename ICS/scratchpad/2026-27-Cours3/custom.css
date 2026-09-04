@@ -244,6 +244,11 @@
 .reveal .r-stack img {
   background-color: white;
 }
+/* A .keep-hue figure is drawn transparent and flips with the theme, so the
+   white backdrop the older r-stack figures need would box it in. */
+.reveal .r-stack img.keep-hue {
+  background-color: transparent;
+}
 
 
 /* ==========================================================================
@@ -655,6 +660,14 @@ html.ics-light .reveal section table th { border-bottom-color: rgba(0, 0, 0, .45
    slides, so it is the one that has to flip. */
 html.ics-light .invert-colors { filter: none; }
 html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
+
+/* .keep-hue is .invert-colors for a figure that has real colour in it. A plain
+   invert turns the memory diagrams' Office blue into mustard, so the hue is
+   rotated back and only the lightness flips: the blue stays blue and the black
+   names go white. Like .invert-colors it must stay undefined in custom-doc.css,
+   where the page is light and the figures are shown as drawn. */
+.keep-hue { filter: invert(1) hue-rotate(180deg); }
+html.ics-light .keep-hue { filter: none; }
 
 /* The toggle itself.
    A small track-and-knob switch pinned to the top-right of the viewport. It
