@@ -524,26 +524,32 @@ variable = expression
 <li>Lorsqu’une expression fait intervenir une variable, l’objet référencé par la variable est utilisé pour évaluer l’expression.</li>
 </ul>
 </section>
-<section id="variable-expression" class="slide level2">
+<section id="variable-expression" class="slide level2 smaller">
 <h2><span class="title-code">variable = expression</span></h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">14</span> <span class="op">+</span> <span class="dv">9</span></span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, <span class="bu">type</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Il vaut la peine d’examiner en détail ce qui se passe ici:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
 <ul>
-<li><p>Python <strong>évalue</strong> d’abord l’expression à droite.</p></li>
-<li><p>Ceci aboutit à un certain objet, que Python stocke en mémoire (s’il n’est pas déjà stocké).</p></li>
-<li><p>Finalement, Python associe la variable à gauche comme référence pour désigner cet objet.</p></li>
+<li>Python <strong>évalue</strong> d’abord l’expression à droite.</li>
+<li>Ceci aboutit à un certain objet, que Python stocke en mémoire (s’il n’est pas déjà stocké).</li>
+<li>Finalement, Python associe la variable à gauche comme référence pour désigner cet objet.</li>
 </ul>
+</div><div class="column" style="width:55%;">
+<div class="r-stack">
+<p><img data-src="media/12-affectation-1.svg" class="fragment current-visible keep-hue" style="width:100.0%" data-fragment-index="1"></p>
+<p><img data-src="media/12-affectation-2.svg" class="fragment keep-hue" style="width:100.0%" data-fragment-index="2"></p>
+</div>
+</div></div>
 <p><span class="remark">Remarque.</span> Cela diffère du fonctionnement de l’égalité en mathématiques. En particulier, ce n’est pas symétrique !</p>
 </section>
 <section id="affectation-et-réaffectation-en-mémoire" class="slide level2">
 <h2>Affectation et réaffectation en mémoire</h2>
 <p><span class="remark">Remarque.</span> On peut affecter une variable, puis la réaffecter après.</p>
 <div class="r-stack">
-<p><img data-src="media/12-affectation-1.svg" class="fragment current-visible keep-hue" style="width:66.0%" data-fragment-index="1"></p>
-<p><img data-src="media/12-affectation-2.svg" class="fragment current-visible keep-hue" style="width:66.0%" data-fragment-index="2"></p>
-<p><img data-src="media/12-reaffectation-1.svg" class="fragment current-visible keep-hue" style="width:66.0%" data-fragment-index="3"></p>
-<p><img data-src="media/12-reaffectation-2.svg" class="fragment keep-hue" style="width:66.0%" data-fragment-index="4"></p>
+<p><img data-src="media/12-reaffectation-1.svg" class="fragment current-visible keep-hue" style="width:86.0%" data-fragment-index="1"></p>
+<p><img data-src="media/12-reaffectation-2.svg" class="fragment keep-hue" style="width:86.0%" data-fragment-index="2"></p>
 </div>
 </section>
 <section id="var2-var1" class="slide level2 smaller">
