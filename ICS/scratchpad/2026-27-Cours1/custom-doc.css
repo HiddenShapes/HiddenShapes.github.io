@@ -127,3 +127,51 @@ body {
   max-width: 100%;
   object-fit: contain;
 }
+
+/* ──────────────────────────────────────────
+   Table of contents on a phone
+
+   Below 768px quarto hides both the margin
+   sidebar and the nav inside it, and a
+   standalone document has no navbar to hang
+   its toc toggle on, so the contents are
+   simply unreachable. Put them back at the
+   top of the page as a compact scrollable
+   box.
+   ────────────────────────────────────────── */
+
+@media (max-width: 767.98px) {
+  /* the article grid keeps a 500px minimum on its content column, which is
+     wider than the phone; stacking in source order drops the margin column
+     and puts the contents above the article */
+  #quarto-content.page-columns {
+    display: block;
+  }
+
+  #quarto-margin-sidebar {
+    display: block !important;
+    position: static;
+    max-height: 45vh;
+    overflow-y: auto;
+    margin: 0 0 1.6em;
+    padding: .7em 1em;
+    border: 1px solid rgba(0, 0, 0, .13);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .025);
+  }
+
+  /* the nav is hidden by a rule of its own, not just by its container */
+  #quarto-margin-sidebar nav[role="doc-toc"] {
+    display: block;
+  }
+
+  #quarto-margin-sidebar #toc-title {
+    font-size: 1rem;
+    margin: 0 0 .4em;
+  }
+
+  #quarto-margin-sidebar .nav-link {
+    padding-top: .25em;
+    padding-bottom: .25em;
+  }
+}
