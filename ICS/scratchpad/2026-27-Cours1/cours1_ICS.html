@@ -334,6 +334,72 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 </script>
+
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
   <div class="reveal">
     <div class="slides">
 

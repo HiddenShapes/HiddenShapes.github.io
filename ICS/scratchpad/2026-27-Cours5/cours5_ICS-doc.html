@@ -241,6 +241,72 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Informatique et Calcul Scientifique</h1>
@@ -270,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="un-exemple-liste-de-listes" class="level2">
 <h2 class="anchored" data-anchor-id="un-exemple-liste-de-listes">Un exemple : liste de listes</h2>
 <p>Les éléments d’une liste peuvent être de n’importe quel <strong>type</strong> ; en particulier, ils peuvent être à leur tour <strong>des listes</strong>.</p>
-<div id="41bd7e8d" class="cell" data-execution_count="1">
+<div id="7ca250ff" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'M[0] ='</span>, M[<span class="dv">0</span>])</span>
@@ -284,7 +350,7 @@ M[1] = [1, 3, 5]</code></pre>
 <li><p><code>M[i]</code> est la sous-liste d’indice <code>i</code>, et <code>M[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</p></li>
 <li><p>Pour parcourir tous les éléments, il faut deux boucles <code>for</code> imbriquées : la première parcourt les sous-listes, la seconde les éléments de chacune d’elles.</p></li>
 </ul>
-<div id="a956ca85" class="cell" data-execution_count="2">
+<div id="c2a1a512" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'M[1][2] ='</span>, M[<span class="dv">1</span>][<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -292,7 +358,7 @@ M[1] = [1, 3, 5]</code></pre>
 <pre><code>M[1][2] = 5</code></pre>
 </div>
 </div>
-<div id="0603f6a3" class="cell" data-execution_count="3">
+<div id="e93b28c2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ligne <span class="kw">in</span> M:</span>
@@ -313,7 +379,7 @@ M[1] = [1, 3, 5]</code></pre>
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
 <p><img src="media/05-tableau-2d.svg" class="img-center invert-colors-doc img-fluid" style="width:88.0%"></p>
-<div id="f007d3eb" class="cell" data-execution_count="4">
+<div id="169ca571" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>],</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]</span>
@@ -344,7 +410,7 @@ T[1][2] = 7
 <li><code>T[k]</code> est un tableau entier, <code>T[k][i]</code> une de ses lignes, et <code>T[k][i][j]</code> un de ses éléments.</li>
 <li>Il faut alors <strong>trois</strong> boucles <code>for</code> imbriquées pour parcourir tous les éléments.</li>
 </ul>
-<div id="7027842d" class="cell" data-execution_count="5">
+<div id="ed83561d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 classes, 3 élèves par classe, 2 devoirs par élève</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[[<span class="fl">5.5</span>, <span class="fl">4.0</span>], [<span class="fl">6.0</span>, <span class="fl">5.0</span>], [<span class="fl">4.5</span>, <span class="fl">4.0</span>]],</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     [[<span class="fl">3.5</span>, <span class="fl">5.0</span>], [<span class="fl">6.0</span>, <span class="fl">6.0</span>], [<span class="fl">5.0</span>, <span class="fl">4.5</span>]]]</span>
@@ -358,7 +424,7 @@ Son élève 1 : [6.0, 5.0]
 Son devoir 0 : 6.0</code></pre>
 </div>
 </div>
-<div id="6a5ed0c2" class="cell" data-execution_count="6">
+<div id="2a7f90f1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[[<span class="fl">5.5</span>, <span class="fl">4.0</span>], [<span class="fl">6.0</span>, <span class="fl">5.0</span>], [<span class="fl">4.5</span>, <span class="fl">4.0</span>]],</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>     [[<span class="fl">3.5</span>, <span class="fl">5.0</span>], [<span class="fl">6.0</span>, <span class="fl">6.0</span>], [<span class="fl">5.0</span>, <span class="fl">4.5</span>]]]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -383,7 +449,7 @@ Son devoir 0 : 6.0</code></pre>
 <section id="dictionnaires" class="level2">
 <h2 class="anchored" data-anchor-id="dictionnaires">Dictionnaires</h2>
 <p>Nous avons vu que certaines structures en Python sont <strong>indexables</strong>, c’est-à-dire qu’on peut accéder à l’une de leurs valeurs en les indexant avec un nombre :</p>
-<div id="044466ea" class="cell" data-execution_count="7">
+<div id="448bdba9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> [<span class="st">'James'</span>, <span class="st">'Bond'</span>, <span class="dv">32</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -395,7 +461,7 @@ Son devoir 0 : 6.0</code></pre>
 <li>Un dictionnaire (<code>dict</code>) est une structure de données qui permet d’indexer des objets (les valeurs) non pas avec des entiers <code>0</code>, <code>1</code>, <code>2</code>, … mais avec des <strong>clés</strong>.</li>
 <li>Il s’agit d’un ensemble de paires <code>clé: valeur</code>, écrit entre <strong>accolades</strong>.</li>
 </ul>
-<div id="8ff82c41" class="cell" data-execution_count="8">
+<div id="f21b5cfd" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> {<span class="st">'nom'</span>: <span class="st">'Bond'</span>, <span class="st">'prénom'</span>: <span class="st">'James'</span>, <span class="st">'âge'</span>: <span class="dv">32</span>}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="st">'âge'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -411,7 +477,7 @@ Son devoir 0 : 6.0</code></pre>
 <li><strong>rempli</strong>, avec la syntaxe <code>d = {clé_1: valeur_1, ..., clé_n: valeur_n}</code>.</li>
 </ul>
 <p>Les clés peuvent être n’importe quel objet <strong>non mutable</strong> : <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>tuple</code>… mais pas une liste. Elles doivent également être <strong>uniques</strong> : si la même clé apparaît plusieurs fois, seule la dernière paire est gardée.</p>
-<div id="3dda55e7" class="cell" data-execution_count="9">
+<div id="f9aa0f1d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">123</span>, <span class="st">'b'</span>: <span class="dv">345</span>}</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> {(<span class="dv">1</span>, <span class="dv">2</span>): <span class="dv">123</span>, (<span class="dv">3</span>, <span class="dv">4</span>): <span class="dv">345</span>}</span>
@@ -422,7 +488,7 @@ Son devoir 0 : 6.0</code></pre>
 <pre><code>123 123 123 123</code></pre>
 </div>
 </div>
-<div id="cff18b4e" class="cell" data-execution_count="10">
+<div id="de5b9a86" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {[<span class="dv">1</span>, <span class="dv">2</span>]: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -435,7 +501,7 @@ Cell <span class="ansi-green-fg">In[10], line 1</span>
 </div>
 </div>
 </div>
-<div id="210b1424" class="cell" data-execution_count="11">
+<div id="b787284d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>, <span class="dv">1</span>: <span class="dv">456</span>}</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -447,14 +513,14 @@ Cell <span class="ansi-green-fg">In[10], line 1</span>
 <section id="accéder-à-un-élément" class="level2">
 <h2 class="anchored" data-anchor-id="accéder-à-un-élément">Accéder à un élément</h2>
 <p>On accède à l’élément de clé <code>clé</code> du dictionnaire <code>d</code> avec la syntaxe <code>d[clé]</code>, à condition qu’un tel élément existe. Sinon, Python produit une <strong>erreur</strong>.</p>
-<div id="9abbe719" class="cell" data-execution_count="12">
+<div id="69433532" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>poire</code></pre>
 </div>
 </div>
-<div id="8700b6a9" class="cell" data-execution_count="13">
+<div id="c0cf661f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">30</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -470,7 +536,7 @@ Cell <span class="ansi-green-fg">In[13], line 2</span>
 </div>
 </div>
 <p>Pour éviter l’erreur, on peut exécuter l’instruction <code>d.get(clé)</code> : la méthode <code>get</code> de la classe <code>dict</code> retourne l’élément de clé <code>clé</code> si un tel élément existe, et retourne <code>None</code> autrement.</p>
-<div id="81ec0a42" class="cell" data-execution_count="14">
+<div id="f66e9342" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.get(<span class="dv">10</span>))</span>
@@ -488,7 +554,7 @@ None</code></pre>
 <li><p><strong>Supprimer :</strong> <code>del d[clé]</code> supprime l’élément de clé <code>clé</code>, et produit une erreur si celle-ci n’existe pas.</p></li>
 <li><p><strong>Appartenance :</strong> <code>clé in d</code> vérifie si la clé existe dans le dictionnaire <code>d</code>.</p></li>
 </ul>
-<div id="27887129" class="cell" data-execution_count="15">
+<div id="06ebe6ce" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insérer un élément</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>}</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">20</span>] <span class="op">=</span> <span class="st">'pomme'</span></span>
@@ -497,7 +563,7 @@ None</code></pre>
 <pre><code>Après insertion : {10: 'poire', 20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="92422cba" class="cell" data-execution_count="16">
+<div id="efca04af" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifier un élément</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">10</span>] <span class="op">=</span> <span class="st">'fraise'</span></span>
@@ -506,7 +572,7 @@ None</code></pre>
 <pre><code>Après modification : {10: 'fraise', 20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="85cdeb14" class="cell" data-execution_count="17">
+<div id="1dd42901" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer un élément</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> d[<span class="dv">10</span>]</span>
@@ -515,7 +581,7 @@ None</code></pre>
 <pre><code>Après suppression : {20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="38ac4ec0" class="cell" data-execution_count="18">
+<div id="df2f4131" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier l'appartenance</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'pomme'</span>: <span class="st">'malus'</span>, <span class="st">'poire'</span>: <span class="st">'pyrus'</span>}</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pomme in d :'</span>, <span class="st">'pomme'</span> <span class="kw">in</span> d)</span>
@@ -533,7 +599,7 @@ fraise in d : False</code></pre>
 <ul>
 <li>Les éléments du dictionnaire sont alors parcourus dans le même ordre que celui dans lequel il a été rempli.</li>
 </ul>
-<div id="07d979d3" class="cell" data-execution_count="19">
+<div id="68ed5db2" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -547,7 +613,7 @@ La Bavaria</code></pre>
 </div>
 </div>
 <p>Parcourir les clés d’un dictionnaire nous donne accès également aux valeurs associées, puisque la valeur associée à <code>clé</code> est <code>d[clé]</code>.</p>
-<div id="f49035fd" class="cell" data-execution_count="20">
+<div id="4935aa16" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -569,7 +635,7 @@ d[La Bavaria] = 5</code></pre>
 <li><code>d.values()</code> : itère sur les <strong>valeurs</strong> ;</li>
 <li><code>d.items()</code> : itère sur les <strong>paires (clé, valeur)</strong>, sous forme de tuples.</li>
 </ul>
-<div id="3d876400" class="cell" data-execution_count="21">
+<div id="6cdbd690" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les clés</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -581,7 +647,7 @@ Les Brasseurs
 La Bavaria</code></pre>
 </div>
 </div>
-<div id="68def8e1" class="cell" data-execution_count="22">
+<div id="3e5aec41" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les valeurs</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -593,7 +659,7 @@ La Bavaria</code></pre>
 5</code></pre>
 </div>
 </div>
-<div id="95f29c73" class="cell" data-execution_count="23">
+<div id="4edde7b7" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les paires (clé, valeur)</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -605,7 +671,7 @@ La Bavaria</code></pre>
 ('La Bavaria', 5)</code></pre>
 </div>
 </div>
-<div id="30f3612d" class="cell" data-execution_count="24">
+<div id="a984e638" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Décomposer et utiliser les paires</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -629,7 +695,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 <p><code>[exp(var) for var in iter]</code> &nbsp;&nbsp;&nbsp;&nbsp; <code>{clé: valeur for var in iter}</code></p>
 </div>
 <p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code>, et <code>iter</code> est un objet itérable.</p>
-<div id="e85e572c" class="cell" data-execution_count="25">
+<div id="c6f70633" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de liste</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">2</span> <span class="op">*</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, L)</span>
@@ -644,7 +710,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
-<div id="7d5d8d8c" class="cell" data-execution_count="26">
+<div id="f19d0fdb" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de dictionnaire</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {i: i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)}</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, d)</span>
@@ -659,7 +725,7 @@ Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 </div>
 </div>
-<div id="7495268a" class="cell" data-execution_count="27">
+<div id="e7526e8d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de liste</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [c <span class="op">+</span> <span class="st">'a'</span> <span class="cf">for</span> c <span class="kw">in</span> <span class="st">'pizza'</span>]</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -667,7 +733,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <pre><code>['pa', 'ia', 'za', 'za', 'aa']</code></pre>
 </div>
 </div>
-<div id="a99c0922" class="cell" data-execution_count="28">
+<div id="ed9b99fa" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de dictionnaire</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mots <span class="op">=</span> [<span class="st">'chat'</span>, <span class="st">'chien'</span>, <span class="st">'oiseau'</span>]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {mot: <span class="bu">len</span>(mot) <span class="cf">for</span> mot <span class="kw">in</span> mots}</span>
@@ -686,7 +752,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <li>Tout le problème est le choix des <strong>clés</strong>. Les deux restes <code>a % 3</code> et <code>b % 5</code> déterminent à eux seuls le groupe d’une paire : le tuple <code>(a % 3, b % 5)</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</li>
 <li>Chaque valeur est la <strong>liste</strong> des paires du groupe, qu’il faut créer vide la première fois que sa clé apparaît.</li>
 </ul>
-<div id="5edcc1a3" class="cell" data-execution_count="29">
+<div id="70aba4d9" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grouper_paires(paires):</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Regroupe les paires par (reste de a modulo 3, reste de b modulo 5)"</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    groupes <span class="op">=</span> {}</span>
@@ -703,7 +769,7 @@ Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 <pre><code>{(1, 2): [(1, 2), (4, 7), (7, 2), (10, 12)]}</code></pre>
 </div>
 </div>
-<div id="f3382691" class="cell" data-execution_count="30">
+<div id="0980ba69" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grouper_paires(paires):</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    groupes <span class="op">=</span> {}</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> paire <span class="kw">in</span> paires:</span>

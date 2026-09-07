@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="details_print_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="details_print_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="details_print_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="details_print_files/libs/bootstrap/bootstrap-da7ddf090378b5dd0f3ea355ccfa0496.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="details_print_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 <link rel="stylesheet" href="custom-doc.css">
@@ -237,6 +237,72 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">La fonction <code>print()</code> en Python</h1>
@@ -266,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="utilisation-de-base" class="level2">
 <h2 class="anchored" data-anchor-id="utilisation-de-base">Utilisation de base</h2>
 <p><code>print</code> peut afficher des chaînes de caractères, des nombres et des expressions :</p>
-<div id="fe29cf8d" class="cell" data-execution_count="1">
+<div id="c2074af7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Bonjour le monde !'</span>)      <span class="co"># un str</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)                        <span class="co"># un int</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">3.14</span>)                      <span class="co"># un float</span></span>
@@ -282,7 +348,7 @@ Résultat : 5</code></pre>
 <section id="caractères-déchappement" class="level2">
 <h2 class="anchored" data-anchor-id="caractères-déchappement">Caractères d’échappement</h2>
 <p>Les <code>str</code> en Python sont délimitées par des guillemets simples (<code>'</code>) ou doubles (<code>"</code>). Mais que se passe-t-il si on veut inclure un guillemet <strong>à l’intérieur</strong> du <code>str</code> lui-même ?</p>
-<div id="1dd7dcbe" class="cell" data-execution_count="2">
+<div id="c3201178" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'l'</span>homme<span class="st">')   # erreur : Python croit que le str se termine au deuxième guillemet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -333,7 +399,7 @@ Résultat : 5</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="7b9fb22a" class="cell" data-execution_count="3">
+<div id="800c0a3c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne</span><span class="ch">\n</span><span class="st">Deuxième ligne'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Nom:</span><span class="ch">\t</span><span class="st">Jean</span><span class="ch">\n</span><span class="st">Âge:</span><span class="ch">\t</span><span class="st">25'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Il a dit : </span><span class="ch">\'</span><span class="st">Bonjour !</span><span class="ch">\'</span><span class="st">'</span>)</span>
@@ -352,7 +418,7 @@ Il a dit : 'Bonjour !'</code></pre>
 <section id="le-paramètre-end" class="level2">
 <h2 class="anchored" data-anchor-id="le-paramètre-end">Le paramètre <code>end</code></h2>
 <p>Par défaut, chaque appel à <code>print</code> ajoute <code>'\n'</code> à la fin. Le paramètre <code>end</code> permet de changer ce comportement :</p>
-<div id="df8487dc" class="cell" data-execution_count="4">
+<div id="267e9b81" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Première ligne'</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Deuxième ligne'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
@@ -373,7 +439,7 @@ Avec un point. Fin</code></pre>
 <section id="le-paramètre-sep" class="level2">
 <h2 class="anchored" data-anchor-id="le-paramètre-sep">Le paramètre <code>sep</code></h2>
 <p>Quand <code>print</code> reçoit plusieurs arguments, il les sépare par un <strong>espace</strong> par défaut. Le paramètre <code>sep</code> permet de personnaliser ce séparateur :</p>
-<div id="922ad33d" class="cell" data-execution_count="5">
+<div id="78e61ce9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>)              <span class="co"># séparateur par défaut</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">'-'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, sep<span class="op">=</span><span class="st">' | '</span>)</span>
@@ -392,7 +458,7 @@ Bond, James Bond
 <h2 class="anchored" data-anchor-id="formatage-avec-les-f-strings">Formatage avec les f-strings</h2>
 <p><span class="remark">Hors programme.</span> Cette section et la suivante sont fournies à titre indicatif uniquement. Leur contenu <strong>ne sera pas demandé à l’examen</strong>.</p>
 <p>Les <strong>f-strings</strong> (<em>formatted string literals</em>) permettent d’insérer des variables et des expressions directement dans une chaîne en les plaçant entre accolades <code>{}</code> :</p>
-<div id="59043039" class="cell" data-execution_count="6">
+<div id="bd7a3380" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Alice'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Bonjour </span><span class="sc">{</span>nom<span class="sc">}</span><span class="ss">, tu as </span><span class="sc">{</span>age<span class="sc">}</span><span class="ss"> ans'</span>)</span>
@@ -453,7 +519,7 @@ Aire = 7.5</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="4da0eb97" class="cell" data-execution_count="7">
+<div id="b4f37a97" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159265</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 2 décimales: </span><span class="sc">{</span>pi<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Pi avec 4 décimales: </span><span class="sc">{</span>pi<span class="sc">:.4f}</span><span class="ss">'</span>)</span>

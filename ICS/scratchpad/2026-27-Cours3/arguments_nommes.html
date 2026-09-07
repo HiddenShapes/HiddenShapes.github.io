@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="arguments_nommes_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="arguments_nommes_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="arguments_nommes_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="arguments_nommes_files/libs/bootstrap/bootstrap-da7ddf090378b5dd0f3ea355ccfa0496.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="arguments_nommes_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 <link rel="stylesheet" href="custom-doc.css">
@@ -235,6 +235,72 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Arguments nommés en Python</h1>
@@ -264,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="arguments-positionnels" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-positionnels">Arguments positionnels</h2>
 <p>On a vu en cours que lors de l’appel d’une fonction, les valeurs des arguments de l’appel sont liées aux paramètres de la fonction dans l’ordre où les paramètres sont définis. On dit que dans cet appel, les arguments sont <strong>positionnels</strong>.</p>
-<div id="30188c52" class="cell" data-execution_count="1">
+<div id="57754987" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vol_cylindre(h, r):</span>
@@ -285,7 +351,7 @@ je calcule le volume d'un cylindre de rayon 3 et hauteur 5
 <section id="arguments-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="arguments-nommés">Arguments nommés</h2>
 <p>Cependant, on peut, dans l’appel de la fonction, lier explicitement un argument à un paramètre, et ceci dans n’importe quel ordre. On parle d’arguments <strong>nommés</strong>.</p>
-<div id="67f16e91" class="cell" data-execution_count="2">
+<div id="1b3f59ba" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(r <span class="op">=</span> <span class="dv">3</span>, h <span class="op">=</span> <span class="dv">5</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">**************</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(h <span class="op">=</span> <span class="dv">3</span>, r <span class="op">=</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -304,7 +370,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="mélanger-arguments-positionnels-et-nommés" class="level2">
 <h2 class="anchored" data-anchor-id="mélanger-arguments-positionnels-et-nommés">Mélanger arguments positionnels et nommés</h2>
 <p>On peut aussi, dans l’appel de la fonction, nommer explicitement certains arguments mais pas tous (toujours pour des raisons de lisibilité). Mais dans ce cas, les arguments nommés doivent apparaître <strong>après</strong> tous les arguments positionnels.</p>
-<div id="c25b9dfd" class="cell" data-execution_count="3">
+<div id="d93008fe" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg):</span>
@@ -348,7 +414,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 </div>
 </div>
 <p>Que se passe-t-il si un argument nommé apparaît <strong>avant</strong> un argument positionnel ? Python refuse même de lire le programme :</p>
-<div id="d1b3d866" class="cell" data-execution_count="4">
+<div id="a8918bfe" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(moyenne(x <span class="op">=</span> <span class="dv">2</span>, <span class="dv">1</span>, alg <span class="op">=</span> <span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -364,7 +430,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="deux-distinctions-à-ne-pas-confondre" class="level2">
 <h2 class="anchored" data-anchor-id="deux-distinctions-à-ne-pas-confondre">Deux distinctions à ne pas confondre</h2>
 <p>Avoir deux genres de paramètres, obligatoire ou par défaut, et avoir deux genres d’arguments, positionnels ou nommés, sont en principe deux choses différentes, qui ne sont pas mutuellement exclusives.</p>
-<div id="547e1fc0" class="cell" data-execution_count="5">
+<div id="d18d8867" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> moyenne(x, y, alg <span class="op">=</span> <span class="va">True</span>):</span>
@@ -388,7 +454,7 @@ je calcule le volume d'un cylindre de rayon 5 et hauteur 3
 <section id="quand-nommer-devient-obligatoire" class="level2">
 <h2 class="anchored" data-anchor-id="quand-nommer-devient-obligatoire">Quand nommer devient obligatoire</h2>
 <p>Par contre, il y a un cas où le fait d’avoir un paramètre optionnel nous oblige, dans l’appel, à nommer l’argument correspondant : c’est lorsqu’on a une fonction avec un nombre variable d’arguments et un paramètre optionnel. Dans ce cas, si on veut fournir un argument correspondant au paramètre optionnel, il faut le nommer pour éviter l’ambiguité :</p>
-<div id="3278ab3a" class="cell" data-execution_count="6">
+<div id="5b414f18" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(<span class="op">*</span>nombres, somme_ou_produit <span class="op">=</span> <span class="dv">0</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    prend un nombre variable d'arguments</span></span>
