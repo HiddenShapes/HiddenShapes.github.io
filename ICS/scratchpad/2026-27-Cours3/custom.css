@@ -873,3 +873,10 @@ html.ics-light .reveal .flux-out-label {
    marge basse de 20 px vient d'une règle plus spécifique. */
 .reveal ul:has(+ ul) { display: block; margin-bottom: 0 !important; }
 .reveal ul + ul      { display: block; margin-top: 0 !important; }
+
+/* Même chose quand la suite de la liste est enfermée dans un fragment, pour
+   qu'une seule puce apparaisse au clic : Quarto rend alors
+   <ul>…</ul><div class="fragment"><ul>…</ul></div>, que la règle ci-dessus,
+   qui vise deux <ul> voisins, ne voit pas. */
+.reveal ul:has(+ div.fragment > ul) { display: block; margin-bottom: 0 !important; }
+.reveal ul + div.fragment > ul      { display: block; margin-top: 0 !important; }

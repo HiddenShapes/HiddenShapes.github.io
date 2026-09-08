@@ -568,6 +568,7 @@ Comment exploiter l’information ?
 <div class="fragment">
 <p><span class="remark">Remarque.</span> Dans un calcul, un <code>int</code> sera considéré comme un <code>float</code> au besoin.</p>
 </div>
+<div class="fragment">
 <h3 id="strings"><u>Strings :</u></h3>
 <ul>
 <li><code>+</code> effectue la <strong>concaténation</strong> de deux <code>str</code>.</li>
@@ -576,6 +577,7 @@ Comment exploiter l’information ?
 <li class="fragment"><code>str * int</code> permet la concaténation d’un <code>str</code> avec lui même.</li>
 <li class="fragment">On peut, bien sûr, combiner ces deux opérations.</li>
 </ul>
+</div>
 </section>
 <section id="casting" class="slide level2">
 <h2>Casting</h2>
@@ -611,8 +613,12 @@ variable = expression
 <ul>
 <li>Python <strong>évalue</strong> d’abord l’expression à droite.</li>
 <li>Ceci aboutit à un certain objet, que Python stocke en mémoire (s’il n’est pas déjà stocké).</li>
+</ul>
+<div class="fragment" data-fragment-index="2">
+<ul>
 <li>Finalement, Python <strong>affecte</strong> cet objet à la variable de gauche.</li>
 </ul>
+</div>
 </div><div class="column" style="width:55%;">
 <div class="r-stack">
 <p><img data-src="media/12-affectation-1.svg" class="fragment current-visible keep-hue" style="width:100.0%" data-fragment-index="1"></p>
@@ -625,7 +631,7 @@ variable = expression
 <h2>Affectation et réaffectation en mémoire</h2>
 <p><span class="remark">Remarque.</span> On peut affecter une variable, puis la réaffecter après.</p>
 <div class="r-stack">
-<p><img data-src="media/12-reaffectation-1.svg" class="fragment current-visible keep-hue" style="width:86.0%" data-fragment-index="1"></p>
+<p><img data-src="media/12-reaffectation-1.svg" class="current-visible keep-hue" style="width:86.0%" data-fragment-index="1"></p>
 <p><img data-src="media/12-reaffectation-2.svg" class="fragment keep-hue" style="width:86.0%" data-fragment-index="2"></p>
 </div>
 </section>
@@ -636,16 +642,24 @@ variable = expression
 <span id="cb2-2"><a href=""></a>y <span class="op">=</span> x</span>
 <span id="cb2-3"><a href=""></a>x <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb2-4"><a href=""></a><span class="bu">print</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>À la 2<sup>ième</sup> ligne :</p>
 <ul>
 <li>Python évalue l’expression <code>x</code>, cette expression s’évalue à 5.</li>
-<li>Python affecte alors 5 à <code>y</code>.</li>
 </ul>
+<ul>
+<li class="fragment">Python affecte alors 5 à <code>y</code>.</li>
+</ul>
+</div>
+<div class="fragment">
 <p>À la 3<sup>ième</sup> ligne :</p>
 <ul>
 <li>La variable <code>x</code> est <strong>réaffectée</strong> : elle désigne maintenant 10.</li>
 </ul>
+</div>
+<div class="fragment">
 <p><span class="remark">Résumé.</span> <code>x = y</code> ne crée pas un lien entre <code>x</code> et <code>y</code>, mais seulement un lien entre <code>x</code> et <strong>l’objet référencé</strong> par <code>y</code>.</p>
+</div>
 </section>
 <section id="var2-var1-en-mémoire" class="slide level2">
 <h2><span class="title-code">var2 = var1</span> en mémoire</h2>
