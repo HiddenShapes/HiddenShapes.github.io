@@ -675,9 +675,18 @@ variable = expression
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment" data-fragment-index="3">
-<p>Pour écrire cela de manière plus concise, on utilise <code>x += 1</code>.</p>
+</section>
+<section id="x-x-1-en-mémoire" class="slide level2">
+<h2><span class="title-code">x = x + 1</span> en mémoire</h2>
+<div class="r-stack">
+<p><img data-src="media/14-affectation-operation-1.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="1"></p>
+<p><img data-src="media/14-affectation-operation-2.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="2"></p>
+<p><img data-src="media/14-affectation-operation-3.svg" class="fragment keep-hue" style="width:88.0%" data-fragment-index="3"></p>
 </div>
+</section>
+<section id="x-1" class="slide level2">
+<h2><span class="title-code">x += 1</span></h2>
+<p>Pour écrire cela de manière plus concise, on utilise <code>x += 1</code>.</p>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> Python propose d’autres affectations avec opération :</p>
 <div class="columns" style="margin-top:-20px !important;">
@@ -696,14 +705,6 @@ variable = expression
 <div class="center-container">
 <p><code>x op= y</code> est équivalente à <code>x = x op y</code>.</p>
 </div>
-</div>
-</section>
-<section id="x-x-1-en-mémoire" class="slide level2">
-<h2><span class="title-code">x = x + 1</span> en mémoire</h2>
-<div class="r-stack">
-<p><img data-src="media/14-affectation-operation-1.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="1"></p>
-<p><img data-src="media/14-affectation-operation-2.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="2"></p>
-<p><img data-src="media/14-affectation-operation-3.svg" class="fragment keep-hue" style="width:88.0%" data-fragment-index="3"></p>
 </div>
 </section>
 <section id="affectation-multiple" class="slide level2">
@@ -736,11 +737,15 @@ variable = expression
 <li><div style="max-width:70%; margin-bottom:50px;">
 Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : une suite d’instructions qui est exécutée ligne après ligne, quelle que soit l’entrée du programme.
 </div></li>
+</ul>
+<p><img data-src="media/sequence.png" class="absolute invert-colors" style="top: 90px; right: 200px; height: 180px; "></p>
+<div class="fragment">
+<ul>
 <li>Pour écrire des programmes plus intéressants, on utilisera des instructions qui permettent d’exécuter une séquence différente d’instructions selon qu’une certaine condition est vérifiée ou pas.</li>
 <li>On parle alors de <strong>structures conditionnelles</strong>.</li>
 </ul>
-<p><img data-src="media/sequence.png" class="absolute invert-colors" style="top: 90px; right: 200px; height: 180px; "></p>
 <p><img data-src="media/not-sequence.png" class="absolute invert-colors" style="bottom: 10px; right: 100px; height: 180px; "></p>
+</div>
 </section>
 <section id="linstruction-if" class="slide level2">
 <h2>L’instruction <span class="title-code">if</span></h2>
