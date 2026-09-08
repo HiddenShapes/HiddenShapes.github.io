@@ -420,14 +420,12 @@ Leonard Hardiman et Ghid Maatouk
 <h2>Déroulement du cours : Moodle</h2>
 <p>Toutes les informations importantes se trouvent sur le <a href="https://moodle.epfl.ch/course/view.php?id=16371">Moodle du cours</a>.</p>
 <ul>
-<li>Des anciens enregistrements de cours sont disponibles sur <a href="https://mediaspace.epfl.ch/channel/PREPA-025%2BInformatique%2Bet%2BCalcul%2BScientifique%2BICS%2BCMS/30431">la chaîne dédiée</a>.</li>
-<li>Les exercices auront lieu chaque <strong>mercredi de 10h15 à 12h00</strong>, dans les salles suivantes :</li>
-</ul>
+<li class="fragment"><p>Des anciens enregistrements de cours sont disponibles sur <a href="https://mediaspace.epfl.ch/channel/PREPA-025%2BInformatique%2Bet%2BCalcul%2BScientifique%2BICS%2BCMS/30431">la chaîne dédiée</a>.</p></li>
+<li class="fragment"><p>Les exercices auront lieu chaque <strong>mercredi de 10h15 à 12h00</strong>, dans les salles suivantes :</p>
 <div style="text-align: center; margin-top:-20px;">
 <p><strong>CO 020, CO 021, CO 023 (salles avec ordinateurs)<br> CM 1 104, CM 1 106 (salles sans ordinateurs). </strong></p>
-</div>
-<ul>
-<li>Les exercices sont des travaux pratiques sur ordinateur et sont accessibles sur la plateforme <a href="https://noto.epfl.ch">Noto</a> de l’Epfl.</li>
+</div></li>
+<li class="fragment"><p>Les exercices sont des travaux pratiques sur ordinateur et sont accessibles sur la plateforme <a href="https://noto.epfl.ch">Noto</a> de l’Epfl.</p></li>
 </ul>
 </section>
 <section id="plan-du-cours" class="slide level2">
@@ -509,8 +507,12 @@ Comment exploiter l’information ?
 <p>Python exécute les instructions <strong>ligne par ligne</strong>, de haut en bas.</p>
 <ul>
 <li>Il exécute immédiatement chaque instruction rencontrée</li>
+</ul>
+<div class="fragment">
+<ul>
 <li>Les <strong>commentaires</strong> (précédés de <code>#</code>) sont ignorés, même au milieu d’une ligne</li>
 </ul>
+</div>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> <code>print</code> est l’outil qui permet d’afficher une ou plusieurs valeurs. Nous l’utiliserons dès maintenant pour voir ce que fait notre code ; nous y reviendrons en détail plus tard.</p>
 </div>
@@ -558,15 +560,21 @@ Comment exploiter l’information ?
 <h3 id="types-numériques"><u>Types numériques :</u></h3>
 <ul>
 <li>Opérations arithmétiques usuelles : <code>+</code>, <code>-</code>, <code>*</code> et <code>/</code>.</li>
-<li>L’opérateur <code>**</code> calcule des <strong>puissances réelles</strong>.</li>
-<li>Les opérateurs <code>//</code> et <code>%</code> calculent respectivement le <strong>quotient</strong> et le <strong>reste</strong> de la division entière (voir Série 1).</li>
 </ul>
+<ul>
+<li class="fragment">L’opérateur <code>**</code> calcule des <strong>puissances réelles</strong>.</li>
+<li class="fragment">Les opérateurs <code>//</code> et <code>%</code> calculent respectivement le <strong>quotient</strong> et le <strong>reste</strong> de la division entière (voir Série 1).</li>
+</ul>
+<div class="fragment">
 <p><span class="remark">Remarque.</span> Dans un calcul, un <code>int</code> sera considéré comme un <code>float</code> au besoin.</p>
+</div>
 <h3 id="strings"><u>Strings :</u></h3>
 <ul>
 <li><code>+</code> effectue la <strong>concaténation</strong> de deux <code>str</code>.</li>
-<li><code>str * int</code> permet la concaténation d’un <code>str</code> avec lui même.</li>
-<li>On peut, bien sûr, combiner ces deux opérations.</li>
+</ul>
+<ul>
+<li class="fragment"><code>str * int</code> permet la concaténation d’un <code>str</code> avec lui même.</li>
+<li class="fragment">On peut, bien sûr, combiner ces deux opérations.</li>
 </ul>
 </section>
 <section id="casting" class="slide level2">
@@ -607,7 +615,7 @@ variable = expression
 </ul>
 </div><div class="column" style="width:55%;">
 <div class="r-stack">
-<p><img data-src="media/12-affectation-1.svg" class="fragment current-visible keep-hue" style="width:100.0%" data-fragment-index="1"></p>
+<p><img data-src="media/12-affectation-1.svg">{.fragment| print(‘Ligne 1’) ; print(‘Ligne 3’) .current-visible fragment-index=1 .keep-hue width=“100%”}</p>
 <p><img data-src="media/12-affectation-2.svg" class="fragment keep-hue" style="width:100.0%" data-fragment-index="2"></p>
 </div>
 </div></div>

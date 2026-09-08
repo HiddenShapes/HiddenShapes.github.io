@@ -860,3 +860,16 @@ html.ics-light .reveal .flux-out {
 html.ics-light .reveal .flux-out-label {
     color: #1565c0;
 }
+
+/* Première puce visible, la suite incrémentale.
+
+   Écrire une puce, puis ::: {.incremental} pour les suivantes, produit deux
+   <ul> frères : quarto ne garde aucun div.incremental, il pose seulement
+   .fragment sur les <li>. Or reveal met les listes en display:inline-block, donc
+   les deux listes se placent côte à côte ; trop larges, elles passent à la ligne
+   et laissent un trou. Les remettre en display:block les empile, et annuler la
+   marge entre elles rend l'écart identique à celui de deux puces d'une même
+   liste (15 px mesurés dans les deux cas). Le !important est nécessaire : la
+   marge basse de 20 px vient d'une règle plus spécifique. */
+.reveal ul:has(+ ul) { display: block; margin-bottom: 0 !important; }
+.reveal ul + ul      { display: block; margin-top: 0 !important; }
