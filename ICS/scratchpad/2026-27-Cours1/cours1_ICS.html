@@ -684,8 +684,12 @@ variable = expression
 <p><img data-src="media/14-affectation-operation-3.svg" class="fragment keep-hue" style="width:88.0%" data-fragment-index="3"></p>
 </div>
 </section>
-<section id="x-1" class="slide level2">
-<h2><span class="title-code">x += 1</span></h2>
+<section id="affectation-avec-opération-1" class="slide level2">
+<h2>Affectation avec opération</h2>
+<p>Si <code>x</code> est déjà une variable, il n’y a aucune raison pour que nous ne puissions pas lui réaffecter une expression qui contient <code>x</code> !</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pour écrire cela de manière plus concise, on utilise <code>x += 1</code>.</p>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> Python propose d’autres affectations avec opération :</p>
@@ -710,8 +714,8 @@ variable = expression
 <section id="affectation-multiple" class="slide level2">
 <h2>Affectation multiple</h2>
 <p>Python permet d’affecter <strong>plusieurs variables en une seule ligne</strong> :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span></span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span></span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cette opération fonctionne ainsi :</p>
 <ul>
 <li>Python évalue d’abord toutes les expressions à droite du <code>=</code> (ici <code>3</code> et <code>4</code>).</li>
@@ -744,14 +748,14 @@ Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : u
 <li>Pour écrire des programmes plus intéressants, on utilisera des instructions qui permettent d’exécuter une séquence différente d’instructions selon qu’une certaine condition est vérifiée ou pas.</li>
 <li>On parle alors de <strong>structures conditionnelles</strong>.</li>
 </ul>
-<p><img data-src="media/not-sequence.png" class="absolute invert-colors" style="bottom: 10px; right: 100px; height: 180px; "></p>
+<p><img data-src="media/not-sequence.png" class="absolute invert-colors" style="bottom: 30px; right: 100px; height: 180px; "></p>
 </div>
 </section>
 <section id="linstruction-if" class="slide level2">
 <h2>L’instruction <span class="title-code">if</span></h2>
 <p>L’instruction <code>if</code> permet d’évaluer une condition, puis d’exécuter un bloc d’instructions si la condition est évaluée à <code>True</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>conditionA</code> : une expression qui s’évalue à <code>True</code> ou à <code>False</code>.</li>
 <li><code>blocA</code> : le bloc d’instructions exécuté <strong>uniquement si</strong> <code>conditionA</code> est vraie.</li>
@@ -761,10 +765,10 @@ Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : u
 <section id="linstruction-else" class="slide level2">
 <h2>L’instruction <span class="title-code">else</span></h2>
 <p>L’instruction <code>else</code> (facultative) suit une instruction <code>if</code> et permet d’exécuter un bloc alternatif lorsque la condition du <code>if</code> est évaluée à <code>False</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    blocB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    blocB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Si <code>conditionA</code> est vraie, c’est <code>blocA</code> qui est exécuté ; sinon, c’est <code>blocB</code>.</li>
 <li><strong>Exactement un</strong> des deux blocs est donc exécuté.</li>
@@ -774,33 +778,31 @@ Jusqu’ici, on ne sait écrire qu’un <strong>programme linéaire</strong> : u
 <section id="linstruction-elif" class="slide level2">
 <h2>L’instruction <span class="title-code">elif</span></h2>
 <p>L’instruction <code>elif</code> (contraction de «else if»), également facultative, permet de tester <strong>plusieurs conditions successives</strong> après un <code>if</code> initial.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> conditionB:</span>
-<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    blocB</span>
-<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a>    blocC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    blocA</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> conditionB:</span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>    blocB</span>
+<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a>    blocC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Python évalue les conditions dans l’ordre et exécute le bloc de la <strong>première</strong> qui est vraie.</li>
 <li>Les suivants sont <strong>ignorés</strong>, même si leur condition est vraie.</li>
 <li>Le <code>else</code> final reste <strong>facultatif</strong> : il attrape tous les cas restants.</li>
 </ul>
-<div class="fragment">
 <p><span class="remark">Remarque.</span> On peut enchaîner autant de <code>elif</code> que l’on veut.</p>
-</div>
 </section>
 <section id="remarques-finales-sur-ifelseelif" class="slide level2">
 <h2>Remarques finales sur <span class="title-code">if</span>/<span class="title-code">else</span>/<span class="title-code">elif</span></h2>
 <ul>
-<li>Un bloc de code vide après <code>if</code>/<code>else</code>/<code>elif</code> est <strong>illégal</strong>. Utilisez l’instruction <code>pass</code>.</li>
+<li><p>Un bloc de code vide après <code>if</code>/<code>else</code>/<code>elif</code> est <strong>illégal</strong>. Utilisez l’instruction <code>pass</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA:</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>On peut utiliser un <code>if</code> n’importe où dans notre code, y compris à l’intérieur d’un <code>if</code> ou d’un <code>else</code> précédent.</p></li>
-<li><p>Si le bloc de code que vous souhaitez après un <code>if</code>/<code>else</code>/<code>elif</code> ne prend qu’une <strong>seule ligne</strong>, vous pouvez éviter l’indentation et simplement l’écrire sur la même ligne.</p></li>
+<li class="fragment"><p>On peut utiliser un <code>if</code> n’importe où dans notre code, y compris à l’intérieur d’un <code>if</code> ou d’un <code>else</code> précédent.</p></li>
+<li class="fragment"><p>Si le bloc de code que vous souhaitez après un <code>if</code>/<code>else</code>/<code>elif</code> ne prend qu’une <strong>seule ligne</strong>, vous pouvez éviter l’indentation et simplement l’écrire sur la même ligne.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA: blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> conditionA: blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </section>
     </div>
