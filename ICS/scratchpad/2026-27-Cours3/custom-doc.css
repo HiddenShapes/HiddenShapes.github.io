@@ -220,3 +220,35 @@ body {
     padding-bottom: .3em;
   }
 }
+
+/* Encadré et colonnes de « Qu'est-ce que l'informatique ? ». Ces classes
+   n'existaient que dans custom.css, donc côté deck : dans les notes, le bloc
+   s'affichait sans cadre, sans colonnes et sans pastilles. Reprises ici en
+   version claire, avec des tailles adaptées au corps du document (celles du
+   deck sont relatives à une base bien plus grande). */
+.env-box { border: 1px solid #c7ccd4; border-radius: 6px; overflow: hidden;
+           box-shadow: 2px 2px 5px rgba(0,0,0,.08); margin: 1.2em 0; }
+.env-title { color: #1565c0; font-weight: 700; padding: .5em .75em;
+             border-bottom: 1px solid #c7ccd4; }
+.env-body { padding: .6em .75em; }
+.env-body p:last-child { margin-bottom: 0; }
+.connector { text-align: center; font-style: italic; color: #5a6675;
+             font-size: .9em; letter-spacing: .03em; margin: .7em 0 .6em; }
+.split-row { display: flex; gap: .8em; align-items: stretch; }
+.split-box { flex: 1; border-radius: 10px; padding: .7em .9em; }
+.split-data { background: rgba(59,130,246,.10);
+              border: 1.5px solid rgba(96,165,250,.5); }
+.split-process { background: rgba(180,120,10,.10);
+                 border: 1.5px solid rgba(163,91,0,.45); }
+.split-header { font-weight: 700; margin-bottom: .15em; }
+.split-data .split-header { color: #1d4ed8; }
+.split-process .split-header { color: #92400e; }
+.split-subtitle { font-size: .9em; color: #5a6675; margin-bottom: .6em; }
+/* Quarto emballe les pastilles dans un <p> : on neutralise ses marges plutôt
+   que d'utiliser flex, qui ne verrait que ce <p> comme unique enfant. */
+.tag-list p { margin: 0; }
+.tag { display: inline-block; font-size: .82em; font-weight: 500;
+       padding: .25em .6em; border-radius: 20px; margin: 0 .3em .3em 0; }
+.tag-blue { background: rgba(59,130,246,.16); color: #1e40af; }
+.tag-amber { background: rgba(180,120,10,.16); color: #92400e; }
+@media (max-width: 600px) { .split-row { flex-direction: column; } }
