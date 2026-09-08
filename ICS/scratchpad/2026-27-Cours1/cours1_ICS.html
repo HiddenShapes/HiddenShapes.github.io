@@ -661,8 +661,8 @@ variable = expression
 <p><span class="remark">Résumé.</span> <code>x = y</code> ne crée pas un lien entre <code>x</code> et <code>y</code>, mais seulement un lien entre <code>x</code> et <strong>l’objet référencé</strong> par <code>y</code>.</p>
 </div>
 </section>
-<section id="var2-var1-en-mémoire" class="slide level2">
-<h2><span class="title-code">var2 = var1</span> en mémoire</h2>
+<section id="y-x-en-mémoire" class="slide level2">
+<h2><span class="title-code">y = x</span> en mémoire</h2>
 <div class="r-stack">
 <p><img data-src="media/13-var2-var1-1.svg" class="fragment current-visible keep-hue" style="width:92.0%" data-fragment-index="1"></p>
 <p><img data-src="media/13-var2-var1-2.svg" class="fragment current-visible keep-hue" style="width:92.0%" data-fragment-index="2"></p>
@@ -679,7 +679,7 @@ variable = expression
 <section id="x-x-1-en-mémoire" class="slide level2">
 <h2><span class="title-code">x = x + 1</span> en mémoire</h2>
 <div class="r-stack">
-<p><img data-src="media/14-affectation-operation-1.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="1"></p>
+<p><img data-src="media/14-affectation-operation-1.svg" class="current-visible keep-hue" style="width:88.0%" data-fragment-index="1"></p>
 <p><img data-src="media/14-affectation-operation-2.svg" class="fragment current-visible keep-hue" style="width:88.0%" data-fragment-index="2"></p>
 <p><img data-src="media/14-affectation-operation-3.svg" class="fragment keep-hue" style="width:88.0%" data-fragment-index="3"></p>
 </div>
@@ -690,7 +690,9 @@ variable = expression
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Pour écrire cela de manière plus concise, on utilise <code>x += 1</code>.</p>
+<ul>
+<li>Pour écrire cela de manière plus concise, on utilise <code>x += 1</code>.</li>
+</ul>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> Python propose d’autres affectations avec opération :</p>
 <div class="columns" style="margin-top:-20px !important;">
