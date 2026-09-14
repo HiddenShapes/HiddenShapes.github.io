@@ -634,6 +634,8 @@ Leonard Hardiman et Ghid Maatouk
 <section id="représentation-de-listes-en-mémoire" class="slide level2 smaller">
 <h2>Représentation de listes en mémoire</h2>
 <p><span class="remark">Rappel.</span> <code>L2 = L1.copy()</code> crée une <strong>nouvelle liste</strong>, qui n’est pas le même objet que <code>L1</code> : les deux évoluent donc de manière <strong>indépendante</strong>. Pourtant, comme illustré ci-dessous, avec une <strong>liste de listes</strong>, la copie suit parfois les modifications de <code>L1</code>, et parfois non.</p>
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="3" style="width: 100%; display: block;">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement prévisible</span></span>
@@ -660,15 +662,16 @@ L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3, 5], [2, 4]]
 </div>
 </div>
 </div></div>
-</section>
-<section id="représentation-de-listes-en-mémoire-1" class="slide level2 smaller">
-<h2>Représentation de listes en mémoire</h2>
+</div>
+<div class="fragment" data-fragment-index="3" style="width: 100%; display: block;">
 <p>Pour comprendre, il faut réfléchir à la façon dont les listes Python sont implémentées en mémoire.</p>
 <ul>
 <li>Une liste Python est stockée en mémoire comme un bloc contigu de <strong>références</strong> aux éléments de la liste.</li>
 <li>Une référence est l’<strong>adresse en mémoire</strong> de l’élément auquel elle se réfère.</li>
 <li>Ainsi, Python peut allouer efficacement l’espace de stockage d’une liste, même si les éléments sont arbitrairement grands (par exemple dans le cas d’une liste de listes).</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="le-comportement-prévisible" class="slide level2 smaller">
 <h2>Le comportement prévisible</h2>
