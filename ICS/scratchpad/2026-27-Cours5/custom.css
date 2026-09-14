@@ -880,3 +880,15 @@ html.ics-light .reveal .flux-out-label {
    qui vise deux <ul> voisins, ne voit pas. */
 .reveal ul:has(+ div.fragment > ul) { display: block; margin-bottom: 0 !important; }
 .reveal ul + div.fragment > ul      { display: block; margin-top: 0 !important; }
+
+/* Sortie compacte sous un bloc de code (cours 4, slides des nuages) : la
+   boîte de .flux-out, sans étiquette et à la taille du code, pour tenir sous
+   le code d'une slide {.smaller} qui porte aussi une figure. Le sélecteur doit
+   battre « section.smaller *:not(...) », qui remet toute taille à 1em. */
+.reveal section div.flux-out.compact,
+.reveal section.smaller div.flux-out.compact {
+    margin-top: 6px;
+    padding: 6px 14px;
+    font-size: 0.75em;
+    line-height: 1.35;
+}
