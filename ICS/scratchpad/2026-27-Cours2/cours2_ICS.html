@@ -458,12 +458,12 @@ Leonard Hardiman et Ghid Maatouk
 <h2>Des conditions non-booléennes</h2>
 <p>Dans une instruction <code>if</code>, si on donne une condition qui s’évalue à un objet qui n’est pas de type <code>bool</code>, Python essaye de <strong>caster</strong> cet objet en un <code>bool</code>.</p>
 <ul>
-<li>Le nombre <code>0</code> (<code>float</code> ou <code>int</code>) est casté en <code>False</code>, et tout autre nombre en <code>True</code>.</li>
+<li>Le nombre <span class="math inline">\(0\)</span> (<code>float</code> ou <code>int</code>) est casté en <code>False</code>, et tout autre nombre en <code>True</code>.</li>
 <li>Un <code>str</code> vide est casté en <code>False</code>, et tout autre <code>str</code> en <code>True</code>.</li>
 </ul>
 <p>En général, si un objet a une valeur « vide », il sera casté en <code>False</code>, sinon en <code>True</code>.</p>
 </section>
-<section id="combiner-des-expressions-booléennes" class="slide level2">
+<section id="combiner-des-expressions-booléennes" class="slide level2 smaller">
 <h2>Combiner des expressions booléennes</h2>
 <p>On peut combiner les valeurs de plusieurs expressions booléennes avec les opérateurs <code>and</code>, <code>or</code> et <code>not</code>.</p>
 <div class="center-container">
@@ -475,7 +475,7 @@ Leonard Hardiman et Ghid Maatouk
 <p><img data-src="media/not_table.svg" class="invert-colors" height="145"></p>
 </div></div>
 </div>
-<p>Le fonctionnement de ces combinaisons est intuitif, mais nous le précisons ici à titre de référence.</p>
+<p><span class="remark">Remarque.</span> Comme <code>*</code> passe avant <code>+</code>, ces opérateurs ont une <strong>priorité</strong> : les comparaisons (<code>&lt;</code>, <code>==</code>, …) sont évaluées d’abord, puis <code>not</code>, puis <code>and</code>, et enfin <code>or</code>. Ainsi, <code>a or b and c</code> se lit <code>a or (b and c)</code>. En cas de doute, ajoutez des parenthèses. Voir l’exercice 1 de la série 2.</p>
 </section>
 <section id="boucles-et-itérations" class="slide level2">
 <h2>Boucles et itérations</h2>
