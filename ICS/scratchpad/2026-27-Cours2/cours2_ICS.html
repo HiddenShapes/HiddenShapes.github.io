@@ -619,7 +619,9 @@ Leonard Hardiman et Ghid Maatouk
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condition:</span>
 <span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> variable <span class="kw">in</span> itérable:</span>
 <span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>        blocA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p><span class="remark">Remarque.</span> Le nombre d’itérations de la boucle intérieure peut dépendre de la variable d’itération de la boucle extérieure.</p>
+</div>
 </section>
 <section id="autres-structures-itérables" class="slide level2">
 <h2>Autres structures itérables</h2>
@@ -644,15 +646,19 @@ Leonard Hardiman et Ghid Maatouk
 <h2>Les tuples</h2>
 <ul>
 <li>Un <strong>tuple</strong> est une structure qui permet de regrouper plusieurs objets dans un seul objet.</li>
-<li>Les tuples se créent avec des <strong>parenthèses</strong> <code>()</code> et les éléments sont séparés par des virgules. Ils peuvent contenir des éléments de <strong>types différents</strong> : <code>int</code>, <code>float</code>, <code>str</code>…</li>
-<li>Comme les <code>str</code>, les tuples sont indexables : on peut accéder à chaque élément par sa position, l’indexation commençant à <code>0</code>.</li>
-<li>Ils sont aussi itérables, donc on peut les parcourir avec une boucle <code>for</code>.</li>
-<li>On peut aussi les parcourir en utilisant les indices.</li>
 </ul>
+<ul>
+<li class="fragment">Les tuples se créent avec des <strong>parenthèses</strong> <code>()</code> et les éléments sont séparés par des virgules. Ils peuvent contenir des éléments de <strong>types différents</strong> : <code>int</code>, <code>float</code>, <code>str</code>…</li>
+<li class="fragment">Comme les <code>str</code>, les tuples sont indexables : on peut accéder à chaque élément par sa position, l’indexation commençant à <code>0</code>.</li>
+<li class="fragment">Ils sont aussi itérables, donc on peut les parcourir avec une boucle <code>for</code>.</li>
+<li class="fragment">On peut aussi les parcourir en utilisant les indices.</li>
+</ul>
+<div class="fragment">
 <p><span class="remark">Remarque.</span> Comme pour les <code>str</code>, essayer d’accéder à un index qui n’existe pas provoque une <strong>erreur</strong>. De même, on peut faire des calculs sur un tuple : <code>len</code>, <code>max</code>, <code>min</code>, <code>sum</code>…</p>
 <p><span class="remark">Remarque.</span> Pour créer un tuple à <strong>un seul élément</strong>, il faut une virgule après l’élément : <code>(5,)</code> est un tuple, alors que <code>(5)</code> est simplement le nombre <code>5</code> entre parenthèses.</p>
+</div>
 </section>
-<section id="casting-en-tuple" class="slide level2 smaller">
+<section id="casting-en-tuple" class="slide level2">
 <h2>Casting en <span class="title-code">tuple</span></h2>
 <p>Comme <code>int</code>, <code>float</code> et <code>str</code> au Cours 1, <code>tuple</code> permet de <strong>caster</strong> un objet : <code>tuple(itérable)</code> crée un nouveau tuple, qui contient les éléments que parcourrait une boucle <code>for</code> sur cet itérable.</p>
 <div class="columns">
