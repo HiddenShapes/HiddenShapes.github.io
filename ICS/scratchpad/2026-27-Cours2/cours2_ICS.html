@@ -426,7 +426,8 @@ Leonard Hardiman et Ghid Maatouk
 </ul>
 <div class="fragment">
 <p>Qu’affiche le code suivant ?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span> <span class="op">&lt;</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span> <span class="op">&lt;</span> <span class="dv">4</span></span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="les-conditions-booléennes" class="slide level2">
@@ -642,30 +643,59 @@ Leonard Hardiman et Ghid Maatouk
 <li>On peut aussi les parcourir en utilisant les indices.</li>
 </ul>
 <p><span class="remark">Remarque.</span> Comme pour les <code>str</code>, essayer d’accéder à un index qui n’existe pas provoque une <strong>erreur</strong>. De même, on peut faire des calculs sur un tuple : <code>len</code>, <code>max</code>, <code>min</code>, <code>sum</code>…</p>
+<p><span class="remark">Remarque.</span> Pour créer un tuple à <strong>un seul élément</strong>, il faut une virgule après l’élément : <code>(5,)</code> est un tuple, alors que <code>(5)</code> est simplement le nombre <code>5</code> entre parenthèses.</p>
+</section>
+<section id="casting-en-tuple" class="slide level2 smaller">
+<h2>Casting en <span class="title-code">tuple</span></h2>
+<p>Comme <code>int</code>, <code>float</code> et <code>str</code> au Cours 1, <code>tuple</code> permet de <strong>caster</strong> un objet : <code>tuple(itérable)</code> crée un nouveau tuple, qui contient les éléments que parcourrait une boucle <code>for</code> sur cet itérable.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>À partir d’un <code>range</code> :</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">range</span>(<span class="dv">5</span>))</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment" data-fragment-index="1">
+<div class="flux-out compact">
+(0, 1, 2, 3, 4)
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>À partir d’une <code>str</code>, chaque caractère devient un élément :</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">tuple</span>(<span class="st">'pizza'</span>)</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment" data-fragment-index="2">
+<div class="flux-out compact">
+('p', 'i', 'z', 'z', 'a')
+</div>
+</div>
+</div></div>
 </section>
 <section id="packing-et-unpacking" class="slide level2">
 <h2>Packing et Unpacking</h2>
 <p>Python permet de <strong>pack</strong> (emballer) plusieurs valeurs en un seul tuple : il suffit de les séparer par des virgules, sans même avoir besoin de parenthèses.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> <span class="dv">5</span>, <span class="dv">10</span>  <span class="co"># Packing : équivaut à (5, 10)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> <span class="dv">5</span>, <span class="dv">10</span>  <span class="co"># Packing : équivaut à (5, 10)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Python permet aussi de <strong>unpack</strong> (déballer) un tuple en affectant ses éléments à plusieurs variables en une seule fois. Par exemple, les deux codes suivants sont équivalents :</p>
 <div class="columns">
 <div class="column" style="width:57%;">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coordonnées  <span class="co"># Unpacking du tuple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> coordonnées  <span class="co"># Unpacking du tuple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:43%;">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> coordonnées[<span class="dv">0</span>]</span>
-<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> coordonnées[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>coordonnées <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> coordonnées[<span class="dv">0</span>]</span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> coordonnées[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <p><span class="remark">Attention.</span> Python peut seulement faire un unpacking si le nombre de variables à gauche est exactement la longueur du <code>tuple</code> à droite.</p>
 </section>
 <section id="remarques-sur-le-packingunpacking" class="slide level2">
 <h2>Remarques sur le Packing/Unpacking</h2>
 <p>En fait, vous avez déjà utilisé le unpacking de tuples sans le savoir : dans les <strong>affectations multiples</strong> du Cours 1.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>  <span class="co"># Crée un tuple (1, 2, 3) puis le unpack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>  <span class="co"># Crée un tuple (1, 2, 3) puis le unpack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><span class="remark">Remarque.</span> En réfléchissant aux tuples, on voit que l’affectation multiple permet d’<strong>échanger</strong> les valeurs de deux variables, sans avoir besoin d’une variable temporaire.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x  <span class="co"># Équivaut à : x, y = (y, x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> y, x  <span class="co"># Équivaut à : x, y = (y, x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="conditions-dappartenance-in" class="slide level2">
