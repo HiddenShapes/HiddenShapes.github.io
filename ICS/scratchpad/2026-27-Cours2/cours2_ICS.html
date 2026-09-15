@@ -476,7 +476,7 @@ Leonard Hardiman et Ghid Maatouk
 <p><img data-src="media/not_table.svg" class="invert-colors" height="145"></p>
 </div></div>
 </div>
-<p><span class="remark">Remarque.</span> Comme <code>*</code> passe avant <code>+</code>, ces opérateurs ont une <strong>priorité</strong> : les comparaisons (<code>&lt;</code>, <code>==</code>, …) sont évaluées d’abord, puis <code>not</code>, puis <code>and</code>, et enfin <code>or</code>. Ainsi, <code>a or b and c</code> se lit <code>a or (b and c)</code>. En cas de doute, ajoutez des parenthèses. Voir l’exercice 1 de la série 2.</p>
+<p><span class="remark">Remarque.</span> Comme <code>*</code> passe avant <code>+</code>, ces opérateurs ont une <strong>priorité</strong> : <code>not</code> passe avant <code>and</code>, qui passe avant <code>or</code>. Ainsi, <code>a or b and c</code> se lit <code>a or (b and c)</code>. En cas de doute, ajoutez des parenthèses. Voir l’exercice 1 de la série 2.</p>
 </section>
 <section id="boucles-et-itération" class="slide level2">
 <h2>Boucles et itération</h2>
