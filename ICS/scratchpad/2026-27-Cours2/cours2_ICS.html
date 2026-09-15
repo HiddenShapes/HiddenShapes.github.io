@@ -481,7 +481,9 @@ Leonard Hardiman et Ghid Maatouk
 <p><img data-src="media/not_table.svg" class="invert-colors" height="145"></p>
 </div></div>
 </div>
+<div class="fragment">
 <p><span class="remark">Remarque.</span> Comme <code>*</code> passe avant <code>+</code>, ces opérateurs ont une <strong>priorité</strong> : <code>not</code> passe avant <code>and</code>, qui passe avant <code>or</code>. Ainsi, <code>a or b and c</code> se lit <code>a or (b and c)</code>. En cas de doute, ajoutez des parenthèses. Voir l’exercice 1 de la série 2.</p>
+</div>
 </section>
 <section id="boucles-et-itération" class="slide level2">
 <h2>Boucles et itération</h2>
@@ -530,9 +532,9 @@ Leonard Hardiman et Ghid Maatouk
 <p><span class="remark">Explication.</span> À chaque itération, on ajoute le compteur à l’accumulateur, puis on incrémente le compteur. La boucle s’arrête quand le compteur dépasse <code>n</code>.</p>
 </div>
 </section>
-<section id="linstruction-break" class="slide level2 smaller">
+<section id="linstruction-break" class="slide level2">
 <h2>L’instruction <span class="title-code">break</span></h2>
-<p>L’instruction <code>break</code> permet de <strong>sortir immédiatement</strong> d’une boucle <code>while</code>, même si la condition est encore <code>True</code>. C’est utile pour arrêter une boucle selon une condition particulière.</p>
+<p>L’instruction <code>break</code> permet de <strong>sortir immédiatement</strong> d’une boucle <code>while</code>, même si la condition est encore <code>True</code>.</p>
 <p>Cherchons le plus petit commun multiple de deux entiers <code>a</code> et <code>b</code>.</p>
 <div class="fragment">
 <ul>
@@ -542,10 +544,10 @@ Leonard Hardiman et Ghid Maatouk
 <li>sans <code>break</code>, on met directement la condition d’arrêt dans le <code>while</code>.</li>
 </ul></li>
 </ul>
-<p><span class="remark">Remarque.</span> L’instruction <code>break</code> peut être utile, mais en général il vaut mieux l’éviter. Souvent, il vaut mieux être plus précis lors du choix de notre condition <code>while</code>.</p>
+<p><span class="remark">Remarque.</span> L’instruction <code>break</code> est utile, mais en général il vaut mieux l’éviter. Souvent, il vaut mieux être plus précis lors du choix de notre condition <code>while</code>.</p>
 </div>
 <div class="fragment">
-<p>Cela dit, <code>break</code> permet une chose qu’une condition <code>while</code> ne permet pas : <strong>sortir au milieu du bloc</strong>. La condition d’un <code>while</code> n’est testée qu’<strong>en haut</strong> de la boucle, donc la fin du bloc est toujours exécutée avant de sortir.</p>
+<p>Cela dit, <code>break</code> permet une chose qu’une condition <code>while</code> ne permet pas : <strong>sortir au milieu du bloc</strong>.</p>
 </div>
 </section>
 <section id="introduction-aux-boucles-for" class="slide level2">
