@@ -831,9 +831,10 @@ Décollage !</code></pre>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    tentatives <span class="op">+=</span> <span class="dv">1</span></span>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    nb_six <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lancer <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):  <span class="co"># toujours exactement 3 dés</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> randint(<span class="dv">1</span>, <span class="dv">6</span>) <span class="op">==</span> <span class="dv">6</span>:</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>            nb_six <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Triple 6 obtenu après'</span>, tentatives, <span class="st">'tentatives'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        dé <span class="op">=</span> randint(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dé <span class="op">==</span> <span class="dv">6</span>:</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>            nb_six <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Triple 6 obtenu après'</span>, tentatives, <span class="st">'tentatives'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Triple 6 obtenu après 262 tentatives</code></pre>
 </div>
