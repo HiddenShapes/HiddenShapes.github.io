@@ -558,6 +558,46 @@ une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retou
 </ul>
 <p><span class="remark">Remarque.</span> Ce tuple peut être récupéré tel quel, avec <code>t = fonction(...)</code>, ou <strong>unpacké</strong> aussitôt dans l’affectation, avec <code>a, b = fonction(...)</code>.</p>
 </section>
+<section id="flux-dexécution-return-x-y" class="slide level2">
+<h2>Flux d’exécution : <span class="title-code">return x, y</span></h2>
+<div class="flux-layout">
+<div class="flux-text">
+<ul>
+<li>
+le <code>return</code> <strong>pack</strong> les deux objets en un tuple ;
+</li>
+<li class="fragment" data-fragment-index="1">
+l’appel <strong>devient</strong> ce tuple ;
+</li>
+<li class="fragment" data-fragment-index="2">
+l’affectation le <strong>unpack</strong> : <code>a</code> vaut <code>2</code> et <code>b</code> vaut <code>9</code>.
+</li>
+</ul>
+</div>
+<div class="flux-code">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> min_max(t):</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">min</span>(t), <span class="bu">max</span>(t)</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>mesures <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">9</span>)</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> min_max(mesures)</span>
+<span id="cb6-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="flux-band" style="top: 50px; left: 78px; width: 328px;">
+
+</div>
+<div class="flux-band fragment" data-fragment-index="1" style="top: 230px; left: 124px; width: 250px;">
+
+</div>
+<svg class="flux-arrow fragment" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 420,66 H 538 Q 548,66 548,76 V 182 Q 548,192 538,192 H 259 Q 249,192 249,202 V 210"></path> </g> <circle cx="420" cy="66" r="4.5" fill="#ffd700"></circle> <path d="M 249,227 L 240,210 L 258,210 Z" fill="#ffd700"></path>
+</svg>
+<div class="flux-sub fragment" data-fragment-index="2" style="top: 229px;">
+<code class="sourceCode python">a, b <span class="op">=</span> <span class="flux-value" style="width: 16ch;">(2, 9)</span></code>
+</div>
+</div>
+</div>
+</section>
 <section id="note-deux-questions-à-ne-pas-confondre" class="slide level2">
 <h2>Note : deux questions à ne pas confondre</h2>
 <p>Ceci nous amène à une distinction (que je trouve utile).</p>
@@ -582,11 +622,11 @@ Les deux questions
 <li><p>Les paramètres optionnels doivent être spécifiés <strong>après</strong> les paramètres obligatoires dans la définition de la fonction.</p></li>
 <li><p>Lors de l’appel, si aucun argument n’est fourni pour un paramètre optionnel, la valeur par défaut est utilisée.</p></li>
 </ul>
-<div class="sourceCode" id="cb6" data-code-line-numbers="1|4|5"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="kw">def</span> fonction(obligatoire, optionnel <span class="op">=</span> défaut):</span>
-<span id="cb6-2"><a href=""></a>    [corps de la fonction]</span>
-<span id="cb6-3"><a href=""></a></span>
-<span id="cb6-4"><a href=""></a>fonction(x)        <span class="co"># optionnel prend la valeur défaut</span></span>
-<span id="cb6-5"><a href=""></a>fonction(x, y)     <span class="co"># optionnel prend la valeur y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-code-line-numbers="1|4|5"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="kw">def</span> fonction(obligatoire, optionnel <span class="op">=</span> défaut):</span>
+<span id="cb7-2"><a href=""></a>    [corps de la fonction]</span>
+<span id="cb7-3"><a href=""></a></span>
+<span id="cb7-4"><a href=""></a>fonction(x)        <span class="co"># optionnel prend la valeur défaut</span></span>
+<span id="cb7-5"><a href=""></a>fonction(x, y)     <span class="co"># optionnel prend la valeur y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="la-fonction-print" class="slide level2">
 <h2>La fonction <span class="title-code">print</span></h2>
@@ -670,11 +710,11 @@ Les deux questions
 <section id="global" class="slide level2">
 <h2><span class="title-code">global</span></h2>
 <p>Si, dans une fonction, on veut pouvoir réaffecter une variable définie globalement, il faut la déclarer comme globale <strong>dans la fonction</strong>, <strong>avant de l’affecter</strong>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python no-line-numbers code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>variable <span class="op">=</span> expression</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction():</span>
-<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> variable</span>
-<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">=</span> nouvelle_expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python no-line-numbers code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>variable <span class="op">=</span> expression</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction():</span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> variable</span>
+<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">=</span> nouvelle_expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ceci indiquera à l’interpréteur Python de ne pas enregistrer cette variable dans le registre local à la fonction, mais de toujours consulter le registre global pour accéder à l’objet référencé par cette variable.</p>
 </section>
 <section id="modularité" class="slide level2">
