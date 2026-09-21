@@ -466,6 +466,11 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
 <li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
 </ul>
+<div class="fragment">
+<ul>
+<li>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</li>
+</ul>
+</div>
 </section>
 <section id="flux-dexécution-dune-fonction" class="slide level2">
 <h2>Flux d’exécution d’une fonction</h2>
@@ -548,18 +553,10 @@ une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retou
 <ul>
 <li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
 <li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
-</ul>
-<div class="fragment">
-<ul>
-<li>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple : la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</li>
+<li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</p></li>
+<li><p>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple : la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</p></li>
 </ul>
 <p><span class="remark">Remarque.</span> Ce tuple peut être récupéré tel quel, avec <code>t = fonction(...)</code>, ou <strong>unpacké</strong> aussitôt dans l’affectation, avec <code>a, b = fonction(...)</code>.</p>
-</div>
 </section>
 <section id="note-deux-questions-à-ne-pas-confondre" class="slide level2">
 <h2>Note : deux questions à ne pas confondre</h2>
