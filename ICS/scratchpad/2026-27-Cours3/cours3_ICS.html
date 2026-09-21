@@ -465,10 +465,7 @@ Leonard Hardiman et Ghid Maatouk
 <ul>
 <li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
 <li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
-<li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</p></li>
-<li><p>Si l’instruction <code>return x, y</code> est exécutée, la fonction retourne les <strong>deux</strong> objets <code>x</code> et <code>y</code>, qui peuvent être affectés à deux variables, et de même pour n’importe quel nombre d’objets.</p></li>
 </ul>
-<p><span class="remark">Remarque.</span> Une fonction qui retourne plusieurs objets séparés par des virgules retourne en réalité un <strong>tuple</strong>.</p>
 </section>
 <section id="flux-dexécution-dune-fonction" class="slide level2">
 <h2>Flux d’exécution d’une fonction</h2>
@@ -546,6 +543,24 @@ une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retou
 </div>
 </div>
 </section>
+<section id="appeler-une-fonction-et-return-1" class="slide level2">
+<h2>Appeler une fonction et <span class="title-code">return</span></h2>
+<ul>
+<li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
+<li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple : la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</li>
+</ul>
+<p><span class="remark">Remarque.</span> Ce tuple peut être récupéré tel quel, avec <code>t = fonction(...)</code>, ou <strong>unpacké</strong> aussitôt dans l’affectation, avec <code>a, b = fonction(...)</code>.</p>
+</div>
+</section>
 <section id="note-deux-questions-à-ne-pas-confondre" class="slide level2">
 <h2>Note : deux questions à ne pas confondre</h2>
 <p>Ceci nous amène à une distinction (que je trouve utile).</p>
@@ -592,11 +607,17 @@ Les deux questions
 <h2>Paramètres optionnels : la fonction <span class="title-code">print</span></h2>
 <p>La fonction <code>print</code> admet deux paramètres optionnels : <code>sep</code> et <code>end</code>.</p>
 <ul>
-<li><p><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</p></li>
-<li><p><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</p></li>
+<li><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</li>
 </ul>
-<p><span class="remark">Remarque.</span> Écrire <code>sep = '-'</code> dans l’appel, c’est lier un argument à un paramètre par son nom. Voir <a href="arguments_nommes.html">cette page</a> sur les <strong>arguments nommés</strong>.</p>
+<div class="fragment">
+<ul>
+<li><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span class="remark">Remarque.</span> Écrire <code>sep = '-'</code> ou <code>end = '\n\n'</code> dans l’appel, c’est lier un argument à un paramètre par son nom. Voir <a href="arguments_nommes.html">cette page</a> sur les <strong>arguments nommés</strong>.</p>
 <p><span class="remark">Attention.</span> L’utilisation plus avancée de <code>print</code> (caractères d’échappement, f-strings, formatage des nombres) est décrite sur <a href="details_print.html">cette page</a>.</p>
+</div>
 </section>
 <section id="nombre-variable-de-paramètres" class="slide level2">
 <h2>Nombre variable de paramètres</h2>
@@ -616,15 +637,25 @@ Les deux questions
 <ul>
 <li><p>Lorsqu’une variable est créée dans un programme Python, les portions du programme qui peuvent y accéder sont <strong>la portée</strong> de cette variable.</p></li>
 <li><p>La portée d’une variable dépend de l’endroit du code où elle est définie.</p></li>
-<li><p>Une variable définie dans une fonction est dite <strong>locale</strong> (à cette fonction).</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Une variable définie dans une fonction est dite <strong>locale</strong> (à cette fonction).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><p>Une variable définie à l’extérieur de toute fonction est dite <strong>globale</strong>.</p></li>
 <li><p>Les règles pour déterminer la portée d’une variable sont les suivantes.</p></li>
 </ul>
+</div>
 </section>
 <section id="portée-de-variables-règles-i-et-ii" class="slide level2">
 <h2>Portée de variables : Règles I et II</h2>
 <p><span class="remark">Règle I.</span> Une variable locale à une fonction n’est <strong>pas accessible</strong> hors de cette fonction.</p>
+<div class="fragment">
 <p><span class="remark">Règle II.</span> Une variable globale <strong>est accessible</strong> à l’intérieur d’une fonction.</p>
+</div>
 <div class="fragment">
 <p><span class="attention">Attention.</span> Si on essaye de réaffecter une variable globale dans une fonction, Python va créer une variable <strong>locale</strong> qui a le même nom.</p>
 </div>
@@ -642,6 +673,11 @@ Les deux questions
 <section id="global" class="slide level2">
 <h2><span class="title-code">global</span></h2>
 <p>Si, dans une fonction, on veut pouvoir réaffecter une variable définie globalement, il faut la déclarer comme globale <strong>dans la fonction</strong>, <strong>avant de l’affecter</strong>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python no-line-numbers code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>variable <span class="op">=</span> expression</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction():</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> variable</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a>    variable <span class="op">=</span> nouvelle_expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ceci indiquera à l’interpréteur Python de ne pas enregistrer cette variable dans le registre local à la fonction, mais de toujours consulter le registre global pour accéder à l’objet référencé par cette variable.</p>
 </section>
 <section id="modularité" class="slide level2">
