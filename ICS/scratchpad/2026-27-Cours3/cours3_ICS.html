@@ -457,9 +457,9 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Le corps de la fonction doit suivre : c’est un bloc de code indenté.</p></li>
 <li><p>Le corps peut contenir une ou plusieurs instructions <code>return</code>. Ces instructions terminent l’exécution de la fonction et retournent un objet.</p></li>
 </ul>
-<div class="sourceCode" id="cb2" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
-<span id="cb2-2"><a href=""></a>    [corps de la fonction]</span>
-<span id="cb2-3"><a href=""></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python no-line-numbers code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [corps de la fonction]</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="remark">Remarque.</span> Une fonction peut prendre zéro paramètre.</p>
 </section>
 <section id="appeler-une-fonction-et-return" class="slide level2">
@@ -602,7 +602,7 @@ une fois le corps exécuté, on retourne à l’expression de l’appel, qui est
 </div>
 </div>
 </section>
-<section id="retourner-plusieurs-objets" class="slide level2">
+<section id="retourner-plusieurs-objets" class="slide level2 smaller">
 <h2>Retourner plusieurs objets</h2>
 <p>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple&nbsp;: la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</p>
 <p><span class="remark">Remarque.</span> Ce tuple peut être récupéré tel quel, avec <code>t = fonction(...)</code>, ou <strong>unpacké</strong> aussitôt dans l’affectation, avec <code>a, b = fonction(...)</code>.</p>
@@ -640,6 +640,11 @@ l’affectation le <strong>unpack</strong> : <code>a</code> vaut <code>2</code> 
 </svg>
 <div class="flux-sub fragment" data-fragment-index="2" style="top: 229px;">
 <code class="sourceCode python">a, b <span class="op">=</span> <span class="flux-value" style="width: 16ch;">(2, 9)</span></code>
+</div>
+<div class="fragment" data-fragment-index="2">
+<div class="flux-out compact" style="margin-top: 10px;">
+<span class="flux-out-label">Sortie</span>2 9
+</div>
 </div>
 </div>
 </div>
