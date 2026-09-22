@@ -413,6 +413,24 @@
     height: 312px;
 }
 
+/* Variante à sept lignes du bloc de flux (cours 3, slide du prix TTC) : même
+   grille, une ligne de moins, pour ne pas laisser de ligne vide en bas. Les
+   flèches gardent leur hauteur de 312 px, sinon leur viewBox serait écrasée. */
+.reveal .flux-code.lignes7,
+.reveal .flux-code.lignes7 div.sourceCode,
+.reveal .flux-code.lignes7 pre {
+    height: 276px;
+}
+
+/* Et une variante à neuf lignes (cours 3, slide des appels imbriqués). Les
+   flèches de cette slide portent alors viewBox="0 0 600 348" et height: 348px,
+   pour que l'unité du tracé reste le pixel. */
+.reveal .flux-code.lignes9,
+.reveal .flux-code.lignes9 div.sourceCode,
+.reveal .flux-code.lignes9 pre {
+    height: 348px;
+}
+
 .reveal .flux-code div.sourceCode,
 .reveal .flux-result div.sourceCode {
     margin: 0;
