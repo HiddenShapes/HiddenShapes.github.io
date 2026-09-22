@@ -715,7 +715,7 @@ Les deux questions
 </ul>
 <div class="fragment">
 <ul>
-<li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être des <strong>arguments nommés</strong>.</li>
+<li>Quand une fonction utilise <code>*args</code>, <strong>tous les paramètres qui suivent</strong> doivent être liés à des <strong>arguments nommés</strong>.</li>
 </ul>
 <p><span class="remark">Important.</span> Cette règle évite l’ambiguïté : sinon Python ne peut pas savoir si un argument fait partie du tuple <code>*args</code> ou s’il correspond à un paramètre suivant. Voir à nouveau la page sur les <a href="arguments_nommes.html">arguments nommés</a> pour une explication détaillée et un exemple.</p>
 </div>
@@ -934,16 +934,21 @@ le <code>return</code> de <code>vol_cylindre</code> remplace enfin l’appel ext
 </div>
 </div>
 </section>
-<section id="exemple-final" class="slide level2">
+<section id="exemple-final" class="slide level2 smaller">
 <h2>Exemple final</h2>
 <p>Écrivons un programme qui…</p>
 <ul>
 <li>accepte un entier de 1 à 9 ;</li>
 <li>compte jusqu’à cet entier en utilisant les adjectifs numéraux épelés <strong>sans voyelles</strong>.</li>
 </ul>
+<p>On nous donne la fonction qui nomme un chiffre : un tuple retient les neuf adjectifs, qu’on récupère par indexage.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjectif_numéral(i):</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>    noms <span class="op">=</span> (<span class="st">'un'</span>, <span class="st">'deux'</span>, <span class="st">'trois'</span>, <span class="st">'quatre'</span>, <span class="st">'cinq'</span>,</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="st">'six'</span>, <span class="st">'sept'</span>, <span class="st">'huit'</span>, <span class="st">'neuf'</span>)</span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> noms[i<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
+<p>Il ne reste qu’à écrire <code>afficher_numéraux_sans_voyelles</code> :</p>
 <ul>
-<li>Un tuple retient les neuf adjectifs, qu’on récupère par indexage.</li>
 <li>Une boucle parcourt les entiers de <code>1</code> à <code>n</code>, une autre parcourt les caractères de chaque adjectif.</li>
 <li>Un <code>if</code> ne laisse passer que les consonnes.</li>
 </ul>
