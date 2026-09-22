@@ -436,17 +436,19 @@ Leonard Hardiman et Ghid Maatouk
 <p><span class="remark">Le problème.</span> Le même calcul est écrit deux fois, car il faut les deux résultats à la fois. On aimerait l’écrire une seule fois et l’appeler à volonté : c’est le rôle d’une <strong>fonction</strong>.</p>
 </div>
 </section>
-<section id="les-fonctions-dans-python" class="slide level2">
-<h2>Les fonctions dans Python</h2>
-<p>En général, l’exploitation des données en Python passe par les <strong>fonctions</strong> :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(x):</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    [...]           <span class="co"># exploiter les données</span></span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> [...]  <span class="co"># stocker les données</span></span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>fonction(input_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Une fonction implémente une <strong>procédure</strong> qui peut être appelée plusieurs fois sur différentes données (<code>input_data</code>). Le <code>input_data</code> sera une collection d’objets, chacun ayant un certain type.</p>
+<section id="motivation-1" class="slide level2">
+<h2>Motivation</h2>
+<ul>
+<li>À l’aide des fonctions, on peut <strong>structurer</strong> son code : une fonction implémente une fonctionnalité. Le code est plus <strong>modulaire</strong> et plus facile à lire.</li>
+</ul>
+<div class="r-stack">
+<p><img data-src="media/30-fonction-boite.svg" class="keep-hue fragment fade-out" style="margin-top:-10px;;width:64.0%" data-fragment-index="1"></p>
+<p><img data-src="media/31-ppcm-boite.svg" class="keep-hue fragment" style="margin-top:-10px;;width:64.0%" data-fragment-index="1"></p>
+</div>
+<ul>
+<li><p>La fonction <strong>cache les détails</strong> de l’implémentation : le code est plus sûr et plus facile à débugger. On interagit avec elle en <strong>l’appelant</strong>, en lui fournissant des données en entrée et en récupérant des données en sortie.</p></li>
+<li><p>Le code de la fonction est écrit <strong>une seule fois</strong>, mais peut être appelé autant de fois qu’on veut.</p></li>
+</ul>
 </section>
 <section id="définir-une-fonction" class="slide level2">
 <h2>Définir une fonction</h2>
@@ -455,9 +457,9 @@ Leonard Hardiman et Ghid Maatouk
 <li><p>Le corps de la fonction doit suivre : c’est un bloc de code indenté.</p></li>
 <li><p>Le corps peut contenir une ou plusieurs instructions <code>return</code>. Ces instructions terminent l’exécution de la fonction et retournent un objet.</p></li>
 </ul>
-<div class="sourceCode" id="cb3" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
-<span id="cb3-2"><a href=""></a>    [corps de la fonction]</span>
-<span id="cb3-3"><a href=""></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="kw">def</span> fonction(paramètre1, paramètre2):</span>
+<span id="cb2-2"><a href=""></a>    [corps de la fonction]</span>
+<span id="cb2-3"><a href=""></a>    <span class="cf">return</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="remark">Remarque.</span> Une fonction peut prendre zéro paramètre.</p>
 </section>
 <section id="appeler-une-fonction-et-return" class="slide level2">
@@ -468,7 +470,7 @@ Leonard Hardiman et Ghid Maatouk
 </ul>
 <div class="fragment">
 <ul>
-<li>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</li>
+<li>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction, et la partie de l’expression qui représente l’appel est <strong>remplacée</strong> par la valeur retournée par cet appel. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</li>
 </ul>
 </div>
 </section>
@@ -482,41 +484,93 @@ Leonard Hardiman et Ghid Maatouk
 le <strong>corps</strong> de la fonction est initialement ignoré ;
 </li>
 <li class="fragment" data-fragment-index="1">
-lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
+lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction, les paramètres prenant la valeur des arguments ;
 </li>
-<li class="fragment" data-fragment-index="2">
-une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
+<li class="fragment" data-fragment-index="3">
+une fois le corps exécuté, on retourne à l’expression de l’appel, qui est <strong>remplacée</strong> par la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
 </li>
 </ul>
 </div>
 <div class="flux-code">
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(<span class="bu">bool</span>, x):</span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">bool</span>:</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prix_ttc(prix, taux):</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>    tva <span class="op">=</span> prix <span class="op">*</span> taux <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prix <span class="op">+</span> tva</span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span></span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prix_ttc(total, <span class="fl">8.1</span>), <span class="st">'CHF'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="flux-band fragment" data-fragment-index="1" style="top: 266px; left: 108px; width: 318px;">
+
+</div>
+<div class="flux-sub fragment" data-fragment-index="2" style="top: 49px;">
+<code class="sourceCode python">&nbsp;&nbsp;&nbsp;&nbsp;tva <span class="op">=</span> <span class="flux-value" style="width: 4ch;">70</span> <span class="op">*</span> <span class="flux-value" style="width: 4ch;">8.1</span> <span class="op">/</span> <span class="dv">100</span></code>
+</div>
+<div class="flux-sub fragment" data-fragment-index="4" style="top: 265px;">
+<code class="sourceCode python">print(<span class="flux-value" style="width: 20ch;">75.67</span>, <span class="st">'CHF'</span>)</code>
+</div>
+<svg class="flux-arrow fragment fade-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 414,33 H 560 Q 570,33 570,43 V 146 Q 570,156 560,156 H 45 Q 25,156 25,181"></path> </g> <circle cx="414" cy="33" r="4.5" fill="#ffd700"></circle> <path d="M 25,198 L 16,181 L 34,181 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 350,264 V 256 Q 350,246 360,246 H 560 Q 570,246 570,236 V 76 Q 570,66 560,66 H 458"></path> </g> <circle cx="350" cy="264" r="4.5" fill="#ffd700"></circle> <path d="M 441,66 L 458,57 L 458,75 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment" data-fragment-index="3" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 352,105 H 560 Q 570,105 570,115 V 146 Q 570,156 560,156 H 385 Q 375,156 375,166 V 246"></path> </g> <circle cx="352" cy="105" r="4.5" fill="#ffd700"></circle> <path d="M 375,263 L 366,246 L 384,246 Z" fill="#ffd700"></path>
+</svg>
+<div class="fragment" data-fragment-index="4">
+<div class="flux-out compact" style="margin-top: 10px;">
+<span class="flux-out-label">Sortie</span>75.67 CHF
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="flux-dexécution-dune-fonction-1" class="slide level2">
+<h2>Flux d’exécution d’une fonction</h2>
+<p>Les fonctions interrompent <strong>le flux</strong> normal du programme :</p>
+<div class="flux-layout">
+<div class="flux-text">
+<ul>
+<li>
+le <strong>corps</strong> de la fonction est initialement ignoré ;
+</li>
+<li class="fragment" data-fragment-index="1">
+lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
+</li>
+<li class="fragment" data-fragment-index="2">
+une fois le corps exécuté, on retourne à l’expression de l’appel, qui est <strong>remplacée</strong> par la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
+</li>
+</ul>
+</div>
+<div class="flux-code">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(flag, x):</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flag:</span>
 <span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">+</span> <span class="dv">4</span></span>
 <span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> <span class="dv">2</span></span>
 <span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
-<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">False</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">True</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
 <span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="flux-band fragment" data-fragment-index="1">
+<div class="flux-band fragment" data-fragment-index="1" style="width: 272px;">
 
 </div>
 <div class="flux-sub fragment" data-fragment-index="3">
-<code class="sourceCode python">b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> <span class="flux-value">2</span> <span class="op">+</span> a</code>
+<code class="sourceCode python">b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> <span class="flux-value" style="width: 17ch;">8</span> <span class="op">+</span> a</code>
 </div>
 <svg class="flux-arrow fragment fade-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
 <g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 372,30 H 528 Q 548,30 548,50 V 146 Q 548,166 528,166 H 45 Q 25,166 25,184"></path> </g> <circle cx="372" cy="30" r="4.5" fill="#ffd700"></circle> <path d="M 25,198 L 16,181 L 34,181 Z" fill="#ffd700"></path>
 </svg>
 <svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="1" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 281,228 V 184 Q 281,174 291,174 H 538 Q 548,174 548,164 V 76 Q 548,66 538,66 H 227"></path> </g> <circle cx="281" cy="228" r="4.5" fill="#ffd700"></circle> <path d="M 209,66 L 226,57 L 226,75 Z" fill="#ffd700"></path>
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 273,228 V 184 Q 273,174 283,174 H 538 Q 548,174 548,164 V 76 Q 548,66 538,66 H 227"></path> </g> <circle cx="273" cy="228" r="4.5" fill="#ffd700"></circle> <path d="M 209,66 L 226,57 L 226,75 Z" fill="#ffd700"></path>
 </svg>
 <svg class="flux-arrow fragment" data-fragment-index="2" viewbox="0 0 600 312" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 284,138 H 538 Q 548,138 548,148 V 164 Q 548,174 538,174 H 291 Q 281,174 281,184 V 210"></path> </g> <circle cx="284" cy="138" r="4.5" fill="#ffd700"></circle> <path d="M 281,227 L 272,210 L 290,210 Z" fill="#ffd700"></path>
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 336,105 H 538 Q 548,105 548,115 V 164 Q 548,174 538,174 H 283 Q 273,174 273,184 V 210"></path> </g> <circle cx="336" cy="105" r="4.5" fill="#ffd700"></circle> <path d="M 273,227 L 264,210 L 282,210 Z" fill="#ffd700"></path>
 </svg>
 </div>
 </div>
 </section>
-<section id="flux-dexécution-dune-fonction-1" class="slide level2">
+<section id="flux-dexécution-dune-fonction-2" class="slide level2">
 <h2>Flux d’exécution d’une fonction</h2>
 <p>Les fonctions interrompent <strong>le flux</strong> normal du programme :</p>
 <div class="flux-layout">
@@ -529,18 +583,18 @@ la <strong>définition</strong> de la fonction est initialement ignorée ;
 lors de l’<strong>appel</strong>, la prochaine ligne exécutée est la première ligne du <strong>corps</strong> de la fonction ;
 </li>
 <li>
-une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
+une fois le corps exécuté, on retourne à l’expression de l’appel, qui est <strong>remplacée</strong> par la valeur retournée (ou <code>None</code> si rien n’a été renvoyé).
 </li>
 </ul>
 </div>
 <div class="flux-result">
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(<span class="bu">bool</span>, x):</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">bool</span>:</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fonction(flag, x):</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flag:</span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">+</span> <span class="dv">4</span></span>
 <span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> <span class="dv">2</span></span>
 <span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
-<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">False</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> fonction(<span class="va">True</span>, <span class="dv">4</span>) <span class="op">+</span> a</span>
 <span id="cb5-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="flux-out">
 <span class="flux-out-label">Sortie</span>12
@@ -548,18 +602,10 @@ une fois le corps exécuté, on retourne à l’appel, qui prend la valeur retou
 </div>
 </div>
 </section>
-<section id="appeler-une-fonction-et-return-1" class="slide level2">
-<h2>Appeler une fonction et <span class="title-code">return</span></h2>
-<ul>
-<li><p>Une fois qu’une fonction a été définie, nous pouvons l’<strong>appeler</strong>. L’appel doit toujours avoir lieu <strong>après</strong> la définition.</p></li>
-<li><p>Pour appeler une fonction : le nom de la fonction suivi, entre parenthèses, d’un <strong>argument</strong> pour chaque paramètre.</p></li>
-<li><p>Dès qu’un <code>return</code> est exécuté, le programme quitte la fonction et l’appel <strong>devient</strong> l’objet retourné. Sans <code>return</code>, la fonction retourne l’objet <code>None</code>.</p></li>
-<li><p>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple : la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</p></li>
-</ul>
+<section id="retourner-plusieurs-objets" class="slide level2">
+<h2>Retourner plusieurs objets</h2>
+<p>Si l’instruction <code>return x, y</code> est exécutée, les deux objets sont <strong>packés</strong> en un tuple&nbsp;: la fonction retourne <code>(x, y)</code>, et l’affectation <code>a, b = fonction(...)</code> le <strong>unpack</strong> en deux variables. De même pour n’importe quel nombre d’objets.</p>
 <p><span class="remark">Remarque.</span> Ce tuple peut être récupéré tel quel, avec <code>t = fonction(...)</code>, ou <strong>unpacké</strong> aussitôt dans l’affectation, avec <code>a, b = fonction(...)</code>.</p>
-</section>
-<section id="flux-dexécution-return-x-y" class="slide level2">
-<h2>Flux d’exécution : <span class="title-code">return x, y</span></h2>
 <div class="flux-layout">
 <div class="flux-text">
 <ul>
@@ -598,9 +644,8 @@ l’affectation le <strong>unpack</strong> : <code>a</code> vaut <code>2</code> 
 </div>
 </div>
 </section>
-<section id="note-deux-questions-à-ne-pas-confondre" class="slide level2">
+<section id="note-deux-questions-à-ne-pas-confondre" class="slide level2 smaller">
 <h2>Note : deux questions à ne pas confondre</h2>
-<p>Ceci nous amène à une distinction (que je trouve utile).</p>
 <div class="env-box">
 <div class="env-title">
 Les deux questions
@@ -609,12 +654,13 @@ Les deux questions
 <p>Devant n’importe quel appel de fonction, on peut se poser deux questions :</p>
 <ul>
 <li><strong>que fait-elle ?</strong> son <em>effet</em> : afficher quelque chose, modifier une variable, dessiner…</li>
-<li><strong>que retourne-t-elle ?</strong> la <em>valeur</em> que l’appel prend une fois exécuté.</li>
+<li><strong>retourne-t-elle quelque chose ?</strong> et si oui, <strong>quoi ?</strong> la <em>valeur</em> que l’appel prend une fois exécuté.</li>
 </ul>
 <p>Les deux réponses sont indépendantes : <code>print</code> fait beaucoup mais ne retourne rien.</p>
 </div>
 </div>
-</section>
+
+<img data-src="media/30-fonction-boite.svg" class="keep-hue img-center r-stretch" style="width:46.0%"></section>
 <section id="paramètres-optionnels" class="slide level2">
 <h2>Paramètres optionnels</h2>
 <ul>
@@ -644,11 +690,11 @@ Les deux questions
 <h2>Paramètres optionnels : la fonction <span class="title-code">print</span></h2>
 <p>La fonction <code>print</code> admet deux paramètres optionnels : <code>sep</code> et <code>end</code>.</p>
 <ul>
-<li><code>sep</code> est inséré <strong>entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</li>
+<li><code>sep</code> est une chaîne de caractères <strong>insérée entre</strong> les arguments passés à <code>print</code> : par défaut, un espace <code>' '</code>.</li>
 </ul>
 <div class="fragment">
 <ul>
-<li><code>end</code> est ajouté <strong>après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</li>
+<li><code>end</code> est une chaîne de caractères <strong>ajoutée après</strong> le dernier argument : par défaut, un retour à la ligne <code>'\n'</code>. C’est donc <code>end</code> qui fait que chaque <code>print</code> commence une nouvelle ligne.</li>
 </ul>
 </div>
 <div class="fragment">
@@ -821,6 +867,68 @@ une fonction <code>distance</code> isole le calcul, et le reste du programme s�
 <canvas style="position: absolute; top: 3.6em; left: 3.75em;" width="900" height="600" class="latticeCanvas">
 </canvas>
 </section>
+<section id="flux-dexécution-dune-fonction-ii" class="slide level2">
+<h2>Flux d’exécution d’une fonction II</h2>
+<p>Le même flux, quand le corps d’une fonction appelle lui-même une fonction :</p>
+<div class="flux-layout" style="align-items: center; gap: 44px;">
+<div class="flux-text">
+<ul>
+<li>
+l’appel <code>vol_cylindre(3, 10)</code> entre dans le corps de <code>vol_cylindre</code> ;
+</li>
+<li class="fragment" data-fragment-index="1">
+ce corps contient lui-même un appel : on entre alors dans <code>aire_cercle</code> ;
+</li>
+<li class="fragment" data-fragment-index="2">
+son <code>return</code> remplace l’appel intérieur, donc <code>base</code> vaut <code>28.26</code> ;
+</li>
+<li class="fragment" data-fragment-index="3">
+le <code>return</code> de <code>vol_cylindre</code> remplace enfin l’appel extérieur.
+</li>
+</ul>
+</div>
+<div class="flux-code lignes9">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aire_cercle(r):</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    aire <span class="op">=</span> <span class="fl">3.14</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> aire</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vol_cylindre(r, h):</span>
+<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> aire_cercle(r)</span>
+<span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> base <span class="op">*</span> h</span>
+<span id="cb9-8"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vol_cylindre(<span class="dv">3</span>, <span class="dv">10</span>), <span class="st">'cm3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="flux-band" style="top: 302px; left: 108px; width: 302px;">
+
+</div>
+<div class="flux-band fragment" data-fragment-index="1" style="top: 194px; left: 186px; width: 224px;">
+
+</div>
+<div class="flux-sub fragment" data-fragment-index="2" style="top: 193px;">
+<code class="sourceCode python">&nbsp;&nbsp;&nbsp;&nbsp;base <span class="op">=</span> <span class="flux-value" style="width: 14ch;">28.26</span></code>
+</div>
+<div class="flux-sub fragment" data-fragment-index="3" style="top: 301px;">
+<code class="sourceCode python">print(<span class="flux-value" style="width: 19ch;">282.6</span>, <span class="st">'cm3'</span>)</code>
+</div>
+<svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="0" viewbox="0 0 600 348" style="height: 348px;" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 259,300 V 292 Q 259,282 269,282 H 560 Q 570,282 570,272 V 220 Q 570,210 560,210 H 427"></path> </g> <circle cx="259" cy="300" r="4.5" fill="#ffd700"></circle> <path d="M 410,210 L 427,201 L 427,219 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="1" viewbox="0 0 600 348" style="height: 348px;" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 414,210 H 560 Q 570,210 570,200 V 76 Q 570,66 560,66 H 380"></path> </g> <circle cx="414" cy="210" r="4.5" fill="#ffd700"></circle> <path d="M 363,66 L 380,57 L 380,75 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment fade-in-then-out" data-fragment-index="2" viewbox="0 0 600 348" style="height: 348px;" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 262,105 H 560 Q 570,105 570,115 V 200 Q 570,210 560,210 H 427"></path> </g> <circle cx="262" cy="105" r="4.5" fill="#ffd700"></circle> <path d="M 410,210 L 427,201 L 427,219 Z" fill="#ffd700"></path>
+</svg>
+<svg class="flux-arrow fragment" data-fragment-index="3" viewbox="0 0 600 348" style="height: 348px;" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="#ffd700" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"> <path d="M 324,249 H 480 Q 490,249 490,259 V 272 Q 490,282 480,282 H 269 Q 259,282 259,289"></path> </g> <circle cx="324" cy="249" r="4.5" fill="#ffd700"></circle> <path d="M 259,299 L 250,282 L 268,282 Z" fill="#ffd700"></path>
+</svg>
+<div class="fragment" data-fragment-index="3">
+<div class="flux-out compact" style="margin-top: 10px;">
+<span class="flux-out-label">Sortie</span>282.6 cm3
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="exemple-final" class="slide level2">
 <h2>Exemple final</h2>
 <p>Écrivons un programme qui…</p>
@@ -834,7 +942,7 @@ une fonction <code>distance</code> isole le calcul, et le reste du programme s�
 <li>Une boucle parcourt les entiers de <code>1</code> à <code>n</code>, une autre parcourt les caractères de chaque adjectif.</li>
 <li>Un <code>if</code> ne laisse passer que les consonnes.</li>
 </ul>
-<p><span class="remark">Remarque.</span> Le mot-clé <code>in</code> peut également être utilisé pour créer des conditions booléennes.</p>
+<p><span class="remark">Rappel.</span> Le mot-clé <code>in</code> peut également être utilisé pour créer des conditions booléennes.</p>
 <script src="lattice.js"></script>
 
 </div>
