@@ -537,7 +537,7 @@ Leonard Hardiman et Ghid Maatouk
 <p><strong>Mutation</strong> :</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1.append(<span class="dv">3</span>)</span>
 <span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="2">
 <div class="flux-out compact">
@@ -549,7 +549,7 @@ Leonard Hardiman et Ghid Maatouk
 <ul>
 <li>Dans les deux cas, <code>=</code> ne crée pas de lien entre les deux variables : <code>L2</code> désigne simplement <strong>le même objet</strong> que <code>L1</code>.</li>
 <li>À gauche, <code>L1 = [1, 2, 3]</code> <strong>réaffecte</strong> <code>L1</code> : <code>L1</code> désigne maintenant un nouvel objet, et <code>L2</code> désigne toujours l’ancien.</li>
-<li>À droite, <code>L2.append(3)</code> ne réaffecte rien : il <strong>modifie</strong> l’objet désigné par <code>L2</code>. Comme <code>L1</code> désigne ce même objet, <code>L1</code> voit aussi le changement.</li>
+<li>À droite, <code>L1.append(3)</code> ne réaffecte rien : il <strong>modifie</strong> l’objet désigné par <code>L1</code>. Comme <code>L2</code> désigne ce même objet, <code>L2</code> voit aussi le changement.</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="4">
@@ -576,7 +576,7 @@ Leonard Hardiman et Ghid Maatouk
 <p><strong>Mutation</strong> :</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1.append(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="r-stack">
 <p><img data-src="media/51-mutable-1.svg" class="fragment fade-out keep-hue" style="width:52.0%" data-fragment-index="1"></p>
 <p><img data-src="media/51-mutable-2.svg" class="fragment current-visible keep-hue" style="width:52.0%" data-fragment-index="1"></p>
@@ -584,7 +584,7 @@ Leonard Hardiman et Ghid Maatouk
 </div>
 </div></div>
 <div class="fragment" data-fragment-index="3">
-<p><code>L2 = L1</code> : un seul objet, deux noms. Ensuite <code>L1 = [1, 2, 3]</code> <strong>réaffecte</strong> <code>L1</code> sur un nouvel objet et laisse l’ancien intact, alors que <code>L2.append(3)</code> <strong>modifie</strong> l’objet partagé.</p>
+<p><code>L2 = L1</code> : un seul objet, deux noms. Ensuite <code>L1 = [1, 2, 3]</code> <strong>réaffecte</strong> <code>L1</code> sur un nouvel objet et laisse l’ancien intact, alors que <code>L1.append(3)</code> <strong>modifie</strong> l’objet partagé.</p>
 <p><span class="remark">Remarque.</span> La fonction <code>id</code> donne l’<strong>adresse</strong> d’un objet. Elle permet donc de vérifier ces deux dessins. Une seule boîte dans le nuage, c’est <code>id(L1) == id(L2)</code> ; deux boîtes, c’est <code>id(L1) != id(L2)</code>.</p>
 </div>
 </section>
