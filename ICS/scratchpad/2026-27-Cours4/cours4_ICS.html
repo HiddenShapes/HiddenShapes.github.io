@@ -438,6 +438,7 @@ Leonard Hardiman et Ghid Maatouk
 <section id="création-de-nouvelles-listes" class="slide level2">
 <h2>Création de nouvelles listes</h2>
 <ul>
+<li>La fonction <code>list</code> <strong>cast</strong> un autre objet en liste : <code>list(t)</code> pour un <code>tuple</code>, <code>list(s)</code> pour une <code>str</code>. Sans argument, <code>list()</code> donne la liste vide.</li>
 <li>On peut <strong>concaténer</strong> deux listes avec <code>+</code>, et répéter une liste avec <code>*</code>. Ces opérations ne modifient ni l’une ni l’autre des listes de départ : elles créent une <strong>nouvelle</strong> liste.</li>
 <li>La méthode <code>L.copy()</code> crée elle aussi une nouvelle liste, contenant les mêmes éléments que <code>L</code>.</li>
 </ul>
@@ -505,26 +506,39 @@ Leonard Hardiman et Ghid Maatouk
 <p><img data-src="media/49-extend.svg" class="keep-hue img-center" style="width:63.0%"></p>
 </div>
 </section>
-<section id="illustration-de-la-mutabilité" class="slide level2 smaller">
-<h2>Illustration de la mutabilité</h2>
+<section id="réaffectation-de-variable-vs-mutation-dobjet" class="slide level2 smaller">
+<h2>Réaffectation de variable vs mutation d’objet</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Avec un <code>tuple</code> :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Réaffectation</strong> :</p>
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="4" style="width: 100%; display: block; margin-top: 0; margin-bottom: auto;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="1">
+<div class="flux-out compact">
+[1, 2, 3] [1, 2]
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="4" style="width: 100%; display: block; margin-top: 0; margin-bottom: auto;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> t1</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t1, t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="flux-out compact">
 (1, 2, 3) (1, 2)
 </div>
 </div>
+</div>
 </div><div class="column" style="width:50%;">
-<p>Avec des listes :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Mutation</strong> :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="2">
 <div class="flux-out compact">
 [1, 2, 3] [1, 2, 3]
@@ -533,49 +547,53 @@ Leonard Hardiman et Ghid Maatouk
 </div></div>
 <div class="fragment" data-fragment-index="3">
 <ul>
-<li>Dans les deux cas, <code>=</code> ne crée pas de lien entre les deux variables : <code>y</code> (ou <code>L2</code>) désigne simplement <strong>le même objet</strong> que <code>x</code> (ou <code>L1</code>).</li>
-<li><code>x = (1, 2, 3)</code> <strong>réaffecte</strong> <code>x</code>, <code>x</code> désigne maintenant un nouvel objet, et <code>y</code> désigne toujours <code>(1, 2)</code>.</li>
-<li><code>L2.append(3)</code> ne réaffecte rien : il <strong>modifie</strong> l’objet désigné par <code>L2</code>. Comme <code>L1</code> désigne ce même objet, <code>L1</code> voit aussi le changement.</li>
+<li>Dans les deux cas, <code>=</code> ne crée pas de lien entre les deux variables : <code>L2</code> désigne simplement <strong>le même objet</strong> que <code>L1</code>.</li>
+<li>À gauche, <code>L1 = [1, 2, 3]</code> <strong>réaffecte</strong> <code>L1</code> : <code>L1</code> désigne maintenant un nouvel objet, et <code>L2</code> désigne toujours l’ancien.</li>
+<li>À droite, <code>L2.append(3)</code> ne réaffecte rien : il <strong>modifie</strong> l’objet désigné par <code>L2</code>. Comme <code>L1</code> désigne ce même objet, <code>L1</code> voit aussi le changement.</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="4">
-<p><span class="remark">Remarque.</span> Un <code>tuple</code> ne peut pas être modifié : on ne peut que réaffecter la variable qui le désigne. Une liste, elle, est <strong>mutable</strong>.</p>
+<p><span class="remark">Remarque.</span> La colonne de gauche ne dépend pas du type : avec un <code>tuple</code>, ou n’importe quel autre objet, elle donne le même résultat. La différence, c’est qu’un <code>tuple</code> ne peut pas être <strong>muté</strong> : la réaffectation est la seule option.</p>
 </div>
 </section>
 <section id="comparaison-en-mémoire" class="slide level2 smaller">
 <h2>Comparaison en mémoire</h2>
+<div style="margin-top: -30px;">
+
+</div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Un objet immuable :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="r-stack">
-<p><img data-src="media/50-immuable-1.svg" class="fragment fade-out keep-hue" style="width:62.0%" data-fragment-index="1"></p>
-<p><img data-src="media/50-immuable-2.svg" class="fragment current-visible keep-hue" style="width:62.0%" data-fragment-index="1"></p>
-<p><img data-src="media/50-immuable-3.svg" class="fragment keep-hue" style="width:62.0%" data-fragment-index="2"></p>
-</div>
-</div><div class="column" style="width:50%;">
-<p>Un objet mutable :</p>
+<p><strong>Réaffectation</strong> :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="r-stack">
-<p><img data-src="media/51-mutable-1.svg" class="fragment fade-out keep-hue" style="width:62.0%" data-fragment-index="1"></p>
-<p><img data-src="media/51-mutable-2.svg" class="fragment current-visible keep-hue" style="width:62.0%" data-fragment-index="1"></p>
-<p><img data-src="media/51-mutable-3.svg" class="fragment keep-hue" style="width:62.0%" data-fragment-index="2"></p>
+<p><img data-src="media/52-reaffectation-1.svg" class="fragment fade-out keep-hue" style="width:52.0%" data-fragment-index="1"></p>
+<p><img data-src="media/52-reaffectation-2.svg" class="fragment current-visible keep-hue" style="width:52.0%" data-fragment-index="1"></p>
+<p><img data-src="media/52-reaffectation-3.svg" class="fragment keep-hue" style="width:52.0%" data-fragment-index="2"></p>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Mutation</strong> :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="r-stack">
+<p><img data-src="media/51-mutable-1.svg" class="fragment fade-out keep-hue" style="width:52.0%" data-fragment-index="1"></p>
+<p><img data-src="media/51-mutable-2.svg" class="fragment current-visible keep-hue" style="width:52.0%" data-fragment-index="1"></p>
+<p><img data-src="media/51-mutable-3.svg" class="fragment keep-hue" style="width:52.0%" data-fragment-index="2"></p>
 </div>
 </div></div>
 <div class="fragment" data-fragment-index="3">
-<p><code>y = x</code> et <code>L2 = L1</code> font exactement la même chose : les deux noms désignent <strong>le même objet</strong>. La différence vient de l’instruction suivante : <code>x = (1, 2, 3)</code> <strong>réaffecte</strong> <code>x</code>, qui désigne alors un nouvel objet, alors que <code>L2.append(3)</code> ne réaffecte rien et <strong>modifie</strong> l’objet lui-même, que <code>L1</code> désigne aussi.</p>
+<p><code>L2 = L1</code> : un seul objet, deux noms. Ensuite <code>L1 = [1, 2, 3]</code> <strong>réaffecte</strong> <code>L1</code> sur un nouvel objet et laisse l’ancien intact, alors que <code>L2.append(3)</code> <strong>modifie</strong> l’objet partagé.</p>
+<p><span class="remark">Remarque.</span> La fonction <code>id</code> donne l’<strong>adresse</strong> d’un objet. Elle permet donc de vérifier ces deux dessins. Une seule boîte dans le nuage, c’est <code>id(L1) == id(L2)</code> ; deux boîtes, c’est <code>id(L1) != id(L2)</code>.</p>
 </div>
 </section>
 <section id="l2-l1.copy-en-mémoire" class="slide level2 smaller">
 <h2><span class="title-code">L2 = L1.copy()</span> en mémoire</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2.append(<span class="dv">3</span>)</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="3">
 <div class="flux-out compact">
 [1, 2] [1, 2, 3]
@@ -592,9 +610,9 @@ Leonard Hardiman et Ghid Maatouk
 </section>
 <section id="l2-l1-3-4-en-mémoire" class="slide level2 smaller">
 <h2><span class="title-code">L2 = L1 + [3, 4]</span> en mémoire</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1 <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1 <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="3">
 <div class="flux-out compact">
 [1, 2] [1, 2, 3, 4]
@@ -611,9 +629,9 @@ Leonard Hardiman et Ghid Maatouk
 </section>
 <section id="l2-l1.extend3-4-en-mémoire" class="slide level2 smaller">
 <h2><span class="title-code">L2 = L1.extend([3, 4])</span> en mémoire</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.extend([<span class="dv">3</span>, <span class="dv">4</span>])</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.extend([<span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="3">
 <div class="flux-out compact">
 [1, 2, 3, 4] None
@@ -635,24 +653,24 @@ Leonard Hardiman et Ghid Maatouk
 <div class="fragment fade-out" data-fragment-index="3" style="width: 100%; display: block; margin-top: 0; margin-bottom: auto;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement prévisible</span></span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
-<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span>
-<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L1 ='</span>, L1)</span>
-<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L2 ='</span>, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement prévisible</span></span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span>
+<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L1 ='</span>, L1)</span>
+<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L2 ='</span>, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="1">
 <div class="flux-out compact">
 L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3], [2, 4]]
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement bizarre ?</span></span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span>
-<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L1 ='</span>, L1)</span>
-<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L2 ='</span>, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportement bizarre ?</span></span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L1 ='</span>, L1)</span>
+<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L2 ='</span>, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="2">
 <div class="flux-out compact">
 L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3, 5], [2, 4]]
@@ -677,9 +695,9 @@ L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3, 5], [2, 4]]
 <section id="le-comportement-prévisible" class="slide level2 smaller">
 <h2>Le comportement prévisible</h2>
 <div class="center-container">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:33%;">
@@ -705,9 +723,9 @@ L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3, 5], [2, 4]]
 <section id="le-comportement-bizarre" class="slide level2 smaller">
 <h2>Le comportement bizarre</h2>
 <div class="center-container">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
-<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:33%;">
@@ -741,13 +759,13 @@ L1 = [[1, 3, 5], [2, 4]]<br>L2 = [[1, 3, 5], [2, 4]]
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
-<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
 <span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
-<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>] <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">4</span>]]</span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1.copy()</span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1[<span class="dv">0</span>].append(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div class="fragment">
 <p>Le comportement « bizarre » du second exemple est donc dû au fait que <code>L1</code> et <code>L2</code> satisfont la règle <span class="strong-blue">(1)</span>, et que leurs éléments, étant aussi des listes, satisfont la règle <span class="strong-blue">(2)</span>. <code>L1</code> et <code>L2</code> sont <strong>des listes différentes qui contiennent les mêmes références</strong> !</p>
