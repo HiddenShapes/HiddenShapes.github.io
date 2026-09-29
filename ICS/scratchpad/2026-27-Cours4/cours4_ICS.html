@@ -618,20 +618,22 @@ Leonard Hardiman et Ghid Maatouk
 <section id="exemple-concaténation-de-listes" class="slide level2 smaller">
 <h2>Exemple : concaténation de listes</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1 <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> L1</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> L1 <span class="op">+</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L1, L2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment" data-fragment-index="3">
 <div class="flux-out compact">
-[1, 2] [1, 2, 3, 4]
+[1, 2, 3, 4] [1, 2]
 </div>
 </div>
 <div class="r-stack">
-<p><img data-src="media/42-concat-1.svg" class="current-visible keep-hue" style="width:70.0%" data-fragment-index="1"></p>
-<p><img data-src="media/42-concat-2.svg" class="fragment current-visible keep-hue" style="width:70.0%" data-fragment-index="2"></p>
-<p><img data-src="media/42-concat-3.svg" class="fragment keep-hue" style="width:70.0%" data-fragment-index="3"></p>
+<p><img data-src="media/54-concat-1.svg" class="fragment fade-out keep-hue" style="width:90.0%" data-fragment-index="1"></p>
+<p><img data-src="media/54-concat-2.svg" class="fragment current-visible keep-hue" style="width:90.0%" data-fragment-index="1"></p>
+<p><img data-src="media/54-concat-3.svg" class="fragment current-visible keep-hue" style="width:90.0%" data-fragment-index="2"></p>
+<p><img data-src="media/54-concat-4.svg" class="fragment keep-hue" style="width:90.0%" data-fragment-index="3"></p>
 </div>
 <div class="fragment" data-fragment-index="4">
-<p>L’expression <code>L1 + [3, 4]</code> est d’abord <strong>évaluée</strong> : elle crée une <strong>nouvelle liste</strong>, sans modifier <code>L1</code>. Cette liste est ensuite <strong>affectée</strong> à <code>L2</code>.</p>
+<p>L’expression <code>L1 + [3, 4]</code> est d’abord <strong>évaluée</strong> : elle crée une <strong>nouvelle liste</strong>, sans modifier la liste de départ. Cette nouvelle liste est ensuite <strong>affectée</strong> à <code>L1</code>, et <code>L2</code> désigne toujours l’ancienne.</p>
 </div>
 </section>
 <section id="exemple-extension-de-liste" class="slide level2 smaller">
@@ -692,7 +694,8 @@ Leonard Hardiman et Ghid Maatouk
 <p><img data-src="media/41-copie-3.svg" class="fragment keep-hue" style="width:70.0%" data-fragment-index="3"></p>
 </div>
 <div class="fragment" data-fragment-index="4">
-<p><code>L1.copy()</code> crée une <strong>nouvelle liste</strong>, avec les mêmes éléments que <code>L1</code>. <code>L2.append(3)</code> modifie cette nouvelle liste, et <code>L1</code> reste inchangée.</p>
+<p><code>L1.copy()</code> crée une <strong>nouvelle liste</strong>, avec les mêmes éléments que <code>L1</code>.<br>
+<code>L2.append(3)</code> modifie cette nouvelle liste, et <code>L1</code> reste inchangée.</p>
 </div>
 </section>
 <section id="représentation-de-listes-en-mémoire" class="slide level2 smaller">
