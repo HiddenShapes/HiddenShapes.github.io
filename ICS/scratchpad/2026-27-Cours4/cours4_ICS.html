@@ -419,31 +419,49 @@ Leonard Hardiman et Ghid Maatouk
 <section id="listes-en-python" class="slide level2">
 <h2>Listes en Python</h2>
 <ul>
-<li><p>Une <strong>liste</strong> Python est une structure de données qui permet de regrouper des objets de manière ordonnée, comme un <code>tuple</code>. Mais à la différence des <code>tuple</code>, les listes sont <strong>mutables</strong> : on peut les modifier après leur création.</p></li>
-<li><p>On déclare une liste avec des <strong>crochets droits</strong>.</p></li>
+<li>Une <strong>liste</strong> Python est une structure de données qui permet de regrouper des objets de manière ordonnée, comme un <code>tuple</code>. Mais à la différence des <code>tuple</code>, les listes sont <strong>mutables</strong> : on peut les modifier après leur création.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>On déclare une liste avec des <strong>crochets droits</strong>.</li>
 </ul>
 <p><span class="remark">Remarque.</span> Les éléments d’une liste n’ont pas besoin d’être du même type… mais une bonne pratique en Python est que les listes ne contiennent que des éléments du même type.</p>
+</div>
 </section>
 <section id="indexage-itération-et-calculs" class="slide level2">
 <h2>Indexage, itération et calculs</h2>
 <ul>
 <li><p>Comme les <code>tuple</code> et les <code>str</code>, les listes sont <strong>indexables</strong>. Cela fonctionne exactement comme sur les <code>tuple</code> : <code>L[0]</code> donne le premier élément.</p>
 <p><span class="remark">Remarque.</span> L’indexage en Python peut être plus sophistiqué : indices négatifs, tranches, pas, etc. Voir <a href="indexage_avance.html">cette page</a> pour plus de détails.</p></li>
-<li><p>Les listes sont donc aussi <strong>itérables</strong>: une boucle <code>for</code> parcourt les éléments dans l’ordre.</p></li>
 </ul>
-<p><span class="remark">Remarque.</span> On peut accéder à la <strong>longueur</strong> d’une liste avec la fonction <code>len()</code>.</p>
+<div class="fragment">
+<ul>
+<li><p>Les listes sont donc aussi <strong>itérables</strong>: une boucle <code>for</code> parcourt les éléments dans l’ordre.</p>
+<p><span class="remark">Remarque.</span> On peut accéder à la <strong>longueur</strong> d’une liste avec la fonction <code>len()</code>.</p></li>
+</ul>
+</div>
+<div class="fragment">
 <ul>
 <li>On peut vérifier l’<strong>appartenance</strong> d’un élément à une liste avec le mot-clé <code>in</code>, exactement comme pour les <code>str</code> et les <code>tuple</code>.</li>
 </ul>
+</div>
 </section>
 <section id="création-de-nouvelles-listes" class="slide level2">
 <h2>Création de nouvelles listes</h2>
 <ul>
 <li>La fonction <code>list</code> cast un autre objet en liste : <code>list(t)</code> pour un <code>tuple</code>, <code>list(s)</code> pour une <code>str</code>. Sans argument, <code>list()</code> donne la liste vide.</li>
-<li>On peut <strong>concaténer</strong> deux listes avec <code>+</code>, et répéter une liste avec <code>*</code>. Ces opérations ne modifient ni l’une ni l’autre des listes de départ : elles créent une <strong>nouvelle</strong> liste.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>On peut <strong>concaténer</strong> deux listes avec <code>+</code>, et répéter une liste avec <code>*</code>. Ces opérations ne modifient ni l’une ni l’autre des listes de départ : elles créent une <strong>nouvelle</strong> liste.</p>
+<p><span class="remark">Remarque.</span> L’opérateur <code>+</code> fonctionne de la même manière pour les <code>tuple</code> et les <code>str</code>.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>La méthode <code>L.copy()</code> crée elle aussi une nouvelle liste, contenant les mêmes éléments que <code>L</code>.</li>
 </ul>
-<p><span class="remark">Remarque.</span> La concaténation fonctionne de la même manière pour les <code>tuple</code> et les <code>str</code>. Nous reviendrons en fin de cours sur ce que « nouvelle liste » signifie exactement.</p>
+</div>
 </section>
 <section id="mutabilité-des-listes" class="slide level2">
 <h2>Mutabilité des listes</h2>
