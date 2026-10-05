@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="cours5_ICS_files/libs/revealjs/dist/theme/quarto-091ebfb71d12db7fc524ec91495e1509.css">
   <link rel="stylesheet" href="custom.css">
@@ -184,6 +250,20 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
     });
     show(0);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.spoiler').forEach(function (sp) {
+    var overlay = document.createElement('div');
+    overlay.className = 'spoiler-overlay';
+    overlay.textContent = 'Cliquez pour révéler';
+    sp.appendChild(overlay);
+    overlay.addEventListener('click', function () {
+      sp.classList.add('revealed');
+    });
   });
 });
 </script>
@@ -350,15 +430,25 @@ Leonard Hardiman et Ghid Maatouk
 </div>
 
 </section>
+<section>
+<section id="warm-up" class="title-slide slide level1 center">
+<h1>Warm up</h1>
+
+</section>
 <section id="un-exemple-liste-de-listes" class="slide level2">
 <h2>Un exemple : liste de listes</h2>
 <p>Les éléments d’une liste peuvent être de n’importe quel <strong>type</strong> ; en particulier, ils peuvent être à leur tour <strong>des listes</strong>.</p>
 <ul>
-<li><code>M[i]</code> est la sous-liste d’indice <code>i</code>, et <code>M[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</li>
+<li><code>T[i]</code> est la sous-liste d’indice <code>i</code>, et <code>T[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</li>
 </ul>
 <div class="fragment">
 <ul>
 <li>Pour parcourir tous les éléments, il faut deux boucles <code>for</code> imbriquées : la première parcourt les sous-listes, la seconde les éléments de chacune d’elles.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Pour créer une liste de listes, on peut commencer par une liste vide à laquelle on <code>append</code>, une par une, les sous-listes.</li>
 </ul>
 </div>
 </section>
@@ -370,23 +460,21 @@ Leonard Hardiman et Ghid Maatouk
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
 
-<img data-src="media/05-tableau-2d.svg" class="img-center dark-figure invert-colors-doc r-stretch" style="width:88.0%"><p><span class="attention">Attention.</span> Rien n’oblige les lignes à avoir la même longueur : c’est à nous de garantir que notre liste de listes est bien un tableau.</p>
+<img data-src="media/05-tableau-2d.svg" class="img-center dark-figure invert-colors-doc r-stretch" style="width:88.0%"><p><span class="attention">Attention.</span> Une liste de listes n’est pas nécessairement un tableau : il faut que les lignes aient toutes la même longueur.</p>
 </section>
-<section id="un-tableau-à-trois-dimensions" class="slide level2">
-<h2>Un tableau à trois dimensions</h2>
-<p>Rien n’empêche d’aller plus loin : si les éléments de chaque ligne sont eux-mêmes des listes, on obtient un tableau à <strong>trois dimensions</strong>, c’est-à-dire une liste de tableaux.</p>
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="1">
-<p><img class="dark-figure" src="media/05-tableau-3d-1.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p><img class="dark-figure" src="media/05-tableau-3d-2.svg" style="height: 268px; display: block; margin: 10px auto 0 auto; background: none;"></p>
-</div>
-</div>
+<section id="exemple-transposer-un-tableau" class="slide level2">
+<h2>Exemple : transposer un tableau</h2>
+<p><strong>Transposer</strong> un tableau, c’est échanger ses lignes et ses colonnes : la première ligne devient la première colonne, la deuxième ligne la deuxième colonne, et ainsi de suite.</p>
+<pre class="text"><code>T = [[1, 2, 3],          transposée = [[1, 4],
+     [4, 5, 6]]                         [2, 5],
+                                        [3, 6]]</code></pre>
 <ul>
-<li><code>T[k]</code> est un tableau entier, <code>T[k][i]</code> une de ses lignes, et <code>T[k][i][j]</code> un de ses éléments.</li>
-<li>Il faut alors <strong>trois</strong> boucles <code>for</code> imbriquées pour parcourir tous les éléments.</li>
+<li>L’élément de la ligne <code>i</code> et de la colonne <code>j</code> de la transposée est <code>T[j][i]</code>.</li>
+<li>Un tableau de <code>2</code> lignes et <code>3</code> colonnes devient donc un tableau de <code>3</code> lignes et <code>2</code> colonnes.</li>
 </ul>
+<div class="fragment">
+<p>Écrivons une fonction <code>transposer</code> qui retourne la transposée d’un tableau <code>T</code>, sans modifier <code>T</code> : on construit un <strong>nouveau</strong> tableau, ligne par ligne, avec <code>append</code>.</p>
+</div>
 </section>
 <section id="dictionnaires" class="slide level2">
 <h2>Dictionnaires</h2>
@@ -413,14 +501,17 @@ Leonard Hardiman et Ghid Maatouk
 <h2>Accéder à un élément</h2>
 <p>On accède à l’élément de clé <code>clé</code> du dictionnaire <code>d</code> avec la syntaxe <code>d[clé]</code>, à condition qu’un tel élément existe. Sinon, Python produit une <strong>erreur</strong>.</p>
 <div class="fragment">
-<p>Pour éviter l’erreur, on peut exécuter l’instruction <code>d.get(clé)</code> : la méthode <code>get</code> de la classe <code>dict</code> retourne l’élément de clé <code>clé</code> si un tel élément existe, et retourne <code>None</code> autrement.</p>
+<p>Pour éviter l’erreur, on peut utiliser la méthode <code>get</code> : <code>d.get(clé)</code> retourne l’élément de clé <code>clé</code> si un tel élément existe, et retourne <code>None</code> autrement.</p>
+</div>
+<div class="fragment">
+<p><span class="remark">Remarque.</span> On peut donner à <code>get</code> une valeur par défaut : <code>d.get(clé, défaut)</code> retourne <code>défaut</code> au lieu de <code>None</code> si la clé n’existe pas.</p>
 </div>
 </section>
 <section id="autres-opérations-sur-les-dictionnaires" class="slide level2">
 <h2>Autres opérations sur les dictionnaires</h2>
 <ul>
 <li><p><strong>Insérer ou modifier :</strong> <code>d[clé] = valeur</code> insère une nouvelle paire <code>(clé, valeur)</code> si la clé n’existe pas, ou modifie la valeur associée si elle existe déjà.</p></li>
-<li><p><strong>Supprimer :</strong> <code>del d[clé]</code> supprime l’élément de clé <code>clé</code>, et produit une erreur si celle-ci n’existe pas.</p></li>
+<li><p><strong>Supprimer :</strong> <code>d.pop(clé)</code> supprime l’élément de clé <code>clé</code> et <strong>retourne</strong> sa valeur, comme <code>pop</code> sur une liste. Elle produit une erreur si la clé n’existe pas.</p></li>
 <li><p><strong>Appartenance :</strong> <code>clé in d</code> vérifie si la clé existe dans le dictionnaire <code>d</code>.</p></li>
 </ul>
 <p><span class="remark">Remarque.</span> Il n’y a donc pas de méthode <code>append</code> pour les dictionnaires : une simple affectation suffit à ajouter une paire.</p>
@@ -443,27 +534,70 @@ Leonard Hardiman et Ghid Maatouk
 </ul>
 <p><span class="remark">Remarque.</span> Les objets retournés par <code>keys</code>, <code>values</code> et <code>items</code> sont des objets à part entière (appelés <em>vues</em>), mais ils sont peu utilisés en dehors des boucles <code>for</code>.</p>
 </section>
-<section id="compréhension-de-listes-et-dictionnaires" class="slide level2">
-<h2>Compréhension de listes et dictionnaires</h2>
-<p>On peut créer une liste ou un dictionnaire de manière concise en utilisant la <strong>compréhension</strong>. Les syntaxes sont :</p>
-<div class="center-container">
-<p><code>[exp(var) for var in iter]</code> &nbsp;&nbsp;&nbsp;&nbsp; <code>{clé: valeur for var in iter}</code></p>
-</div>
-<p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code>, et <code>iter</code> est un objet itérable.</p>
-<p><span class="remark">Remarque.</span> Les compréhensions peuvent être plus sophistiquées (conditions, boucles multiples, etc.). Voir <a href="comprehension_avancee.html">cette page</a> pour plus de détails.</p>
+<section id="compréhension-de-listes" class="slide level2">
+<h2>Compréhension de listes</h2>
+<p>On peut créer une liste de manière concise en utilisant la <strong>compréhension</strong>. La syntaxe est :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [exp(var) <span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ce qui est un raccourci pour :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span>:</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>    L.append(exp(var))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code>, et <code>iter</code> est un objet itérable (une liste, <code>range</code>, <code>tuple</code>, <code>str</code>, …).</p>
+<ul>
+<li>La liste obtenue contient la valeur de <code>exp(var)</code> pour chaque valeur de <code>var</code> dans <code>iter</code>, dans l’ordre.</li>
+</ul>
 </section>
-<section id="exemple-final" class="slide level2">
-<h2>Exemple final</h2>
-<p>Deux paires d’entiers <code>(a, b)</code> et <code>(c, d)</code> sont dites <strong>équivalentes</strong> lorsque <code>a</code> et <code>c</code> ont le même reste dans la division par <code>3</code>, et <code>b</code> et <code>d</code> le même reste dans la division par <code>5</code>.</p>
-<p>Écrivons une fonction <code>grouper_paires</code> qui prend une liste de paires et retourne un dictionnaire regroupant ensemble les paires équivalentes.</p>
+<section id="compréhension-de-listes-avec-une-condition" class="slide level2">
+<h2>Compréhension de listes : avec une condition</h2>
+<p>On peut <strong>filtrer</strong> les éléments en ajoutant une condition à la fin :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [exp(var) <span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span> <span class="cf">if</span> condition(var)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ce qui est un raccourci pour :</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span>:</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condition(var):</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>        L.append(exp(var))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Seuls les éléments de <code>iter</code> pour lesquels <code>condition(var)</code> vaut <code>True</code> sont gardés.</li>
+</ul>
+</section>
+<section id="compréhension-de-listes-avec-plusieurs-boucles" class="slide level2">
+<h2>Compréhension de listes : avec plusieurs boucles</h2>
+<p>On peut aussi enchaîner <strong>plusieurs boucles</strong> :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [exp(var1, var2) <span class="cf">for</span> var1 <span class="kw">in</span> iter1 <span class="cf">for</span> var2 <span class="kw">in</span> iter2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ce qui est un raccourci pour :</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var1 <span class="kw">in</span> iter1:</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> var2 <span class="kw">in</span> iter2:</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>        L.append(exp(var1, var2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>L’ordre est celui des boucles imbriquées : le premier <code>for</code> est la boucle <strong>extérieure</strong>.</li>
+</ul>
+</section>
+<section id="compréhension-de-dictionnaires" class="slide level2">
+<h2>Compréhension de dictionnaires</h2>
+<p>La même idée permet de créer un <strong>dictionnaire</strong> : on écrit des accolades, et une paire <code>clé: valeur</code> à la place de l’expression.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {clé(var): valeur(var) <span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ce qui est un raccourci pour :</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {}</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> <span class="bu">iter</span>:</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>    d[clé(var)] <span class="op">=</span> valeur(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Le dictionnaire obtenu contient une paire pour chaque valeur de <code>var</code> dans <code>iter</code>.</li>
+</ul>
+<p><span class="remark">Remarque.</span> Comme pour les listes, on peut ajouter une condition <code>if</code> pour filtrer&nbsp;: <code>{x: x**2 for x in range(1, 11) if x % 2 == 0}</code>.</p>
+</section>
+<section id="exemple-regrouper-des-mots" class="slide level2">
+<h2>Exemple : regrouper des mots</h2>
+<p>Deux mots sont dits <strong>semblables</strong> lorsqu’ils commencent par la même lettre et ont la même longueur : <code>'chat'</code> et <code>'chou'</code> le sont, <code>'chat'</code> et <code>'chien'</code> ne le sont pas.</p>
+<p>Écrivons une fonction <code>grouper_mots</code> qui prend une liste de mots et retourne un dictionnaire regroupant ensemble les mots semblables.</p>
 <div class="fragment">
 <ul>
-<li>Tout le problème est le choix des <strong>clés</strong>. Les deux restes <code>a % 3</code> et <code>b % 5</code> déterminent à eux seuls le groupe d’une paire : le tuple <code>(a % 3, b % 5)</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</li>
-<li>Chaque valeur est la <strong>liste</strong> des paires du groupe, qu’il faut créer vide la première fois que sa clé apparaît.</li>
+<li>Tout le problème est le choix des <strong>clés</strong>. La première lettre <code>mot[0]</code> et la longueur <code>len(mot)</code> déterminent à elles seules le groupe d’un mot : le tuple <code>(mot[0], len(mot))</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</li>
+<li>Chaque valeur est la <strong>liste</strong> des mots du groupe, qu’il faut créer vide la première fois que sa clé apparaît.</li>
 </ul>
 
 </div>
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
