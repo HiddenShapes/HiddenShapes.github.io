@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#un-exemple-liste-de-listes" id="toc-un-exemple-liste-de-listes" class="nav-link active" data-scroll-target="#un-exemple-liste-de-listes">Un exemple : liste de listes</a></li>
+  <li><a href="#liste-de-listes" id="toc-liste-de-listes" class="nav-link active" data-scroll-target="#liste-de-listes">Liste de listes</a></li>
   <li><a href="#un-tableau-à-deux-dimensions" id="toc-un-tableau-à-deux-dimensions" class="nav-link" data-scroll-target="#un-tableau-à-deux-dimensions">Un tableau à deux dimensions</a></li>
   <li><a href="#exemple-transposer-un-tableau" id="toc-exemple-transposer-un-tableau" class="nav-link" data-scroll-target="#exemple-transposer-un-tableau">Exemple : transposer un tableau</a></li>
   <li><a href="#dictionnaires" id="toc-dictionnaires" class="nav-link" data-scroll-target="#dictionnaires">Dictionnaires</a></li>
@@ -354,34 +354,35 @@ document.addEventListener('DOMContentLoaded', function () {
 </header>
 
 
-<section id="un-exemple-liste-de-listes" class="level2">
-<h2 class="anchored" data-anchor-id="un-exemple-liste-de-listes">Un exemple : liste de listes</h2>
+<section id="liste-de-listes" class="level2">
+<h2 class="anchored" data-anchor-id="liste-de-listes">Liste de listes</h2>
 <p>Les éléments d’une liste peuvent être de n’importe quel <strong>type</strong> ; en particulier, ils peuvent être à leur tour <strong>des listes</strong>.</p>
-<div id="5b4037ed" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
+<div id="966890c6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'T[0] ='</span>, T[<span class="dv">0</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'T[1] ='</span>, T[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[0] ='</span>, L[<span class="dv">0</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[1] ='</span>, L[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>T[0] = [10, 20, 30]
-T[1] = [1, 3]</code></pre>
+<pre><code>L[0] = [10, 20, 30]
+L[1] = [1, 3]</code></pre>
 </div>
 </div>
 <ul>
-<li><p><code>T[i]</code> est la sous-liste d’indice <code>i</code>, et <code>T[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</p>
-<div id="0c547861" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
+<li><p><code>L[i]</code> est la sous-liste d’indice <code>i</code>, et <code>L[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</p>
+<p><span class="remark">Remarque.</span> Les sous-listes <code>L[i]</code> sont parfois appelées les <strong>lignes</strong> de <code>L</code>.</p>
+<div id="5cbbdab1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'T[0][2] ='</span>, T[<span class="dv">0</span>][<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'L[0][2] ='</span>, L[<span class="dv">0</span>][<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>T[0][2] = 30</code></pre>
+<pre><code>L[0][2] = 30</code></pre>
 </div>
 </div></li>
 <li><p>Pour parcourir tous les éléments, il faut deux boucles <code>for</code> imbriquées : la première parcourt les sous-listes, la seconde les éléments de chacune d’elles.</p>
-<div id="a528f638" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
+<div id="304060c0" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">1</span>, <span class="dv">3</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ligne <span class="kw">in</span> T:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ligne <span class="kw">in</span> L:</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> element <span class="kw">in</span> ligne:</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(element, end<span class="op">=</span><span class="st">' '</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -391,7 +392,7 @@ T[1] = [1, 3]</code></pre>
 </div>
 </div></li>
 <li><p>Pour créer une liste de listes, on peut commencer par une liste vide à laquelle on <code>append</code>, une par une, les sous-listes.</p>
-<div id="6694cd38" class="cell" data-execution_count="4">
+<div id="3b3bb246" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
@@ -405,15 +406,15 @@ T[1] = [1, 3]</code></pre>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(ligne)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[]
-[42]
-[39, 62]
-[56, 85, 51]
-[71, 24, 72, 41]
-[35, 6, 37, 48, 31]
-[84, 69, 78, 74, 44, 84]
-[49, 22, 35, 27, 16, 52, 87]
-[18, 83, 71, 51, 45, 16, 88, 23]
-[6, 45, 89, 10, 31, 69, 41, 100, 95]</code></pre>
+[94]
+[41, 32]
+[2, 86, 62]
+[44, 7, 7, 61]
+[15, 38, 22, 82, 100]
+[46, 30, 19, 24, 71, 54]
+[73, 72, 73, 23, 70, 98, 79]
+[86, 30, 86, 80, 38, 23, 49, 52]
+[14, 16, 94, 20, 82, 6, 84, 10, 29]</code></pre>
 </div>
 </div></li>
 </ul>
@@ -426,7 +427,7 @@ T[1] = [1, 3]</code></pre>
 <li><code>T[i][j]</code> est l’élément de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 </ul>
 <p><img src="media/05-tableau-2d.svg" class="img-center invert-colors-doc img-fluid" style="width:88.0%"></p>
-<div id="ce5bd7c5" class="cell" data-execution_count="5">
+<div id="cebcb0b5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>],</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]]</span>
@@ -454,7 +455,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 - `T[k]` est un tableau entier, `T[k][i]` une de ses lignes, et `T[k][i][j]` un de ses éléments.
 
 
-  ::: {#c64e1876 .cell execution_count=6}
+  ::: {#e5e46338 .cell execution_count=6}
   ``` {.python .cell-code}
   # 2 classes, 3 élèves par classe, 2 devoirs par élève
   T = [[[5.5, 4.0], [6.0, 5.0], [4.5, 4.0]],
@@ -478,7 +479,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 - Il faut alors **trois** boucles `for` imbriquées pour parcourir tous les éléments.
 
 
-  ::: {#cfab1783 .cell execution_count=7}
+  ::: {#ef7b86d5 .cell execution_count=7}
   ``` {.python .cell-code}
   T = [[[5.5, 4.0], [6.0, 5.0], [4.5, 4.0]],
        [[3.5, 5.0], [6.0, 6.0], [5.0, 4.5]]]
@@ -520,7 +521,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 </ul>
 <p>Écrivons une fonction <code>transposer</code> qui retourne la transposée d’un tableau <code>T</code>, sans modifier <code>T</code> : on construit un <strong>nouveau</strong> tableau, ligne par ligne, avec <code>append</code>.</p>
 <div class="spoiler">
-<div id="89306cd3" class="cell" data-execution_count="8">
+<div id="dde87194" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transposer(T):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(T)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(T[<span class="dv">0</span>])</span>
@@ -546,7 +547,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 <section id="dictionnaires" class="level2">
 <h2 class="anchored" data-anchor-id="dictionnaires">Dictionnaires</h2>
 <p>Nous avons vu que certaines structures en Python sont <strong>indexables</strong>, c’est-à-dire qu’on peut accéder à l’une de leurs valeurs en les indexant avec un nombre :</p>
-<div id="493b81be" class="cell" data-execution_count="9">
+<div id="09805838" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> [<span class="st">'James'</span>, <span class="st">'Bond'</span>, <span class="dv">32</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -557,7 +558,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 <ul>
 <li><p>Un dictionnaire (<code>dict</code>) est une structure de données qui permet d’indexer des objets (les valeurs) non pas avec des entiers <code>0</code>, <code>1</code>, <code>2</code>, … mais avec des <strong>clés</strong>.</p></li>
 <li><p>Il s’agit d’un ensemble de paires <code>clé: valeur</code>, écrit entre <strong>accolades</strong>.</p>
-<div id="1b4eecf3" class="cell" data-execution_count="10">
+<div id="907cd01b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>agent <span class="op">=</span> {<span class="st">'nom'</span>: <span class="st">'Bond'</span>, <span class="st">'prénom'</span>: <span class="st">'James'</span>, <span class="st">'âge'</span>: <span class="dv">32</span>}</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Âge :'</span>, agent[<span class="st">'âge'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -574,7 +575,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 <li><strong>rempli</strong>, avec la syntaxe <code>d = {clé_1: valeur_1, ..., clé_n: valeur_n}</code>.</li>
 </ul>
 <p>Les clés peuvent être n’importe quel objet <strong>non mutable</strong> : <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>tuple</code>… mais pas une liste. Elles doivent également être <strong>uniques</strong> : si la même clé apparaît plusieurs fois, seule la dernière paire est gardée.</p>
-<div id="faae0b7d" class="cell" data-execution_count="11">
+<div id="2f20ada3" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">123</span>, <span class="st">'b'</span>: <span class="dv">345</span>}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> {(<span class="dv">1</span>, <span class="dv">2</span>): <span class="dv">123</span>, (<span class="dv">3</span>, <span class="dv">4</span>): <span class="dv">345</span>}</span>
@@ -585,7 +586,7 @@ Rien n'empêche d'aller plus loin : si les éléments de chaque ligne sont eux-m
 <pre><code>123 123 123 123</code></pre>
 </div>
 </div>
-<div id="72a5b5e9" class="cell" data-execution_count="12">
+<div id="87305b5c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {[<span class="dv">1</span>, <span class="dv">2</span>]: <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -598,7 +599,7 @@ Cell <span class="ansi-green-fg">In[12], line 1</span>
 </div>
 </div>
 </div>
-<div id="af12fd59" class="cell" data-execution_count="13">
+<div id="bed59e76" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">1</span>: <span class="dv">123</span>, <span class="dv">2</span>: <span class="dv">345</span>, <span class="dv">1</span>: <span class="dv">456</span>}</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -610,14 +611,14 @@ Cell <span class="ansi-green-fg">In[12], line 1</span>
 <section id="accéder-à-un-élément" class="level2">
 <h2 class="anchored" data-anchor-id="accéder-à-un-élément">Accéder à un élément</h2>
 <p>On accède à l’élément de clé <code>clé</code> du dictionnaire <code>d</code> avec la syntaxe <code>d[clé]</code>, à condition qu’un tel élément existe. Sinon, Python produit une <strong>erreur</strong>.</p>
-<div id="0e59e300" class="cell" data-execution_count="14">
+<div id="fea863be" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>poire</code></pre>
 </div>
 </div>
-<div id="2c93b4f4" class="cell" data-execution_count="15">
+<div id="736e837c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d[<span class="dv">30</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -633,7 +634,7 @@ Cell <span class="ansi-green-fg">In[15], line 2</span>
 </div>
 </div>
 <p>Pour éviter l’erreur, on peut utiliser la méthode <code>get</code> : <code>d.get(clé)</code> retourne l’élément de clé <code>clé</code> si un tel élément existe, et retourne <code>None</code> autrement.</p>
-<div id="56ffd73e" class="cell" data-execution_count="16">
+<div id="3553dc75" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.get(<span class="dv">10</span>))</span>
@@ -644,7 +645,7 @@ None</code></pre>
 </div>
 </div>
 <p><span class="remark">Remarque.</span> On peut donner à <code>get</code> une valeur par défaut : <code>d.get(clé, défaut)</code> retourne <code>défaut</code> au lieu de <code>None</code> si la clé n’existe pas.</p>
-<div id="ff637099" class="cell" data-execution_count="17">
+<div id="92fdb7ba" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d.get(<span class="dv">10</span>, <span class="st">'inconnu'</span>))</span>
@@ -659,7 +660,7 @@ inconnu</code></pre>
 <h2 class="anchored" data-anchor-id="autres-opérations-sur-les-dictionnaires">Autres opérations sur les dictionnaires</h2>
 <ul>
 <li><p><strong>Insérer ou modifier :</strong> <code>d[clé] = valeur</code> insère une nouvelle paire <code>(clé, valeur)</code> si la clé n’existe pas, ou modifie la valeur associée si elle existe déjà.</p>
-<div id="8836cc2d" class="cell" data-execution_count="18">
+<div id="f6f1b4b6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insérer un élément</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>}</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">20</span>] <span class="op">=</span> <span class="st">'pomme'</span></span>
@@ -668,7 +669,7 @@ inconnu</code></pre>
 <pre><code>Après insertion : {10: 'poire', 20: 'pomme'}</code></pre>
 </div>
 </div>
-<div id="34d806da" class="cell" data-execution_count="19">
+<div id="41eabb08" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifier un élément</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">10</span>] <span class="op">=</span> <span class="st">'fraise'</span></span>
@@ -678,7 +679,7 @@ inconnu</code></pre>
 </div>
 </div></li>
 <li><p><strong>Supprimer :</strong> <code>d.pop(clé)</code> supprime l’élément de clé <code>clé</code> et <strong>retourne</strong> sa valeur, comme <code>pop</code> sur une liste. Elle produit une erreur si la clé n’existe pas.</p>
-<div id="30a32a4a" class="cell" data-execution_count="20">
+<div id="f7c70414" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer un élément</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">10</span>: <span class="st">'poire'</span>, <span class="dv">20</span>: <span class="st">'pomme'</span>}</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> d.pop(<span class="dv">10</span>)</span>
@@ -690,7 +691,7 @@ Après suppression : {20: 'pomme'}</code></pre>
 </div>
 </div></li>
 <li><p><strong>Appartenance :</strong> <code>clé in d</code> vérifie si la clé existe dans le dictionnaire <code>d</code>.</p>
-<div id="46c3fec2" class="cell" data-execution_count="21">
+<div id="6f13044f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérifier l'appartenance</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'pomme'</span>: <span class="st">'malus'</span>, <span class="st">'poire'</span>: <span class="st">'pyrus'</span>}</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pomme in d :'</span>, <span class="st">'pomme'</span> <span class="kw">in</span> d)</span>
@@ -708,7 +709,7 @@ fraise in d : False</code></pre>
 <p>Un dictionnaire est un objet <strong>itérable</strong>. On peut itérer sur ses <strong>clés</strong> avec une boucle <code>for</code>.</p>
 <ul>
 <li><p>Les éléments du dictionnaire sont alors parcourus dans le même ordre que celui dans lequel il a été rempli.</p>
-<div id="1d6504c3" class="cell" data-execution_count="22">
+<div id="527a78e7" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -723,7 +724,7 @@ La Bavaria</code></pre>
 </div></li>
 </ul>
 <p>Parcourir les clés d’un dictionnaire nous donne accès également aux valeurs associées, puisque la valeur associée à <code>clé</code> est <code>d[clé]</code>.</p>
-<div id="f2afe349" class="cell" data-execution_count="23">
+<div id="69d99ad4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>,</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>,</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
@@ -739,7 +740,7 @@ d[La Bavaria] = 5</code></pre>
 <p>On peut aussi parcourir un dictionnaire <code>d</code> avec les méthodes :</p>
 <ul>
 <li><p><code>d.keys()</code> : itère sur les <strong>clés</strong> ;</p>
-<div id="fb56cb84" class="cell" data-execution_count="24">
+<div id="05620c62" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les clés</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -752,7 +753,7 @@ La Bavaria</code></pre>
 </div>
 </div></li>
 <li><p><code>d.values()</code> : itère sur les <strong>valeurs</strong> ;</p>
-<div id="cff89a5d" class="cell" data-execution_count="25">
+<div id="c30f3bbf" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les valeurs</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -765,7 +766,7 @@ La Bavaria</code></pre>
 </div>
 </div></li>
 <li><p><code>d.items()</code> : itère sur les <strong>paires (clé, valeur)</strong>, sous forme de tuples.</p>
-<div id="c2ff327e" class="cell" data-execution_count="26">
+<div id="723db955" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parcourir les paires (clé, valeur)</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -777,7 +778,7 @@ La Bavaria</code></pre>
 ('La Bavaria', 5)</code></pre>
 </div>
 </div>
-<div id="4316c59c" class="cell" data-execution_count="27">
+<div id="a0d7a52c" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Décomposer et utiliser les paires</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">'Montbenon'</span>: <span class="fl">4.2</span>, <span class="st">'Les Brasseurs'</span>: <span class="fl">3.8</span>, <span class="st">'La Bavaria'</span>: <span class="dv">5</span>}</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -806,7 +807,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 <p>où <code>var</code> est une variable, <code>exp(var)</code> est une expression qui peut (ou peut ne pas) contenir <code>var</code>, et <code>iter</code> est un objet itérable (une liste, <code>range</code>, <code>tuple</code>, <code>str</code>, …).</p>
 <ul>
 <li><p>La liste obtenue contient la valeur de <code>exp(var)</code> pour chaque valeur de <code>var</code> dans <code>iter</code>, dans l’ordre.</p>
-<div id="68209706" class="cell" data-execution_count="28">
+<div id="f9dcf5d1" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de liste</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">2</span> <span class="op">*</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, L)</span>
@@ -821,7 +822,7 @@ La Bavaria : 5 / 5 (top)</code></pre>
 Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
-<div id="ca35687e" class="cell" data-execution_count="29">
+<div id="0466e9b5" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [c <span class="op">+</span> <span class="st">'a'</span> <span class="cf">for</span> c <span class="kw">in</span> <span class="st">'pizza'</span>]</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, L)</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -846,7 +847,7 @@ Traditionnelle : ['pa', 'ia', 'za', 'za', 'aa']</code></pre>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condition(var):</span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>        L.append(exp(var))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>où <code>condition(var)</code> est une expression booléenne qui <strong>filtre</strong> les éléments de <code>iter</code> : seuls les éléments pour lesquels la condition est <code>True</code> sont inclus dans la liste résultante.</p>
-<div id="45f9e184" class="cell" data-execution_count="30">
+<div id="ab96a818" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>]</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, L)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -862,7 +863,7 @@ Traditionnelle : [0, 2, 4, 6, 8]</code></pre>
 </div>
 </div>
 <p>Un autre exemple : on extrait toutes les voyelles d’une phrase.</p>
-<div id="0a85d2d3" class="cell" data-execution_count="31">
+<div id="fa3db98d" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"it's the dance of the ducks"</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>voyelles <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> s <span class="cf">if</span> c <span class="kw">in</span> <span class="st">'aeiouy'</span>]</span>
@@ -891,7 +892,7 @@ Traditionnelle : ['i', 'e', 'a', 'e', 'o', 'e', 'u']</code></pre>
 <span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>        L.append(exp(var1, var2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>où <code>var1</code> parcourt <code>iter1</code> et, pour chaque valeur de <code>var1</code>, <code>var2</code> parcourt <code>iter2</code>. L’ordre des boucles dans la compréhension est le même que dans la version traditionnelle avec des boucles imbriquées : la première boucle <code>for</code> est la boucle extérieure.</p>
 <p>Dans cet exemple, on combine chaque voyelle avec chaque consonne pour former toutes les paires possibles.</p>
-<div id="61529bee" class="cell" data-execution_count="32">
+<div id="dbac5d81" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>voyelles <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'o'</span>]</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>consonnes <span class="op">=</span> [<span class="st">'n'</span>, <span class="st">'h'</span>]</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>combis <span class="op">=</span> [v <span class="op">+</span> c <span class="cf">for</span> v <span class="kw">in</span> voyelles <span class="cf">for</span> c <span class="kw">in</span> consonnes]</span>
@@ -909,7 +910,7 @@ Traditionnelle : ['an', 'ah', 'on', 'oh']</code></pre>
 </div>
 </div>
 <p>On peut également créer de nouvelles structures dans <code>exp(var1, var2)</code>. Ici, on génère tous les tuples <code>(x, y)</code> d’une grille :</p>
-<div id="7d6a0c42" class="cell" data-execution_count="33">
+<div id="ec672226" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> [(x, y) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>) <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)]</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, coords)</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -936,7 +937,7 @@ Traditionnelle : [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]</code></pre>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    d[clé(var)] <span class="op">=</span> valeur(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Le dictionnaire obtenu contient une paire pour chaque valeur de <code>var</code> dans <code>iter</code>.</p>
-<div id="8e70fc36" class="cell" data-execution_count="34">
+<div id="8a0c32ed" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compréhension de dictionnaire</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {i: i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)}</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, d)</span>
@@ -951,7 +952,7 @@ Traditionnelle : [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]</code></pre>
 Traditionnelle : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
 </div>
 </div>
-<div id="94dcf10d" class="cell" data-execution_count="35">
+<div id="97b7a556" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>mots <span class="op">=</span> [<span class="st">'chat'</span>, <span class="st">'chien'</span>, <span class="st">'oiseau'</span>]</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {mot: <span class="bu">len</span>(mot) <span class="cf">for</span> mot <span class="kw">in</span> mots}</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, d)</span>
@@ -970,7 +971,7 @@ Traditionnelle : {'chat': 4, 'chien': 5, 'oiseau': 6}</code></pre>
 <section id="avec-une-condition-1" class="level3">
 <h3 class="anchored" data-anchor-id="avec-une-condition-1">Avec une condition</h3>
 <p>Comme pour les listes, on peut ajouter une condition <code>if</code> pour filtrer les éléments. Ici, on ne garde que les nombres pairs entre 1 et 10, et on associe à chacun son carré :</p>
-<div id="9800d411" class="cell" data-execution_count="36">
+<div id="b0d66df0" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>}</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Compréhension :'</span>, d)</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -990,12 +991,12 @@ Traditionnelle : {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}</code></pre>
 <section id="exemple-regrouper-des-mots" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-regrouper-des-mots">Exemple : regrouper des mots</h2>
 <p>Deux mots sont dits <strong>semblables</strong> lorsqu’ils commencent par la même lettre et ont la même longueur : <code>'chat'</code> et <code>'chou'</code> le sont, <code>'chat'</code> et <code>'chien'</code> ne le sont pas.</p>
-<p>Écrivons une fonction <code>grouper_mots</code> qui prend une liste de mots et retourne un dictionnaire regroupant ensemble les mots semblables.</p>
+<p>Écrivons une fonction <code>grouper_mots</code> qui prend une liste de mots et retourne un dictionnaire dont chaque <strong>valeur</strong> est la <strong>liste de tous les mots semblables</strong> entre eux.</p>
 <ul>
 <li><p>Tout le problème est le choix des <strong>clés</strong>. La première lettre <code>mot[0]</code> et la longueur <code>len(mot)</code> déterminent à elles seules le groupe d’un mot : le tuple <code>(mot[0], len(mot))</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</p></li>
 <li><p>Chaque valeur est la <strong>liste</strong> des mots du groupe, qu’il faut créer vide la première fois que sa clé apparaît.</p>
 <div class="spoiler">
-<div id="361792f4" class="cell" data-execution_count="37">
+<div id="675e4fd7" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grouper_mots(mots):</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Regroupe les mots par (première lettre, longueur)"</span></span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    groupes <span class="op">=</span> {}</span>
@@ -1012,7 +1013,7 @@ Traditionnelle : {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}</code></pre>
 </div>
 </div>
 </div>
-<div id="83359a81" class="cell" data-execution_count="38">
+<div id="606bcd67" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>mots <span class="op">=</span> [<span class="st">'lion'</span>, <span class="st">'loup'</span>, <span class="st">'lynx'</span>, <span class="st">'lama'</span>, <span class="st">'ours'</span>, <span class="st">'oie'</span>, <span class="st">'lapin'</span>]</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> clé, groupe <span class="kw">in</span> grouper_mots(mots).items():</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(clé, <span class="st">':'</span>, groupe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -435,11 +435,12 @@ Leonard Hardiman et Ghid Maatouk
 <h1>Warm up</h1>
 
 </section>
-<section id="un-exemple-liste-de-listes" class="slide level2">
-<h2>Un exemple : liste de listes</h2>
+<section id="liste-de-listes" class="slide level2">
+<h2>Liste de listes</h2>
 <p>Les éléments d’une liste peuvent être de n’importe quel <strong>type</strong> ; en particulier, ils peuvent être à leur tour <strong>des listes</strong>.</p>
 <ul>
-<li><code>T[i]</code> est la sous-liste d’indice <code>i</code>, et <code>T[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</li>
+<li><p><code>L[i]</code> est la sous-liste d’indice <code>i</code>, et <code>L[i][j]</code> est l’élément d’indice <code>j</code> de cette sous-liste.</p>
+<p><span class="remark">Remarque.</span> Les sous-listes <code>L[i]</code> sont parfois appelées les <strong>lignes</strong> de <code>L</code>.</p></li>
 </ul>
 <div class="fragment">
 <ul>
@@ -589,7 +590,7 @@ Leonard Hardiman et Ghid Maatouk
 <section id="exemple-regrouper-des-mots" class="slide level2">
 <h2>Exemple : regrouper des mots</h2>
 <p>Deux mots sont dits <strong>semblables</strong> lorsqu’ils commencent par la même lettre et ont la même longueur : <code>'chat'</code> et <code>'chou'</code> le sont, <code>'chat'</code> et <code>'chien'</code> ne le sont pas.</p>
-<p>Écrivons une fonction <code>grouper_mots</code> qui prend une liste de mots et retourne un dictionnaire regroupant ensemble les mots semblables.</p>
+<p>Écrivons une fonction <code>grouper_mots</code> qui prend une liste de mots et retourne un dictionnaire dont chaque <strong>valeur</strong> est la <strong>liste de tous les mots semblables</strong> entre eux.</p>
 <div class="fragment">
 <ul>
 <li>Tout le problème est le choix des <strong>clés</strong>. La première lettre <code>mot[0]</code> et la longueur <code>len(mot)</code> déterminent à elles seules le groupe d’un mot : le tuple <code>(mot[0], len(mot))</code> est donc une clé toute trouvée, et c’est bien un objet <strong>non mutable</strong>.</li>
