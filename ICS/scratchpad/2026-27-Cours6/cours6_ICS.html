@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="cours6_ICS_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cours6_ICS_files/libs/quarto-html/tabby.min.js"></script>
+<script src="cours6_ICS_files/libs/quarto-html/popper.min.js"></script>
+<script src="cours6_ICS_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="cours6_ICS_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cours6_ICS_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="cours6_ICS_files/libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.33">
+
+  <meta name="author" content="Leonard Hardiman et Ghid Maatouk">
+  <title>Informatique et Calcul Scientifique</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="cours6_ICS_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="cours6_ICS_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="cours6_ICS_files/libs/revealjs/dist/theme/quarto-091ebfb71d12db7fc524ec91495e1509.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="cours6_ICS_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+          scale: 100,
+          linebreaks: { automatic: true },
+      		mtextFontInherit: true
+        }});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.spoiler').forEach(function (sp) {
+    var overlay = document.createElement('div');
+    overlay.className = 'spoiler-overlay';
+    overlay.textContent = 'Cliquez pour révéler';
+    sp.appendChild(overlay);
+    overlay.addEventListener('click', function () {
+      sp.classList.add('revealed');
+    });
+  });
+});
+</script>
+
+<script>
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
+   Deck pages only: the notes pages load the same header. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
+  function apply(theme) {
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
+    if (btn) {
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'dark' ? 'dark' : 'light');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
+
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+      btn.blur();
+    });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* the switch is only visible while the title slide is up */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
+  });
+})();
+</script>
+
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Informatique et Calcul Scientifique</h1>
+  <p class="subtitle">Cours 6</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Leonard Hardiman et Ghid Maatouk 
+</div>
+</div>
+</div>
+
+</section>
+<section id="fonctions-récursives" class="slide level2">
+<h2>Fonctions récursives</h2>
+<ul>
+<li>Une fonction récursive résout un problème en résolvant un ou plusieurs sous-problèmes du même type.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>On écrit alors des fonctions qui s’appellent elles-mêmes.😱</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme « <strong>diviser-pour-régner</strong> ».</li>
+</ul>
+</div>
+</section>
+<section id="fonctions-récursives-1" class="slide level2">
+<h2>Fonctions récursives</h2>
+<p><img data-src="media/infinite_rec2.png" class="invert-colors img-center" style="height: 560px;"></p>
+</section>
+<section id="exemple-1-de-récursion-factorielle" class="slide level2 smaller">
+<h2>Exemple 1 de récursion : factorielle</h2>
+<ul>
+<li>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, la factorielle de <span class="math inline">\(n\)</span> est définie comme</li>
+</ul>
+<div class="center-container">
+<p><span class="math inline">\(n! = n \cdot (n-1) \cdots 2 \cdot 1\)</span> <span class="fragment" data-fragment-index="1"><span class="math inline">\(\displaystyle {} = \begin{cases} n \cdot (n-1)! &amp;\text{si}~n \geq 1\\ 1 &amp;\text{si}~n = 0\end{cases}\)</span></span></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p>Cela suggère la fonction suivante :</p>
+<div class="columns">
+<div class="column" style="width:38%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment" data-fragment-index="3" style="width:62%;">
+<ul>
+<li>Pour le <strong>cas de base</strong>, la valeur de la fonction est définie directement, sans appels récursifs.</li>
+<li><code>fact</code> calcule la factorielle de <span class="math inline">\(n\)</span> avec <span class="math inline">\(n\)</span> appels récursifs.</li>
+</ul>
+</div></div>
+</div>
+</section>
+<section id="appels-de-fonctions-visualisation" class="slide level2 smaller">
+<h2>Appels de fonctions : visualisation</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x):</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, y):</span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g(s) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> f(<span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:65%;">
+<ul>
+<li>Pour comprendre l’exécution d’un programme, il est utile de <strong>visualiser</strong> les appels de fonctions.</li>
+<li>Chaque appel de fonction est représenté par une <strong>ligne horizontale</strong>. Un appel imbriqué apparaît au-dessus de l’appelant.</li>
+</ul>
+</div></div>
+<div class="absolute" style="bottom: 60px; right: 20px; width: 900px; ">
+<p><img data-src="media/appels_fonctions-obj.svg" class="dark-figure" style="width:100.0%"></p>
+</div>
+<div class="absolute" style="left: 10px; bottom: 0px; width: 1100px; ">
+<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
+</div>
+</section>
+<section id="factorielle-appels-récursifs" class="slide level2">
+<h2>Factorielle : appels récursifs</h2>
+<div class="absolute small-code" style="top: 120px; right: 30px; width: 360px; ">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> f</span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fact(<span class="dv">3</span>)</span>
+<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="absolute" style="left: 10px; bottom: 20px; width: 1180px; ">
+<p><img data-src="media/fact_run-obj.svg" class="dark-figure" style="width:100.0%"></p>
+</div>
+</section>
+<section id="anatomie-dune-fonction-récursive-i" class="slide level2">
+<h2>Anatomie d’une fonction récursive I</h2>
+<p>Schématisons la structure d’une fonction récursive (avec un appel récursif).</p>
+<div class="anatomie">
+<div class="anatomie-col">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fonction(entrée):
+    <span class="cf">if</span> <span class="anat anat-cond">condition du cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe</span>
+    résultat <span class="op">=</span> <span class="anat anat-rec">fonction(entrée plus petite)</span>
+    <span class="cf">return</span> combiner(entrée, résultat)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="anatomie-col fragment">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fact(n):
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">1</span></span>
+    f <span class="op">=</span> <span class="anat anat-rec">fact(n <span class="op">-</span> <span class="dv">1</span>)</span>
+    <span class="cf">return</span> n <span class="op">*</span> f</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="anatomie-legende fragment">
+<p><span class="anat anat-cond">la condition du cas de base</span> <span class="anat anat-base">le cas de base</span> <span class="anat anat-rec">l’appel récursif</span></p>
+</div>
+</section>
+<section id="exemple-2-de-récursion-fibonacci" class="slide level2 smaller">
+<h2>Exemple 2 de récursion : Fibonacci</h2>
+<ul>
+<li>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span> <span class="co"># cas de base</span></span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="co"># appel récursif</span></span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">2</span>) <span class="co"># appel récursif</span></span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:42%;">
+<ul>
+<li>En général, une fonction peut effectuer un <strong>nombre quelconque</strong> d’appels récursifs. Ici, chaque appel de <code>fib</code> en engendre <strong>deux</strong> autres (sauf pour les cas de base).</li>
+</ul>
+</div></div>
+</div>
+</section>
+<section id="fibonacci-appels-récursifs" class="slide level2">
+<h2>Fibonacci : appels récursifs</h2>
+<div class="absolute small-code" style="top: 120px; left: 10px; ">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb5-9"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fib(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="absolute" style="left: 10px; bottom: 20px; width: 1180px; ">
+<p><img data-src="media/fib_run-obj.svg" class="dark-figure" style="width:100.0%"></p>
+</div>
+</section>
+<section id="fibonacci-appels-récursifs-1" class="slide level2">
+<h2>Fibonacci : appels récursifs</h2>
+<p><img data-src="media/fib_appels.png" class="invert-colors img-center" style="width:78.0%"></p>
+<p>On peut prouver que pour l’entrée <span class="math inline">\(n\)</span> le nombre d’appels récursifs de <code>fib</code> est exponentiel en <span class="math inline">\(n\)</span> (définition formelle dans quelques semaines).</p>
+</section>
+<section id="anatomie-dune-fonction-récursive-ii" class="slide level2">
+<h2>Anatomie d’une fonction récursive II</h2>
+<p>Une fonction récursive avec deux cas de base et deux appels récursifs :</p>
+<div class="anatomie anatomie-ii">
+<div class="anatomie-col">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fonction(entrée):
+    <span class="cf">if</span> <span class="anat anat-cond">condition du 1er cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe 1</span>
+    <span class="cf">if</span> <span class="anat anat-cond">condition du 2e cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe 2</span>
+    a <span class="op">=</span> <span class="anat anat-rec">fonction(entrée plus petite)</span>
+    b <span class="op">=</span> <span class="anat anat-rec">fonction(autre entrée plus petite)</span>
+    <span class="cf">return</span> combiner(entrée, a, b)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="anatomie-col fragment">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fib(n):
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">0</span></span>
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">1</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">1</span></span>
+    a <span class="op">=</span> <span class="anat anat-rec">fib(n <span class="op">-</span> <span class="dv">1</span>)</span>
+    b <span class="op">=</span> <span class="anat anat-rec">fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
+    <span class="cf">return</span> a <span class="op">+</span> b</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="anatomie-legende fragment">
+<p><span class="anat anat-cond">les conditions des cas de base</span> <span class="anat anat-base">les cas de base</span> <span class="anat anat-rec">les appels récursifs</span></p>
+</div>
+<div class="fragment">
+<p><span class="remark">Remarque.</span> Une fonction récursive peut avoir un nombre <strong>quelconque</strong> de cas de base et d’appels récursifs.</p>
+</div>
+</section>
+<section id="somme-récursive" class="slide level2 smaller">
+<h2>Somme récursive</h2>
+<p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
+<p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">+</span> i</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>Peut-on écrire une fonction récursive <code>somme_rec</code> qui calcule cette même somme ?</p>
+</div>
+<div class="fragment">
+<p>Oui, mais il faut d’abord exprimer cette somme de manière <strong>récursive</strong>.</p>
+</div>
+</section>
+<section id="somme-récursive-1" class="slide level2 smaller">
+<h2>Somme récursive</h2>
+<p>Pour <span class="math inline">\(n\)</span> entier strictement positif, <span class="math display">\[\sum_{i=1}^{n} i = \begin{cases} 1 &amp;\text{si}~n = 1\\ \sum_{i=1}^{n-1} i + n &amp;\text{si}~n &gt; 1\end{cases}\]</span> <code>somme_rec(n)</code> doit donc retourner…</p>
+<ul>
+<li>…<code>1</code> si <span class="math inline">\(n = 1\)</span> (cas de base),</li>
+<li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
+</ul>
+</section>
+<section id="fonctions-récursives-vs-fonctions-itératives" class="slide level2">
+<h2>Fonctions récursives vs fonctions itératives</h2>
+<ul>
+<li>On peut toujours remplacer une fonction récursive par une fonction itérative qui fait le même travail. Alors <strong>pourquoi écrire des fonctions récursives ?</strong></li>
+<li>Certains problèmes ont naturellement une <strong>structure récursive</strong> (ex. calcul de la factorielle) et il est donc plus facile d’y réfléchir récursivement. <!-- - La correctitude d'un algorithme récursif est souvent plus facile à prouver : il suffit de vérifier le cas de base et de montrer que l'étape récursive préserve la correctitude. --></li>
+<li>Mais les fonctions récursives sont souvent <strong>moins efficaces</strong> (cf.&nbsp;Fibonacci)…</li>
+</ul>
+</section>
+<section>
+<section id="entracte" class="title-slide slide level1 center">
+<h1>Entracte</h1>
+
+</section>
+<section id="exemple-de-révision-le-morpion" class="slide level2">
+<h2>Exemple de révision : le morpion</h2>
+<p>Programmons un <strong>morpion</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle au clavier. Le premier qui aligne trois symboles gagne.</p>
+<div class="fragment">
+<ul>
+<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
+<li><code>P[i][j]</code> est la case de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
+<li>Nos fonctions marcheront pour un plateau de côté <code>n</code> quelconque, qu’elles retrouvent avec <code>n = len(P)</code>. Ici, <code>n = 3</code>.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:52%;">
+<p>Le plateau en mémoire :</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [[<span class="st">'X'</span>, <span class="st">'O'</span>, <span class="va">None</span>],</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>     [<span class="va">None</span>, <span class="st">'X'</span>, <span class="va">None</span>],</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>     [<span class="st">'O'</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:48%;">
+<p>Le plateau affiché :</p>
+<pre class="text"><code>| X | O |   |
+|   | X |   |
+| O |   |   |</code></pre>
+</div></div>
+</div>
+</section>
+<section id="morpion-les-fonctions" class="slide level2 smaller">
+<h2>Morpion : les fonctions</h2>
+<div style="font-size: 0.85em;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 42%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fonction</th>
+<th style="text-align: left;">Rôle</th>
+<th style="text-align: left;">Retourne</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>transposer(T)</code></td>
+<td style="text-align: left;">transpose un tableau (cours 5)</td>
+<td style="text-align: left;">le tableau transposé</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>plateau_vide(n)</code></td>
+<td style="text-align: left;">crée un plateau <span class="math inline">\(n \times n\)</span> de cases libres</td>
+<td style="text-align: left;">le plateau</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>afficher(P)</code></td>
+<td style="text-align: left;">affiche le plateau</td>
+<td style="text-align: left;">rien</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>jouer(P, joueur)</code></td>
+<td style="text-align: left;">demande une case libre à <code>joueur</code> et y pose son symbole</td>
+<td style="text-align: left;">rien</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gagnant(P, joueur)</code></td>
+<td style="text-align: left;"><code>joueur</code> a-t-il rempli une ligne, une colonne ou une diagonale ?</td>
+<td style="text-align: left;">un <code>bool</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>plein(P)</code></td>
+<td style="text-align: left;">toutes les cases sont-elles prises ?</td>
+<td style="text-align: left;">un <code>bool</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+</section>
+<section id="la-fonction-input" class="slide level2">
+<h2>La fonction <span class="title-code">input</span></h2>
+<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
+<ul>
+<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
+</ul>
+<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
+</section>
+<section id="morpion-la-partie" class="slide level2">
+<h2>Morpion : la partie</h2>
+<p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
+<pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
+tant que le plateau n'est pas rempli :
+    afficher le plateau
+    déterminer le joueur
+    faire jouer le joueur
+    si le joueur a gagné : c'est fini (return)
+    sinon : passer à la prochaine itération
+
+sortir de cette boucle (sans return) signifie un match nul.</code></pre>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="cours6_ICS_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="cours6_ICS_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="cours6_ICS_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="cours6_ICS_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"theme":"whiteboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: false,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 10,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 10,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1200,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

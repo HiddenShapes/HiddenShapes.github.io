@@ -1,0 +1,992 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+@font-face {
+    font-family: "EB Garamond";
+    src: url("fonts/EB_Garamond/EBGaramond-VariableFont_wght.ttf") format("truetype"),
+	 local('EB Garamond');
+}
+
+@font-face {
+    font-family: "blackout_sunrise";
+    src: local("blackout_sunrise"),
+	 url("fonts/blackout-master/blackout_sunrise-webfont.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "blackout_midnight";
+    src: local("blackout_midnight"),
+	 url("fonts/blackout-master/blackout_midnight-webfont.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatbol.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('fonts/Palatia/Palatita.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+.reveal section *  {
+    font-family: Palatino, blackout_midnight;
+    font-size: 34px
+}
+
+.reveal section.smaller *:not(h2):not(.title-code):not(code) {
+    font-size: 1em; /* or whatever size you want */
+}
+.reveal section.smaller code {
+    font-size: 0.75em; /* or whatever size you want for code */
+}
+
+
+.reveal section .Theorembox {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #303030;
+    max-width: 96%;
+    color: #dde0eb;
+    border: 2px solid #dde0eb;
+    border-radius: 10px;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    padding-bottom: 0.4em;
+}
+
+.reveal section h2 {
+    font-size: 1.5em !important;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    text-align: center !important;
+}
+
+.reveal section.smaller h2 {
+    font-size: 2em !important;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    text-align: center !important;
+}
+
+.invert-colors{
+    filter: invert(1);
+}
+
+.img-center {
+    display: block !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.reveal section .sourceCode * {
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+}
+
+.reveal section .small-code .sourceCode {
+    line-height: 1;
+}
+
+.reveal section .small-code .sourceCode * {
+    font-size: 22px;
+    line-height: inherit;
+}
+
+.reveal section code {
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+}
+
+.reveal section p {
+    /* font-family: 'Fira Mono', monospace; */
+}
+
+.reveal section ul, ol, li {
+}
+
+.reveal section .math.inline {
+    display: inline-block; 
+}
+
+.remark {
+    font-weight: bold;
+    color: #669aed;
+}
+
+.attention {
+    font-weight: bold;
+    color: #669aed;
+}
+
+.contour-explanation-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.contour-text-left {
+    width: 50%;
+    padding-right: 20px;
+}
+
+.contour-image-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+}
+
+.contour-image-right-sphere {
+    position: absolute;
+    top: 0;
+    right: -135px;
+    width: 55%;
+}
+
+.reveal strong {
+    color: gold;
+    font-weight: normal;
+}
+
+.strong-blue {
+    color: lightblue;
+    font-weight: bold;
+}
+
+.reveal a {
+    color: #80c4f2 ; /* Light blue */
+    font-weight: normal;
+}
+
+.reveal a:hover {
+    color: #659bbf; /* Slightly darker on hover */
+}
+
+.env-box {
+    width: 90%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.env-title {
+    color: #80c4f2;
+    padding: 0.5em 0.75em;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-bottom: 1px solid #ccc;
+}
+
+.env-body {
+    padding: .3em;
+    font-size: 1em;
+}
+
+.reveal .center-container {
+    width: 80% !important;
+    margin: 0 auto !important;
+    text-align: center;
+}
+
+
+.reveal .title-code {
+    font-family: 'Fira Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 1em;
+}
+
+.inline {
+  vertical-align: middle;
+}
+
+.blue-numbered {
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.blue-numbered li {
+  display: block;
+  margin-bottom: 0.5em;
+  padding-left: 1.5em;
+  position: relative;
+}
+
+.blue-numbered li:before {
+  content: "(" counter(item) ")";
+  counter-increment: item;
+  color: lightblue;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.reveal .r-stack > * {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.reveal .r-stack img {
+  background-color: white;
+}
+/* A .keep-hue figure is drawn transparent and flips with the theme, so the
+   white backdrop the older r-stack figures need would box it in. */
+.reveal .r-stack img.keep-hue {
+  background-color: transparent;
+}
+
+
+/* ==========================================================================
+   Layout blocks ported from MAN-ICS (2025-26) for the 2026-27 slides.
+   Colours/typography follow the ICS theme above; only the structural
+   rules are borrowed.
+   ========================================================================== */
+
+/* Vertically centred slide (used for the "deux problèmes" roadmap slide) */
+.center-vertical {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
+
+/* Small italic caption tying a heading to the boxes underneath */
+.connector {
+    text-align: center;
+    font-size: 0.55em;
+    color: #94a3b8;
+    font-style: italic;
+    margin: 0.4em 0 0.5em;
+    letter-spacing: 0.03em;
+}
+
+/* Two side-by-side themed panels */
+.split-row {
+    display: flex;
+    gap: 0.8em;
+    align-items: stretch;
+}
+.split-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 0.6em 0.8em;
+}
+.split-data {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1.5px solid rgba(96, 165, 250, 0.5);
+}
+.split-process {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1.5px solid rgba(251, 191, 36, 0.5);
+}
+.split-header {
+    font-weight: 700;
+    margin-bottom: 0.15em;
+}
+.split-data .split-header    { color: #60a5fa; }
+.split-process .split-header { color: #fbbf24; }
+.split-subtitle {
+    font-size: 0.65em !important;
+    color: #94a3b8;
+    margin-bottom: 0.5em;
+}
+
+/* Emphasis / de-emphasis of one panel in the pair */
+.split-highlight {
+    border-width: 2px;
+    box-shadow: 0 0 18px rgba(96, 165, 250, 0.3);
+    transform: scale(1.02);
+}
+.split-highlight.split-data {
+    border-color: rgba(96, 165, 250, 0.8);
+    background: rgba(59, 130, 246, 0.18);
+}
+.split-highlight.split-process {
+    border-color: rgba(251, 191, 36, 0.8);
+    background: rgba(251, 191, 36, 0.18);
+    box-shadow: 0 0 18px rgba(251, 191, 36, 0.3);
+}
+.split-dimmed { opacity: 0.35; }
+
+/* Pill labels inside the panels */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+}
+.tag {
+    font-size: 0.5em !important;
+    font-weight: 500;
+    padding: 0.25em 0.6em;
+    border-radius: 20px;
+    display: inline-block;
+}
+.tag-blue  { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+.tag-amber { background: rgba(251, 191, 36, 0.2); color: #fde68a; }
+
+/* Slide tables: sized to their content and centred, rather than stretched
+   across the full slide width as the reveal default does. */
+.reveal section table {
+    width: auto;
+    margin: 0.7em auto;
+    border-collapse: collapse;
+}
+.reveal section table th,
+.reveal section table td {
+    padding: 0.2em 1.4em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.reveal section table th {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+/* Arrow linking two side-by-side skeletons, e.g. the for/while archetypes.
+   Nudged down so it sits against the code rather than the column top. */
+.arrow-between {
+    display: block;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1;
+    color: #669aed;
+    margin-top: 0.9em;
+}
+
+/* Progressive line highlighting -- code-line-numbers="1|2|3" -- also switches
+   on Pandoc's line numbering as a side effect. Adding .no-line-numbers to the
+   block hides the gutter and reclaims its space, leaving just the highlight.
+   Selectors are qualified with .numberSource to outrank the line-highlight
+   plugin's own stylesheet. */
+.reveal pre.numberSource.no-line-numbers {
+    margin-left: 0;
+    border-left: none;
+    padding-left: 0;
+}
+.reveal pre.numberSource.no-line-numbers code > span {
+    left: 0;
+}
+.reveal pre.numberSource.no-line-numbers code > span > a:first-child::before {
+    content: none;
+    padding: 0;
+    width: 0;
+}
+
+/* ==========================================================================
+   Flux d'exécution d'une fonction (cours 3)
+
+   The code block is pinned to an exact 600 x 312 box -- 12px/16px padding,
+   26px type on a 36px line -- so line N is centred on y = 36N - 6 in the
+   block's own coordinates. The inline SVGs in the .qmd share that viewBox
+   and are stretched to cover the box, which is what keeps every arrowhead on
+   the line it points at. Change the padding, the font size, the line height
+   or the number of lines here and every path has to be recomputed.
+   ========================================================================== */
+.reveal .flux-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.reveal .flux-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.reveal .flux-code {
+    position: relative;
+    flex: 0 0 600px;
+    width: 600px;
+    height: 312px;
+}
+
+/* Variante à sept lignes du bloc de flux (cours 3, slide du prix TTC) : même
+   grille, une ligne de moins, pour ne pas laisser de ligne vide en bas. Les
+   flèches gardent leur hauteur de 312 px, sinon leur viewBox serait écrasée. */
+.reveal .flux-code.lignes7,
+.reveal .flux-code.lignes7 div.sourceCode,
+.reveal .flux-code.lignes7 pre {
+    height: 276px;
+}
+
+/* Et une variante à neuf lignes (cours 3, slide des appels imbriqués). Les
+   flèches de cette slide portent alors viewBox="0 0 600 348" et height: 348px,
+   pour que l'unité du tracé reste le pixel. */
+.reveal .flux-code.lignes9,
+.reveal .flux-code.lignes9 div.sourceCode,
+.reveal .flux-code.lignes9 pre {
+    height: 348px;
+}
+
+.reveal .flux-code div.sourceCode,
+.reveal .flux-result div.sourceCode {
+    margin: 0;
+    width: 600px;
+    height: 312px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* The pre and the code fill whatever the border leaves, so nothing sticks out
+   of the 600px box and triggers a scrollbar. */
+.reveal .flux-code pre,
+.reveal .flux-result pre {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: none;
+    box-shadow: none;
+}
+
+.reveal .flux-code pre code,
+.reveal .flux-result pre code {
+    display: block;
+    padding: 12px 16px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    /* The 1px border on div.sourceCode leaves the code 2px short of the seven
+       lines it holds; without this, reveal's overflow:auto puts a scrollbar on
+       the block. Nothing visible is clipped -- the shortfall is leading. */
+    overflow: hidden;
+    font-size: 26px;
+    line-height: 36px;
+    background-color: #191919;
+}
+
+/* The arrows and the substituted line only exist on the slides; each arrow is
+   a full-bleed overlay of the whole block, so its position lives in its own
+   path data rather than here. */
+.reveal .flux-code p {
+    margin: 0;
+}
+
+.reveal .flux-code .flux-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 600px;
+    height: 312px;
+    margin: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* The call itself, not the whole line it sits on. Line 7 starts at
+   12px + 6 x 36px, and fonction(False, 4) is the 18 characters from
+   x = 16 + 8 x 15.6; a few px of bleed keep the box off the glyphs. */
+.reveal .flux-code .flux-band {
+    position: absolute;
+    left: 138px;
+    top: 230px;
+    width: 288px;
+    height: 34px;
+    box-sizing: border-box;
+    background: rgba(255, 215, 0, 0.16);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* The call line, with the call replaced by what it returned. Only that one
+   line changes, so the overlay is a 36px strip of the code background laid
+   over line 7 -- the rest of the block is the real code block underneath, and
+   the highlight band still sits on top of both. Same 12px/16px padding and
+   36px line as the block, so the text lands exactly on the line it replaces. */
+.reveal .flux-code div.flux-sub {
+    position: absolute;
+    top: 229px;
+    left: 1px;
+    right: 1px;
+    height: 36px;
+    box-sizing: border-box;
+    padding-left: 16px;
+    /* The strip's own metrics have to match the block's, or its strut sits the
+       replacement text below the line it is standing in for. */
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+    line-height: 36px;
+    background-color: #191919;
+    z-index: 2;
+}
+
+.reveal .flux-code div.flux-sub code {
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+    line-height: 36px;
+    white-space: pre;
+    background: none;
+    padding: 0;
+}
+
+/* The returned value keeps the width of the call it replaced -- 18 characters
+   -- and sits centred in it. Nothing after it on the line moves, and the
+   return arrow, which comes down the middle of that span, still points at it. */
+.reveal .flux-code div.flux-sub .flux-value {
+    display: inline-block;
+    width: 18ch;
+    text-align: center;
+    color: #ff5c5c;
+    font-weight: bold;
+}
+
+
+/* Le réseau de points de « Utilisation de modules » (repris du cours MAN).
+   Il est dessiné une seule fois, sur la pile elle-même, pour rester derrière
+   chaque sous-slide : à l'intérieur d'une sous-slide il prendrait celle-ci
+   comme référence et se décalerait. Sur la dernière sous-slide, celle qui
+   porte les deux points de conclusion, il s'efface. */
+.reveal canvas.latticeCanvas {
+    transition: opacity 0.4s ease;
+}
+
+/* Deux cas : la dernière sous-slide, et la pile qui n'est plus la slide
+   courante. Sans le second, reveal retire .present dès le début de la
+   transition et le réseau réapparaît pendant le fondu de sortie. */
+.reveal section.stack:has(> section.lattice-off.present) canvas.latticeCanvas,
+.reveal section.stack:not(.present) canvas.latticeCanvas {
+    opacity: 0;
+}
+
+
+/* Dernière slide du flux d'exécution : le programme tel qu'il est écrit, et
+   ce qu'il affiche. Pas d'overlay ici, donc pas de géométrie figée -- juste
+   la même largeur de colonne que .flux-code pour que les deux slides se
+   superposent au fondu. */
+.reveal .flux-result {
+    flex: 0 0 600px;
+    width: 600px;
+}
+
+/* The code box shares .flux-code's pinned metrics (see above), so this slide
+   sits exactly on top of the previous one and only the output box appears. */
+
+.reveal .flux-out {
+    margin-top: 20px;
+    padding: 8px 16px 12px;
+    background-color: #191919;
+    border-left: 4px solid #669aed;
+    border-radius: 4px;
+    font-family: 'Fira Mono', monospace;
+    font-size: 26px;
+    line-height: 36px;
+}
+
+.reveal .flux-out-label {
+    display: block;
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 24px;
+    color: #669aed;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   Light theme
+   --------------------------------------------------------------------------
+   Light is the default. The switch in the top-right corner (see the script in
+   header.html) puts .ics-light on <html> and remembers the choice in
+   localStorage, so a lecturer who prefers dark sets it once.
+
+   Everything flips: background, prose, headings, links, boxes and code. The
+   flux overlays of cours 3 (the highlight band, the substituted line, the
+   arrows) are positioned in the code block's own pixel space, so only their
+   colours change here, never their geometry: touch nothing but the colours in
+   that group or every arrow path has to be recomputed.
+   ========================================================================== */
+
+html.ics-light {
+    --ics-code-bg: #e9e9e2;
+    --ics-code-fg: #22262b;
+    --r-background-color: #f7f7f4;
+    --r-main-color: #1c2126;
+    --r-heading-color: #0f1419;
+    --r-link-color: #1565c0;
+    --r-link-color-hover: #0d47a1;
+    --r-selection-background-color: #b9d7f5;
+    --r-selection-color: #0f1419;
+    --r-overlay-element-bg-color: 20, 20, 20;
+    --r-overlay-element-fg-color: 255, 255, 255;
+}
+
+html.ics-light .reveal-viewport { background: #f7f7f4; }
+
+/* Emphasis: gold and lightblue are unreadable on a pale ground. */
+html.ics-light .reveal strong      { color: #a35b00; }
+html.ics-light .strong-blue        { color: #1d4ed8; }
+html.ics-light .remark,
+html.ics-light .attention          { color: #1d4ed8; }
+html.ics-light .reveal a           { color: #1565c0; }
+html.ics-light .reveal a:hover     { color: #0d47a1; }
+html.ics-light .arrow-between      { color: #1d4ed8; }
+
+/* Muted greys need more contrast against white than against #191919. */
+html.ics-light .connector,
+html.ics-light .split-subtitle     { color: #5a6675; }
+
+/* Boxes */
+html.ics-light .reveal section .Theorembox {
+    background: #eef1f5;
+    color: #1c2126;
+    border-color: #5a6675;
+}
+html.ics-light .env-box            { border-color: #c7ccd4; }
+html.ics-light .env-title {
+    color: #1565c0;
+    border-bottom-color: #c7ccd4;
+}
+
+html.ics-light .split-data         { background: rgba(59, 130, 246, .10); }
+html.ics-light .split-process      { background: rgba(180, 120, 10, .10);
+                                     border-color: rgba(163, 91, 0, .45); }
+html.ics-light .split-data .split-header    { color: #1d4ed8; }
+html.ics-light .split-process .split-header { color: #92400e; }
+
+html.ics-light .tag-blue  { background: rgba(59, 130, 246, .16); color: #1e40af; }
+html.ics-light .tag-amber { background: rgba(180, 120, 10, .16); color: #92400e; }
+
+/* Table rules are white-on-dark by default. */
+html.ics-light .reveal section table th,
+html.ics-light .reveal section table td { border-bottom-color: rgba(0, 0, 0, .18); }
+html.ics-light .reveal section table th { border-bottom-color: rgba(0, 0, 0, .45); }
+
+/* Figures. .invert-colors marks an asset that was drawn for a light page and
+   is inverted to sit on the dark slides; on a light slide it is shown as
+   drawn. .dark-figure is the opposite case, a figure drawn for the dark
+   slides, so it is the one that has to flip. */
+html.ics-light .invert-colors { filter: none; }
+html.ics-light .dark-figure   { filter: invert(1) hue-rotate(180deg); }
+
+/* .keep-hue is .invert-colors for a figure that has real colour in it. A plain
+   invert turns the memory diagrams' Office blue into mustard, so the hue is
+   rotated back and only the lightness flips: the blue stays blue and the black
+   names go white. Like .invert-colors it must stay undefined in custom-doc.css,
+   where the page is light and the figures are shown as drawn. */
+.keep-hue { filter: invert(1) hue-rotate(180deg); }
+html.ics-light .keep-hue { filter: none; }
+
+/* The toggle itself.
+   A small track-and-knob switch pinned to the top-right of the viewport. It
+   sits outside .reveal, so slide styling does not reach it and it does not
+   scale with the deck. Shown on the title slide only, so nothing sits in the
+   corner during the lecture; the script in header.html adds .on-title while
+   that slide is up. Knob to the right means light. */
+.ics-theme-toggle {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 1000;
+    display: block;
+    width: 40px;
+    height: 22px;
+    padding: 0;
+    margin: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(221, 224, 235, .5);
+    background: rgba(255, 255, 255, .10);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: opacity .2s ease, background .15s ease, border-color .15s ease;
+}
+.ics-theme-toggle.on-title {
+    opacity: .85;
+    pointer-events: auto;
+}
+.ics-theme-toggle.on-title:hover,
+.ics-theme-toggle.on-title:focus-visible {
+    opacity: 1;
+    border-color: rgba(221, 224, 235, .95);
+    background: rgba(255, 255, 255, .20);
+}
+.ics-theme-toggle .ics-theme-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #dde0eb;
+    transition: transform .18s ease, background .15s ease;
+}
+
+html.ics-light .ics-theme-toggle {
+    border-color: rgba(28, 33, 38, .4);
+    background: rgba(28, 33, 38, .07);
+}
+html.ics-light .ics-theme-toggle.on-title:hover,
+html.ics-light .ics-theme-toggle.on-title:focus-visible {
+    border-color: rgba(28, 33, 38, .8);
+    background: rgba(28, 33, 38, .14);
+}
+html.ics-light .ics-theme-toggle .ics-theme-knob {
+    background: #1c2126;
+    transform: translateX(18px);
+}
+
+/* --------------------------------------------------------------------------
+   Syntax colours in light mode.
+
+   Inline code sits directly on the slide, so on a pale ground it needs a
+   dark-on-light palette; the dark one washes out. Code blocks keep their dark
+   background, so they keep the dark palette: the variables are simply
+   re-declared on the block, and inheritance does the rest.
+   -------------------------------------------------------------------------- */
+
+html.ics-light {
+    --quarto-hl-al-color: #c0392b;  /* alert        */
+    --quarto-hl-an-color: #7a5c00;  /* annotation   */
+    --quarto-hl-at-color: #00707a;  /* attribute    */
+    --quarto-hl-bn-color: #7a5c00;  /* base n       */
+    --quarto-hl-bu-color: #2e7d32;  /* builtin      */
+    --quarto-hl-ch-color: #2e7d32;  /* char         */
+    --quarto-hl-co-color: #6b7280;  /* comment      */
+    --quarto-hl-cv-color: #7a5c00;  /* comment var  */
+    --quarto-hl-cn-color: #7a5c00;  /* constant     */
+    --quarto-hl-cf-color: #b03a00;  /* control flow */
+    --quarto-hl-dt-color: #b03a00;  /* data type    */
+    --quarto-hl-dv-color: #7a5c00;  /* decimal      */
+    --quarto-hl-do-color: #6b7280;  /* documentation*/
+    --quarto-hl-er-color: #c0392b;  /* error        */
+    --quarto-hl-ex-color: #00707a;  /* extension    */
+    --quarto-hl-fl-color: #7a5c00;  /* float        */
+    --quarto-hl-fu-color: #b03a00;  /* function     */
+    --quarto-hl-im-color: #2e7d32;  /* import       */
+    --quarto-hl-in-color: #7a5c00;  /* information  */
+    --quarto-hl-kw-color: #b03a00;  /* keyword      */
+    --quarto-hl-op-color: #b03a00;  /* operator     */
+    --quarto-hl-ot-color: #00707a;  /* other        */
+    --quarto-hl-pp-color: #6a3d9a;  /* preprocessor */
+    --quarto-hl-re-color: #00707a;  /* regex        */
+    --quarto-hl-sc-color: #2e7d32;  /* special char */
+    --quarto-hl-ss-color: #2e7d32;  /* special str  */
+    --quarto-hl-st-color: #2e7d32;  /* string       */
+    --quarto-hl-va-color: #00707a;  /* variable     */
+    --quarto-hl-vs-color: #2e7d32;  /* verbatim str */
+    --quarto-hl-wa-color: #6a3d9a;  /* warning      */
+}
+
+/* Code blocks. The dark theme paints the block #191919 in three places (the
+   reveal theme, quarto's dark highlight sheet and the flux rules), and colours
+   unclassed spans #f8f8f2; each of those needs answering. The token spans are
+   left alone: they read --quarto-hl-*, which is already the light palette
+   above, so :not([class]) keeps this off them. */
+html.ics-light .reveal pre,
+html.ics-light .reveal pre code,
+html.ics-light .reveal pre.sourceCode code,
+html.ics-light .reveal div.sourceCode,
+html.ics-light .reveal .flux-code pre code,
+html.ics-light .reveal .flux-result pre code,
+html.ics-light .reveal div.flux-sub,
+html.ics-light .reveal .flux-out,
+html.ics-light .reveal .column-output-location .column:first-of-type div.sourceCode {
+    background-color: var(--ics-code-bg);
+}
+
+html.ics-light .reveal pre,
+html.ics-light .reveal pre code,
+html.ics-light .reveal pre.sourceCode code,
+html.ics-light .reveal div.sourceCode,
+html.ics-light .reveal div.sourceCode pre.sourceCode,
+html.ics-light .reveal .flux-out,
+html.ics-light .reveal code span:not([class]),
+html.ics-light .reveal pre > code.sourceCode > span:not([class]),
+/* the line-highlight plugin puts a class on the line it highlights, which
+   takes those line spans out of the :not([class]) above */
+html.ics-light .reveal code span.highlight-line {
+    color: var(--ics-code-fg);
+}
+
+
+/* Quarto's dark highlight sheet writes the token colours as literals, not as
+   var(--quarto-hl-*), so redefining the variables is not enough on its own:
+   each token class has to be pointed back at its own variable. */
+html.ics-light .reveal code span.al { color: var(--quarto-hl-al-color); }
+html.ics-light .reveal code span.an { color: var(--quarto-hl-an-color); }
+html.ics-light .reveal code span.at { color: var(--quarto-hl-at-color); }
+html.ics-light .reveal code span.bn { color: var(--quarto-hl-bn-color); }
+html.ics-light .reveal code span.bu { color: var(--quarto-hl-bu-color); }
+html.ics-light .reveal code span.ch { color: var(--quarto-hl-ch-color); }
+html.ics-light .reveal code span.co { color: var(--quarto-hl-co-color); }
+html.ics-light .reveal code span.cv { color: var(--quarto-hl-cv-color); }
+html.ics-light .reveal code span.cn { color: var(--quarto-hl-cn-color); }
+html.ics-light .reveal code span.cf { color: var(--quarto-hl-cf-color); }
+html.ics-light .reveal code span.dt { color: var(--quarto-hl-dt-color); }
+html.ics-light .reveal code span.dv { color: var(--quarto-hl-dv-color); }
+html.ics-light .reveal code span.do { color: var(--quarto-hl-do-color); }
+html.ics-light .reveal code span.er { color: var(--quarto-hl-er-color); }
+html.ics-light .reveal code span.ex { color: var(--quarto-hl-ex-color); }
+html.ics-light .reveal code span.fl { color: var(--quarto-hl-fl-color); }
+html.ics-light .reveal code span.fu { color: var(--quarto-hl-fu-color); }
+html.ics-light .reveal code span.im { color: var(--quarto-hl-im-color); }
+html.ics-light .reveal code span.in { color: var(--quarto-hl-in-color); }
+html.ics-light .reveal code span.kw { color: var(--quarto-hl-kw-color); }
+html.ics-light .reveal code span.op { color: var(--quarto-hl-op-color); }
+html.ics-light .reveal code span.ot { color: var(--quarto-hl-ot-color); }
+html.ics-light .reveal code span.pp { color: var(--quarto-hl-pp-color); }
+html.ics-light .reveal code span.re { color: var(--quarto-hl-re-color); }
+html.ics-light .reveal code span.sc { color: var(--quarto-hl-sc-color); }
+html.ics-light .reveal code span.ss { color: var(--quarto-hl-ss-color); }
+html.ics-light .reveal code span.st { color: var(--quarto-hl-st-color); }
+html.ics-light .reveal code span.va { color: var(--quarto-hl-va-color); }
+html.ics-light .reveal code span.vs { color: var(--quarto-hl-vs-color); }
+html.ics-light .reveal code span.wa { color: var(--quarto-hl-wa-color); }
+
+/* Flux overlays: colour only, never geometry. Gold on #191919 becomes amber
+   on the light block; the returned value and the output rule follow the
+   light palette's red and blue. */
+html.ics-light .reveal .flux-code .flux-band {
+    background: rgba(180, 120, 10, .22);
+}
+html.ics-light .reveal .flux-code .flux-arrow g {
+    stroke: #b45309;
+}
+html.ics-light .reveal .flux-code .flux-arrow > circle,
+html.ics-light .reveal .flux-code .flux-arrow > path {
+    fill: #b45309;
+}
+html.ics-light .reveal .flux-code div.flux-sub .flux-value {
+    color: #c0392b;
+}
+html.ics-light .reveal .flux-out {
+    border-left-color: #1565c0;
+}
+html.ics-light .reveal .flux-out-label {
+    color: #1565c0;
+}
+
+/* Première puce visible, la suite incrémentale.
+
+   Écrire une puce, puis ::: {.incremental} pour les suivantes, produit deux
+   <ul> frères : quarto ne garde aucun div.incremental, il pose seulement
+   .fragment sur les <li>. Or reveal met les listes en display:inline-block, donc
+   les deux listes se placent côte à côte ; trop larges, elles passent à la ligne
+   et laissent un trou. Les remettre en display:block les empile, et annuler la
+   marge entre elles rend l'écart identique à celui de deux puces d'une même
+   liste (15 px mesurés dans les deux cas). Le !important est nécessaire : la
+   marge basse de 20 px vient d'une règle plus spécifique. */
+.reveal ul:has(+ ul) { display: block; margin-bottom: 0 !important; }
+.reveal ul + ul      { display: block; margin-top: 0 !important; }
+
+/* Même chose quand la suite de la liste est enfermée dans un fragment, pour
+   qu'une seule puce apparaisse au clic : Quarto rend alors
+   <ul>…</ul><div class="fragment"><ul>…</ul></div>, que la règle ci-dessus,
+   qui vise deux <ul> voisins, ne voit pas. */
+.reveal ul:has(+ div.fragment > ul) { display: block; margin-bottom: 0 !important; }
+.reveal ul + div.fragment > ul      { display: block; margin-top: 0 !important; }
+
+/* Et quand deux fragments se suivent, chacun avec sa puce : le <ul> du second
+   n'est précédé d'aucun <ul>, les règles ci-dessus ne l'attrapent pas, il reste
+   en display:inline-block et descend d'une ligne de base, ce qui creuse l'écart
+   avant la puce (cours 3, slide « Appeler une fonction et return »). */
+.reveal div.fragment:has(> ul):has(+ div.fragment > ul) > ul { margin-bottom: 0 !important; }
+.reveal div.fragment:has(> ul) + div.fragment > ul { display: block; margin-top: 0 !important; }
+
+/* Sortie compacte sous un bloc de code (cours 4, slides des nuages) : la
+   boîte de .flux-out, sans étiquette et à la taille du code, pour tenir sous
+   le code d'une slide {.smaller} qui porte aussi une figure. Le sélecteur doit
+   battre « section.smaller *:not(...) », qui remet toute taille à 1em. */
+.reveal section div.flux-out.compact,
+.reveal section.smaller div.flux-out.compact {
+    margin-top: 6px;
+    padding: 6px 14px;
+    font-size: 0.75em;
+    line-height: 1.35;
+}
+
+
+/* ==========================================================================
+   Anatomie d'une fonction récursive (cours 6)
+
+   Two code blocks side by side, the general schema and fact, written as raw
+   HTML so that parts of a line can be marked: .anat-cond is the base-case
+   condition, .anat-base the base-case return, .anat-rec the recursive call.
+   The marks are translucent backgrounds, so they read on both themes and the
+   token colours inside them are kept.
+   ========================================================================== */
+
+.reveal .anatomie {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+.reveal .anatomie-col { flex: 1 1 0; min-width: 0; }
+.reveal .anatomie-col:first-child { flex-grow: 1.5; }
+.reveal .anatomie-titre {
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #669aed;
+    margin-bottom: 4px;
+}
+.reveal .anatomie div.sourceCode { margin: 0; }
+.reveal .anatomie pre.sourceCode { margin: 0; width: 100%; }
+.reveal .anatomie pre.sourceCode code {
+    font-size: 23px;
+    line-height: 1.6;
+    padding: 14px 18px;
+    max-height: none;
+    overflow: visible;
+}
+.reveal .anatomie pre.sourceCode code * { font-size: 23px; }
+
+.reveal .anat {
+    border-radius: 5px;
+    padding: 1px 4px;
+    margin: 0 -4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+.reveal .anat-cond { background: rgba(59, 130, 246, 0.38); }
+.reveal .anat-base { background: rgba(34, 197, 94, 0.36); }
+.reveal .anat-rec  { background: rgba(245, 158, 11, 0.42); }
+
+.reveal .anatomie-legende {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    margin: 40px 0 6px;
+    font-size: 0.75em;
+}
+.reveal .anatomie-legende .anat { margin: 0; padding: 2px 10px; }
+
+html.ics-light .reveal .anat-cond { background: rgba(59, 130, 246, 0.28); }
+html.ics-light .reveal .anat-base { background: rgba(34, 197, 94, 0.30); }
+html.ics-light .reveal .anat-rec  { background: rgba(245, 158, 11, 0.36); }
+html.ics-light .reveal .anatomie-titre { color: #1d4ed8; }
+/* The marked spans carry a class, so the light theme's rule for unclassed
+   code spans skips them: give their plain text the light code colour. */
+html.ics-light .reveal .anatomie .anat { color: var(--ics-code-fg); }
+
+/* Anatomie II: eight lines and longer ones, so a size smaller and an even split. */
+.reveal .anatomie-ii .anatomie-col:first-child { flex-grow: 1.2; }
+.reveal .anatomie-ii pre.sourceCode code,
+.reveal .anatomie-ii pre.sourceCode code * { font-size: 21px; }
+.reveal .anatomie-ii pre.sourceCode code { line-height: 1.5; }
+.reveal .anatomie-ii + .anatomie-legende { margin-top: 26px; }

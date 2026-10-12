@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Leonard Hardiman et Ghid Maatouk">
+
+<title>Informatique et Calcul Scientifique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="cours6_ICS-doc_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cours6_ICS-doc_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="cours6_ICS-doc_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="cours6_ICS-doc_files/libs/quarto-html/popper.min.js"></script>
+<script src="cours6_ICS-doc_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cours6_ICS-doc_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cours6_ICS-doc_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cours6_ICS-doc_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cours6_ICS-doc_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cours6_ICS-doc_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cours6_ICS-doc_files/libs/bootstrap/bootstrap-da7ddf090378b5dd0f3ea355ccfa0496.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom-doc.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fonctions-récursives" id="toc-fonctions-récursives" class="nav-link active" data-scroll-target="#fonctions-récursives">Fonctions récursives</a></li>
+  <li><a href="#exemple-1-de-récursion-factorielle" id="toc-exemple-1-de-récursion-factorielle" class="nav-link" data-scroll-target="#exemple-1-de-récursion-factorielle">Exemple 1 de récursion : factorielle</a></li>
+  <li><a href="#appels-de-fonctions-visualisation" id="toc-appels-de-fonctions-visualisation" class="nav-link" data-scroll-target="#appels-de-fonctions-visualisation">Appels de fonctions : visualisation</a></li>
+  <li><a href="#factorielle-appels-récursifs" id="toc-factorielle-appels-récursifs" class="nav-link" data-scroll-target="#factorielle-appels-récursifs">Factorielle : appels récursifs</a></li>
+  <li><a href="#anatomie-dune-fonction-récursive-i" id="toc-anatomie-dune-fonction-récursive-i" class="nav-link" data-scroll-target="#anatomie-dune-fonction-récursive-i">Anatomie d’une fonction récursive I</a></li>
+  <li><a href="#exemple-2-de-récursion-fibonacci" id="toc-exemple-2-de-récursion-fibonacci" class="nav-link" data-scroll-target="#exemple-2-de-récursion-fibonacci">Exemple 2 de récursion : Fibonacci</a></li>
+  <li><a href="#fibonacci-appels-récursifs" id="toc-fibonacci-appels-récursifs" class="nav-link" data-scroll-target="#fibonacci-appels-récursifs">Fibonacci : appels récursifs</a></li>
+  <li><a href="#anatomie-dune-fonction-récursive-ii" id="toc-anatomie-dune-fonction-récursive-ii" class="nav-link" data-scroll-target="#anatomie-dune-fonction-récursive-ii">Anatomie d’une fonction récursive II</a></li>
+  <li><a href="#somme-récursive" id="toc-somme-récursive" class="nav-link" data-scroll-target="#somme-récursive">Somme récursive</a></li>
+  <li><a href="#fonctions-récursives-vs-fonctions-itératives" id="toc-fonctions-récursives-vs-fonctions-itératives" class="nav-link" data-scroll-target="#fonctions-récursives-vs-fonctions-itératives">Fonctions récursives vs fonctions itératives</a></li>
+  <li><a href="#exemple-de-révision-le-morpion" id="toc-exemple-de-révision-le-morpion" class="nav-link" data-scroll-target="#exemple-de-révision-le-morpion">Exemple de révision : le morpion</a></li>
+  <li><a href="#morpion-les-fonctions" id="toc-morpion-les-fonctions" class="nav-link" data-scroll-target="#morpion-les-fonctions">Morpion : les fonctions</a></li>
+  <li><a href="#la-fonction-input" id="toc-la-fonction-input" class="nav-link" data-scroll-target="#la-fonction-input">La fonction <span class="title-code">input</span></a></li>
+  <li><a href="#morpion-la-partie" id="toc-morpion-la-partie" class="nav-link" data-scroll-target="#morpion-la-partie">Morpion : la partie</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+          scale: 100,
+          linebreaks: { automatic: true },
+      		mtextFontInherit: true
+        }});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.spoiler').forEach(function (sp) {
+    var overlay = document.createElement('div');
+    overlay.className = 'spoiler-overlay';
+    overlay.textContent = 'Cliquez pour révéler';
+    sp.appendChild(overlay);
+    overlay.addEventListener('click', function () {
+      sp.classList.add('revealed');
+    });
+  });
+});
+</script>
+
+<script>
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
+   Deck pages only: the notes pages load the same header. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
+  function apply(theme) {
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
+    if (btn) {
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'dark' ? 'dark' : 'light');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
+
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+      btn.blur();
+    });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* the switch is only visible while the title slide is up */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
+  });
+})();
+</script>
+
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Informatique et Calcul Scientifique</h1>
+<p class="subtitle lead">Cours 6</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Leonard Hardiman et Ghid Maatouk </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="fonctions-récursives" class="level2">
+<h2 class="anchored" data-anchor-id="fonctions-récursives">Fonctions récursives</h2>
+<ul>
+<li><p>Une fonction récursive résout un problème en résolvant un ou plusieurs sous-problèmes du même type.</p></li>
+<li><p>On écrit alors des fonctions qui s’appellent elles-mêmes.</p></li>
+<li><p>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme « <strong>diviser-pour-régner</strong> ».</p></li>
+</ul>
+<p><img src="media/infinite_rec2.png" class="img-center img-fluid" style="width:55.0%"></p>
+</section>
+<section id="exemple-1-de-récursion-factorielle" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-1-de-récursion-factorielle">Exemple 1 de récursion : factorielle</h2>
+<ul>
+<li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, la factorielle de <span class="math inline">\(n\)</span> est définie comme <span class="math display">\[n! = n \cdot (n-1) \cdots 2 \cdot 1 = \begin{cases} n \cdot (n-1)! &amp;\text{si}~n \geq 1\\ 1 &amp;\text{si}~n = 0\end{cases}\]</span></p></li>
+<li><p>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</p></li>
+</ul>
+<p>Cela suggère la fonction suivante :</p>
+<div id="ee5b916a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fact(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>120</code></pre>
+</div>
+</div>
+<ul>
+<li>Pour le <strong>cas de base</strong>, la valeur de la fonction est définie directement, sans appels récursifs.</li>
+<li><code>fact</code> calcule la factorielle de <span class="math inline">\(n\)</span> avec <span class="math inline">\(n\)</span> appels récursifs.</li>
+</ul>
+</section>
+<section id="appels-de-fonctions-visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="appels-de-fonctions-visualisation">Appels de fonctions : visualisation</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, y):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g(s) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> f(<span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Pour comprendre l’exécution d’un programme, il est utile de <strong>visualiser</strong> les appels de fonctions.</li>
+<li>Chaque appel de fonction est représenté par une <strong>ligne horizontale</strong>. Un appel imbriqué apparaît au-dessus de l’appelant.</li>
+</ul>
+<p><img src="media/appels_fonctions-obj.svg" class="invert-colors-doc img-center img-fluid" style="width:100.0%"></p>
+<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
+</section>
+<section id="factorielle-appels-récursifs" class="level2">
+<h2 class="anchored" data-anchor-id="factorielle-appels-récursifs">Factorielle : appels récursifs</h2>
+<div id="21be76d2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> fact(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> f</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fact(<span class="dv">3</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6</code></pre>
+</div>
+</div>
+<p><img src="media/fact_run-obj.svg" class="invert-colors-doc img-center img-fluid" style="width:100.0%"></p>
+</section>
+<section id="anatomie-dune-fonction-récursive-i" class="level2">
+<h2 class="anchored" data-anchor-id="anatomie-dune-fonction-récursive-i">Anatomie d’une fonction récursive I</h2>
+<p>Schématisons la structure d’une fonction récursive (avec un appel récursif).</p>
+<div class="anatomie">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fonction(entrée):
+    <span class="cf">if</span> <span class="anat anat-cond">condition du cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe</span>
+    résultat <span class="op">=</span> <span class="anat anat-rec">fonction(entrée plus petite)</span>
+    <span class="cf">return</span> combiner(entrée, résultat)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fact(n):
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">1</span></span>
+    f <span class="op">=</span> <span class="anat anat-rec">fact(n <span class="op">-</span> <span class="dv">1</span>)</span>
+    <span class="cf">return</span> n <span class="op">*</span> f</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="anatomie-legende">
+<p><span class="anat anat-cond">la condition du cas de base</span> <span class="anat anat-base">le cas de base</span> <span class="anat anat-rec">l’appel récursif</span></p>
+</div>
+</section>
+<section id="exemple-2-de-récursion-fibonacci" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-2-de-récursion-fibonacci">Exemple 2 de récursion : Fibonacci</h2>
+<ul>
+<li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></p></li>
+<li><p>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</p>
+<div id="c2c3617c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span> <span class="co"># cas de base</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="co"># appel récursif</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">2</span>) <span class="co"># appel récursif</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(fib(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+1
+2
+3
+5
+8
+13
+21
+34</code></pre>
+</div>
+</div></li>
+<li><p>En général, une fonction peut effectuer un <strong>nombre quelconque</strong> d’appels récursifs. Ici, chaque appel de <code>fib</code> en engendre <strong>deux</strong> autres (sauf pour les cas de base).</p></li>
+</ul>
+</section>
+<section id="fibonacci-appels-récursifs" class="level2">
+<h2 class="anchored" data-anchor-id="fibonacci-appels-récursifs">Fibonacci : appels récursifs</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fib(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="media/fib_run-obj.svg" class="invert-colors-doc img-center img-fluid" style="width:100.0%"></p>
+<p><img src="media/fib_appels.png" class="img-center img-fluid" style="width:60.0%"></p>
+<p>On peut prouver que pour l’entrée <span class="math inline">\(n\)</span> le nombre d’appels récursifs de <code>fib</code> est exponentiel en <span class="math inline">\(n\)</span> (définition formelle dans quelques semaines).</p>
+</section>
+<section id="anatomie-dune-fonction-récursive-ii" class="level2">
+<h2 class="anchored" data-anchor-id="anatomie-dune-fonction-récursive-ii">Anatomie d’une fonction récursive II</h2>
+<p>Une fonction récursive avec deux cas de base et deux appels récursifs :</p>
+<div class="anatomie anatomie-ii">
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fonction(entrée):
+    <span class="cf">if</span> <span class="anat anat-cond">condition du 1er cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe 1</span>
+    <span class="cf">if</span> <span class="anat anat-cond">condition du 2e cas de base</span>:
+        <span class="anat anat-base"><span class="cf">return</span> solution directe 2</span>
+    a <span class="op">=</span> <span class="anat anat-rec">fonction(entrée plus petite)</span>
+    b <span class="op">=</span> <span class="anat anat-rec">fonction(autre entrée plus petite)</span>
+    <span class="cf">return</span> combiner(entrée, a, b)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fib(n):
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">0</span></span>
+    <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">1</span></span>:
+        <span class="anat anat-base"><span class="cf">return</span> <span class="dv">1</span></span>
+    a <span class="op">=</span> <span class="anat anat-rec">fib(n <span class="op">-</span> <span class="dv">1</span>)</span>
+    b <span class="op">=</span> <span class="anat anat-rec">fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
+    <span class="cf">return</span> a <span class="op">+</span> b</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="anatomie-legende">
+<p><span class="anat anat-cond">les conditions des cas de base</span> <span class="anat anat-base">les cas de base</span> <span class="anat anat-rec">les appels récursifs</span></p>
+</div>
+<p><span class="remark">Remarque.</span> Une fonction récursive peut avoir un nombre <strong>quelconque</strong> de cas de base et d’appels récursifs.</p>
+</section>
+<section id="somme-récursive" class="level2">
+<h2 class="anchored" data-anchor-id="somme-récursive">Somme récursive</h2>
+<p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
+<p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
+<div id="2f06f05c" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">+</span> i</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(somme(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>55</code></pre>
+</div>
+</div>
+<p>Peut-on écrire une fonction récursive <code>somme_rec</code> qui calcule cette même somme ?</p>
+<p>Oui, mais il faut d’abord exprimer cette somme de manière <strong>récursive</strong>.</p>
+<p>Pour <span class="math inline">\(n\)</span> entier strictement positif, <span class="math display">\[\sum_{i=1}^{n} i = \begin{cases} 1 &amp;\text{si}~n = 1\\ \sum_{i=1}^{n-1} i + n &amp;\text{si}~n &gt; 1\end{cases}\]</span> <code>somme_rec(n)</code> doit donc retourner…</p>
+<ul>
+<li>…<code>1</code> si <span class="math inline">\(n = 1\)</span> (cas de base),</li>
+<li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
+</ul>
+<div id="4739f694" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme_rec(n):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> somme_rec(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> n</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(somme_rec(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>55</code></pre>
+</div>
+</div>
+</section>
+<section id="fonctions-récursives-vs-fonctions-itératives" class="level2">
+<h2 class="anchored" data-anchor-id="fonctions-récursives-vs-fonctions-itératives">Fonctions récursives vs fonctions itératives</h2>
+<ul>
+<li>On peut toujours remplacer une fonction récursive par une fonction itérative qui fait le même travail. Alors <strong>pourquoi écrire des fonctions récursives ?</strong></li>
+<li>Certains problèmes ont naturellement une <strong>structure récursive</strong> (ex. calcul de la factorielle) et il est donc plus facile d’y réfléchir récursivement.</li>
+<li>Mais les fonctions récursives sont souvent <strong>moins efficaces</strong> (cf.&nbsp;Fibonacci)…</li>
+</ul>
+</section>
+<section id="exemple-de-révision-le-morpion" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-de-révision-le-morpion">Exemple de révision : le morpion</h2>
+<p>Programmons un <strong>morpion</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle au clavier. Le premier qui aligne trois symboles gagne.</p>
+<ul>
+<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
+<li><code>P[i][j]</code> est la case de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
+<li>Nos fonctions marcheront pour un plateau de côté <code>n</code> quelconque, qu’elles retrouvent avec <code>n = len(P)</code>. Ici, <code>n = 3</code>.</li>
+</ul>
+<p>Le plateau en mémoire :</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [[<span class="st">'X'</span>, <span class="st">'O'</span>, <span class="va">None</span>],</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>     [<span class="va">None</span>, <span class="st">'X'</span>, <span class="va">None</span>],</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>     [<span class="st">'O'</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le plateau affiché :</p>
+<pre class="text"><code>| X | O |   |
+|   | X |   |
+| O |   |   |</code></pre>
+</section>
+<section id="morpion-les-fonctions" class="level2">
+<h2 class="anchored" data-anchor-id="morpion-les-fonctions">Morpion : les fonctions</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 55%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fonction</th>
+<th style="text-align: left;">Rôle</th>
+<th style="text-align: left;">Retourne</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>transposer(T)</code></td>
+<td style="text-align: left;">transpose un tableau (cours 5)</td>
+<td style="text-align: left;">le tableau transposé</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>plateau_vide(n)</code></td>
+<td style="text-align: left;">crée un plateau <span class="math inline">\(n \times n\)</span> de cases libres</td>
+<td style="text-align: left;">le plateau</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>afficher(P)</code></td>
+<td style="text-align: left;">affiche le plateau</td>
+<td style="text-align: left;">rien</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>jouer(P, joueur)</code></td>
+<td style="text-align: left;">demande une case libre à <code>joueur</code> et y pose son symbole</td>
+<td style="text-align: left;">rien</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gagnant(P, joueur)</code></td>
+<td style="text-align: left;"><code>joueur</code> a-t-il rempli une ligne, une colonne ou une diagonale ?</td>
+<td style="text-align: left;">un <code>bool</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>plein(P)</code></td>
+<td style="text-align: left;">toutes les cases sont-elles prises ?</td>
+<td style="text-align: left;">un <code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transposer(T):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(T)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(T[<span class="dv">0</span>])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    T_transp <span class="op">=</span> []</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        ligne <span class="op">=</span> []</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            ligne.append(T[j][i])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        T_transp.append(ligne)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> T_transp</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plateau_vide(n):</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> []</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        ligne <span class="op">=</span> []</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>            ligne.append(<span class="va">None</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        P.append(ligne)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> afficher(P):</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">'| '</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> P[i][j]:</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>                s <span class="op">+=</span> <span class="st">'  | '</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                s <span class="op">+=</span> P[i][j] <span class="op">+</span> <span class="st">' | '</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(s)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> jouer(P, joueur):</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"C'est au tour de"</span>, joueur, <span class="st">"de jouer."</span>)</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    i, j <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> (i <span class="kw">in</span> <span class="bu">range</span>(n) <span class="kw">and</span> j <span class="kw">in</span> <span class="bu">range</span>(n) <span class="kw">and</span> P[i][j] <span class="op">==</span> <span class="va">None</span>):</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"ligne? "</span>))</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"colonne? "</span>))</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    P[i][j] <span class="op">=</span> joueur   <span class="co"># mutation de liste</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gagnant(P, joueur):</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ligne <span class="kw">in</span> P:</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ligne <span class="op">==</span> [joueur] <span class="op">*</span> n: <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> colonne <span class="kw">in</span> transposer(P):</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> colonne <span class="op">==</span> [joueur] <span class="op">*</span> n: <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    diag1 <span class="op">=</span> [P[i][i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>    diag2 <span class="op">=</span> [P[i][n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> diag1 <span class="op">==</span> [joueur] <span class="op">*</span> n <span class="kw">or</span> diag2 <span class="op">==</span> [joueur] <span class="op">*</span> n : <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plein(P):</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> P[i][j] <span class="op">==</span> <span class="va">None</span>: <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partie(n):</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> plateau_vide(n)</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>    tour <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>    joueurs <span class="op">=</span> [<span class="st">'O'</span>, <span class="st">'X'</span>]</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> plein(P):</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>        afficher(P)</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>        joueur <span class="op">=</span> joueurs[tour <span class="op">%</span> <span class="dv">2</span>]</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>        jouer(P, joueur)</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> gagnant(P, joueur):</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(joueur, <span class="st">'a gagné!'</span>)</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>        tour <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Ex aequo!'</span>)</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>partie(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="la-fonction-input" class="level2">
+<h2 class="anchored" data-anchor-id="la-fonction-input">La fonction <span class="title-code">input</span></h2>
+<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
+<ul>
+<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
+</ul>
+<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
+</section>
+<section id="morpion-la-partie" class="level2">
+<h2 class="anchored" data-anchor-id="morpion-la-partie">Morpion : la partie</h2>
+<p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
+<pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
+tant que le plateau n'est pas rempli :
+    afficher le plateau
+    déterminer le joueur
+    faire jouer le joueur
+    si le joueur a gagné : c'est fini (return)
+    sinon : passer à la prochaine itération
+
+sortir de cette boucle (sans return) signifie un match nul.</code></pre>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
