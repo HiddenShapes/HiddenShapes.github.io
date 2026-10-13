@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li><p>Une fonction récursive résout un problème en résolvant un ou plusieurs sous-problèmes du même type.</p></li>
 <li><p>On écrit alors des fonctions qui s’appellent elles-mêmes.</p></li>
-<li><p>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme « <strong>diviser-pour-régner</strong> ».</p></li>
+<li><p>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme «&nbsp;<strong>diviser-pour-régner</strong>&nbsp;».</p></li>
 </ul>
 <p><img src="media/infinite_rec2.png" class="img-center img-fluid" style="width:55.0%"></p>
 </section>
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><p>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</p></li>
 </ul>
 <p>Cela suggère la fonction suivante :</p>
-<div id="ff006f69" class="cell" data-execution_count="1">
+<div id="15ed79f0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="factorielle-appels-récursifs" class="level2">
 <h2 class="anchored" data-anchor-id="factorielle-appels-récursifs">Factorielle : appels récursifs</h2>
-<div id="285b6e31" class="cell" data-execution_count="2">
+<div id="fe1a1082" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></p></li>
 <li><p>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</p>
-<div id="6c88d2ff" class="cell" data-execution_count="3">
+<div id="da40a891" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="somme-récursive">Somme récursive</h2>
 <p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
 <p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
-<div id="930015ba" class="cell" data-execution_count="4">
+<div id="9de3551c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -562,7 +562,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>…<code>1</code> si <span class="math inline">\(n = 1\)</span> (cas de base),</li>
 <li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
 </ul>
-<div id="f8c96a1a" class="cell" data-execution_count="5">
+<div class="spoiler">
+<div id="5e3ae71e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme_rec(n):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -571,6 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(somme_rec(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>55</code></pre>
+</div>
 </div>
 </div>
 </section>

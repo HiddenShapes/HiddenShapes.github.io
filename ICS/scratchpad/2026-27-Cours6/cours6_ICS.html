@@ -442,7 +442,7 @@ Leonard Hardiman et Ghid Maatouk
 </div>
 <div class="fragment">
 <ul>
-<li>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme « <strong>diviser-pour-régner</strong> ».</li>
+<li>L’idée est de décomposer le problème en sous-problèmes <strong>plus petits</strong>, de les résoudre récursivement, puis de <strong>combiner</strong> leurs solutions pour obtenir la solution du problème original. On parle du paradigme «&nbsp;<strong>diviser-pour-régner</strong>&nbsp;».</li>
 </ul>
 </div>
 </section>
@@ -531,7 +531,7 @@ Leonard Hardiman et Ghid Maatouk
     résultat <span class="op">=</span> <span class="anat anat-rec">fonction(entrée plus petite)</span>
     <span class="cf">return</span> combiner(entrée, résultat)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="anatomie-col fragment">
+<div class="anatomie-col fragment" data-fragment-index="1">
 <div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fact(n):
     <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
         <span class="anat anat-base"><span class="cf">return</span> <span class="dv">1</span></span>
@@ -539,7 +539,7 @@ Leonard Hardiman et Ghid Maatouk
     <span class="cf">return</span> n <span class="op">*</span> f</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="anatomie-legende fragment">
+<div class="anatomie-legende fragment" data-fragment-index="1">
 <p><span class="anat anat-cond">la condition du cas de base</span> <span class="anat anat-base">le cas de base</span> <span class="anat anat-rec">l’appel récursif</span></p>
 </div>
 </section>
@@ -606,7 +606,7 @@ Leonard Hardiman et Ghid Maatouk
     b <span class="op">=</span> <span class="anat anat-rec">fonction(autre entrée plus petite)</span>
     <span class="cf">return</span> combiner(entrée, a, b)</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="anatomie-col fragment">
+<div class="anatomie-col fragment" data-fragment-index="1">
 <div class="sourceCode"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="kw">def</span> fib(n):
     <span class="cf">if</span> <span class="anat anat-cond">n <span class="op">==</span> <span class="dv">0</span></span>:
         <span class="anat anat-base"><span class="cf">return</span> <span class="dv">0</span></span>
@@ -617,10 +617,10 @@ Leonard Hardiman et Ghid Maatouk
     <span class="cf">return</span> a <span class="op">+</span> b</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="anatomie-legende fragment">
+<div class="anatomie-legende fragment" data-fragment-index="1">
 <p><span class="anat anat-cond">les conditions des cas de base</span> <span class="anat anat-base">les cas de base</span> <span class="anat anat-rec">les appels récursifs</span></p>
 </div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="2">
 <p><span class="remark">Remarque.</span> Une fonction récursive peut avoir un nombre <strong>quelconque</strong> de cas de base et d’appels récursifs.</p>
 </div>
 </section>
@@ -640,7 +640,7 @@ Leonard Hardiman et Ghid Maatouk
 <p>Oui, mais il faut d’abord exprimer cette somme de manière <strong>récursive</strong>.</p>
 </div>
 </section>
-<section id="somme-récursive-1" class="slide level2 smaller">
+<section id="somme-récursive-1" class="slide level2">
 <h2>Somme récursive</h2>
 <p>Pour <span class="math inline">\(n\)</span> entier strictement positif, <span class="math display">\[\sum_{i=1}^{n} i = \begin{cases} 1 &amp;\text{si}~n = 1\\ \sum_{i=1}^{n-1} i + n &amp;\text{si}~n &gt; 1\end{cases}\]</span> <code>somme_rec(n)</code> doit donc retourner…</p>
 <ul>
