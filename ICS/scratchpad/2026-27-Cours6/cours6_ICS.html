@@ -500,9 +500,6 @@ Leonard Hardiman et Ghid Maatouk
 <div class="absolute" style="bottom: 60px; right: 20px; width: 900px; ">
 <p><img data-src="media/appels_fonctions-obj.svg" class="dark-figure" style="width:100.0%"></p>
 </div>
-<div class="absolute" style="left: 10px; bottom: 0px; width: 1100px; ">
-<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
-</div>
 </section>
 <section id="factorielle-appels-récursifs" class="slide level2">
 <h2>Factorielle : appels récursifs</h2>
@@ -516,8 +513,11 @@ Leonard Hardiman et Ghid Maatouk
 <span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fact(<span class="dv">3</span>)</span>
 <span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="absolute" style="left: 10px; bottom: 20px; width: 1180px; ">
+<div class="absolute" style="left: 10px; bottom: 60px; width: 1180px; ">
 <p><img data-src="media/fact_run-obj.svg" class="dark-figure" style="width:100.0%"></p>
+</div>
+<div class="absolute" style="left: 10px; bottom: 0px; width: 1100px; ">
+<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
 </div>
 </section>
 <section id="anatomie-dune-fonction-récursive-i" class="slide level2">
@@ -667,7 +667,7 @@ Entracte
 <p>Programmons un <strong>tic-tac-toe</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle en choisissant chacun une case libre au hasard. Le premier qui aligne trois symboles gagne.</p>
 <div class="fragment">
 <ul>
-<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
+<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste <code>P</code> de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
 <li><code>P[i][j]</code> est la case de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 <li>Nos fonctions marcheront pour un plateau de côté <code>n</code> quelconque, qu’elles retrouvent avec <code>n = len(P)</code>. Ici, <code>n = 3</code>.</li>
 </ul>
@@ -703,47 +703,42 @@ Entracte
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>transposer(T)</code></td>
-<td style="text-align: left;">transpose un tableau (cours 5)</td>
-<td style="text-align: left;">le tableau transposé</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>plateau_vide(n)</code></td>
 <td style="text-align: left;">crée un plateau <span class="math inline">\(n \times n\)</span> de cases libres</td>
 <td style="text-align: left;">le plateau</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>afficher(P)</code></td>
 <td style="text-align: left;">affiche le plateau</td>
 <td style="text-align: left;">rien</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>jouer_random(P, joueur)</code></td>
 <td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>gagnant(P, joueur)</code></td>
-<td style="text-align: left;"><code>joueur</code> a-t-il rempli une ligne, une colonne ou une diagonale ?</td>
+<td style="text-align: left;">détermine si <code>joueur</code> a gagné</td>
 <td style="text-align: left;">un <code>bool</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>plein(P)</code></td>
-<td style="text-align: left;">toutes les cases sont-elles prises ?</td>
+<td style="text-align: left;">détermine si toutes les cases sont prises</td>
 <td style="text-align: left;">un <code>bool</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste <code>P</code> qu’elle reçoit. C’est la même liste que celle de <code>partie</code>, qui voit donc le coup joué.</p>
 </section>
 <section id="tic-tac-toe-la-partie" class="slide level2">
 <h2>Tic-tac-toe : la partie</h2>
 <p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
-<pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
+<pre class="text"><code>créer un plateau vide
 tant que le plateau n'est pas rempli :
     afficher le plateau
-    déterminer le joueur
+    déterminer le prochain joueur
     faire jouer le joueur
     si le joueur a gagné : c'est fini (return)
     sinon : passer à la prochaine itération
@@ -755,11 +750,7 @@ sortir de cette boucle (sans return) signifie un match nul.</code></pre>
 <p>Pour qu’un <strong>humain</strong> puisse jouer au tic-tac-toe, le programme doit pouvoir lui demander sa case : c’est ce que permet <code>input</code>.</p>
 <p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
 <ul>
-<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
-<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p></li>
 <li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
 </ul>
 <p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>

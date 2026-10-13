@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><p>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</p></li>
 </ul>
 <p>Cela suggère la fonction suivante :</p>
-<div id="15ed79f0" class="cell" data-execution_count="1">
+<div id="5b5f9aba" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -426,11 +426,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Chaque appel de fonction est représenté par une <strong>ligne horizontale</strong>. Un appel imbriqué apparaît au-dessus de l’appelant.</li>
 </ul>
 <p><img src="media/appels_fonctions-obj.svg" class="invert-colors-doc img-center img-fluid" style="width:100.0%"></p>
-<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
 </section>
 <section id="factorielle-appels-récursifs" class="level2">
 <h2 class="anchored" data-anchor-id="factorielle-appels-récursifs">Factorielle : appels récursifs</h2>
-<div id="fe1a1082" class="cell" data-execution_count="2">
+<p>Pour mieux comprendre : <a href="https://www.recursionvisualizer.com">Recursion Visualizer</a>, <a href="https://pythontutor.com/">Python tutor</a>.</p>
+<div id="d2a10b5d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></p></li>
 <li><p>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</p>
-<div id="da40a891" class="cell" data-execution_count="3">
+<div id="4b73b156" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="somme-récursive">Somme récursive</h2>
 <p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
 <p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
-<div id="9de3551c" class="cell" data-execution_count="4">
+<div id="e52e89bd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -563,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
 </ul>
 <div class="spoiler">
-<div id="5e3ae71e" class="cell" data-execution_count="5">
+<div id="054ea7cb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme_rec(n):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="exemple-de-révision-le-tic-tac-toe">Exemple de révision : le tic-tac-toe</h2>
 <p>Programmons un <strong>tic-tac-toe</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle en choisissant chacun une case libre au hasard. Le premier qui aligne trois symboles gagne.</p>
 <ul>
-<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
+<li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste <code>P</code> de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
 <li><code>P[i][j]</code> est la case de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
 <li>Nos fonctions marcheront pour un plateau de côté <code>n</code> quelconque, qu’elles retrouvent avec <code>n = len(P)</code>. Ici, <code>n = 3</code>.</li>
 </ul>
@@ -618,46 +618,41 @@ document.addEventListener('DOMContentLoaded', function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>transposer(T)</code></td>
-<td style="text-align: left;">transpose un tableau (cours 5)</td>
-<td style="text-align: left;">le tableau transposé</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>plateau_vide(n)</code></td>
 <td style="text-align: left;">crée un plateau <span class="math inline">\(n \times n\)</span> de cases libres</td>
 <td style="text-align: left;">le plateau</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>afficher(P)</code></td>
 <td style="text-align: left;">affiche le plateau</td>
 <td style="text-align: left;">rien</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>jouer_random(P, joueur)</code></td>
 <td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>gagnant(P, joueur)</code></td>
-<td style="text-align: left;"><code>joueur</code> a-t-il rempli une ligne, une colonne ou une diagonale ?</td>
+<td style="text-align: left;">détermine si <code>joueur</code> a gagné</td>
 <td style="text-align: left;">un <code>bool</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>plein(P)</code></td>
-<td style="text-align: left;">toutes les cases sont-elles prises ?</td>
+<td style="text-align: left;">détermine si toutes les cases sont prises</td>
 <td style="text-align: left;">un <code>bool</code></td>
 </tr>
 </tbody>
 </table>
-<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste <code>P</code> qu’elle reçoit. C’est la même liste que celle de <code>partie</code>, qui voit donc le coup joué.</p>
 </section>
 <section id="tic-tac-toe-la-partie" class="level2">
 <h2 class="anchored" data-anchor-id="tic-tac-toe-la-partie">Tic-tac-toe : la partie</h2>
 <p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
-<pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
+<pre class="text"><code>créer un plateau vide
 tant que le plateau n'est pas rempli :
     afficher le plateau
-    déterminer le joueur
+    déterminer le prochain joueur
     faire jouer le joueur
     si le joueur a gagné : c'est fini (return)
     sinon : passer à la prochaine itération
