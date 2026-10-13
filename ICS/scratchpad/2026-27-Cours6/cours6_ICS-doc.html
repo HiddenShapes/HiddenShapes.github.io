@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="cours6_ICS-doc_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="cours6_ICS-doc_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="cours6_ICS-doc_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="cours6_ICS-doc_files/libs/bootstrap/bootstrap-da7ddf090378b5dd0f3ea355ccfa0496.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="cours6_ICS-doc_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -122,10 +122,9 @@ window.Quarto = {
   <li><a href="#anatomie-dune-fonction-récursive-ii" id="toc-anatomie-dune-fonction-récursive-ii" class="nav-link" data-scroll-target="#anatomie-dune-fonction-récursive-ii">Anatomie d’une fonction récursive II</a></li>
   <li><a href="#somme-récursive" id="toc-somme-récursive" class="nav-link" data-scroll-target="#somme-récursive">Somme récursive</a></li>
   <li><a href="#fonctions-récursives-vs-fonctions-itératives" id="toc-fonctions-récursives-vs-fonctions-itératives" class="nav-link" data-scroll-target="#fonctions-récursives-vs-fonctions-itératives">Fonctions récursives vs fonctions itératives</a></li>
-  <li><a href="#exemple-de-révision-le-morpion" id="toc-exemple-de-révision-le-morpion" class="nav-link" data-scroll-target="#exemple-de-révision-le-morpion">Exemple de révision : le morpion</a></li>
-  <li><a href="#morpion-les-fonctions" id="toc-morpion-les-fonctions" class="nav-link" data-scroll-target="#morpion-les-fonctions">Morpion : les fonctions</a></li>
-  <li><a href="#la-fonction-input" id="toc-la-fonction-input" class="nav-link" data-scroll-target="#la-fonction-input">La fonction <span class="title-code">input</span></a></li>
-  <li><a href="#morpion-la-partie" id="toc-morpion-la-partie" class="nav-link" data-scroll-target="#morpion-la-partie">Morpion : la partie</a></li>
+  <li><a href="#exemple-de-révision-le-tic-tac-toe" id="toc-exemple-de-révision-le-tic-tac-toe" class="nav-link" data-scroll-target="#exemple-de-révision-le-tic-tac-toe">Exemple de révision : le tic-tac-toe</a></li>
+  <li><a href="#tic-tac-toe-les-fonctions" id="toc-tic-tac-toe-les-fonctions" class="nav-link" data-scroll-target="#tic-tac-toe-les-fonctions">Tic-tac-toe : les fonctions</a></li>
+  <li><a href="#tic-tac-toe-la-partie" id="toc-tic-tac-toe-la-partie" class="nav-link" data-scroll-target="#tic-tac-toe-la-partie">Tic-tac-toe : la partie</a></li>
   </ul>
 </nav>
 </div>
@@ -395,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><p>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</p></li>
 </ul>
 <p>Cela suggère la fonction suivante :</p>
-<div id="ee5b916a" class="cell" data-execution_count="1">
+<div id="69ea8e45" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -430,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="factorielle-appels-récursifs" class="level2">
 <h2 class="anchored" data-anchor-id="factorielle-appels-récursifs">Factorielle : appels récursifs</h2>
-<div id="21be76d2" class="cell" data-execution_count="2">
+<div id="0777fdaa" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -469,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></p></li>
 <li><p>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</p>
-<div id="c2c3617c" class="cell" data-execution_count="3">
+<div id="d65e4bb0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
@@ -543,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="somme-récursive">Somme récursive</h2>
 <p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
 <p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
-<div id="2f06f05c" class="cell" data-execution_count="4">
+<div id="175f2f72" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -562,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>…<code>1</code> si <span class="math inline">\(n = 1\)</span> (cas de base),</li>
 <li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
 </ul>
-<div id="4739f694" class="cell" data-execution_count="5">
+<div id="e96464f9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme_rec(n):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -582,9 +581,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Mais les fonctions récursives sont souvent <strong>moins efficaces</strong> (cf.&nbsp;Fibonacci)…</li>
 </ul>
 </section>
-<section id="exemple-de-révision-le-morpion" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-de-révision-le-morpion">Exemple de révision : le morpion</h2>
-<p>Programmons un <strong>morpion</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle au clavier. Le premier qui aligne trois symboles gagne.</p>
+<section id="exemple-de-révision-le-tic-tac-toe" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-de-révision-le-tic-tac-toe">Exemple de révision : le tic-tac-toe</h2>
+<p>Programmons un <strong>tic-tac-toe</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle en choisissant chacun une case libre au hasard. Le premier qui aligne trois symboles gagne.</p>
 <ul>
 <li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
 <li><code>P[i][j]</code> est la case de la ligne <code>i</code> et de la colonne <code>j</code>.</li>
@@ -599,8 +598,8 @@ document.addEventListener('DOMContentLoaded', function () {
 |   | X |   |
 | O |   |   |</code></pre>
 </section>
-<section id="morpion-les-fonctions" class="level2">
-<h2 class="anchored" data-anchor-id="morpion-les-fonctions">Morpion : les fonctions</h2>
+<section id="tic-tac-toe-les-fonctions" class="level2">
+<h2 class="anchored" data-anchor-id="tic-tac-toe-les-fonctions">Tic-tac-toe : les fonctions</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 30%">
@@ -632,7 +631,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>jouer(P, joueur)</code></td>
-<td style="text-align: left;">demande une case libre à <code>joueur</code> et y pose son symbole</td>
+<td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
 <tr class="odd">
@@ -648,100 +647,9 @@ document.addEventListener('DOMContentLoaded', function () {
 </tbody>
 </table>
 <p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transposer(T):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(T)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(T[<span class="dv">0</span>])</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    T_transp <span class="op">=</span> []</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        ligne <span class="op">=</span> []</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            ligne.append(T[j][i])</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        T_transp.append(ligne)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> T_transp</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plateau_vide(n):</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> []</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        ligne <span class="op">=</span> []</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>            ligne.append(<span class="va">None</span>)</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        P.append(ligne)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> P</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> afficher(P):</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="st">'| '</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> P[i][j]:</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>                s <span class="op">+=</span> <span class="st">'  | '</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                s <span class="op">+=</span> P[i][j] <span class="op">+</span> <span class="st">' | '</span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(s)</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> jouer(P, joueur):</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"C'est au tour de"</span>, joueur, <span class="st">"de jouer."</span>)</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    i, j <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> (i <span class="kw">in</span> <span class="bu">range</span>(n) <span class="kw">and</span> j <span class="kw">in</span> <span class="bu">range</span>(n) <span class="kw">and</span> P[i][j] <span class="op">==</span> <span class="va">None</span>):</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"ligne? "</span>))</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"colonne? "</span>))</span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    P[i][j] <span class="op">=</span> joueur   <span class="co"># mutation de liste</span></span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gagnant(P, joueur):</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ligne <span class="kw">in</span> P:</span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ligne <span class="op">==</span> [joueur] <span class="op">*</span> n: <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> colonne <span class="kw">in</span> transposer(P):</span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> colonne <span class="op">==</span> [joueur] <span class="op">*</span> n: <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    diag1 <span class="op">=</span> [P[i][i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>    diag2 <span class="op">=</span> [P[i][n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> diag1 <span class="op">==</span> [joueur] <span class="op">*</span> n <span class="kw">or</span> diag2 <span class="op">==</span> [joueur] <span class="op">*</span> n : <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plein(P):</span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(P)</span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> P[i][j] <span class="op">==</span> <span class="va">None</span>: <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partie(n):</span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> plateau_vide(n)</span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>    tour <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>    joueurs <span class="op">=</span> [<span class="st">'O'</span>, <span class="st">'X'</span>]</span>
-<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="kw">not</span> plein(P):</span>
-<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>        afficher(P)</span>
-<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>        joueur <span class="op">=</span> joueurs[tour <span class="op">%</span> <span class="dv">2</span>]</span>
-<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>        jouer(P, joueur)</span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> gagnant(P, joueur):</span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(joueur, <span class="st">'a gagné!'</span>)</span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>        tour <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Ex aequo!'</span>)</span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>partie(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="la-fonction-input" class="level2">
-<h2 class="anchored" data-anchor-id="la-fonction-input">La fonction <span class="title-code">input</span></h2>
-<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
-<ul>
-<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
-</ul>
-<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
-</section>
-<section id="morpion-la-partie" class="level2">
-<h2 class="anchored" data-anchor-id="morpion-la-partie">Morpion : la partie</h2>
+<section id="tic-tac-toe-la-partie" class="level2">
+<h2 class="anchored" data-anchor-id="tic-tac-toe-la-partie">Tic-tac-toe : la partie</h2>
 <p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
 <pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
 tant que le plateau n'est pas rempli :

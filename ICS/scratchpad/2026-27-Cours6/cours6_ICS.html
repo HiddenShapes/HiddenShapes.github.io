@@ -662,9 +662,9 @@ Leonard Hardiman et Ghid Maatouk
 Entracte
 </h1>
 </section>
-<section id="exemple-de-révision-le-morpion" class="slide level2">
-<h2>Exemple de révision : le morpion</h2>
-<p>Programmons un <strong>morpion</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle au clavier. Le premier qui aligne trois symboles gagne.</p>
+<section id="exemple-de-révision-le-tic-tac-toe" class="slide level2">
+<h2>Exemple de révision : le tic-tac-toe</h2>
+<p>Programmons un <strong>tic-tac-toe</strong> pour deux joueurs, <code>'X'</code> et <code>'O'</code>, qui jouent à tour de rôle en choisissant chacun une case libre au hasard. Le premier qui aligne trois symboles gagne.</p>
 <div class="fragment">
 <ul>
 <li>Le plateau est un <strong>tableau <span class="math inline">\(3 \times 3\)</span></strong> : une liste de trois lignes, chacune étant une liste de trois cases, qui valent <code>None</code> (case libre), <code>'X'</code> ou <code>'O'</code>.</li>
@@ -685,8 +685,8 @@ Entracte
 </div></div>
 </div>
 </section>
-<section id="morpion-les-fonctions" class="slide level2 smaller">
-<h2>Morpion : les fonctions</h2>
+<section id="tic-tac-toe-les-fonctions" class="slide level2 smaller">
+<h2>Tic-tac-toe : les fonctions</h2>
 <div style="font-size: 0.85em;">
 <table class="caption-top">
 <colgroup>
@@ -719,7 +719,7 @@ Entracte
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>jouer(P, joueur)</code></td>
-<td style="text-align: left;">demande une case libre à <code>joueur</code> et y pose son symbole</td>
+<td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
 <tr class="odd">
@@ -737,21 +737,8 @@ Entracte
 </div>
 <p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
 </section>
-<section id="la-fonction-input" class="slide level2">
-<h2>La fonction <span class="title-code">input</span></h2>
-<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
-<ul>
-<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
-<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
-</ul>
-<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
-</section>
-<section id="morpion-la-partie" class="slide level2">
-<h2>Morpion : la partie</h2>
+<section id="tic-tac-toe-la-partie" class="slide level2">
+<h2>Tic-tac-toe : la partie</h2>
 <p><code>partie(n)</code> crée un plateau de côté <code>n</code> et enchaîne les tours jusqu’à la victoire ou au match nul.</p>
 <pre class="text"><code>créer un plateau vide, ainsi que les variables joueur et tour
 tant que le plateau n'est pas rempli :
