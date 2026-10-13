@@ -718,7 +718,7 @@ Entracte
 <td style="text-align: left;">rien</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>jouer(P, joueur)</code></td>
+<td style="text-align: left;"><code>jouer_random(P, joueur)</code></td>
 <td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
@@ -735,7 +735,7 @@ Entracte
 </tbody>
 </table>
 </div>
-<p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
 </section>
 <section id="tic-tac-toe-la-partie" class="slide level2">
 <h2>Tic-tac-toe : la partie</h2>
@@ -749,6 +749,20 @@ tant que le plateau n'est pas rempli :
     sinon : passer à la prochaine itération
 
 sortir de cette boucle (sans return) signifie un match nul.</code></pre>
+</section>
+<section id="la-fonction-input" class="slide level2 smaller">
+<h2>La fonction <span class="title-code">input</span></h2>
+<p>Pour qu’un <strong>humain</strong> puisse jouer au tic-tac-toe, le programme doit pouvoir lui demander sa case : c’est ce que permet <code>input</code>.</p>
+<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
+<ul>
+<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
+</ul>
+<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
 
 </section>
     </div>

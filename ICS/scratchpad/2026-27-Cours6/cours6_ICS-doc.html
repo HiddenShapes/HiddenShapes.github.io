@@ -125,6 +125,7 @@ window.Quarto = {
   <li><a href="#exemple-de-révision-le-tic-tac-toe" id="toc-exemple-de-révision-le-tic-tac-toe" class="nav-link" data-scroll-target="#exemple-de-révision-le-tic-tac-toe">Exemple de révision : le tic-tac-toe</a></li>
   <li><a href="#tic-tac-toe-les-fonctions" id="toc-tic-tac-toe-les-fonctions" class="nav-link" data-scroll-target="#tic-tac-toe-les-fonctions">Tic-tac-toe : les fonctions</a></li>
   <li><a href="#tic-tac-toe-la-partie" id="toc-tic-tac-toe-la-partie" class="nav-link" data-scroll-target="#tic-tac-toe-la-partie">Tic-tac-toe : la partie</a></li>
+  <li><a href="#la-fonction-input" id="toc-la-fonction-input" class="nav-link" data-scroll-target="#la-fonction-input">La fonction <span class="title-code">input</span></a></li>
   </ul>
 </nav>
 </div>
@@ -394,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><p>On peut calculer la valeur de <span class="math inline">\(n!\)</span> à partir de celle de <span class="math inline">\((n-1)!\)</span>, c’est-à-dire ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour l’entrée <span class="math inline">\(n-1\)</span>.</p></li>
 </ul>
 <p>Cela suggère la fonction suivante :</p>
-<div id="69ea8e45" class="cell" data-execution_count="1">
+<div id="5eddb9b4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -429,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="factorielle-appels-récursifs" class="level2">
 <h2 class="anchored" data-anchor-id="factorielle-appels-récursifs">Factorielle : appels récursifs</h2>
-<div id="0777fdaa" class="cell" data-execution_count="2">
+<div id="e385185d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fact(n):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -468,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <ul>
 <li><p>Pour <span class="math inline">\(n \in \mathbb{N}\)</span>, le <span class="math inline">\(n\)</span>ème nombre de Fibonacci est défini comme <span class="math display">\[f_n = \begin{cases} f_{n-1} + f_{n-2} &amp;\text{si}~ n \geq 2\\ 1 &amp;\text{si}~ n = 1\\ 0 &amp;\text{si}~ n = 0\end{cases}\]</span></p></li>
 <li><p>On peut ramener la résolution du problème pour l’entrée <span class="math inline">\(n\)</span> à la résolution du problème pour les entrées <span class="math inline">\(n-1\)</span> et <span class="math inline">\(n-2\)</span> :</p>
-<div id="d65e4bb0" class="cell" data-execution_count="3">
+<div id="87ece393" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span> <span class="co"># cas de base</span></span>
@@ -542,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="somme-récursive">Somme récursive</h2>
 <p>On peut distinguer la résolution <strong>récursive</strong> d’un problème (qui construit la solution à partir de solutions à des sous-problèmes) et la résolution <strong>itérative</strong> (qui construit graduellement la solution à l’aide de boucles).</p>
 <p>Au cours 2, nous avons calculé la somme des nombres de <span class="math inline">\(1\)</span> à <span class="math inline">\(n\)</span> avec une boucle. Voici cette fonction itérative, pour un entier <span class="math inline">\(n\)</span> strictement positif :</p>
-<div id="175f2f72" class="cell" data-execution_count="4">
+<div id="200e4239" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme(n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -561,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>…<code>1</code> si <span class="math inline">\(n = 1\)</span> (cas de base),</li>
 <li>…<code>somme_rec(n-1) + n</code> sinon (appel récursif).</li>
 </ul>
-<div id="e96464f9" class="cell" data-execution_count="5">
+<div id="09d72493" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> somme_rec(n):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -630,7 +631,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <td style="text-align: left;">rien</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>jouer(P, joueur)</code></td>
+<td style="text-align: left;"><code>jouer_random(P, joueur)</code></td>
 <td style="text-align: left;">choisit une case libre au hasard et y pose le symbole de <code>joueur</code></td>
 <td style="text-align: left;">rien</td>
 </tr>
@@ -646,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </tr>
 </tbody>
 </table>
-<p><span class="remark">Remarque.</span> <code>jouer</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
+<p><span class="remark">Remarque.</span> <code>jouer_random</code> ne retourne pas un nouveau plateau : elle <strong>modifie</strong> la liste reçue, que le programme principal désigne lui aussi.</p>
 </section>
 <section id="tic-tac-toe-la-partie" class="level2">
 <h2 class="anchored" data-anchor-id="tic-tac-toe-la-partie">Tic-tac-toe : la partie</h2>
@@ -660,6 +661,20 @@ tant que le plateau n'est pas rempli :
     sinon : passer à la prochaine itération
 
 sortir de cette boucle (sans return) signifie un match nul.</code></pre>
+</section>
+<section id="la-fonction-input" class="level2">
+<h2 class="anchored" data-anchor-id="la-fonction-input">La fonction <span class="title-code">input</span></h2>
+<p>Pour qu’un <strong>humain</strong> puisse jouer au tic-tac-toe, le programme doit pouvoir lui demander sa case : c’est ce que permet <code>input</code>.</p>
+<p>La fonction <code>input</code> permet de <strong>demander une valeur à l’utilisateur</strong> pendant l’exécution.</p>
+<ul>
+<li><p><code>input(message)</code> affiche <code>message</code>, attend que l’utilisateur tape une réponse et appuie sur Entrée, puis <code>return</code> cette réponse.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Comment t'appelles-tu? "</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"Quel âge as-tu, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">"? "</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(s))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il te manque"</span>, <span class="dv">100</span> <span class="op">-</span> age, <span class="st">"ans pour être centenaire!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La valeur retournée est <strong>toujours</strong> une <code>str</code>, même si l’utilisateur tape un nombre. Pour calculer avec, il faut la cast : <code>int(input(...))</code> ou <code>float(input(...))</code>.</p></li>
+</ul>
+<p><span class="remark">Remarque.</span> Si la réponse n’est pas l’écriture d’un nombre, <code>int</code> et <code>float</code> produisent une erreur.</p>
 </section>
 
 </main>
