@@ -470,6 +470,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Pour un même problème, il peut exister <strong>plusieurs algorithmes</strong> (cf.&nbsp;«&nbsp;Problème vs.&nbsp;algorithme&nbsp;»).</li>
 <li>On veut comparer leur <strong>efficacité temporelle</strong> : comment le temps de parcours croît quand la taille de l’entrée <span class="math inline">\(n\)</span> grandit (d’autres notions d’efficacité existent, comme l’efficacité en <strong>mémoire</strong>).</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/probleme_algo_impl.png" class="invert-colors img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
 </section>
 <section id="exemple-la-somme-maximale" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-la-somme-maximale">Exemple : la somme maximale</h2>
@@ -478,19 +483,19 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><strong>Une première idée</strong> : essayer <strong>toutes les paires</strong> d’indices <code>i &lt; j</code>, et garder la plus grande somme <code>L[i] + L[j]</code>. On appelle ce type d’algorithme un <strong>algorithme de force brute</strong>.</li>
 <li><strong>Une deuxième idée</strong> : trouver le plus grand élément de la liste et le <strong>retirer</strong>, puis trouver le plus grand des éléments restants. Pour <code>L</code>, on trouve <span class="math inline">\(1132\)</span>, puis <span class="math inline">\(981\)</span>.</li>
 </ul>
-<p>Deux algorithmes pour le <strong>même problème</strong> : lequel est le plus rapide ?</p>
+<p>Deux algorithmes pour le <strong>même problème</strong> : comment décider lequel est le plus rapide ?</p>
 </section>
 <section id="temps-de-parcours-et-implémentation" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-et-implémentation">Temps de parcours et implémentation</h2>
 <ul>
-<li>Le temps qu’un algorithme prend <strong>dépend de son implémentation</strong>, mais la <strong>vitesse de croissance</strong> n’en dépend pas.</li>
-<li>On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> est grand. On a donc besoin d’un moyen de comparer des algorithmes dans ce cadre.</li>
-</ul>
+<li><p>Le temps qu’un algorithme prend <strong>dépend de son implémentation</strong>, mais la <strong>vitesse de croissance</strong> n’en dépend pas. Il nous faut donc un moyen de décrire mathématiquement la vitesse de croissance.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="media/10-why-compare-impl-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
-</div>
+</div></li>
+<li><p>On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> est grand. On a donc besoin d’un moyen de comparer des algorithmes dans ce cadre.</p></li>
+</ul>
 </section>
 <section id="vitesse-de-croissance" class="level2">
 <h2 class="anchored" data-anchor-id="vitesse-de-croissance">Vitesse de croissance</h2>
@@ -763,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="exemple-le-temps-de-parcours-du-minimum" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-minimum">Exemple : le temps de parcours du minimum</h2>
 <p>Reprenons l’algorithme qui calcule le minimum d’une liste (cf.&nbsp;«&nbsp;Qu’est-ce qu’un algorithme?&nbsp;») :</p>
-<div id="8b5315ab" class="cell" data-execution_count="1">
+<div id="c8504896" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> minimum(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_min <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
@@ -812,7 +817,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-force-brute" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
 <p>Revenons à la somme maximale (cf.&nbsp;«&nbsp;Exemple : la somme maximale&nbsp;»), avec la première idée, la force brute :</p>
-<div id="f20f2c5b" class="cell" data-execution_count="2">
+<div id="68616474" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
@@ -837,7 +842,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
 <p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
-<div id="59cf3b44" class="cell" data-execution_count="3">
+<div id="bfd40c10" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> L.copy()  <span class="co"># pour ne pas modifier L</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(M)</span>
@@ -886,7 +891,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 </section>
 <section id="algorithmes-optimaux" class="level2">
 <h2 class="anchored" data-anchor-id="algorithmes-optimaux">Algorithmes optimaux</h2>
-<p>Revenons à la question «&nbsp;lequel est le plus rapide ?&nbsp;» : <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, et <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
+<p>Revenons à la question «&nbsp;comment décider lequel est le plus rapide ?&nbsp;» : <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, et <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="media/11-optimal-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>

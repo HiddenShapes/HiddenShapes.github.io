@@ -540,10 +540,15 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </section>
 <section id="pourquoi-comparer-des-algorithmes" class="slide level2">
 <h2>Pourquoi comparer des algorithmes ?</h2>
+<div class="columns" style="width: 100%;">
+<div class="column" style="width:60%;">
 <ul>
 <li>Pour un même problème, il peut exister <strong>plusieurs algorithmes</strong> (cf.&nbsp;«&nbsp;Problème vs.&nbsp;algorithme&nbsp;»).</li>
 <li>On veut comparer leur <strong>efficacité temporelle</strong> : comment le temps de parcours croît quand la taille de l’entrée <span class="math inline">\(n\)</span> grandit (d’autres notions d’efficacité existent, comme l’efficacité en <strong>mémoire</strong>).</li>
 </ul>
+</div><div class="column" style="width:40%;">
+<p><br> <img data-src="media/probleme_algo_impl.png" class="invert-colors quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</div></div>
 </section>
 <section id="exemple-la-somme-maximale" class="slide level2 smaller">
 <h2>Exemple : la somme maximale</h2>
@@ -561,7 +566,7 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </ul>
 </div>
 <div class="fragment">
-<p>Deux algorithmes pour le <strong>même problème</strong> : lequel est le plus rapide ?</p>
+<p>Deux algorithmes pour le <strong>même problème</strong> : comment décider lequel est le plus rapide ?</p>
 </div>
 </section>
 <section id="temps-de-parcours-et-implémentation" class="slide level2">
@@ -569,8 +574,7 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li class="fragment">Le temps qu’un algorithme prend <strong>dépend de son implémentation</strong>, <span class="fragment">mais la <strong>vitesse de croissance</strong> n’en dépend pas.</span></li>
-<li class="fragment">On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> est grand. On a donc besoin d’un moyen de comparer des algorithmes dans ce cadre.</li>
+<li class="fragment">Le temps qu’un algorithme prend <strong>dépend de son implémentation</strong>, <span class="fragment">mais la <strong>vitesse de croissance</strong> n’en dépend pas.</span> <span class="fragment">Il nous faut donc un moyen de décrire mathématiquement la vitesse de croissance.</span></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -579,6 +583,9 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </figure>
 </div>
 </div></div>
+<ul>
+<li class="fragment">On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> est grand. On a donc besoin d’un moyen de comparer des algorithmes dans ce cadre.</li>
+</ul>
 </section>
 <section id="vitesse-de-croissance" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Vitesse de croissance</h2>
@@ -672,9 +679,11 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <li>Quand <span class="math inline">\(n\)</span> est multiplié par 10, <span class="math inline">\(f(n)\)</span> est multiplié par un facteur qui <strong>se rapproche de 100</strong>, <strong>comme <span class="math inline">\(n^2\)</span></strong> : <span class="math inline">\((10n)^2 = 100\,n^2\)</span>. On dit que <span class="math inline">\(f\)</span> et <span class="math inline">\(n^2\)</span> ont la même <strong>vitesse de croissance</strong>.</li>
 </ul>
 </div>
+<div class="fragment">
 <ul>
 <li>Le coefficient 3 n’y change rien : <span class="math inline">\(3\,(10n)^2 = 100 \cdot 3n^2\)</span>.</li>
 </ul>
+</div>
 <div class="fragment">
 <p><strong>Objectif</strong> : exprimer mathématiquement que <span class="math inline">\(f\)</span> croît à la même vitesse que <span class="math inline">\(n^2\)</span>.</p>
 </div>
@@ -1100,7 +1109,7 @@ La deuxième idée : retirer le plus grand élément, puis prendre le plus grand
 <section id="algorithmes-optimaux" class="slide level2 smaller">
 <h2>Algorithmes optimaux</h2>
 <p style="margin-top:-15px;">
-Revenons à la question «&nbsp;lequel est le plus rapide ?&nbsp;» : <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, et <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.
+Revenons à la question «&nbsp;comment décider lequel est le plus rapide ?&nbsp;» : <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, et <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.
 </p>
 <div class="r-stack">
 <p><img data-src="media/11-optimal-1.svg" class="fragment fade-out invert-colors" style="background-color: transparent;;width:80.0%" data-fragment-index="0"></p>
