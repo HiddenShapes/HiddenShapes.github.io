@@ -569,12 +569,13 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <p>Deux algorithmes pour le <strong>même problème</strong> : comment décider lequel est le plus rapide ?</p>
 </div>
 </section>
-<section id="temps-de-parcours-et-implémentation" class="slide level2">
+<section id="temps-de-parcours-et-implémentation" class="slide level2 smaller">
 <h2>Temps de parcours et implémentation</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li class="fragment">Le temps qu’un algorithme prend <strong>dépend de son implémentation</strong>, <span class="fragment">mais la <strong>vitesse de croissance</strong> n’en dépend pas.</span> <span class="fragment">Il nous faut donc un moyen de décrire mathématiquement la vitesse de croissance.</span></li>
+<li class="fragment"><p>Le temps qu’un algorithme prend pour tourner dépend de la taille <span class="math inline">\(n\)</span> de l’entrée, et grandit avec <span class="math inline">\(n\)</span>.</p></li>
+<li class="fragment"><p>Pour un <span class="math inline">\(n\)</span> donné, le temps que cet algorithme prend dépend de l’implémentation spécifique. Mais <strong>combien ce temps croît</strong> quand <span class="math inline">\(n\)</span> grandit ne dépend pas de l’implémentation, mais est une propriété fondamentale de l’algorithme.</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -584,14 +585,49 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </div>
 </div></div>
 <ul>
-<li class="fragment">On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> est grand. On a donc besoin d’un moyen de comparer des algorithmes dans ce cadre.</li>
+<li class="fragment">Il nous faut donc un moyen de <strong>décrire mathématiquement</strong> la vitesse de croissance du temps de parcours d’un algorithme en fonction de <span class="math inline">\(n\)</span>.</li>
+<li class="fragment">On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> tend vers l’infini.</li>
 </ul>
 </section>
 <section id="vitesse-de-croissance" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Vitesse de croissance</h2>
-<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 30\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong> ?</p>
-<div data-id="table" style="font-size: 85%;">
+<style>
+/* Tableaux « vitesse de croissance » : flèche courbe d'une ligne à la suivante, avec le facteur à côté.
+   Lignes de hauteur fixe (1.85em) pour que la flèche (1em x 1.45em, non déformée) aille du milieu d'une
+   ligne à la suivante ; la courbe finit par un segment droit dans l'axe de la pointe (35° vers le bas). */
+.fois-table td, .fois-table th { padding-right: 5em !important; }
+.fois-table td { position: relative; height: 1.85em; padding-top: 0 !important; padding-bottom: 0 !important; vertical-align: middle; }
+.fois-table .fois {
+  position: absolute; right: 3.85em; width: 1em; height: 1.45em; top: calc(50% + 0.2em);
+}
+.fois-table .fois::before {
+  content: ""; position: absolute; inset: 0; background: var(--fois-color);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.fois-table .fois > * {
+  position: absolute; left: 1.06em; top: 0.56em; transform: translateY(-50%);
+  white-space: nowrap; font-size: 0.8em; color: var(--fois-color);
+}
+.reveal section .fois-table table { margin: 0.4em auto 0.5em; }
+/* Expressions empilées : chaque étape remplace la précédente au même endroit. */
+.eq-stack { display: inline-grid; vertical-align: -0.62em; }  /* la première ligne sur la ligne du texte */
+.eq-stack > * { grid-area: 1 / 1; justify-self: start; }
+.rouge { color: #ff6b6b; }
+html.ics-light .rouge { color: #d0312d; }
+.fois-table td { border-bottom: none !important; }  /* seule reste la ligne sous les en-têtes */
+.fois-table { --fois-color: #7fa8dc; }
+html.ics-light .fois-table { --fois-color: #2f5f9e; }
+</style>
+<div style="font-size: 0.95em;">
+<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 20\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong>?</p>
+</div>
+<div class="fois-table" data-id="table" style="font-size: 80%;">
 <table class="caption-top">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;"><span class="math inline">\(n\)</span></th>
@@ -600,29 +636,33 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">2&nbsp;830</td>
+<td style="text-align: right;">1<span class="fois fragment" data-fragment-index="0"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">273<span class="fois fragment" data-fragment-index="0"><span class="math inline">\(\times 10{,}3\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">55&nbsp;030 <span class="math inline">\(\;(\times 19{,}4)\)</span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="0">10</span><span class="fois fragment" data-fragment-index="1"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="0">2&nbsp;820</span><span class="fois fragment" data-fragment-index="1"><span class="math inline">\(\times 19{,}5\)</span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">1&nbsp;000</td>
-<td style="text-align: right;">3&nbsp;250&nbsp;030 <span class="math inline">\(\;(\times 59{,}1)\)</span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="1">100</span><span class="fois fragment" data-fragment-index="2"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="1">55&nbsp;020</span><span class="fois fragment" data-fragment-index="2"><span class="math inline">\(\times 59{,}1\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">10&nbsp;000</td>
-<td style="text-align: right;">302&nbsp;500&nbsp;030 <span class="math inline">\(\;(\times 93{,}1)\)</span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="2">1&nbsp;000</span><span class="fois fragment" data-fragment-index="3"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="2">3&nbsp;250&nbsp;020</span><span class="fois fragment" data-fragment-index="3"><span class="math inline">\(\times 93{,}1\)</span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">100&nbsp;000</td>
-<td style="text-align: right;">30&nbsp;025&nbsp;000&nbsp;030 <span class="math inline">\(\;(\times 99{,}3)\)</span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="3">10&nbsp;000</span><span class="fois fragment" data-fragment-index="4"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="3">302&nbsp;500&nbsp;020</span><span class="fois fragment" data-fragment-index="4"><span class="math inline">\(\times 99{,}3\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="fragment" data-fragment-index="4">100&nbsp;000</span></td>
+<td style="text-align: right;"><span class="fragment" data-fragment-index="4">30&nbsp;025&nbsp;000&nbsp;020</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div data-id="bullet">
+<div class="fragment" data-fragment-index="5" data-id="bullet">
 <ul>
 <li>Quand <span class="math inline">\(n\)</span> est multiplié par 10, <span class="math inline">\(f(n)\)</span> est multiplié par un facteur qui <strong>se rapproche de 100</strong> quand <span class="math inline">\(n\)</span> grandit.</li>
 </ul>
@@ -630,13 +670,15 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </section>
 <section id="vitesse-de-croissance-1" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Vitesse de croissance</h2>
-<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 30\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong> ?</p>
-<div data-id="table" style="font-size: 85%;">
+<div style="font-size: 0.95em;">
+<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 20\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong>?</p>
+</div>
+<div class="fois-table" data-id="table" style="font-size: 80%;">
 <table class="caption-top">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 42%">
-<col style="width: 45%">
+<col style="width: 26%">
+<col style="width: 35%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -647,29 +689,34 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">2&nbsp;830</td>
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">273<span class="fois"><span class="math inline">\(\times 10{,}3\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">10&nbsp;000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">55&nbsp;030 <span class="math inline">\(\;(\times 19{,}4)\)</span></td>
+<td style="text-align: right;">10<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">2&nbsp;820<span class="fois"><span class="math inline">\(\times 19{,}5\)</span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">1&nbsp;000</td>
-<td style="text-align: right;">1&nbsp;000&nbsp;000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">3&nbsp;250&nbsp;030 <span class="math inline">\(\;(\times 59{,}1)\)</span></td>
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">10&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">55&nbsp;020<span class="fois"><span class="math inline">\(\times 59{,}1\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">10&nbsp;000</td>
-<td style="text-align: right;">100&nbsp;000&nbsp;000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">302&nbsp;500&nbsp;030 <span class="math inline">\(\;(\times 93{,}1)\)</span></td>
+<td style="text-align: right;">1&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">3&nbsp;250&nbsp;020<span class="fois"><span class="math inline">\(\times 93{,}1\)</span></span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: right;">10&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">302&nbsp;500&nbsp;020<span class="fois"><span class="math inline">\(\times 99{,}3\)</span></span></td>
+</tr>
+<tr class="even">
 <td style="text-align: right;">100&nbsp;000</td>
-<td style="text-align: right;">10&nbsp;000&nbsp;000&nbsp;000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">30&nbsp;025&nbsp;000&nbsp;030 <span class="math inline">\(\;(\times 99{,}3)\)</span></td>
+<td style="text-align: right;">10&nbsp;000&nbsp;000&nbsp;000</td>
+<td style="text-align: right;">30&nbsp;025&nbsp;000&nbsp;020</td>
 </tr>
 </tbody>
 </table>
@@ -679,12 +726,12 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <li>Quand <span class="math inline">\(n\)</span> est multiplié par 10, <span class="math inline">\(f(n)\)</span> est multiplié par un facteur qui <strong>se rapproche de 100</strong>, <strong>comme <span class="math inline">\(n^2\)</span></strong> : <span class="math inline">\((10n)^2 = 100\,n^2\)</span>. On dit que <span class="math inline">\(f\)</span> et <span class="math inline">\(n^2\)</span> ont la même <strong>vitesse de croissance</strong>.</li>
 </ul>
 </div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="0" style="margin-top: -0.5em;">
 <ul>
-<li>Le coefficient 3 n’y change rien : <span class="math inline">\(3\,(10n)^2 = 100 \cdot 3n^2\)</span>.</li>
+<li>Le coefficient 3 n’y change rien : <span class="eq-stack"><span class="fragment fade-out" data-fragment-index="1"><span class="math inline">\(\begin{aligned}[t] (\class{rouge}{10}\,n)^2 &amp; \\ 3\,(\class{rouge}{10}\,n)^2 &amp; \end{aligned}\)</span></span><span class="fragment current-visible" data-fragment-index="1"><span class="math inline">\(\begin{aligned}[t] (\class{rouge}{10}\,n)^2 &amp; = \phantom{3 \cdot {}}\class{rouge}{100}\,n^2 \\ 3\,(\class{rouge}{10}\,n)^2 &amp; = 3 \cdot \class{rouge}{100}\,n^2 \end{aligned}\)</span></span><span class="fragment" data-fragment-index="2"><span class="math inline">\(\begin{aligned}[t] (\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(\phantom{3}n^2) \\ 3\,(\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(3n^2) \end{aligned}\)</span></span></span></li>
 </ul>
 </div>
-<div class="fragment">
+<div class="fragment" data-fragment-index="3" style="margin-top: -0.3em;">
 <p><strong>Objectif</strong> : exprimer mathématiquement que <span class="math inline">\(f\)</span> croît à la même vitesse que <span class="math inline">\(n^2\)</span>.</p>
 </div>
 </section>
@@ -699,15 +746,13 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <p>Plus précisément : pour <span class="math inline">\(n\)</span> suffisamment grand, <span class="math inline">\(f(n)\)</span> est toujours comprise entre deux multiples constants de <span class="math inline">\(g(n)\)</span>.</p>
 </div>
 </div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="media/big-theta.png" class="invert-colors quarto-figure quarto-figure-center" style="width:42.0%"></p>
-</figure>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:52%;">
+<div style="text-align: center;">
+<img src="media/big-theta.png" class="invert-colors" style="width: 380px; margin: 0;">
 </div>
-</div><div class="column fragment" style="width:50%;">
-<p><br> Par exemple, <span class="math inline">\(3n^2 + 250n + 30\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>.</p>
+</div><div class="column fragment" style="width:48%;">
+<p>Par exemple, <span class="math inline">\(3n^2 + 250n + 20\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, car il est plus grand que <span class="math inline">\(2n^2\)</span> et plus petit que <span class="math inline">\(4n^2\)</span> pour <span class="math inline">\(n\)</span> suffisamment grand.</p>
 </div></div>
 </section>
 <section id="la-notation-mathcalog-et-omegag" class="slide level2 smaller">
@@ -741,40 +786,14 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <p>Soit <span class="math inline">\(g\)</span> une fonction positive de <span class="math inline">\(n\)</span>. <span class="math inline">\(\mathcal{O}(g)\)</span> est l’<strong>ensemble</strong> des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad f(n) \leq C \cdot g(n).\]</span></p>
 </div>
 </div>
-
-<img data-src="media/big-oh.png" class="invert-colors quarto-figure quarto-figure-center r-stretch" style="width:34.0%"><p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;».</p>
-</section>
-<section id="définition-formelle-de-omegag" class="slide level2 smaller">
-<h2>Définition formelle de <span class="math inline">\(\Omega(g)\)</span></h2>
-<div class="env-box">
-<div class="env-title">
-<p>Notation <span class="math inline">\(\Omega(g)\)</span></p>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:46%;">
+<div style="text-align: center;">
+<img src="media/big-oh.png" class="invert-colors" style="height: 265px; margin: 0;">
 </div>
-<div class="env-body">
-<p><span class="math inline">\(\Omega(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad f(n) \geq C \cdot g(n).\]</span></p>
-</div>
-</div>
-
-<img data-src="media/big-omega.png" class="invert-colors quarto-figure quarto-figure-center r-stretch" style="width:34.0%"><ul>
-<li>Comme pour <span class="math inline">\(\mathcal{O}\)</span>, pour <span class="math inline">\(f \in \Omega(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>&nbsp;».</li>
-<li>On peut montrer que <span class="math inline">\(g\)</span> est <span class="math inline">\(\mathcal{O}(f)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>.</li>
-</ul>
-</section>
-<section id="définition-formelle-de-thetag" class="slide level2 smaller">
-<h2>Définition formelle de <span class="math inline">\(\Theta(g)\)</span></h2>
-<div class="env-box">
-<div class="env-title">
-<p>Notation <span class="math inline">\(\Theta(g)\)</span></p>
-</div>
-<div class="env-body">
-<p><span class="math inline">\(\Theta(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C_1, C_2 &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad C_1 \cdot g(n) \leq f(n) \leq C_2 \cdot g(n).\]</span></p>
-</div>
-</div>
-
-<img data-src="media/big-theta.png" class="invert-colors quarto-figure quarto-figure-center r-stretch" style="width:34.0%"><ul>
-<li>Pour <span class="math inline">\(f \in \Theta(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span>&nbsp;», ou «&nbsp;<span class="math inline">\(f\)</span> a complexité <span class="math inline">\(\Theta(g)\)</span>&nbsp;».</li>
-<li>On peut montrer que <span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span>.</li>
-</ul>
+</div><div class="column" style="width:54%;">
+<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;».</p>
+</div></div>
 </section>
 <section id="exemple-1000n-est-mathcalon2" class="slide level2 smaller">
 <h2>Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></h2>
@@ -798,6 +817,50 @@ Notation <span class="math inline">\(\Theta(g)\)</span>
 <div class="fragment">
 <p>Il suffit de trouver <strong>un</strong> couple <span class="math inline">\((C, N)\)</span> : plus <span class="math inline">\(C\)</span> est petit, plus <span class="math inline">\(N\)</span> doit être grand.</p>
 </div>
+</section>
+<section id="définition-formelle-de-omegag" class="slide level2 smaller">
+<h2>Définition formelle de <span class="math inline">\(\Omega(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\Omega(g)\)</span></p>
+</div>
+<div class="env-body">
+<p><span class="math inline">\(\Omega(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad f(n) \geq C \cdot g(n).\]</span></p>
+</div>
+</div>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:46%;">
+<div style="text-align: center;">
+<img src="media/big-omega.png" class="invert-colors" style="height: 265px; margin: 0;">
+</div>
+</div><div class="column" style="width:54%;">
+<ul>
+<li>Comme pour <span class="math inline">\(\mathcal{O}\)</span>, pour <span class="math inline">\(f \in \Omega(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>&nbsp;».</li>
+<li>On peut montrer que <span class="math inline">\(g\)</span> est <span class="math inline">\(\mathcal{O}(f)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>.</li>
+</ul>
+</div></div>
+</section>
+<section id="définition-formelle-de-thetag" class="slide level2 smaller">
+<h2>Définition formelle de <span class="math inline">\(\Theta(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\Theta(g)\)</span></p>
+</div>
+<div class="env-body">
+<p><span class="math inline">\(\Theta(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C_1, C_2 &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad C_1 \cdot g(n) \leq f(n) \leq C_2 \cdot g(n).\]</span></p>
+</div>
+</div>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:46%;">
+<div style="text-align: center;">
+<img src="media/big-theta.png" class="invert-colors" style="height: 265px; margin: 0;">
+</div>
+</div><div class="column" style="width:54%;">
+<ul>
+<li>Pour <span class="math inline">\(f \in \Theta(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span>&nbsp;», ou «&nbsp;<span class="math inline">\(f\)</span> a complexité <span class="math inline">\(\Theta(g)\)</span>&nbsp;».</li>
+<li>On peut montrer que <span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span>.</li>
+</ul>
+</div></div>
 </section>
 <section id="règles-pour-mathcalo" class="slide level2 smaller">
 <h2>Règles pour <span class="math inline">\(\mathcal{O}\)</span></h2>

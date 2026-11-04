@@ -122,9 +122,9 @@ window.Quarto = {
   <li><a href="#la-notation-thetag" id="toc-la-notation-thetag" class="nav-link" data-scroll-target="#la-notation-thetag">La notation <span class="math inline">\(\Theta(g)\)</span></a></li>
   <li><a href="#la-notation-mathcalog-et-omegag" id="toc-la-notation-mathcalog-et-omegag" class="nav-link" data-scroll-target="#la-notation-mathcalog-et-omegag">La notation <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span></a></li>
   <li><a href="#définition-formelle-de-mathcalog" id="toc-définition-formelle-de-mathcalog" class="nav-link" data-scroll-target="#définition-formelle-de-mathcalog">Définition formelle de <span class="math inline">\(\mathcal{O}(g)\)</span></a></li>
+  <li><a href="#exemple-1000n-est-mathcalon2" id="toc-exemple-1000n-est-mathcalon2" class="nav-link" data-scroll-target="#exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></a></li>
   <li><a href="#définition-formelle-de-omegag" id="toc-définition-formelle-de-omegag" class="nav-link" data-scroll-target="#définition-formelle-de-omegag">Définition formelle de <span class="math inline">\(\Omega(g)\)</span></a></li>
   <li><a href="#définition-formelle-de-thetag" id="toc-définition-formelle-de-thetag" class="nav-link" data-scroll-target="#définition-formelle-de-thetag">Définition formelle de <span class="math inline">\(\Theta(g)\)</span></a></li>
-  <li><a href="#exemple-1000n-est-mathcalon2" id="toc-exemple-1000n-est-mathcalon2" class="nav-link" data-scroll-target="#exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></a></li>
   <li><a href="#règles-pour-mathcalo" id="toc-règles-pour-mathcalo" class="nav-link" data-scroll-target="#règles-pour-mathcalo">Règles pour <span class="math inline">\(\mathcal{O}\)</span></a></li>
   <li><a href="#exemples-de-thetag" id="toc-exemples-de-thetag" class="nav-link" data-scroll-target="#exemples-de-thetag">Exemples de <span class="math inline">\(\Theta(g)\)</span></a></li>
   <li><a href="#hiérarchie-des-complexités" id="toc-hiérarchie-des-complexités" class="nav-link" data-scroll-target="#hiérarchie-des-complexités">Hiérarchie des complexités</a></li>
@@ -499,12 +499,37 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="vitesse-de-croissance" class="level2">
 <h2 class="anchored" data-anchor-id="vitesse-de-croissance">Vitesse de croissance</h2>
-<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 30\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong> ?</p>
+<style>
+/* Tableaux « vitesse de croissance » : flèche courbe d'une ligne à la suivante, avec le facteur à côté.
+   Lignes de hauteur fixe (1.85em) pour que la flèche (1em x 1.45em, non déformée) aille du milieu d'une
+   ligne à la suivante ; la courbe finit par un segment droit dans l'axe de la pointe (35° vers le bas). */
+.fois-table td, .fois-table th { padding-right: 5em !important; }
+.fois-table td { position: relative; height: 1.85em; padding-top: 0 !important; padding-bottom: 0 !important; vertical-align: middle; }
+.fois-table .fois {
+  position: absolute; right: 3.85em; width: 1em; height: 1.45em; top: calc(50% + 0.2em);
+}
+.fois-table .fois::before {
+  content: ""; position: absolute; inset: 0; background: var(--fois-color);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.fois-table .fois > * {
+  position: absolute; left: 1.06em; top: 0.56em; transform: translateY(-50%);
+  white-space: nowrap; font-size: 0.8em; color: var(--fois-color);
+}
+.fois-table table, .fois-table tr, .fois-table td, .fois-table th { border-top: none !important; }
+.fois-table table, .fois-table td { border-bottom: none !important; }  /* seule reste la ligne sous les en-têtes */
+.rouge { color: #d0312d; }
+.fois-table thead th { border-bottom: 2px solid rgba(0, 0, 0, 0.45) !important; }
+.fois-table { --fois-color: #2f5f9e; }
+</style>
+<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 20\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong> ?</p>
+<div class="fois-table">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 44%">
-<col style="width: 44%">
+<col style="width: 28%">
+<col style="width: 34%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -515,35 +540,41 @@ document.addEventListener('DOMContentLoaded', function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">2 830</td>
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">273<span class="fois"><span class="math inline">\(\times 10{,}3\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">10 000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">55 030 <span class="math inline">\(\;(\times 19{,}4)\)</span></td>
+<td style="text-align: right;">10<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">2 820<span class="fois"><span class="math inline">\(\times 19{,}5\)</span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">1 000</td>
-<td style="text-align: right;">1 000 000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">3 250 030 <span class="math inline">\(\;(\times 59{,}1)\)</span></td>
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">10 000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">55 020<span class="fois"><span class="math inline">\(\times 59{,}1\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">10 000</td>
-<td style="text-align: right;">100 000 000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">302 500 030 <span class="math inline">\(\;(\times 93{,}1)\)</span></td>
+<td style="text-align: right;">1 000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1 000 000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">3 250 020<span class="fois"><span class="math inline">\(\times 93{,}1\)</span></span></td>
 </tr>
 <tr class="odd">
+<td style="text-align: right;">10 000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100 000 000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">302 500 020<span class="fois"><span class="math inline">\(\times 99{,}3\)</span></span></td>
+</tr>
+<tr class="even">
 <td style="text-align: right;">100 000</td>
-<td style="text-align: right;">10 000 000 000 <span class="math inline">\(\;(\times 100)\)</span></td>
-<td style="text-align: right;">30 025 000 030 <span class="math inline">\(\;(\times 99{,}3)\)</span></td>
+<td style="text-align: right;">10 000 000 000</td>
+<td style="text-align: right;">30 025 000 020</td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>Quand <span class="math inline">\(n\)</span> est multiplié par 10, <span class="math inline">\(f(n)\)</span> est multiplié par un facteur qui <strong>se rapproche de 100</strong>, <strong>comme <span class="math inline">\(n^2\)</span></strong> : <span class="math inline">\((10n)^2 = 100\,n^2\)</span>. On dit que <span class="math inline">\(f\)</span> et <span class="math inline">\(n^2\)</span> ont la même <strong>vitesse de croissance</strong>.</li>
-<li>Le coefficient 3 n’y change rien : <span class="math inline">\(3\,(10n)^2 = 100 \cdot 3n^2\)</span>.</li>
+<li>Le coefficient 3 n’y change rien : <span class="math inline">\(\begin{aligned}[t] (\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(\phantom{3}n^2) \\ 3\,(\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(3n^2) \end{aligned}\)</span></li>
 </ul>
 <p><strong>Objectif</strong> : exprimer mathématiquement que <span class="math inline">\(f\)</span> croît à la même vitesse que <span class="math inline">\(n^2\)</span>.</p>
 </section>
@@ -563,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><img src="media/big-theta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
 </figure>
 </div>
-<p>Par exemple, <span class="math inline">\(3n^2 + 250n + 30\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>.</p>
+<p>Par exemple, <span class="math inline">\(3n^2 + 250n + 20\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, car il est plus grand que <span class="math inline">\(2n^2\)</span> et plus petit que <span class="math inline">\(4n^2\)</span> pour <span class="math inline">\(n\)</span> suffisamment grand.</p>
 </section>
 <section id="la-notation-mathcalog-et-omegag" class="level2">
 <h2 class="anchored" data-anchor-id="la-notation-mathcalog-et-omegag">La notation <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span></h2>
@@ -606,6 +637,25 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 <p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;».</p>
 </section>
+<section id="exemple-1000n-est-mathcalon2" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></h2>
+<p>On cherche des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math inline">\(1000n \leq C \cdot n^2\)</span> pour tout <span class="math inline">\(n &gt; N\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(1000n \leq 50\,n^2\)</span> pour tout <span class="math inline">\(n \geq 20\)</span> : <span class="math inline">\(C = 50\)</span> et <span class="math inline">\(N = 20\)</span> conviennent.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/1000n-50n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+<li><p><span class="math inline">\(1000n \leq 0{,}1\,n^2\)</span> pour tout <span class="math inline">\(n \geq 10\,000\)</span> : <span class="math inline">\(C = 0{,}1\)</span> et <span class="math inline">\(N = 10\,000\)</span> conviennent aussi.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/1000n-01n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+</ul>
+<p>Il suffit de trouver <strong>un</strong> couple <span class="math inline">\((C, N)\)</span> : plus <span class="math inline">\(C\)</span> est petit, plus <span class="math inline">\(N\)</span> doit être grand.</p>
+</section>
 <section id="définition-formelle-de-omegag" class="level2">
 <h2 class="anchored" data-anchor-id="définition-formelle-de-omegag">Définition formelle de <span class="math inline">\(\Omega(g)\)</span></h2>
 <div class="env-box">
@@ -645,25 +695,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Pour <span class="math inline">\(f \in \Theta(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span>&nbsp;», ou «&nbsp;<span class="math inline">\(f\)</span> a complexité <span class="math inline">\(\Theta(g)\)</span>&nbsp;».</li>
 <li>On peut montrer que <span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span>.</li>
 </ul>
-</section>
-<section id="exemple-1000n-est-mathcalon2" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></h2>
-<p>On cherche des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math inline">\(1000n \leq C \cdot n^2\)</span> pour tout <span class="math inline">\(n &gt; N\)</span>.</p>
-<ul>
-<li><p><span class="math inline">\(1000n \leq 50\,n^2\)</span> pour tout <span class="math inline">\(n \geq 20\)</span> : <span class="math inline">\(C = 50\)</span> et <span class="math inline">\(N = 20\)</span> conviennent.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="media/1000n-50n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div></li>
-<li><p><span class="math inline">\(1000n \leq 0{,}1\,n^2\)</span> pour tout <span class="math inline">\(n \geq 10\,000\)</span> : <span class="math inline">\(C = 0{,}1\)</span> et <span class="math inline">\(N = 10\,000\)</span> conviennent aussi.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="media/1000n-01n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div></li>
-</ul>
-<p>Il suffit de trouver <strong>un</strong> couple <span class="math inline">\((C, N)\)</span> : plus <span class="math inline">\(C\)</span> est petit, plus <span class="math inline">\(N\)</span> doit être grand.</p>
 </section>
 <section id="règles-pour-mathcalo" class="level2">
 <h2 class="anchored" data-anchor-id="règles-pour-mathcalo">Règles pour <span class="math inline">\(\mathcal{O}\)</span></h2>
@@ -768,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="exemple-le-temps-de-parcours-du-minimum" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-minimum">Exemple : le temps de parcours du minimum</h2>
 <p>Reprenons l’algorithme qui calcule le minimum d’une liste (cf.&nbsp;«&nbsp;Qu’est-ce qu’un algorithme?&nbsp;») :</p>
-<div id="c8504896" class="cell" data-execution_count="1">
+<div id="2999299e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> minimum(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_min <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
@@ -817,7 +848,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-force-brute" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
 <p>Revenons à la somme maximale (cf.&nbsp;«&nbsp;Exemple : la somme maximale&nbsp;»), avec la première idée, la force brute :</p>
-<div id="68616474" class="cell" data-execution_count="2">
+<div id="838d26e3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
@@ -842,7 +873,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
 <p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
-<div id="bfd40c10" class="cell" data-execution_count="3">
+<div id="9a74b426" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> L.copy()  <span class="co"># pour ne pas modifier L</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(M)</span>
