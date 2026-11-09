@@ -993,3 +993,11 @@ html.ics-light .reveal .anatomie .anat { color: var(--ics-code-fg); }
 .reveal .anatomie-ii pre.sourceCode code * { font-size: 21px; }
 .reveal .anatomie-ii pre.sourceCode code { line-height: 1.5; }
 .reveal .anatomie-ii + .anatomie-legende { margin-top: 26px; }
+
+/* Tableau « valeur de i / itérations de la boucle intérieure » (slide « Temps de
+   parcours de la force brute ») : centré, sans les lignes grises entre les rangées,
+   seulement le trait sous la première. */
+.reveal .iter-table table { margin: 0.5em auto 0.3em auto; width: auto !important; }
+.reveal .iter-table table th, .reveal .iter-table table td { padding: 0.2em 0.7em; border-bottom: none; }
+.reveal .iter-table table thead th { border-bottom: 2px solid currentColor; font-weight: normal; }
+.reveal .iter-table table tr > :first-child { padding-right: 1.2em; }

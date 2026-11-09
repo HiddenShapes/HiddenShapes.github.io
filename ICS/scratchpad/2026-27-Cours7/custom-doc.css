@@ -333,3 +333,9 @@ body {
 @media (max-width: 900px) {
   .anatomie { flex-direction: column; align-items: stretch; }
 }
+
+/* Tableau « valeur de i / itérations de la boucle intérieure » (Temps de parcours de
+   la force brute) : largeur naturelle, pas toute la page. */
+.iter-table table { width: auto; margin: 0.5em 0 1em 0; }
+.iter-table table th, .iter-table table td { padding: 0.2em 0.8em; }
+.iter-table table thead th { font-weight: normal; }
