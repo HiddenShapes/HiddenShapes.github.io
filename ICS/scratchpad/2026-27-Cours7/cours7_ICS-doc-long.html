@@ -130,9 +130,11 @@ window.Quarto = {
   <li><a href="#hiérarchie-des-complexités" id="toc-hiérarchie-des-complexités" class="nav-link" data-scroll-target="#hiérarchie-des-complexités">Hiérarchie des complexités</a></li>
   <li><a href="#retour-aux-algorithmes" id="toc-retour-aux-algorithmes" class="nav-link" data-scroll-target="#retour-aux-algorithmes">Retour aux algorithmes</a></li>
   <li><a href="#modele-de-computation" id="toc-modele-de-computation" class="nav-link" data-scroll-target="#modele-de-computation">Modèle de Computation</a></li>
+  <li><a href="#operations-de-liste" id="toc-operations-de-liste" class="nav-link" data-scroll-target="#operations-de-liste">Justification des opérations de liste</a></li>
   <li><a href="#exemple-le-temps-de-parcours-du-maximum" id="toc-exemple-le-temps-de-parcours-du-maximum" class="nav-link" data-scroll-target="#exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</a></li>
   <li><a href="#temps-de-parcours-de-la-force-brute" id="toc-temps-de-parcours-de-la-force-brute" class="nav-link" data-scroll-target="#temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</a></li>
   <li><a href="#temps-de-parcours-de-la-deuxième-idée" id="toc-temps-de-parcours-de-la-deuxième-idée" class="nav-link" data-scroll-target="#temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</a></li>
+  <li><a href="#mesurer-un-temps-de-parcours" id="toc-mesurer-un-temps-de-parcours" class="nav-link" data-scroll-target="#mesurer-un-temps-de-parcours">Mesurer un temps de parcours</a></li>
   <li><a href="#comparaison-des-temps-mesurés" id="toc-comparaison-des-temps-mesurés" class="nav-link" data-scroll-target="#comparaison-des-temps-mesurés">Comparaison des temps mesurés</a></li>
   <li><a href="#algorithmes-optimaux" id="toc-algorithmes-optimaux" class="nav-link" data-scroll-target="#algorithmes-optimaux">Algorithmes optimaux</a></li>
   <li><a href="#remarque-finale-le-pire-des-cas" id="toc-remarque-finale-le-pire-des-cas" class="nav-link" data-scroll-target="#remarque-finale-le-pire-des-cas">Remarque finale : le pire des cas</a></li>
@@ -624,17 +626,17 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span></strong></p>
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au plus aussi vite</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne supérieure)</p>
 <p><img src="media/big-oh.png" class="invert-colors img-fluid" style="width:95.0%"></p>
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f \leq g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\leq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div><div class="column" style="text-align: center;">
 <p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span></strong></p>
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au moins aussi vite</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne inférieure)</p>
 <p><img src="media/big-omega.png" class="invert-colors img-fluid" style="width:95.0%"></p>
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f \geq g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\geq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div><div class="column" style="text-align: center;">
 <p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span></strong></p>
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>à la même vitesse</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(les deux à la fois)</p>
 <p><img src="media/big-theta.png" class="invert-colors img-fluid" style="width:95.0%"></p>
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f = g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(=\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div>
 </div>
 <p><span class="remark">Remarque.</span> On compare des <strong>vitesses de croissance</strong>, pas des valeurs : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span>, bien que <span class="math inline">\(1000n &gt; n^2\)</span> pour <span class="math inline">\(n &lt; 1000\)</span>.</p>
@@ -654,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><img src="media/big-oh.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;».</p>
+<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;». On écrit aussi <span class="math inline">\(f = \mathcal{O}(g)\)</span> (de même pour <span class="math inline">\(\Omega\)</span> et <span class="math inline">\(\Theta\)</span>).</p>
 </section>
 <section id="exemple-1000n-est-mathcalon2" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></h2>
@@ -789,16 +791,26 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>opérations de contrôle : instructions <code>if</code>, …</li>
 <li>appel d’une fonction ;</li>
 <li>accès à un élément <code>L[i]</code> d’une liste, étant donné l’indice <code>i</code> ;</li>
-<li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste (voir <a href="operations_listes.html">cette page</a>).</li>
+<li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste (cf.&nbsp;<a href="#operations-de-liste">«&nbsp;Justification des opérations de liste&nbsp;»</a>).</li>
 </ul></li>
 </ul>
 <p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
 <p><span class="math inline">\(T(n)\)</span> dépend alors du <strong>nombre d’exécutions</strong> de chaque instruction.</p>
 </section>
+<section id="operations-de-liste" class="level2">
+<h2 class="anchored" data-anchor-id="operations-de-liste">Justification des opérations de liste</h2>
+<p>Pourquoi <code>len(L)</code>, <code>L[i]</code>, <code>L.append(x)</code> et <code>L.pop()</code> prennent-elles un temps constant&nbsp;? Cela vient de la façon dont Python stocke une liste en mémoire (cf.&nbsp;<a href="https://hidden-shapes.com/ICS/2026-27-Cours4/notes.html#repr%C3%A9sentation-de-listes-en-m%C3%A9moire">Cours 4, «&nbsp;Représentation de listes en mémoire&nbsp;»</a>) :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/liste-references.png" class="invert-colors img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+<p>La justification détaillée est dans <a href="operations_listes.html">cette annexe</a>.</p>
+</section>
 <section id="exemple-le-temps-de-parcours-du-maximum" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</h2>
 <p>Reprenons l’algorithme qui calcule le maximum d’une liste (cf.&nbsp;<a href="#quest-ce-quun-algorithme">«&nbsp;Qu’est-ce qu’un algorithme&nbsp;?&nbsp;»</a>) :</p>
-<div id="f6bf980f" class="cell" data-execution_count="1">
+<div id="31a8a8b1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
@@ -847,7 +859,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-force-brute" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
 <p>Revenons à la somme maximale (cf.&nbsp;<a href="#exemple-la-somme-maximale">«&nbsp;Exemple : la somme maximale&nbsp;»</a>), avec la première idée, la force brute :</p>
-<div id="41606e67" class="cell" data-execution_count="2">
+<div id="e2a73391" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
@@ -872,7 +884,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
 <p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
-<div id="d3670ed1" class="cell" data-execution_count="3">
+<div id="b75e9b75" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    L.remove(max_1)  <span class="co"># attention : modifie L</span></span>
@@ -890,6 +902,27 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <li>Le reste prend un temps constant. Temps de parcours total : <span class="math inline">\(T_\ell(n) = c_3\, n + c_4\)</span>, donc <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 <p><span class="remark">Remarque.</span> <code>max_somme_lin</code> <strong>modifie</strong> la liste <code>L</code> (elle en retire le maximum). Dans la série, vous écrirez une version qui laisse <code>L</code> inchangée et qui a toujours complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
+</section>
+<section id="mesurer-un-temps-de-parcours" class="level2">
+<h2 class="anchored" data-anchor-id="mesurer-un-temps-de-parcours">Mesurer un temps de parcours</h2>
+<p>La fonction <code>time</code> du module <code>time</code> donne l’heure actuelle, en secondes. Pour mesurer le temps que prend un appel, on regarde l’heure juste avant et juste après :</p>
+<div id="bba56b04" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    L.append(randint(<span class="dv">0</span>, <span class="dv">1000</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>max_somme(L)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'max_somme(L) a pris'</span>, t1 <span class="op">-</span> t0, <span class="st">'secondes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max_somme(L) a pris 0.018128156661987305 secondes</code></pre>
+</div>
+</div>
+<p>En répétant ces mesures pour des listes de plus en plus grandes (et pour <code>max_somme_lin</code>), on obtient des courbes comme celles de la slide suivante.</p>
 </section>
 <section id="comparaison-des-temps-mesurés" class="level2">
 <h2 class="anchored" data-anchor-id="comparaison-des-temps-mesurés">Comparaison des temps mesurés</h2>

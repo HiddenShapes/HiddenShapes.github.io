@@ -798,21 +798,21 @@ html.ics-light .fois-table { --fois-color: #2f5f9e; }
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au plus aussi vite</strong><br>que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne supérieure)</p>
 <p><img data-src="media/big-oh.png" class="invert-colors"></p>
 <div class="fragment" data-fragment-index="1">
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f \leq g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\leq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div>
 </div><div class="column" style="width:33%;">
 <p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span></strong></p>
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au moins aussi vite</strong><br>que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne inférieure)</p>
 <p><img data-src="media/big-omega.png" class="invert-colors"></p>
 <div class="fragment" data-fragment-index="1">
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f \geq g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\geq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div>
 </div><div class="column" style="width:33%;">
 <p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span></strong></p>
 <p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>à la même vitesse</strong><br>que <span class="math inline">\(g\)</span>&nbsp;»<br>(les deux à la fois)</p>
 <p><img data-src="media/big-theta.png" class="invert-colors"></p>
 <div class="fragment" data-fragment-index="1">
-<p><span class="math inline">\(\approx\)</span> «&nbsp;<span class="math inline">\(f = g\)</span>&nbsp;»</p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(=\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
 </div>
 </div></div>
 <div class="fragment notation-remarque" data-fragment-index="2">
@@ -835,7 +835,7 @@ html.ics-light .fois-table { --fois-color: #2f5f9e; }
 <img src="media/big-oh.png" class="invert-colors" style="height: 265px; margin: 0;">
 </div>
 </div><div class="column" style="width:54%;">
-<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;».</p>
+<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;». On écrit aussi <span class="math inline">\(f = \mathcal{O}(g)\)</span> (de même pour <span class="math inline">\(\Omega\)</span> et <span class="math inline">\(\Theta\)</span>).</p>
 </div></div>
 </section>
 <section id="exemple-1000n-est-mathcalon2" class="slide level2 smaller">
@@ -1081,7 +1081,7 @@ Comment trouver <strong>la classe de complexité</strong> de <span class="math i
 <li>opérations de contrôle : instructions <code>if</code>, …</li>
 <li>appel d’une fonction ;</li>
 <li>accès à un élément <code>L[i]</code> d’une liste, étant donné l’indice <code>i</code> ;</li>
-<li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste (voir <a href="operations_listes.html">cette page</a>).</li>
+<li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste.</li>
 </ul></li>
 </ul>
 <p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
@@ -1089,6 +1089,14 @@ Comment trouver <strong>la classe de complexité</strong> de <span class="math i
 <div class="fragment">
 <p><span class="math inline">\(T(n)\)</span> dépend alors du <strong>nombre d’exécutions</strong> de chaque instruction.</p>
 </div>
+</section>
+<section id="operations-de-liste" class="slide level2 smaller">
+<h2>Justification des opérations de liste</h2>
+<p>Pourquoi <code>len(L)</code>, <code>L[i]</code>, <code>L.append(x)</code> et <code>L.pop()</code> prennent-elles un temps constant&nbsp;? Cela vient de la façon dont Python stocke une liste en mémoire (cf.&nbsp;<a href="https://hidden-shapes.com/ICS/2026-27-Cours4/notes.html#repr%C3%A9sentation-de-listes-en-m%C3%A9moire">Cours 4, «&nbsp;Représentation de listes en mémoire&nbsp;»</a>) :</p>
+<div style="text-align: center;">
+<img src="media/liste-references.png" class="invert-colors" style="width: 85%; margin: 0.4em 0;">
+</div>
+<p>La justification détaillée est dans <a href="operations_listes.html">cette annexe</a>.</p>
 </section>
 <section id="exemple-le-temps-de-parcours-du-maximum" class="slide level2 smaller">
 <h2>Exemple : le temps de parcours du maximum</h2>
@@ -1160,6 +1168,24 @@ La deuxième idée : retirer le plus grand élément, puis prendre le plus grand
 <div class="fragment">
 <p><span class="remark">Remarque.</span> <code>max_somme_lin</code> <strong>modifie</strong> la liste <code>L</code> (elle en retire le maximum). Dans la série, vous écrirez une version qui laisse <code>L</code> inchangée et qui a toujours complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
 </div>
+</div>
+</section>
+<section id="mesurer-un-temps-de-parcours" class="slide level2 smaller">
+<h2>Mesurer un temps de parcours</h2>
+<p>La fonction <code>time</code> du module <code>time</code> donne l’heure actuelle, en secondes. Pour mesurer le temps que prend un appel, on regarde l’heure juste avant et juste après :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>    L.append(randint(<span class="dv">0</span>, <span class="dv">1000</span>))</span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time()</span>
+<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a>max_somme(L)</span>
+<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time()</span>
+<span id="cb4-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'max_somme(L) a pris'</span>, t1 <span class="op">-</span> t0, <span class="st">'secondes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>En répétant ces mesures pour des listes de plus en plus grandes (et pour <code>max_somme_lin</code>), on obtient des courbes comme celles de la slide suivante.</p>
 </div>
 </section>
 <section id="comparaison-des-temps-mesurés" class="slide level2 smaller">
