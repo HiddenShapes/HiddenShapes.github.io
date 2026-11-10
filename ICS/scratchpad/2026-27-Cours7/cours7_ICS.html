@@ -505,12 +505,20 @@ Qu’est-ce qu’un algorithme&nbsp;?
 <li>Un algorithme doit avant tout être <strong>correct</strong> : produire la bonne sortie pour <strong>toute</strong> instance du problème. Cette question de <strong>correctitude</strong>, on la traitera la semaine prochaine.</li>
 <li>Parmi les algorithmes corrects, comment caractériser « le meilleur » ?</li>
 </ul></li>
+</ul>
+<div class="fragment">
+<ul>
 <li>Pour certains problèmes on ne sait pas s’il existe un algorithme qui les résout&nbsp;; pour certains problèmes on sait qu’il n’en existe aucun.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>Pour certains problèmes, on ne connaît encore aucun algorithme <strong>efficace</strong> qui les résout.
 <ul>
 <li>Que veut dire « efficace » ?</li>
 </ul></li>
 </ul>
+</div>
 </section>
 <section id="algorithme-vs.-implémentation" class="slide level2">
 <h2>Algorithme vs.&nbsp;implémentation</h2>
@@ -539,7 +547,7 @@ Comparer des algorithmes
 <section id="pourquoi-comparer-des-algorithmes" class="slide level2 smaller">
 <h2>Pourquoi comparer des algorithmes ?</h2>
 <ul>
-<li>Pour un même problème, il peut exister <strong>plusieurs algorithmes</strong> (cf.&nbsp;<a href="#/probleme-vs-algorithme">«&nbsp;Problème vs.&nbsp;algorithme&nbsp;»</a>).</li>
+<li>Comme indiqué précédemment, pour un même problème, il peut exister <strong>plusieurs algorithmes</strong>.</li>
 <li>On veut comparer leur <strong>efficacité temporelle</strong> : comment le temps de parcours croît quand la taille de l’entrée <span class="math inline">\(n\)</span> grandit (d’autres notions d’efficacité existent, comme l’efficacité de l’espace de travail en <strong>mémoire</strong>).</li>
 </ul>
 <div class="r-stack" style="margin-top: 0.6em;">
@@ -912,7 +920,7 @@ html.ics-light .fois-table { --fois-color: #2f5f9e; }
 <section id="puissances-et-polynomes" class="slide level2 smaller">
 <h2>Puissances et polynômes</h2>
 <div class="axis-intro" style="display: flow-root; min-height: 138px;">
-<p><strong>① Puissances.</strong> Pour des entiers <span class="math inline">\(p &lt; q\)</span>, <span class="math inline">\(n^p\)</span> est <span class="math inline">\(\mathcal{O}(n^q)\)</span>, mais <span class="math inline">\(n^q\)</span> n’est pas <span class="math inline">\(\mathcal{O}(n^p)\)</span> (exercice facultatif de la série). On peut donc ranger les puissances de <span class="math inline">\(n\)</span> sur un axe, de la croissance la plus lente à la plus rapide :</p>
+<p><strong>① Puissances.</strong> Pour des entiers naturels <span class="math inline">\(p &lt; q\)</span>, <span class="math inline">\(n^p\)</span> est <span class="math inline">\(\mathcal{O}(n^q)\)</span>, mais <span class="math inline">\(n^q\)</span> n’est pas <span class="math inline">\(\mathcal{O}(n^p)\)</span> (exercice facultatif de la série). On peut donc ranger les puissances de <span class="math inline">\(n\)</span> sur un axe, de la croissance la plus lente à la plus rapide :</p>
 </div>
 <div class="r-stack">
 <p><img data-src="media/12-puissances-1.svg" class="fragment fade-out invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="0"></p>
@@ -931,15 +939,16 @@ html.ics-light .fois-table { --fois-color: #2f5f9e; }
 <section id="sommes-de-puissances" class="slide level2 smaller">
 <h2>Sommes de puissances</h2>
 <div class="axis-intro" style="display: flow-root; min-height: 138px;">
-<p><strong>③ Puissances non entières.</strong> On étend la notion de polynôme aux puissances rationnelles : <span class="math inline">\(\sqrt{n} = n^{\frac{1}{2}}\)</span>, <span class="math inline">\(\;n^2\sqrt{n} = n^{\frac{5}{2}}\)</span>, … La règle ① reste vraie pour des puissances rationnelles <span class="math inline">\(p &lt; q\)</span>.</p>
+<p><strong>③ Puissances non entières.</strong> On étend la notion de polynôme aux puissances rationnelles positives : <span class="math inline">\(\sqrt{n} = n^{\frac{1}{2}}\)</span>, <span class="math inline">\(\;n^2\sqrt{n} = n^{\frac{5}{2}}\)</span>, … La règle ① reste vraie :</p>
 </div>
 <div class="r-stack">
 <p><img data-src="media/13-puissances-rationnelles-1.svg" class="fragment fade-out invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="0"></p>
 <p><img data-src="media/13-puissances-rationnelles-2.svg" class="fragment current-visible invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="0"></p>
 <p><img data-src="media/13-puissances-rationnelles-3.svg" class="fragment current-visible invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="1"></p>
-<p><img data-src="media/13-puissances-rationnelles-4.svg" class="fragment invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="2"></p>
+<p><img data-src="media/13-puissances-rationnelles-4.svg" class="fragment current-visible invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="2"></p>
+<p><img data-src="media/13-puissances-rationnelles-5.svg" class="fragment invert-colors" style="background-color: transparent;;width:72.0%" data-fragment-index="3"></p>
 </div>
-<div class="fragment" data-fragment-index="3">
+<div class="fragment" data-fragment-index="4">
 <p><span class="remark">Intuition.</span> Pour une somme de puissances, on ne garde que le <strong>terme dominant</strong>, et on oublie son coefficient.</p>
 </div>
 </section>
@@ -1074,10 +1083,6 @@ Trouver la complexité d’un algorithme à partir de son code
 Comment trouver <span class="math inline">\(T(n)\)</span>, ou du moins sa <strong>classe de complexité</strong>&nbsp;? En regardant le <strong>code</strong>&nbsp;!
 </p>
 <ul>
-<li>Si l’entrée est une liste de <span class="math inline">\(n\)</span> éléments <span class="fragment" data-fragment-index="2"><strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong></span>, l’entrée est de taille <span class="math inline">\(n\)</span>.</li>
-</ul>
-<div class="fragment" data-fragment-index="1">
-<ul>
 <li>On suppose que les opérations suivantes prennent un <strong>temps constant</strong><span class="fragment" data-fragment-index="2">, si elles s’appliquent à des valeurs <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong></span> :
 <ul>
 <li>opérations arithmétiques : addition, soustraction, multiplication, division, reste entier, …</li>
@@ -1088,9 +1093,15 @@ Comment trouver <span class="math inline">\(T(n)\)</span>, ou du moins sa <stron
 <li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste.</li>
 </ul></li>
 </ul>
-<p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
+<div class="fragment" data-fragment-index="1">
+<ul>
+<li>Si l’entrée est une liste de <span class="math inline">\(n\)</span> éléments <span class="fragment" data-fragment-index="2"><strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong></span>, l’entrée est de taille <span class="math inline">\(n\)</span>.</li>
+</ul>
 </div>
 <div class="fragment" data-fragment-index="3">
+<p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
+</div>
+<div class="fragment" data-fragment-index="4">
 <p><span class="math inline">\(T(n)\)</span> dépend alors du <strong>nombre d’exécutions</strong> de chaque instruction.</p>
 </div>
 </section>

@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="pourquoi-comparer-des-algorithmes" class="level2">
 <h2 class="anchored" data-anchor-id="pourquoi-comparer-des-algorithmes">Pourquoi comparer des algorithmes ?</h2>
 <ul>
-<li>Pour un même problème, il peut exister <strong>plusieurs algorithmes</strong> (cf.&nbsp;<a href="#probleme-vs-algorithme">«&nbsp;Problème vs.&nbsp;algorithme&nbsp;»</a>).</li>
+<li>Comme indiqué précédemment, pour un même problème, il peut exister <strong>plusieurs algorithmes</strong>.</li>
 <li>On veut comparer leur <strong>efficacité temporelle</strong> : comment le temps de parcours croît quand la taille de l’entrée <span class="math inline">\(n\)</span> grandit (d’autres notions d’efficacité existent, comme l’efficacité de l’espace de travail en <strong>mémoire</strong>).</li>
 </ul>
 <p>Même entrée, même sortie, deux algorithmes : pour <span class="math inline">\(n\)</span> petit, ils prennent presque le même temps ; pour <span class="math inline">\(n\)</span> grand, la différence devient énorme.</p>
@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><strong>③ Puissances non entières.</strong> On étend la notion de polynôme aux puissances rationnelles : <span class="math inline">\(\sqrt{n} = n^{\frac{1}{2}}\)</span>, <span class="math inline">\(\;n^2\sqrt{n} = n^{\frac{5}{2}}\)</span>, … La règle ① reste vraie pour des puissances rationnelles <span class="math inline">\(p &lt; q\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="media/13-puissances-rationnelles-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+<p><img src="media/13-puissances-rationnelles-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
 </figure>
 </div>
 <p><span class="remark">Intuition.</span> Pour une somme de puissances, on ne garde que le <strong>terme dominant</strong>, et on oublie son coefficient.</p>
@@ -786,7 +786,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="modele-de-computation">Modèle de Computation</h2>
 <p>Comment trouver <span class="math inline">\(T(n)\)</span>, ou du moins sa <strong>classe de complexité</strong>&nbsp;? En regardant le <strong>code</strong>&nbsp;!</p>
 <ul>
-<li>Si l’entrée est une liste de <span class="math inline">\(n\)</span> éléments, l’entrée est de taille <span class="math inline">\(n\)</span>.</li>
 <li>On suppose que les opérations suivantes prennent un <strong>temps constant</strong> :
 <ul>
 <li>opérations arithmétiques : addition, soustraction, multiplication, division, reste entier, …</li>
@@ -796,12 +795,13 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>accès à un élément <code>L[i]</code> d’une liste, étant donné l’indice <code>i</code> ;</li>
 <li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste (cf.&nbsp;<a href="#operations-de-liste">«&nbsp;Modèle de computation : opérations de listes&nbsp;»</a>).</li>
 </ul></li>
+<li>Si l’entrée est une liste de <span class="math inline">\(n\)</span> éléments, l’entrée est de taille <span class="math inline">\(n\)</span>.</li>
 </ul>
 <p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
 <p><span class="remark">Attention.</span> Les valeurs manipulées doivent elles-mêmes être de taille constante&nbsp;! Plus précisément :</p>
 <ul>
-<li>l’entrée est de taille <span class="math inline">\(n\)</span> si c’est une liste de <span class="math inline">\(n\)</span> éléments <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong> ;</li>
-<li>les opérations ci-dessus prennent un temps constant si elles s’appliquent à des valeurs <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong>.</li>
+<li>les opérations ci-dessus prennent un temps constant si elles s’appliquent à des valeurs <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong> ;</li>
+<li>l’entrée est de taille <span class="math inline">\(n\)</span> si c’est une liste de <span class="math inline">\(n\)</span> éléments <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong>.</li>
 </ul>
 <p><span class="math inline">\(T(n)\)</span> dépend alors du <strong>nombre d’exécutions</strong> de chaque instruction.</p>
 </section>
@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="exemple-le-temps-de-parcours-du-maximum" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</h2>
 <p>Reprenons l’algorithme qui calcule le maximum d’une liste (cf.&nbsp;<a href="#quest-ce-quun-algorithme">«&nbsp;Qu’est-ce qu’un algorithme&nbsp;?&nbsp;»</a>) :</p>
-<div id="12dff364" class="cell" data-execution_count="1">
+<div id="a46ffb20" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
@@ -894,7 +894,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-force-brute" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
 <p>Revenons à la somme maximale (cf.&nbsp;<a href="#exemple-la-somme-maximale">«&nbsp;Exemple : la somme maximale&nbsp;»</a>), avec la première idée, la force brute :</p>
-<div id="f20dfc6b" class="cell" data-execution_count="2">
+<div id="53a0ced5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
@@ -943,7 +943,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
 <p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
-<div id="2772cb12" class="cell" data-execution_count="3">
+<div id="3c0a0a8e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    L.remove(max_1)  <span class="co"># attention : modifie L</span></span>
@@ -965,7 +965,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="mesurer-un-temps-de-parcours" class="level2">
 <h2 class="anchored" data-anchor-id="mesurer-un-temps-de-parcours">Mesurer un temps de parcours</h2>
 <p>La fonction <code>time</code> du module <code>time</code> donne l’heure actuelle, en secondes. Pour mesurer le temps que prend un appel, on regarde l’heure juste avant et juste après :</p>
-<div id="4dd6a279" class="cell" data-execution_count="5">
+<div id="63c54bbe" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -978,7 +978,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time()</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'max_somme(L) a pris'</span>, t1 <span class="op">-</span> t0, <span class="st">'secondes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>max_somme(L) a pris 0.02222275733947754 secondes</code></pre>
+<pre><code>max_somme(L) a pris 0.0268704891204834 secondes</code></pre>
 </div>
 </div>
 <p>En répétant ces mesures pour des listes de plus en plus grandes (et pour <code>max_somme_lin</code>), on obtient des courbes comme celles de la slide suivante.</p>
