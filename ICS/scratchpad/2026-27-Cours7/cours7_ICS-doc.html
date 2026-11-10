@@ -618,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </figure>
 </div>
 <p>Par exemple, <span class="math inline">\(3n^2 + 250n + 20\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, car il est plus grand que <span class="math inline">\(2n^2\)</span> et plus petit que <span class="math inline">\(4n^2\)</span> (pour <span class="math inline">\(n\)</span> suffisamment grand).</p>
+<p>C’est <strong>symétrique</strong> : si <span class="math inline">\(f\)</span> a complexité <span class="math inline">\(\Theta(g)\)</span>, alors <span class="math inline">\(g\)</span> a complexité <span class="math inline">\(\Theta(f)\)</span>. Ainsi, <span class="math inline">\(n^2\)</span> a aussi complexité <span class="math inline">\(\Theta(3n^2 + 250n + 20)\)</span>.</p>
 <p>Mais identifier les complexités ne suffit pas : il faut pouvoir les <strong>comparer</strong>. Il nous faut un <strong>ordre</strong>.</p>
 </section>
 <section id="la-notation-mathcalog-et-omegag" class="level2">
@@ -844,7 +845,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="exemple-le-temps-de-parcours-du-maximum" class="level2">
 <h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</h2>
 <p>Reprenons l’algorithme qui calcule le maximum d’une liste (cf.&nbsp;<a href="#quest-ce-quun-algorithme">«&nbsp;Qu’est-ce qu’un algorithme&nbsp;?&nbsp;»</a>) :</p>
-<div id="e39b2d16" class="cell" data-execution_count="1">
+<div id="12dff364" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
@@ -893,7 +894,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-force-brute" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
 <p>Revenons à la somme maximale (cf.&nbsp;<a href="#exemple-la-somme-maximale">«&nbsp;Exemple : la somme maximale&nbsp;»</a>), avec la première idée, la force brute :</p>
-<div id="920d2fbf" class="cell" data-execution_count="2">
+<div id="f20dfc6b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
@@ -942,7 +943,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
 <h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
 <p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
-<div id="579f1f67" class="cell" data-execution_count="3">
+<div id="2772cb12" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    L.remove(max_1)  <span class="co"># attention : modifie L</span></span>
@@ -964,7 +965,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <section id="mesurer-un-temps-de-parcours" class="level2">
 <h2 class="anchored" data-anchor-id="mesurer-un-temps-de-parcours">Mesurer un temps de parcours</h2>
 <p>La fonction <code>time</code> du module <code>time</code> donne l’heure actuelle, en secondes. Pour mesurer le temps que prend un appel, on regarde l’heure juste avant et juste après :</p>
-<div id="338b9cce" class="cell" data-execution_count="5">
+<div id="4dd6a279" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -977,7 +978,7 @@ En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time()</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'max_somme(L) a pris'</span>, t1 <span class="op">-</span> t0, <span class="st">'secondes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>max_somme(L) a pris 0.02234172821044922 secondes</code></pre>
+<pre><code>max_somme(L) a pris 0.02222275733947754 secondes</code></pre>
 </div>
 </div>
 <p>En répétant ces mesures pour des listes de plus en plus grandes (et pour <code>max_somme_lin</code>), on obtient des courbes comme celles de la slide suivante.</p>
