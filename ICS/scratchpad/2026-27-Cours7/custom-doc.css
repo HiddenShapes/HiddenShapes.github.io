@@ -339,3 +339,10 @@ body {
 .iter-table table { width: auto; margin: 0.5em 0 1em 0; }
 .iter-table table th, .iter-table table td { padding: 0.2em 0.8em; }
 .iter-table table thead th { font-weight: normal; }
+
+/* Trois colonnes côte à côte (La notation O(g) et Ω(g)) : avec width="33%" chacune,
+   la troisième passait à la ligne. Elles se partagent la largeur à parts égales, et
+   s'empilent sur un écran étroit. */
+.columns.trois-colonnes { display: flex; flex-wrap: nowrap; gap: 1.2em; }
+.columns.trois-colonnes > .column { flex: 1 1 0; width: auto !important; min-width: 0; }
+@media (max-width: 600px) { .columns.trois-colonnes { flex-direction: column; } }

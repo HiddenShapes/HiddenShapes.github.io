@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Leonard Hardiman et Ghid Maatouk">
+
+<title>Informatique et Calcul Scientifique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="cours7_ICS-doc_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cours7_ICS-doc_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="cours7_ICS-doc_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="cours7_ICS-doc_files/libs/quarto-html/popper.min.js"></script>
+<script src="cours7_ICS-doc_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cours7_ICS-doc_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cours7_ICS-doc_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cours7_ICS-doc_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cours7_ICS-doc_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cours7_ICS-doc_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cours7_ICS-doc_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom-doc.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quest-ce-quun-algorithme" id="toc-quest-ce-quun-algorithme" class="nav-link active" data-scroll-target="#quest-ce-quun-algorithme">Qu’est-ce qu’un algorithme ?</a></li>
+  <li><a href="#probleme-vs-algorithme" id="toc-probleme-vs-algorithme" class="nav-link" data-scroll-target="#probleme-vs-algorithme">Problème vs.&nbsp;algorithme</a></li>
+  <li><a href="#algorithme-vs.-implémentation" id="toc-algorithme-vs.-implémentation" class="nav-link" data-scroll-target="#algorithme-vs.-implémentation">Algorithme vs.&nbsp;implémentation</a></li>
+  <li><a href="#pourquoi-comparer-des-algorithmes" id="toc-pourquoi-comparer-des-algorithmes" class="nav-link" data-scroll-target="#pourquoi-comparer-des-algorithmes">Pourquoi comparer des algorithmes ?</a></li>
+  <li><a href="#exemple-la-somme-maximale" id="toc-exemple-la-somme-maximale" class="nav-link" data-scroll-target="#exemple-la-somme-maximale">Exemple : la somme maximale</a></li>
+  <li><a href="#temps-de-parcours-et-implémentation" id="toc-temps-de-parcours-et-implémentation" class="nav-link" data-scroll-target="#temps-de-parcours-et-implémentation">Temps de parcours et implémentation</a></li>
+  <li><a href="#vitesse-de-croissance" id="toc-vitesse-de-croissance" class="nav-link" data-scroll-target="#vitesse-de-croissance">Vitesse de croissance</a></li>
+  <li><a href="#la-notation-thetag" id="toc-la-notation-thetag" class="nav-link" data-scroll-target="#la-notation-thetag">La notation <span class="math inline">\(\Theta(g)\)</span></a></li>
+  <li><a href="#la-notation-mathcalog-et-omegag" id="toc-la-notation-mathcalog-et-omegag" class="nav-link" data-scroll-target="#la-notation-mathcalog-et-omegag">La notation <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span></a></li>
+  <li><a href="#définition-formelle-de-mathcalog" id="toc-définition-formelle-de-mathcalog" class="nav-link" data-scroll-target="#définition-formelle-de-mathcalog">Définition formelle de <span class="math inline">\(\mathcal{O}(g)\)</span></a></li>
+  <li><a href="#exemple-1000n-est-mathcalon2" id="toc-exemple-1000n-est-mathcalon2" class="nav-link" data-scroll-target="#exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></a></li>
+  <li><a href="#définition-formelle-de-omegag" id="toc-définition-formelle-de-omegag" class="nav-link" data-scroll-target="#définition-formelle-de-omegag">Définition formelle de <span class="math inline">\(\Omega(g)\)</span></a></li>
+  <li><a href="#définition-formelle-de-thetag" id="toc-définition-formelle-de-thetag" class="nav-link" data-scroll-target="#définition-formelle-de-thetag">Définition formelle de <span class="math inline">\(\Theta(g)\)</span></a></li>
+  <li><a href="#puissances-et-polynomes" id="toc-puissances-et-polynomes" class="nav-link" data-scroll-target="#puissances-et-polynomes">Puissances et polynômes</a></li>
+  <li><a href="#sommes-de-puissances" id="toc-sommes-de-puissances" class="nav-link" data-scroll-target="#sommes-de-puissances">Sommes de puissances</a></li>
+  <li><a href="#hiérarchie-des-complexités" id="toc-hiérarchie-des-complexités" class="nav-link" data-scroll-target="#hiérarchie-des-complexités">Hiérarchie des complexités</a></li>
+  <li><a href="#retour-aux-algorithmes" id="toc-retour-aux-algorithmes" class="nav-link" data-scroll-target="#retour-aux-algorithmes">Retour aux algorithmes</a></li>
+  <li><a href="#modele-de-computation" id="toc-modele-de-computation" class="nav-link" data-scroll-target="#modele-de-computation">Modèle de Computation</a></li>
+  <li><a href="#operations-de-liste" id="toc-operations-de-liste" class="nav-link" data-scroll-target="#operations-de-liste">Modèle de computation : opérations de listes</a></li>
+  <li><a href="#exemple-le-temps-de-parcours-du-maximum" id="toc-exemple-le-temps-de-parcours-du-maximum" class="nav-link" data-scroll-target="#exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</a></li>
+  <li><a href="#temps-de-parcours-de-la-force-brute" id="toc-temps-de-parcours-de-la-force-brute" class="nav-link" data-scroll-target="#temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</a></li>
+  <li><a href="#temps-de-parcours-de-la-deuxième-idée" id="toc-temps-de-parcours-de-la-deuxième-idée" class="nav-link" data-scroll-target="#temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</a></li>
+  <li><a href="#mesurer-un-temps-de-parcours" id="toc-mesurer-un-temps-de-parcours" class="nav-link" data-scroll-target="#mesurer-un-temps-de-parcours">Mesurer un temps de parcours</a></li>
+  <li><a href="#comparaison-des-temps-mesurés" id="toc-comparaison-des-temps-mesurés" class="nav-link" data-scroll-target="#comparaison-des-temps-mesurés">Comparaison des temps mesurés</a></li>
+  <li><a href="#algorithmes-optimaux" id="toc-algorithmes-optimaux" class="nav-link" data-scroll-target="#algorithmes-optimaux">Algorithmes optimaux</a></li>
+  <li><a href="#remarque-finale-le-pire-des-cas" id="toc-remarque-finale-le-pire-des-cas" class="nav-link" data-scroll-target="#remarque-finale-le-pire-des-cas">Remarque finale : le pire des cas</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+          scale: 100,
+          linebreaks: { automatic: true },
+      		mtextFontInherit: true
+        }});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.display = (k === current) ? '' : 'none';
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.spoiler').forEach(function (sp) {
+    var overlay = document.createElement('div');
+    overlay.className = 'spoiler-overlay';
+    overlay.textContent = 'Cliquez pour révéler';
+    sp.appendChild(overlay);
+    overlay.addEventListener('click', function () {
+      sp.classList.add('revealed');
+    });
+  });
+});
+</script>
+
+<script>
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
+   Deck pages only: the notes pages load the same header. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
+  function apply(theme) {
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
+    if (btn) {
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'dark' ? 'dark' : 'light');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
+
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+      btn.blur();
+    });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* the switch is only visible while the title slide is up */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
+  });
+})();
+</script>
+
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Informatique et Calcul Scientifique</h1>
+<p class="subtitle lead">Cours 7</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Leonard Hardiman et Ghid Maatouk </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="quest-ce-quun-algorithme" class="level2">
+<h2 class="anchored" data-anchor-id="quest-ce-quun-algorithme">Qu’est-ce qu’un algorithme ?</h2>
+<ul>
+<li>Un algorithme est une <strong>procédure</strong> pour résoudre un problème.
+<ul>
+<li>Il prend en <strong>entrée</strong> (<strong>input</strong>) une <strong>instance</strong> de ce problème</li>
+<li>et produit la <strong>sortie</strong> (<strong>output</strong>) correspondant à cette instance.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/input_output-obj.svg" class="invert-colors-doc img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+<p>Par exemple, voici un algorithme qui calcule le maximum d’une liste de nombres.</p>
+<ul>
+<li><p><strong>Entrée</strong> : une liste de nombres réels</p></li>
+<li><p><strong>Sortie</strong> : le maximum des nombres de la liste</p></li>
+<li><p><strong>Algorithme</strong> (en français) :</p>
+<ul>
+<li>mettre <code>le_max =</code> le premier élément de la liste ;</li>
+<li>passer sur chaque élément de la liste. S’il est plus grand que <code>le_max</code>, mettre <code>le_max =</code> cet élément&nbsp;;</li>
+<li>retourner <code>le_max</code>.</li>
+</ul></li>
+<li><p>Une instance de ce problème : la liste <code>[10, -3, 7, 2, 6, 7]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/input_output_max01-obj.svg" class="invert-colors-doc img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div></li>
+<li><p>Une autre instance : la liste <code>[8, 33, 5, -20, 0]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/input_output_max02-obj.svg" class="invert-colors-doc img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div></li>
+<li><p>Ne sont pas des instances valides de ce problème :</p>
+<ul>
+<li><code>[[0, 1], [1, 2]]</code></li>
+<li><code>['a', 'b', 'c']</code> (même s’il existe un ordre sur les chaînes de caractères !)</li>
+</ul></li>
+</ul>
+</section>
+<section id="probleme-vs-algorithme" class="level2">
+<h2 class="anchored" data-anchor-id="probleme-vs-algorithme">Problème vs.&nbsp;algorithme</h2>
+<ul>
+<li>À un problème peuvent correspondre plusieurs algorithmes qui le résolvent.
+<ul>
+<li>Un algorithme doit avant tout être <strong>correct</strong> : produire la bonne sortie pour <strong>toute</strong> instance du problème. Cette question de <strong>correctitude</strong>, on la traitera la semaine prochaine.</li>
+<li>Parmi les algorithmes corrects, comment caractériser « le meilleur » ?</li>
+</ul></li>
+<li>Pour certains problèmes on ne sait pas s’il existe un algorithme qui les résout (par exemple, un problème lié à la <a href="https://fr.wikipedia.org/wiki/Conjecture_de_Syracuse">conjecture de Syracuse</a>)&nbsp;; pour certains problèmes on sait qu’il n’en existe aucun (par exemple, le <a href="https://fr.wikipedia.org/wiki/Probl%C3%A8me_de_l%27arr%C3%AAt">problème de l’arrêt</a>).</li>
+<li>Pour certains problèmes, on ne connaît encore aucun algorithme <strong>efficace</strong> qui les résout.
+<ul>
+<li>Que veut dire « efficace » ?</li>
+</ul></li>
+</ul>
+</section>
+<section id="algorithme-vs.-implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="algorithme-vs.-implémentation">Algorithme vs.&nbsp;implémentation</h2>
+<ul>
+<li>Un <strong>algorithme</strong> est une procédure générale pour résoudre un problème.</li>
+<li>Un <strong>programme</strong> est une implémentation spécifique d’un algorithme dans un langage de programmation donné, par exemple Python, et sur un système donné.</li>
+<li>À un même algorithme correspondent donc plusieurs implémentations.</li>
+<li>Les algorithmes vus dans ce cours seront donnés sous forme de programmes Python.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/probleme_algo_impl.png" class="invert-colors img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</section>
+<section id="pourquoi-comparer-des-algorithmes" class="level2">
+<h2 class="anchored" data-anchor-id="pourquoi-comparer-des-algorithmes">Pourquoi comparer des algorithmes ?</h2>
+<ul>
+<li>Pour un même problème, il peut exister <strong>plusieurs algorithmes</strong> (cf.&nbsp;<a href="#probleme-vs-algorithme">«&nbsp;Problème vs.&nbsp;algorithme&nbsp;»</a>).</li>
+<li>On veut comparer leur <strong>efficacité temporelle</strong> : comment le temps de parcours croît quand la taille de l’entrée <span class="math inline">\(n\)</span> grandit (d’autres notions d’efficacité existent, comme l’efficacité de l’espace de travail en <strong>mémoire</strong>).</li>
+</ul>
+<p>Même entrée, même sortie, deux algorithmes : pour <span class="math inline">\(n\)</span> petit, ils prennent presque le même temps ; pour <span class="math inline">\(n\)</span> grand, la différence devient énorme.</p>
+<div class="frame-viewer">
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-deux-algorithmes-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-deux-algorithmes-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-la-somme-maximale" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-la-somme-maximale">Exemple : la somme maximale</h2>
+<p><strong>Problème</strong> : étant donné une liste de <span class="math inline">\(n \geq 2\)</span> nombres, trouver la plus grande somme de deux éléments <strong>d’indices distincts</strong>. Par exemple, pour <code>L = [945, 815, 1132, 731, 981, 673]</code>, la sortie est <span class="math inline">\(1132 + 981 = 2113\)</span>.</p>
+<ul>
+<li><strong>Une première idée</strong> : essayer <strong>toutes les paires</strong> d’indices <code>i &lt; j</code>, et garder la plus grande somme <code>L[i] + L[j]</code>. On appelle ce type d’algorithme un <strong>algorithme de force brute</strong>.</li>
+<li><strong>Une deuxième idée</strong> : trouver le plus grand élément de la liste et le <strong>retirer</strong>, puis trouver le plus grand des éléments restants. Pour <code>L</code>, on trouve <span class="math inline">\(1132\)</span>, puis <span class="math inline">\(981\)</span>.</li>
+</ul>
+<p>Deux algorithmes pour le <strong>même problème</strong> : comment décider lequel est le plus rapide ?</p>
+</section>
+<section id="temps-de-parcours-et-implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="temps-de-parcours-et-implémentation">Temps de parcours et implémentation</h2>
+<ul>
+<li><p>Le temps qu’un algorithme prend pour tourner dépend de la taille <span class="math inline">\(n\)</span> de l’entrée, et grandit avec <span class="math inline">\(n\)</span>.</p></li>
+<li><p>Pour un <span class="math inline">\(n\)</span> donné, le temps que cet algorithme prend dépend de l’implémentation spécifique. Mais <strong>combien ce temps croît</strong> quand <span class="math inline">\(n\)</span> grandit ne dépend pas de l’implémentation, mais est une propriété fondamentale de l’algorithme.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/10-why-compare-impl-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div></li>
+<li><p>Il nous faut donc un moyen de <strong>décrire mathématiquement</strong> la vitesse de croissance du temps de parcours d’un algorithme en fonction de <span class="math inline">\(n\)</span>.</p></li>
+<li><p>On s’intéresse au comportement <strong>asymptotique</strong>, ce qui se passe quand <span class="math inline">\(n\)</span> tend vers l’infini.</p></li>
+</ul>
+</section>
+<section id="vitesse-de-croissance" class="level2">
+<h2 class="anchored" data-anchor-id="vitesse-de-croissance">Vitesse de croissance</h2>
+<style>
+/* Tableaux « vitesse de croissance » : flèche courbe d'une ligne à la suivante, avec le facteur à côté.
+   Lignes de hauteur fixe (1.85em) pour que la flèche (1em x 1.45em, non déformée) aille du milieu d'une
+   ligne à la suivante ; la courbe finit par un segment droit dans l'axe de la pointe (35° vers le bas). */
+.fois-table td, .fois-table th { padding-right: 5em !important; }
+.fois-table td { position: relative; height: 1.85em; padding-top: 0 !important; padding-bottom: 0 !important; vertical-align: middle; }
+.fois-table .fois {
+  position: absolute; right: 3.85em; width: 1em; height: 1.45em; top: calc(50% + 0.2em);
+}
+.fois-table .fois::before {
+  content: ""; position: absolute; inset: 0; background: var(--fois-color);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 145'%3E%3Cpath d='M5.0 4.0 C100.0 13.5 108.4 69.3 47.0 112.3 L30.6 123.8' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M6.0 141.0 L57.9 127.9 L35.5 120.4 L36.1 96.8 Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+.fois-table .fois > * {
+  position: absolute; left: 1.06em; top: 0.56em; transform: translateY(-50%);
+  white-space: nowrap; font-size: 0.8em; color: var(--fois-color);
+}
+.fois-table table, .fois-table tr, .fois-table td, .fois-table th { border-top: none !important; }
+.fois-table table, .fois-table td { border-bottom: none !important; }  /* seule reste la ligne sous les en-têtes */
+.rouge { color: #d0312d; }
+.fois-table thead th { border-bottom: 2px solid rgba(0, 0, 0, 0.45) !important; }
+.fois-table { --fois-color: #2f5f9e; }
+</style>
+<p>Considérons la fonction <span class="math inline">\(f(n) = 3n^2 + 250n + 20\)</span>. Que se passe-t-il quand on <strong>multiplie <span class="math inline">\(n\)</span> par 10</strong>&nbsp;?</p>
+<div class="fois-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 36%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(n\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(n^2\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f(n)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">273<span class="fois"><span class="math inline">\(\times 10{,}33\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">2&nbsp;820<span class="fois"><span class="math inline">\(\times 19{,}51\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">100<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">10&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">55&nbsp;020<span class="fois"><span class="math inline">\(\times 59{,}07\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">3&nbsp;250&nbsp;020<span class="fois"><span class="math inline">\(\times 93{,}08\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">100&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">302&nbsp;500&nbsp;020<span class="fois"><span class="math inline">\(\times 99{,}26\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">10&nbsp;000&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">30&nbsp;025&nbsp;000&nbsp;020<span class="fois"><span class="math inline">\(\times 99{,}93\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 10\)</span></span></td>
+<td style="text-align: right;">1&nbsp;000&nbsp;000&nbsp;000&nbsp;000<span class="fois"><span class="math inline">\(\times 100\)</span></span></td>
+<td style="text-align: right;">3&nbsp;000&nbsp;250&nbsp;000&nbsp;020<span class="fois"><span class="math inline">\(\times 99{,}99\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10&nbsp;000&nbsp;000</td>
+<td style="text-align: right;">100&nbsp;000&nbsp;000&nbsp;000&nbsp;000</td>
+<td style="text-align: right;">300&nbsp;002&nbsp;500&nbsp;000&nbsp;020</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Quand <span class="math inline">\(n\)</span> est multiplié par 10, <span class="math inline">\(f(n)\)</span> est multiplié par un facteur qui <strong>se rapproche de 100</strong>, <strong>comme <span class="math inline">\(n^2\)</span></strong> : <span class="math inline">\((10n)^2 = 100\,n^2\)</span>. On dit que <span class="math inline">\(f\)</span> et <span class="math inline">\(n^2\)</span> ont la même <strong>vitesse de croissance</strong>.</li>
+<li>Le coefficient 3 n’y change rien : <span class="math inline">\(\begin{aligned}[t] (\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(\phantom{3}n^2) \\ 3\,(\class{rouge}{10}\,n)^2 &amp; = \class{rouge}{100}\,(3n^2) \end{aligned}\)</span></li>
+</ul>
+<p><strong>Objectif</strong> : exprimer mathématiquement que <span class="math inline">\(f\)</span> croît à la même vitesse que <span class="math inline">\(n^2\)</span>.</p>
+</section>
+<section id="la-notation-thetag" class="level2">
+<h2 class="anchored" data-anchor-id="la-notation-thetag">La notation <span class="math inline">\(\Theta(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\Theta(g)\)</span></p>
+</div>
+<div class="env-body">
+<p>Soient <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> deux fonctions sur les entiers naturels. On dit que <span class="math inline">\(f\)</span> a <strong>complexité <span class="math inline">\(\Theta(g)\)</span></strong> lorsque <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> <strong>croissent à la même vitesse</strong> pour <span class="math inline">\(n\)</span> grand.</p>
+<p>Plus précisément : pour <span class="math inline">\(n\)</span> suffisamment grand, <span class="math inline">\(f(n)\)</span> est toujours comprise entre deux multiples constants de <span class="math inline">\(g(n)\)</span>.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/big-theta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+<p>Par exemple, <span class="math inline">\(3n^2 + 250n + 20\)</span> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, car il est plus grand que <span class="math inline">\(2n^2\)</span> et plus petit que <span class="math inline">\(4n^2\)</span> (pour <span class="math inline">\(n\)</span> suffisamment grand).</p>
+<p>Mais identifier les complexités ne suffit pas : il faut pouvoir les <strong>comparer</strong>. Il nous faut un <strong>ordre</strong>.</p>
+</section>
+<section id="la-notation-mathcalog-et-omegag" class="level2">
+<h2 class="anchored" data-anchor-id="la-notation-mathcalog-et-omegag">La notation <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span></h2>
+<div class="columns trois-colonnes">
+<div class="column" style="text-align: center;">
+<p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span></strong></p>
+<p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au plus aussi vite</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne supérieure)</p>
+<p><img src="media/big-oh.png" class="invert-colors img-fluid" style="width:95.0%"></p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\leq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
+</div><div class="column" style="text-align: center;">
+<p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span></strong></p>
+<p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>au moins aussi vite</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(borne inférieure)</p>
+<p><img src="media/big-omega.png" class="invert-colors img-fluid" style="width:95.0%"></p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(\geq\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
+</div><div class="column" style="text-align: center;">
+<p><strong><span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span></strong></p>
+<p>«&nbsp;<span class="math inline">\(f\)</span> croît <strong>à la même vitesse</strong> que <span class="math inline">\(g\)</span>&nbsp;»<br>(les deux à la fois)</p>
+<p><img src="media/big-theta.png" class="invert-colors img-fluid" style="width:95.0%"></p>
+<p><span class="math inline">\(f\)</span> «&nbsp;<span class="math inline">\(=\)</span>&nbsp;» <span class="math inline">\(g\)</span></p>
+</div>
+</div>
+<p><span class="remark">Remarque.</span> On compare des <strong>vitesses de croissance</strong>, pas des valeurs : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span>, bien que <span class="math inline">\(1000n &gt; n^2\)</span> pour <span class="math inline">\(n &lt; 1000\)</span>.</p>
+</section>
+<section id="définition-formelle-de-mathcalog" class="level2">
+<h2 class="anchored" data-anchor-id="définition-formelle-de-mathcalog">Définition formelle de <span class="math inline">\(\mathcal{O}(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\mathcal{O}(g)\)</span></p>
+</div>
+<div class="env-body">
+<p>Soit <span class="math inline">\(g\)</span> une fonction positive de <span class="math inline">\(n\)</span>. <span class="math inline">\(\mathcal{O}(g)\)</span> est l’<strong>ensemble</strong> des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad f(n) \leq C \cdot g(n).\]</span></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/big-oh.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<p><span class="remark">Notation.</span> Pour <span class="math inline">\(f \in \mathcal{O}(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span>&nbsp;». On écrit aussi <span class="math inline">\(f = \mathcal{O}(g)\)</span> (de même pour <span class="math inline">\(\Omega\)</span> et <span class="math inline">\(\Theta\)</span>).</p>
+<p>On dit aussi que <span class="math inline">\(f\)</span> est <strong>dominée</strong> par <span class="math inline">\(g\)</span> : <span class="math inline">\(\mathcal{O}(g)\)</span> est l’ensemble des fonctions dominées par <span class="math inline">\(g\)</span>.</p>
+</section>
+<section id="exemple-1000n-est-mathcalon2" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-1000n-est-mathcalon2">Exemple : <span class="math inline">\(1000n\)</span> est <span class="math inline">\(\mathcal{O}(n^2)\)</span></h2>
+<p>On cherche des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math inline">\(1000n \leq C \cdot n^2\)</span> pour tout <span class="math inline">\(n &gt; N\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(1000n \leq 50\,n^2\)</span> pour tout <span class="math inline">\(n \geq 20\)</span> : <span class="math inline">\(C = 50\)</span> et <span class="math inline">\(N = 20\)</span> conviennent.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/1000n-50n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+<li><p><span class="math inline">\(1000n \leq 0{,}1\,n^2\)</span> pour tout <span class="math inline">\(n \geq 10\,000\)</span> : <span class="math inline">\(C = 0{,}1\)</span> et <span class="math inline">\(N = 10\,000\)</span> conviennent aussi.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/1000n-01n2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+</ul>
+<p>Il suffit de trouver <strong>un</strong> couple <span class="math inline">\((C, N)\)</span> : plus <span class="math inline">\(C\)</span> est petit, plus <span class="math inline">\(N\)</span> doit être grand.</p>
+</section>
+<section id="définition-formelle-de-omegag" class="level2">
+<h2 class="anchored" data-anchor-id="définition-formelle-de-omegag">Définition formelle de <span class="math inline">\(\Omega(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\Omega(g)\)</span></p>
+</div>
+<div class="env-body">
+<p><span class="math inline">\(\Omega(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad f(n) \geq C \cdot g(n).\]</span></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/big-omega.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Comme pour <span class="math inline">\(\mathcal{O}\)</span>, pour <span class="math inline">\(f \in \Omega(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>&nbsp;», ou «&nbsp;<span class="math inline">\(f\)</span> <strong>domine</strong> <span class="math inline">\(g\)</span>&nbsp;» : <span class="math inline">\(\Omega(g)\)</span> est l’ensemble des fonctions qui dominent <span class="math inline">\(g\)</span>.</li>
+<li>On peut montrer que <span class="math inline">\(g\)</span> est <span class="math inline">\(\mathcal{O}(f)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\Omega(g)\)</span>.</li>
+</ul>
+</section>
+<section id="définition-formelle-de-thetag" class="level2">
+<h2 class="anchored" data-anchor-id="définition-formelle-de-thetag">Définition formelle de <span class="math inline">\(\Theta(g)\)</span></h2>
+<div class="env-box">
+<div class="env-title">
+<p>Notation <span class="math inline">\(\Theta(g)\)</span></p>
+</div>
+<div class="env-body">
+<p><span class="math inline">\(\Theta(g)\)</span> est l’ensemble des fonctions positives <span class="math inline">\(f\)</span> pour lesquelles il existe des réels <span class="math inline">\(C_1, C_2 &gt; 0\)</span> et <span class="math inline">\(N &gt; 0\)</span> tels que <span class="math display">\[\forall n &gt; N, \quad C_1 \cdot g(n) \leq f(n) \leq C_2 \cdot g(n).\]</span></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/big-theta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Pour <span class="math inline">\(f \in \Theta(g)\)</span>, on dit «&nbsp;<span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span>&nbsp;», ou «&nbsp;<span class="math inline">\(f\)</span> a complexité <span class="math inline">\(\Theta(g)\)</span>&nbsp;».</li>
+<li>On peut montrer que <span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(g)\)</span> si et seulement si <span class="math inline">\(f\)</span> est <span class="math inline">\(\mathcal{O}(g)\)</span> et <span class="math inline">\(\Omega(g)\)</span>.</li>
+</ul>
+</section>
+<section id="puissances-et-polynomes" class="level2">
+<h2 class="anchored" data-anchor-id="puissances-et-polynomes">Puissances et polynômes</h2>
+<p><strong>① Puissances.</strong> Pour des entiers <span class="math inline">\(p &lt; q\)</span>, <span class="math inline">\(n^p\)</span> est <span class="math inline">\(\mathcal{O}(n^q)\)</span>, mais <span class="math inline">\(n^q\)</span> n’est pas <span class="math inline">\(\mathcal{O}(n^p)\)</span> (exercice facultatif de la série). On peut donc ranger les puissances de <span class="math inline">\(n\)</span> sur un axe, de la croissance la plus lente à la plus rapide :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/12-puissances-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+<p><strong>② Polynômes.</strong> Si <span class="math inline">\(f\)</span> est <span class="math inline">\(\Theta(n^p)\)</span>, elle se place <strong>au même endroit que <span class="math inline">\(n^p\)</span></strong> sur l’axe. Par exemple :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/12-puissances-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+<p>En particulier, un polynôme de degré <span class="math inline">\(p\)</span> (de coefficient dominant positif) est <span class="math inline">\(\Theta(n^p)\)</span>.</p>
+</section>
+<section id="sommes-de-puissances" class="level2">
+<h2 class="anchored" data-anchor-id="sommes-de-puissances">Sommes de puissances</h2>
+<p><strong>③ Puissances non entières.</strong> On étend la notion de polynôme aux puissances rationnelles : <span class="math inline">\(\sqrt{n} = n^{\frac{1}{2}}\)</span>, <span class="math inline">\(\;n^2\sqrt{n} = n^{\frac{5}{2}}\)</span>, … La règle ① reste vraie pour des puissances rationnelles <span class="math inline">\(p &lt; q\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/13-puissances-rationnelles-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+<p><span class="remark">Intuition.</span> Pour une somme de puissances, on ne garde que le <strong>terme dominant</strong>, et on oublie son coefficient.</p>
+</section>
+<section id="hiérarchie-des-complexités" class="level2">
+<h2 class="anchored" data-anchor-id="hiérarchie-des-complexités">Hiérarchie des complexités</h2>
+<p>Sur l’axe des classes <span class="math inline">\(\Theta\)</span> (cf.&nbsp;<a href="#puissances-et-polynomes">«&nbsp;Puissances et polynômes&nbsp;»</a>), on peut aussi représenter <span class="math inline">\(\mathcal{O}\)</span> et <span class="math inline">\(\Omega\)</span>.</p>
+<ul>
+<li>Les fonctions qui sont <span class="math inline">\(\mathcal{O}(n^2)\)</span> sont dans <span class="math inline">\(\Theta(n^2)\)</span> ou à sa gauche (en rouge).</li>
+<li>Celles qui sont <span class="math inline">\(\Omega(n)\)</span> sont dans <span class="math inline">\(\Theta(n)\)</span> ou à sa droite (en bleu).</li>
+<li>Celles qui sont à la fois <span class="math inline">\(\mathcal{O}(n^2)\)</span> et <span class="math inline">\(\Omega(n)\)</span> sont entre les deux (en violet).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/01-complexity-hierarchy-7.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</section>
+<section id="retour-aux-algorithmes" class="level2">
+<h2 class="anchored" data-anchor-id="retour-aux-algorithmes">Retour aux algorithmes</h2>
+<ul>
+<li><p>Supposons que nous ayons une implémentation donnée d’un algorithme <span class="math inline">\(A\)</span>.</p></li>
+<li><p>Soit <span class="math inline">\(T(n)\)</span> le <strong>temps le plus long possible</strong> que <span class="math inline">\(A\)</span> puisse prendre pour une <strong>entrée de taille <span class="math inline">\(n\)</span></strong> : c’est le temps de parcours <strong>dans le pire des cas</strong>.</p></li>
+<li><p>Le problème est que <span class="math inline">\(T(n)\)</span> dépend de l’implémentation de <span class="math inline">\(A\)</span>. Cependant, la vitesse à laquelle <span class="math inline">\(T(n)\)</span> croît <strong>ne dépend que de <span class="math inline">\(A\)</span></strong>, pas de son implémentation&nbsp;! Notre objectif est donc de trouver une fonction simple <span class="math inline">\(g(n)\)</span> telle que <span class="math inline">\(T\)</span> ait complexité <span class="math inline">\(\Theta(g)\)</span>.</p></li>
+<li><p>Ici, par exemple, la complexité de <code>Algo A</code> est <span class="math inline">\(\Theta(n^2)\)</span>, et celle de <code>Algo B</code> est <span class="math inline">\(\Theta(n)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/10-why-compare-impl-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+</ul>
+<ul style="list-style: none; text-indent: -1.4em;">
+<li>
+<span class="math inline">\(\Rightarrow\)</span> Pour <span class="math inline">\(n\)</span> suffisamment grand, <code>Algo B</code> est plus rapide que <code>Algo A</code>, quelle que soit l’implémentation utilisée.
+</li>
+</ul>
+<ul>
+<li>Si <span class="math inline">\(T(n)\)</span> est un polynôme, l’intuition est la suivante : oublier tout sauf le terme dominant (et son coefficient) dans <span class="math inline">\(T(n)\)</span>, <strong>c’est abstraire les détails d’implémentation d’un algorithme</strong>.</li>
+</ul>
+</section>
+<section id="modele-de-computation" class="level2">
+<h2 class="anchored" data-anchor-id="modele-de-computation">Modèle de Computation</h2>
+<p>Comment trouver <span class="math inline">\(T(n)\)</span>, ou du moins sa <strong>classe de complexité</strong>&nbsp;? En regardant le <strong>code</strong>&nbsp;!</p>
+<ul>
+<li>Si l’entrée est une liste de <span class="math inline">\(n\)</span> éléments, l’entrée est de taille <span class="math inline">\(n\)</span>.</li>
+<li>On suppose que les opérations suivantes prennent un <strong>temps constant</strong> :
+<ul>
+<li>opérations arithmétiques : addition, soustraction, multiplication, division, reste entier, …</li>
+<li>manipulation de données : créer une variable, affecter une valeur à une variable, lire et comparer les valeurs de deux variables, …</li>
+<li>opérations de contrôle : instructions <code>if</code>, …</li>
+<li>appel d’une fonction ;</li>
+<li>accès à un élément <code>L[i]</code> d’une liste, étant donné l’indice <code>i</code> ;</li>
+<li>la fonction <code>len</code> et les méthodes <code>append</code> et <code>pop</code> (sans argument !) sur une liste (cf.&nbsp;<a href="#operations-de-liste">«&nbsp;Modèle de computation : opérations de listes&nbsp;»</a>).</li>
+</ul></li>
+</ul>
+<p><span class="remark">Remarque.</span> Ces suppositions modélisent de façon assez réaliste le calcul sur un ordinateur moderne.</p>
+<p><span class="remark">Attention.</span> Les valeurs manipulées doivent elles-mêmes être de taille constante&nbsp;! Plus précisément :</p>
+<ul>
+<li>l’entrée est de taille <span class="math inline">\(n\)</span> si c’est une liste de <span class="math inline">\(n\)</span> éléments <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong> ;</li>
+<li>les opérations ci-dessus prennent un temps constant si elles s’appliquent à des valeurs <strong>qui ne grandissent pas avec <span class="math inline">\(n\)</span></strong>.</li>
+</ul>
+<p><span class="math inline">\(T(n)\)</span> dépend alors du <strong>nombre d’exécutions</strong> de chaque instruction.</p>
+</section>
+<section id="operations-de-liste" class="level2">
+<h2 class="anchored" data-anchor-id="operations-de-liste">Modèle de computation : opérations de listes</h2>
+<p>Pourquoi <code>len(L)</code>, <code>L[i]</code>, <code>L.append(x)</code> et <code>L.pop()</code> prennent-elles un temps constant&nbsp;?</p>
+<p>Le modèle de computation que nous utilisons s’appelle le «&nbsp;Random Access Model&nbsp;». Il repose sur le fait que la mémoire d’un ordinateur est organisée de telle sorte que <strong>l’accès à une adresse donnée</strong> (pour lire la valeur qui y est stockée, ou pour y écrire une valeur) se fait en temps constant.</p>
+<p><strong>Comment une liste est stockée en mémoire.</strong> Rappelons comment Python stocke une liste en mémoire (cf.&nbsp;<a href="https://hidden-shapes.com/ICS/2026-27-Cours4/notes.html#repr%C3%A9sentation-de-listes-en-m%C3%A9moire">Cours 4, «&nbsp;Représentation de listes en mémoire&nbsp;»</a>) :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/liste-references.png" class="invert-colors img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Une liste Python stocke des <strong>références</strong> aux objets qu’elle contient, et non les objets eux-mêmes. Une référence (une flèche sur la figure) est simplement l’<strong>adresse en mémoire</strong> de l’objet vers lequel elle pointe.</li>
+<li>L’espace nécessaire pour stocker une référence est <strong>fixe</strong> (par exemple 4 ou 8 octets, selon les systèmes).</li>
+<li>Lorsqu’une liste est créée, Python lui réserve un <strong>bloc de mémoire contigu</strong>, qui commence à une certaine adresse. Il stocke aussi la <strong>longueur</strong> de la liste à un endroit précis et connu.</li>
+</ul>
+<p><span class="remark">Remarque.</span> C’est une représentation conceptuelle de l’implémentation la plus courante de Python, CPython ; les détails peuvent différer. Par exemple, la longueur de la liste n’est pas forcément stockée au début du bloc, mais elle est en tout cas à un endroit connu de l’interpréteur.</p>
+<p><strong>Le temps de parcours de chaque opération.</strong></p>
+<ol type="1">
+<li><p><strong><code>len(L)</code>.</strong> La longueur de la liste est stockée à une adresse connue : Python y accède en temps constant.</p></li>
+<li><p><strong><code>L[i]</code>.</strong> Pour accéder à l’élément d’indice <code>i</code> de la liste <code>L</code>, Python :</p>
+<ul>
+<li>calcule l’adresse de la référence stockée à cet indice : <code>(adresse du début de la liste) + i * (taille d'une référence)</code> ;</li>
+<li>lit la référence stockée à cette adresse : c’est à son tour l’adresse de l’objet vers lequel elle pointe ;</li>
+<li>accède à cette adresse, et donc à l’objet lui-même, en lecture ou en écriture.</li>
+</ul>
+<p>Chacune de ces étapes (un calcul arithmétique, un accès à une adresse en mémoire) prend un temps constant. Lire ou écrire <code>L[i]</code> prend donc, en tout, un temps constant.</p></li>
+<li><p><strong><code>L.append(x)</code>.</strong> Pour ajouter un élément à la fin de la liste, Python :</p>
+<ul>
+<li>crée l’objet à ajouter, et le stocke à une certaine adresse en mémoire ;</li>
+<li>calcule l’adresse où stocker la nouvelle référence : <code>(adresse du début de la liste) + (longueur de la liste) * (taille d'une référence)</code> ;</li>
+<li>écrit à cette adresse la référence vers l’objet ;</li>
+<li>met à jour la longueur de la liste : il lit la longueur à l’endroit où elle est stockée, lui ajoute 1, et écrit la nouvelle valeur au même endroit.</li>
+</ul>
+<p>Chacune de ces étapes prend un temps constant (en supposant, bien sûr, que l’objet qu’on crée et dont on ajoute la référence à la fin de la liste a lui-même une taille constante), donc <code>append</code> prend un temps constant.</p></li>
+<li><p><strong><code>L.pop()</code>.</strong> Pour enlever le dernier élément de la liste, Python modifie simplement la longueur de la liste, en lui retranchant 1&nbsp;! Cette mise à jour prend un temps constant.</p></li>
+</ol>
+</section>
+<section id="exemple-le-temps-de-parcours-du-maximum" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-le-temps-de-parcours-du-maximum">Exemple : le temps de parcours du maximum</h2>
+<p>Reprenons l’algorithme qui calcule le maximum d’une liste (cf.&nbsp;<a href="#quest-ce-quun-algorithme">«&nbsp;Qu’est-ce qu’un algorithme&nbsp;?&nbsp;»</a>) :</p>
+<div id="e39b2d16" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)              <span class="co"># temps c0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]           <span class="co"># temps c1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):   <span class="co"># temps c2 à chaque itération</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">&gt;</span> le_max:   <span class="co"># temps c3 à chaque itération</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            le_max <span class="op">=</span> L[i]   <span class="co"># temps c4 à chaque itération, au pire</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> le_max           <span class="co"># temps c5</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(maximum([<span class="dv">10</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">7</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10</code></pre>
+</div>
+</div>
+<ul>
+<li>La boucle fait <span class="math inline">\(n - 1\)</span> itérations. Au pire (si la liste est strictement croissante), <code>le_max = L[i]</code> est exécutée à chaque itération.</li>
+</ul>
+<p>L’appel <code>maximum(L)</code> dure donc au pire <span class="math display">\[T(n) = c_0 + c_1 + c_5 + (c_2 + c_3 + c_4)(n - 1) = c\,n + c' :\]</span> <code>maximum</code> a un temps de parcours <strong>linéaire</strong> en <span class="math inline">\(n\)</span> : <code>maximum</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
+<!--
+
+## Complexité des boucles
+
+Pour un algorithme itératif, le nombre d'exécutions des instructions dépend des **boucles**, comme pour `maximum` :
+
+```{.python}
+for i in range(n):
+    # TEMPS CONSTANT              # -> temps Θ(n)
+```
+
+```{.python}
+for i in range(n):
+    for j in range(i + 1, n):
+        # TEMPS CONSTANT          # -> temps Θ(n²)
+```
+
+```{.python}
+for i in range(n):
+    for j in range(i + 1, n):
+        for k in range(j + 1, n):
+            # TEMPS CONSTANT      # -> temps Θ(n³)
+```
+
+En général : $k$ boucles imbriquées (avec une taille moyenne proportionnel à $n$) $\Rightarrow$ $\Theta(n^k)$.
+
+-->
+</section>
+<section id="temps-de-parcours-de-la-force-brute" class="level2">
+<h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-force-brute">Temps de parcours de la force brute</h2>
+<p>Revenons à la somme maximale (cf.&nbsp;<a href="#exemple-la-somme-maximale">«&nbsp;Exemple : la somme maximale&nbsp;»</a>), avec la première idée, la force brute :</p>
+<div id="920d2fbf" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme(L):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    max_s <span class="op">=</span> L[<span class="dv">0</span>] <span class="op">+</span> L[<span class="dv">1</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, n):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> L[i] <span class="op">+</span> L[j] <span class="op">&gt;</span> max_s:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                max_s <span class="op">=</span> L[i] <span class="op">+</span> L[j]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_s</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(max_somme([<span class="dv">945</span>, <span class="dv">815</span>, <span class="dv">1132</span>, <span class="dv">731</span>, <span class="dv">981</span>, <span class="dv">673</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2113</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Le corps de la boucle intérieure prend un temps constant, au plus <span class="math inline">\(c\)</span>.</p></li>
+<li><p>La boucle extérieure fait <span class="math inline">\(n\)</span> itérations. À l’itération <code>i</code>, la boucle intérieure en fait <span class="math inline">\(n - i - 1\)</span> :</p>
+<div class="iter-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">valeur de <code>i</code></th>
+<th style="text-align: center;"><span class="math inline">\(0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(2\)</span></th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;"><span class="math inline">\(n-1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">itérations de la boucle intérieure</td>
+<td style="text-align: center;"><span class="math inline">\(n-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n-2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n-3\)</span></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+</div></li>
+<li><p>Temps de parcours des boucles imbriquées : <span class="math inline">\(\; c \cdot \left[(n-1) + (n-2) + \cdots + 1 + 0\right] = c \cdot \dfrac{n(n-1)}{2}\)</span>.</p></li>
+<li><p>Temps de parcours total : <span class="math inline">\(T_s(n) = c_2 n^2 + c_1 n + c_0\)</span>, donc <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>.</p></li>
+</ul>
+</section>
+<section id="temps-de-parcours-de-la-deuxième-idée" class="level2">
+<h2 class="anchored" data-anchor-id="temps-de-parcours-de-la-deuxième-idée">Temps de parcours de la deuxième idée</h2>
+<p>La deuxième idée : retirer le plus grand élément, puis prendre le plus grand des éléments restants.</p>
+<div id="579f1f67" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> max_somme_lin(L):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    max_1 <span class="op">=</span> <span class="bu">max</span>(L)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    L.remove(max_1)  <span class="co"># attention : modifie L</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    max_2 <span class="op">=</span> <span class="bu">max</span>(L)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_1 <span class="op">+</span> max_2</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(max_somme_lin([<span class="dv">945</span>, <span class="dv">815</span>, <span class="dv">1132</span>, <span class="dv">731</span>, <span class="dv">981</span>, <span class="dv">673</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2113</code></pre>
+</div>
+</div>
+<ul>
+<li><code>max(L)</code> fait la même chose que notre fonction <code>maximum</code> : comme on l’a vu, elle a complexité <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li><code>L.remove(x)</code> est, elle aussi, <strong>linéaire</strong> en <span class="math inline">\(n\)</span>, la longueur de <code>L</code> (cf.&nbsp;Série 7, exercice 5).</li>
+<li>Le reste prend un temps constant. Temps de parcours total : <span class="math inline">\(T_\ell(n) = c_3\, n + c_4\)</span>, donc <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</li>
+</ul>
+<p><span class="remark">Remarque.</span> <code>max_somme_lin</code> <strong>modifie</strong> la liste <code>L</code> (elle en retire le maximum). Dans la série, vous écrirez une version qui laisse <code>L</code> inchangée et qui a toujours complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
+</section>
+<section id="mesurer-un-temps-de-parcours" class="level2">
+<h2 class="anchored" data-anchor-id="mesurer-un-temps-de-parcours">Mesurer un temps de parcours</h2>
+<p>La fonction <code>time</code> du module <code>time</code> donne l’heure actuelle, en secondes. Pour mesurer le temps que prend un appel, on regarde l’heure juste avant et juste après :</p>
+<div id="338b9cce" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> []</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    L.append(randint(<span class="dv">0</span>, <span class="dv">1000</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>max_somme(L)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'max_somme(L) a pris'</span>, t1 <span class="op">-</span> t0, <span class="st">'secondes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max_somme(L) a pris 0.02234172821044922 secondes</code></pre>
+</div>
+</div>
+<p>En répétant ces mesures pour des listes de plus en plus grandes (et pour <code>max_somme_lin</code>), on obtient des courbes comme celles de la slide suivante.</p>
+</section>
+<section id="comparaison-des-temps-mesurés" class="level2">
+<h2 class="anchored" data-anchor-id="comparaison-des-temps-mesurés">Comparaison des temps mesurés</h2>
+<p>Temps de parcours mesurés sur un ordinateur, pour des listes de nombres aléatoires :</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/max-somme-temps.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/max-somme-lin-temps.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Les points suivent bien <span class="math inline">\(c\,n^2\)</span> et <span class="math inline">\(c\,n\)</span>. Attention aux échelles : pour un million d’éléments, <code>max_somme_lin</code> met <span class="math inline">\(\sim\!0{,}02\)</span> s, alors que <code>max_somme</code> met <span class="math inline">\(\sim\!20\,000\)</span> s, soit plus de <strong>5 heures</strong>&nbsp;!</p></li>
+<li><p>Sur les mêmes listes, le temps de <code>max_somme_lin</code> est si petit qu’on ne le distingue pas de <span class="math inline">\(0\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/max-somme-comparaison.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="algorithmes-optimaux" class="level2">
+<h2 class="anchored" data-anchor-id="algorithmes-optimaux">Algorithmes optimaux</h2>
+<p>Revenons à la question «&nbsp;comment décider lequel est le plus rapide ?&nbsp;» : <code>max_somme</code> a complexité <span class="math inline">\(\Theta(n^2)\)</span>, et <code>max_somme_lin</code> a complexité <span class="math inline">\(\Theta(n)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-optimal-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Sur l’axe, <code>max_somme_lin</code> est à gauche de <code>max_somme</code> : pour <span class="math inline">\(n\)</span> grand, <code>max_somme_lin</code> est <strong>plus rapide</strong>, quelle que soit l’implémentation.</li>
+<li>Peut-on faire mieux que <span class="math inline">\(\Theta(n)\)</span> ? Non ! Tout algorithme pour ce problème doit <strong>au moins lire toute la liste</strong> : son temps de parcours est <span class="math inline">\(\Omega(n)\)</span>, il doit donc être <strong>dans la zone bleue</strong>.</li>
+<li><code>max_somme_lin</code> est au bord gauche de la zone bleue : il est <strong>asymptotiquement optimal</strong>.</li>
+<li>De même, pour calculer le maximum d’une liste, tout algorithme doit lire toute la liste. <code>maximum</code>, qui a complexité <span class="math inline">\(\Theta(n)\)</span>, est donc asymptotiquement optimal.</li>
+</ul>
+</section>
+<section id="remarque-finale-le-pire-des-cas" class="level2">
+<h2 class="anchored" data-anchor-id="remarque-finale-le-pire-des-cas">Remarque finale : le pire des cas</h2>
+<ul>
+<li>Pour les algorithmes vus aujourd’hui, la complexité ne dépend que de <span class="math inline">\(n\)</span>, pas des valeurs de la liste. Par exemple, pour trouver le maximum d’une liste, il faut parcourir <strong>toutes</strong> les valeurs, même si le maximum est le premier élément de la liste&nbsp;!</li>
+<li>Plus tard, on verra des algorithmes dont le temps de parcours dépend de l’<strong>instance</strong> donnée en entrée, pas seulement de sa taille. Par exemple, pour chercher une valeur dans une liste, on peut la trouver tout de suite, ou devoir parcourir toute la liste.</li>
+<li>Dans ce cours, on étudiera toujours le temps de parcours d’un algorithme <strong>dans le pire des cas</strong> (cf.&nbsp;<a href="#retour-aux-algorithmes">«&nbsp;Retour aux algorithmes&nbsp;»</a>) : il donne une <strong>garantie</strong> sur le temps de parcours, pour n’importe quelle instance.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
