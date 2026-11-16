@@ -1001,3 +1001,11 @@ html.ics-light .reveal .anatomie .anat { color: var(--ics-code-fg); }
 .reveal .iter-table table th, .reveal .iter-table table td { padding: 0.2em 0.7em; border-bottom: none; }
 .reveal .iter-table table thead th { border-bottom: 2px solid currentColor; font-weight: normal; }
 .reveal .iter-table table tr > :first-child { padding-right: 1.2em; }
+
+/* Cours 8 : tableaux « Au début / Toujours vrai ? / À la fin » (une ligne par moment, l'étiquette à gauche) */
+.reveal .debut-fin table { width: 100% !important; margin: 0.2em 0 0 0; }
+.reveal .debut-fin table td { vertical-align: middle; padding: 0.15em 0.7em; border-bottom: 1px solid rgba(127, 127, 127, 0.4); }
+.reveal .debut-fin table tr:last-child td { border-bottom: none; }
+.reveal .debut-fin table td + td { border-left: 1.5px solid rgba(127, 127, 127, 0.55); }
+.reveal .debut-fin table td:first-child { white-space: nowrap; }
+.reveal .debut-fin .invariant-box { display: inline-block; border: 2px solid currentColor; border-radius: 8px; padding: 0.1em 0.6em; }

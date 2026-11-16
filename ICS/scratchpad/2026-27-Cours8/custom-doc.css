@@ -346,3 +346,10 @@ body {
 .columns.trois-colonnes { display: flex; flex-wrap: nowrap; gap: 1.2em; }
 .columns.trois-colonnes > .column { flex: 1 1 0; width: auto !important; min-width: 0; }
 @media (max-width: 600px) { .columns.trois-colonnes { flex-direction: column; } }
+
+/* Cours 8 : tableaux « Au début / Toujours vrai ? / À la fin » (une ligne par moment, l'étiquette à gauche) */
+.debut-fin table { width: 100%; }
+.debut-fin table td { vertical-align: middle; }
+.debut-fin table td + td { border-left: 1.5px solid rgba(127, 127, 127, 0.55); }
+.debut-fin table td:first-child { white-space: nowrap; }
+.debut-fin .invariant-box { display: inline-block; border: 2px solid currentColor; border-radius: 8px; padding: 0.1em 0.6em; }

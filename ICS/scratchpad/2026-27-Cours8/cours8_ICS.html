@@ -454,20 +454,6 @@ Variant de boucle
 </ul>
 </div>
 </section>
-<section id="invariant-de-boucle-1" class="slide level2 unlisted">
-<h2>Invariant de boucle</h2>
-<p>L’utilisation d’un invariant de boucle pour prouver la correctitude d’un programme se fait en trois étapes :</p>
-<ul>
-<li class="fragment"><strong>Initialisation</strong> : Prouver que l’invariant de boucle est vrai avant la première itération de la boucle</li>
-<li class="fragment"><strong>Maintenance</strong> : Prouver que si l’invariant de boucle est vrai pour une itération de la boucle, alors il est vrai pour la prochaine itération de la boucle</li>
-</ul>
-<div class="center-container fragment" style="margin-top:-30px !important; margin-bottom:10px;">
-<p><span style="font-size: 0.7em; color: #4a7ab5;">(Avec ces deux étapes, on a prouvé que l’invariant reste vrai à toutes les itérations de la boucle.)</span></p>
-</div>
-<ul>
-<li class="fragment"><strong>Terminaison</strong> : Si l’invariant de boucle est vrai à la sortie de la boucle, on en déduit (directement ou indirectement) la correctitude du programme.</li>
-</ul>
-</section>
 <section id="problème-1-calculer-une-série-géométrique" class="slide level2">
 <h2>Problème 1 : calculer une série géométrique</h2>
 <p><strong>Problème :</strong> pour un réel <span class="math inline">\(a\)</span> et un entier <span class="math inline">\(n \geq 0\)</span> en entrée, écrire un algorithme (sous forme de fonction Python) qui retourne</p>
@@ -482,15 +468,123 @@ Variant de boucle
 <p>Prouvons que cet algorithme calcule bien la somme demandée !</p>
 </div>
 </section>
+<section id="trouver-linvariant-de-boucle-évolution-de-s" class="slide level2 smaller">
+<h2>Trouver l’invariant de boucle : évolution de <span class="math inline">\(s\)</span></h2>
+<div style="width: 32%; margin: 0 auto; font-size: 120%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<style>
+/* « Évolution de s » : colonnes séparées par un trait vertical, avec plus d'espace de part et d'autre */
+.reveal .evolution-s table th + th, .reveal .evolution-s table td + td { border-left: 1.5px solid rgba(127, 127, 127, 0.55); padding-left: 1em; }
+.reveal .evolution-s table th, .reveal .evolution-s table td { padding-right: 1em; }
+/* vert : la somme de l'exemple (qui devient verte au clic) et le résultat espéré du cas général */
+.reveal .evolution-s .vert { color: #3aa64b; }
+html.ics-light .reveal .evolution-s .vert { color: #13652a; }
+.reveal .slides section .evolution-s .fragment.turn-green { opacity: 1; visibility: inherit; }
+.reveal .slides section .evolution-s .fragment.turn-green.visible { color: #3aa64b; }
+html.ics-light .reveal .slides section .evolution-s .fragment.turn-green.visible { color: #13652a; }
+/* lignes du tableau et phrases du bas un peu resserrées, pour que la slide tienne */
+.reveal .evolution-s table td, .reveal .evolution-s table th { padding-top: 0.1em; padding-bottom: 0.1em; }
+.reveal .evolution-s-bas p { margin: 0.15em 0; }
+/* la réponse à « qu'est-ce qui est toujours vrai ? », encadrée (texte compris) */
+.reveal .invariant-box { border: 2px solid currentColor; border-radius: 8px; padding: 0.35em 0.7em; }
+</style>
+<div class="iter-table evolution-s">
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 44%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><code>i</code></th>
+<th style="text-align: left;"><span class="math inline">\(s\)</span> (pour <span class="math inline">\(a = 2\)</span>, <span class="math inline">\(n = 4\)</span>)</th>
+<th style="text-align: left;"><span class="math inline">\(s\)</span> (cas général)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="6"><span class="math inline">\(0\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(0 \cdot 2 + 1 = 1\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="7"><span class="math inline">\(0 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="15"><span class="math inline">\(= 1\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><span class="math inline">\(1 \cdot 2 + 1 = 3\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="8"><span class="math inline">\(1 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="16"><span class="math inline">\(= 1 + a\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(3 \cdot 2 + 1 = 7\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="9"><span class="math inline">\((1 + a) \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="17"><span class="math inline">\(= 1 + a + a^2\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="10"><span class="math inline">\(\vdots\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><span class="fragment turn-green" data-fragment-index="5"><span class="math inline">\(7 \cdot 2 + 1 = 15\)</span></span></span> <span class="fragment vert" data-fragment-index="5"><span class="math inline">\(= 1 + 2^1 + 2^2 + 2^3\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="11"><span class="vert"><span class="math inline">\(1 + a + \cdots + a^{n-1}\)</span></span> (on espère)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="debut-fin fragment" data-fragment-index="12">
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 76%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="12">Au début</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="12"><span class="math inline">\(s = 0\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="14"><strong>Toujours vrai</strong>&nbsp;?</span></td>
+<td style="text-align: left;"><span class="fragment invariant-box" data-fragment-index="18">Au début de la <span class="math inline">\(i\)</span>ème itération : <span class="math inline">\(s = 1 + a + \cdots + a^{i-1}\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="13">À la fin</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="13"><span class="math inline">\(s = 1 + a + \cdots + a^{n-1}\)</span></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="invariant-de-boucle-structure" class="slide level2">
+<h2>Invariant de boucle : structure</h2>
+<p>L’utilisation d’un invariant de boucle pour prouver la correctitude d’un programme se fait en trois étapes :</p>
+<ul>
+<li class="fragment"><strong>Initialisation</strong> : Prouver que l’invariant de boucle est vrai avant la première itération de la boucle</li>
+<li class="fragment"><strong>Maintenance</strong> : Prouver que si l’invariant de boucle est vrai pour une itération de la boucle, alors il est vrai pour la prochaine itération de la boucle</li>
+</ul>
+<div class="center-container fragment" style="margin-top:-30px !important; margin-bottom:10px;">
+<p><span style="font-size: 0.7em; color: #4a7ab5;">(Avec ces deux étapes, on a prouvé que l’invariant reste vrai à toutes les itérations de la boucle.)</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Terminaison</strong> : Si l’invariant de boucle est vrai à la sortie de la boucle, on en déduit (directement ou indirectement) la correctitude du programme.</li>
+</ul>
+</section>
 <section id="série-géométrique-invariant-de-boucle" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Série géométrique : invariant de boucle</h2>
 <div class="columns" style="width: 100%;">
 <div class="column" style="width:40%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb2-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
-<span id="cb2-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb2-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb2-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
+<span id="cb3-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb3-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:60%;">
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <span class="math inline">\(s\)</span> contient la valeur <span class="math display">\[\sum_{k=0}^{i-1} a^k = 1 + a + \cdots + a^{i-1}.\]</span></p>
 </div></div>
@@ -499,11 +593,11 @@ Variant de boucle
 <h2 data-id="quarto-animate-title">Série géométrique : preuve (initialisation)</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb3-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
-<span id="cb3-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb3-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb3-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
+<span id="cb4-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:60%;">
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <span class="math inline">\(s\)</span> contient la valeur <span class="math display">\[\sum_{k=0}^{i-1} a^k = 1 + a + \cdots + a^{i-1}.\]</span></p>
 </div></div>
@@ -516,11 +610,11 @@ Variant de boucle
 <h2 data-id="quarto-animate-title">Série géométrique : preuve (maintenance)</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb4-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
-<span id="cb4-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb4-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb4-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb4-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb5-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
+<span id="cb5-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb5-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb5-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:60%;">
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <span class="math inline">\(s\)</span> contient la valeur <span class="math display">\[\sum_{k=0}^{i-1} a^k = 1 + a + \cdots + a^{i-1}.\]</span></p>
 </div></div>
@@ -532,11 +626,11 @@ Variant de boucle
 <h2 data-id="quarto-animate-title">Série géométrique : preuve (terminaison)</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb5-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
-<span id="cb5-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb5-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb5-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
+<span id="cb6-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb6-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb6-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:60%;">
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <span class="math inline">\(s\)</span> contient la valeur <span class="math display">\[\sum_{k=0}^{i-1} a^k = 1 + a + \cdots + a^{i-1}.\]</span></p>
 </div></div>
@@ -544,35 +638,137 @@ Variant de boucle
 <li><strong>Terminaison</strong> : À la sortie de la boucle (c.-à-d.&nbsp;au début de la « <span class="math inline">\(n\)</span> »ème itération, qui n’aura pas lieu), on a <span class="math inline">\(s = \sum_{k=0}^{n-1} a^k\)</span>, ce qui est exactement ce que la boucle prétend calculer.</li>
 </ul>
 </section>
+<section id="série-géométrique-la-preuve-en-un-tableau" class="slide level2 smaller">
+<h2>Série géométrique : la preuve en un tableau</h2>
+<style>
+/* « la preuve en un tableau » : colonnes séparées, lignes qui deviennent vertes au clic (même vert que « Évolution de s ») */
+.reveal .preuve-tableau table th + th, .reveal .preuve-tableau table td + td { border-left: 1.5px solid rgba(127, 127, 127, 0.55); padding-left: 1em; }
+.reveal .preuve-tableau table th, .reveal .preuve-tableau table td { padding-right: 1em; padding-top: 0.15em; padding-bottom: 0.15em; }
+.reveal .preuve-tableau table th:last-child, .reveal .preuve-tableau table td:last-child { border-left: none; border-bottom: none !important; }
+.reveal .preuve-tableau .vert { color: #3aa64b; }
+html.ics-light .reveal .preuve-tableau .vert { color: #13652a; }
+.reveal .slides section .preuve-tableau .fragment.turn-green { opacity: 1; visibility: inherit; }
+.reveal .slides section .preuve-tableau .fragment.turn-green.visible { color: #3aa64b; }
+html.ics-light .reveal .slides section .preuve-tableau .fragment.turn-green.visible { color: #13652a; }
+/* le code de la ligne i + 1 devient vert lui aussi ; tableau un peu plus grand (il reste de la place) */
+.reveal .slides section .preuve-tableau .fragment.turn-green.visible code { color: inherit; }
+.reveal .preuve-tableau { font-size: 125%; }
+.reveal .slides section .preuve-tableau table thead th { font-size: 0.78em !important; vertical-align: bottom; line-height: 1.2; }
+/* dans les en-têtes, les maths gardent la taille du tableau (le texte reste petit) */
+.reveal .slides section .preuve-tableau table thead th .math { font-size: 1.12em; }
+.reveal .preuve-tableau td code { font-size: 1em; white-space: pre; }
+.reveal .preuve-tableau table td { vertical-align: middle; }
+/* 2e et 3e colonnes sans retour à la ligne (le calcul de la maintenance tient sur une ligne) */
+.reveal .preuve-tableau table td:nth-child(2), .reveal .preuve-tableau table td:nth-child(3) { white-space: nowrap; }
+</style>
+<div class="iter-table preuve-tableau">
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 40%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">au début de l’itération</th>
+<th style="text-align: left;"><span class="math inline">\(s\)</span> (calculé par la boucle)</th>
+<th style="text-align: left;"><span class="math inline">\(\sum_{k=0}^{i-1} a^k\)</span></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span> (somme vide)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="0">✓ <strong>Initialisation</strong></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(i\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(s\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(\sum_{k=0}^{i-1} a^k\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1">Si c’est vrai ici…</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><span class="math inline">\(i + 1\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><span class="math inline">\(s \cdot a + 1\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><span class="math inline">\(\left(\sum_{k=0}^{i-1} a^k\right) \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="2"><span class="math inline">\(= \sum_{k=0}^{i} a^k\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2">↳ … c’est vrai ici <br>✓ <strong>Maintenance</strong></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(n\)</span> (après la boucle)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(s\)</span> (retourné)</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(\sum_{k=0}^{n-1} a^k\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3">✓ <strong>Terminaison</strong></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="problème-2-calculer-un-maximum" class="slide level2 smaller">
 <h2>Problème 2 : calculer un maximum</h2>
 <p><strong>Problème :</strong> étant donné une liste non vide de nombres réels, calculer le maximum.</p>
-<div class="fragment">
+<div class="fragment" data-fragment-index="0">
 <p>Reprenons l’algorithme du dernier cours :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]</span>
-<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">&gt;</span> le_max:</span>
-<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>            le_max <span class="op">=</span> L[i]</span>
-<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> le_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">&gt;</span> le_max:</span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a>            le_max <span class="op">=</span> L[i]</span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> le_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Prouvons que cet algorithme calcule bien le maximum !</p>
 </div>
-<div class="fragment">
-<p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <code>le_max</code> est le maximum de <code>L[0]</code>, …, <code>L[i-1]</code>.</p>
+<div class="fragment" data-fragment-index="1">
+<p>On trouve un invariant de boucle :</p>
+</div>
+<div class="debut-fin fragment" data-fragment-index="2">
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 76%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2">Au début</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><code>le_max</code> vaut <code>L[0]</code></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><strong>Toujours vrai</strong>&nbsp;?</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="5"><strong>Invariant de boucle :</strong> au début de la <span class="math inline">\(i\)</span>ème itération, <code>le_max</code> est le maximum de <code>L[0]</code>, …, <code>L[i-1]</code></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3">À la fin</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><code>le_max</code> vaut le maximum de <code>L[0]</code>, …, <code>L[n-1]</code></span></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="maximum-preuve" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Maximum : preuve</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
-<span id="cb7-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb7-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]</span>
-<span id="cb7-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb7-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">&gt;</span> le_max:</span>
-<span id="cb7-6" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>            le_max <span class="op">=</span> L[i]</span>
-<span id="cb7-7" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> le_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb8-1" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
+<span id="cb8-2" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb8-3" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]</span>
+<span id="cb8-4" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb8-5" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">&gt;</span> le_max:</span>
+<span id="cb8-6" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>            le_max <span class="op">=</span> L[i]</span>
+<span id="cb8-7" class="hljs-ln-code"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> le_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:55%;">
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <code>le_max</code> est le maximum de <code>L[0]</code>, …, <code>L[i-1]</code>.</p>
 </div></div>
@@ -612,7 +808,7 @@ Dans les deux cas, au début de la prochaine itération, <code>le_max</code> est
 <ul>
 <li>Étant donné deux entiers <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> strictement positifs, on veut calculer leur plus grand commun diviseur (<strong>pgcd</strong>).
 <ul>
-<li><span class="math inline">\(\operatorname{pgcd}(3060,924) = \operatorname{pgcd}(2^2\cdot3^2\cdot5\cdot17\, ,\, 2^2\cdot3\cdot7\cdot11) = 2^2\cdot3 = 12\)</span>.</li>
+<li><span class="math inline">\(\operatorname{pgcd}(84, 120) = \operatorname{pgcd}(2^2\cdot3\cdot7\, ,\, 2^3\cdot3\cdot5) = 2^2\cdot3 = 12\)</span>.</li>
 </ul></li>
 <li>Trouver la factorisation en nombres premiers d’un très grand nombre est un problème qu’on conjecture (et qu’on espère) <strong>très difficile</strong>.</li>
 <li><strong>L’algorithme d’Euclide</strong>, beaucoup plus simple, se base sur une propriété importante : <span class="math display">\[\operatorname{pgcd}(a,b) = \operatorname{pgcd}(b, a\bmod b). \tag{$\ast$}\]</span></li>
@@ -632,12 +828,12 @@ Dans les deux cas, au début de la prochaine itération, <code>le_max</code> est
 <section id="algorithme-deuclide-terminaison" class="slide level2 smaller">
 <h2>Algorithme d’Euclide : terminaison</h2>
 <p>On peut utiliser ce fait pour créer un algorithme.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pgcd(a, b):</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> a</span>
-<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> b</span>
-<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a>        i, k <span class="op">=</span> k, i <span class="op">%</span> k</span>
-<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pgcd(a, b):</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> a</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> b</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a>        i, k <span class="op">=</span> k, i <span class="op">%</span> k</span>
+<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Pourquoi cet algorithme termine-t-il ?</p>
 <div class="fragment">
@@ -652,30 +848,60 @@ Dans les deux cas, au début de la prochaine itération, <code>le_max</code> est
 <section id="algorithme-deuclide-correctitude" class="slide level2 smaller">
 <h2>Algorithme d’Euclide : correctitude</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pgcd(a, b):</span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> a</span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> b</span>
-<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a>        i, k <span class="op">=</span> k, i <span class="op">%</span> k</span>
-<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
+<div class="column" style="width:38%;">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pgcd(a, b):</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> a</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> b</span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>        i, k <span class="op">=</span> k, i <span class="op">%</span> k</span>
+<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:62%;">
 <p>Pourquoi cet algorithme rend-il une valeur correcte ?</p>
-</div></div>
+<div class="fragment" data-fragment-index="0">
 <ul>
-<li class="fragment">L’égalité <span class="math inline">\(\operatorname{pgcd}(a,b) = \operatorname{pgcd}(b, a\bmod b)\)</span> implique <strong>l’invariant de boucle</strong> :</li>
+<li>L’égalité <span class="math inline">\(\operatorname{pgcd}(a,b) = \operatorname{pgcd}(b, a\bmod b)\)</span> implique <strong>l’invariant de boucle</strong> :</li>
 </ul>
-<div class="center-container fragment">
+</div>
+<div class="center-container fragment" data-fragment-index="1" style="width: 100% !important;">
 <p>À chaque itération de la boucle, <span class="math inline">\(\operatorname{pgcd}(i, k) = \operatorname{pgcd}(a, b)\)</span>.</p>
 </div>
+</div></div>
+<div class="fragment" data-fragment-index="2">
 <ul>
-<li class="fragment">Au moment où l’algorithme retourne la valeur <span class="math inline">\(i\)</span> :
+<li>Au moment où l’algorithme retourne la valeur <span class="math inline">\(i\)</span> :
 <ul>
-<li class="fragment"><span class="math inline">\(k\)</span> vaut <span class="math inline">\(0\)</span> (<span class="math inline">\(k\)</span> étant le reste d’une division entière, il n’est jamais strictement négatif)</li>
-<li class="fragment">La valeur rendue <span class="math inline">\(i = \operatorname{pgcd}(i, 0) = \operatorname{pgcd}(i, k)\)</span>.</li>
+<li><span class="math inline">\(k\)</span> vaut <span class="math inline">\(0\)</span> (<span class="math inline">\(k\)</span> étant le reste d’une division entière, il n’est jamais strictement négatif)</li>
+<li>La valeur rendue <span class="math inline">\(i = \operatorname{pgcd}(i, 0) = \operatorname{pgcd}(i, k)\)</span>.</li>
 </ul></li>
-<li class="fragment">Pour <span class="math inline">\(a, b\)</span> entiers strictement positifs en entrée, l’algorithme retourne donc bien <span class="math inline">\(\operatorname{pgcd}(a,b)\)</span>.</li>
 </ul>
+</div>
+<div class="fragment" data-fragment-index="3">
+<ul>
+<li>Pour <span class="math inline">\(a, b\)</span> entiers strictement positifs en entrée, l’algorithme retourne donc bien <span class="math inline">\(\operatorname{pgcd}(a,b)\)</span>.</li>
+</ul>
+</div>
+<div class="debut-fin fragment" data-fragment-index="4">
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 76%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="4">Au début</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><span class="math inline">\(i = a\)</span> et <span class="math inline">\(k = b\)</span>, donc <span class="math inline">\(\operatorname{pgcd}(i, k) = \operatorname{pgcd}(a, b)\)</span></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="5"><strong>Toujours vrai</strong>&nbsp;?</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="5"><strong>Invariant de boucle :</strong> <span class="math inline">\(\operatorname{pgcd}(i, k) = \operatorname{pgcd}(a, b)\)</span></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="fragment" data-fragment-index="6">À la fin</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="6"><span class="math inline">\(k = 0\)</span>, donc <span class="math inline">\(i = \operatorname{pgcd}(i, 0) = \operatorname{pgcd}(i, k) = \operatorname{pgcd}(a, b)\)</span></span></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="algorithme-deuclide-exemples" class="slide level2">
 <h2>Algorithme d’Euclide : exemples</h2>
@@ -722,12 +948,12 @@ Recherche linéaire et recherche binaire
 <section id="recherche-linéaire" class="slide level2 smaller">
 <h2>Recherche linéaire</h2>
 <p><strong>Idée :</strong> parcourir la liste du début à la fin, et s’arrêter dès qu’on trouve <code>x</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
-<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
-<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
+<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
+<span id="cb11-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="recherche-linéaire-correctitude" class="slide level2 smaller">
 <h2>Recherche linéaire : correctitude</h2>
@@ -741,12 +967,12 @@ Recherche linéaire et recherche binaire
 <p><strong>Invariant de boucle :</strong> Au début de la <span class="math inline">\(i\)</span>ème itération de la boucle <code>for</code>, <code>x</code> n’est aucun des éléments <code>L[0]</code>, …, <code>L[i-1]</code>.</p>
 </div>
 </div><div class="column" style="width:44%;">
-<div class="sourceCode" id="cb11" style="font-size:22px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
-<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
-<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
-<span id="cb11-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" style="font-size:22px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb12-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
+<span id="cb12-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
+<span id="cb12-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <ul>
 <li class="fragment"><strong>Initialisation</strong> : Au début de l’itération <code>i = 0</code>, il n’y a encore aucun élément à examiner.</li>
@@ -756,12 +982,12 @@ Recherche linéaire et recherche binaire
 </section>
 <section id="recherche-linéaire-complexité" class="slide level2 smaller">
 <h2>Recherche linéaire : complexité</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
-<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb12-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
-<span id="cb12-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
-<span id="cb12-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[i] <span class="op">==</span> x:</span>
+<span id="cb13-5"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span>
+<span id="cb13-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="columns">
 <div class="column" style="width:55%; padding-top:20px">
 <ul>
@@ -842,19 +1068,19 @@ Recherche linéaire et recherche binaire
 <section id="recherche-binaire" class="slide level2 smaller">
 <h2>Recherche binaire</h2>
 <p><strong>Entrée :</strong> une liste <code>L</code> de nombres, <strong>triée par ordre croissant</strong>, et un nombre <code>x</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb13-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb13-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb13-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb13-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb13-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb13-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb13-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb13-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb14-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb14-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="recherche-binaire-correctitude" class="slide level2 smaller">
 <h2>Recherche binaire : correctitude</h2>
@@ -873,19 +1099,19 @@ Recherche linéaire et recherche binaire
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb14" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb14-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb14-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb14-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb14-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb14-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb14-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb15-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb15-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb15-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb15-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb15-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb15-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="recherche-binaire-correctitude-1" class="slide level2 unlisted smaller">
@@ -903,19 +1129,19 @@ Recherche linéaire et recherche binaire
 <li class="fragment"><strong>Maintenance</strong> : Supposons l’invariant vrai au début d’une itération, et <code>L[milieu]</code> différent de <code>x</code> (sinon, la fonction retourne <code>milieu</code>).</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb15" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb15-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb15-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb15-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb15-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb15-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb15-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb16-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb16-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb16-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb16-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb16-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb16-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb16-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div style="margin-left: 1.2em;">
 <ul>
@@ -936,19 +1162,19 @@ Recherche linéaire et recherche binaire
 <li><strong>Terminaison</strong> : La boucle peut se terminer de deux manières.</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb16" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb16-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb16-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb16-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb16-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb16-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb16-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb16-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb17-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb17-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb17-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb17-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb17-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb17-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb17-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb17-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <ul>
 <li class="fragment">Si la fonction retourne <code>milieu</code>, alors clairement <code>L[milieu] == x</code>.</li>
@@ -965,19 +1191,19 @@ Recherche linéaire et recherche binaire
 <li>L’algorithme s’arrête lorsqu’on arrive à une sous-liste de taille <span class="math inline">\(\leq 1\)</span>.</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb17" style="font-size:22px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb17-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb17-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb17-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb17-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb17-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb17-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb17-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb17-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb17-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb18-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb18-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb18-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb18-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb18-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb18-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb18-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb18-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb18-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div class="fragment">
 <div class="center-container" style="font-size: 34px; padding-top:20px;">
@@ -987,72 +1213,85 @@ Recherche linéaire et recherche binaire
 </section>
 <section id="introduction-à-log_2" class="slide level2 smaller">
 <h2>Introduction à <span class="math inline">\(\log_2\)</span></h2>
-<p>Soit <span class="math inline">\(n\)</span> un entier strictement positif. Dans ce cours, <strong><span class="math inline">\(\log_2(n)\)</span></strong> est le <strong>nombre de fois</strong> qu’il faut diviser <span class="math inline">\(n\)</span> par 2 (division entière) pour arriver à un nombre <span class="math inline">\(\leq 1\)</span>.</p>
+<p>Commençons par les <strong>puissances de 2</strong> : <span class="math inline">\(n = 2^k\)</span>, pour un entier <span class="math inline">\(k \geq 0\)</span>.</p>
+<ul>
+<li>Diviser <span class="math inline">\(2^k\)</span> par 2 donne <span class="math inline">\(2^{k-1}\)</span> : il faut exactement <span class="math inline">\(k\)</span> divisions par 2 pour arriver à 1.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>On note <span class="math inline">\(\log_2(n) = k\)</span>, ou simplement <strong><span class="math inline">\(\log(n) = k\)</span></strong> (dans ce cours, <span class="math inline">\(\log\)</span> désigne <span class="math inline">\(\log_{2}\)</span>).</p>
 <div style="font-size: 80%;">
 <table class="caption-top">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 12%">
-</colgroup>
 <thead>
 <tr class="header">
 <th><span class="math inline">\(n\)</span></th>
 <th>1</th>
 <th>2</th>
-<th><span class="math inline">\(\color{red}{5}\)</span></th>
+<th>4</th>
 <th>8</th>
 <th>16</th>
 <th>32</th>
 <th>64</th>
-<th><span class="math inline">\(\color{red}{100}\)</span></th>
+<th>128</th>
 <th>256</th>
 <th>512</th>
-<th><span class="math inline">\(\color{red}{1000}\)</span></th>
+<th>1024</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\log_2(n)\)</span></td>
+<td><span class="math inline">\(\log(n)\)</span></td>
 <td>0</td>
 <td>1</td>
-<td><span class="math inline">\(\color{red}{2}\)</span></td>
+<td>2</td>
 <td>3</td>
 <td>4</td>
 <td>5</td>
 <td>6</td>
-<td><span class="math inline">\(\color{red}{6}\)</span></td>
+<td>7</td>
 <td>8</td>
 <td>9</td>
-<td><span class="math inline">\(\color{red}{9}\)</span></td>
+<td>10</td>
 </tr>
 </tbody>
 </table>
-</div>
-<ul>
-<li class="fragment"><strong>Ce n’est pas la définition mathématique standard</strong> de <span class="math inline">\(\log_2\)</span> ; par exemple, on a habituellement <span class="math display">\[ \log_2(5) = 2{,}32192809489\ldots \neq 2. \]</span> Cependant, notre valeur de <span class="math inline">\(\log_2\)</span> ne s’éloigne jamais de plus de 1 de la valeur standard, et comme on s’intéresse uniquement à la classe de complexité <span class="math inline">\(\Theta(\log n)\)</span>, <strong>cela ne change rien</strong>.</li>
-<li class="fragment">On peut aussi considérer <strong><span class="math inline">\(\log_a(n)\)</span></strong>, c’est-à-dire le nombre de fois qu’il faut diviser par <span class="math inline">\(a\)</span> pour arriver à un nombre <span class="math inline">\(\leq 1\)</span>. Comme <span class="math inline">\(\log_a(n) \approx \log_2(n) / \log_2(a)\)</span>, changer de base revient à multiplier par une constante, ce qui ne change pas la classe de complexité <span class="math inline">\(\Theta(\log n)\)</span>.</li>
+</div></li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Autrement dit, <span class="math display">\[\log(2^k) = k \qquad \text{et} \qquad 2^{\log(n)} = n.\]</span></li>
+</ul>
+</div>
 </section>
-<section id="comportement-de-log_2-à-linfini" class="slide level2 smaller">
-<h2>Comportement de <span class="math inline">\(\log_2\)</span> à l’infini</h2>
-<p><span class="math inline">\(\log_2(n)\)</span> croît vers l’infini quand <span class="math inline">\(n \to \infty\)</span>, mais <strong>beaucoup plus lentement que <span class="math inline">\(n\)</span></strong> :</p>
-<div style="display: flex; gap: 40px; align-items: center; justify-content: center; margin-top: -10px;">
-<div style="width: 40%; font-size: 85%;">
+<section id="introduction-à-log_2-suite" class="slide level2 smaller">
+<h2>Introduction à <span class="math inline">\(\log_2\)</span> (suite)</h2>
+<p>Vous verrez au cours d’Analyse que <span class="math inline">\(\log\)</span> s’étend à <strong>tous les réels strictement positifs</strong> : c’est une fonction définie sur <span class="math inline">\(]0, \infty[\)</span>, <strong>strictement croissante</strong>, et pour tous réels <span class="math inline">\(x, y &gt; 0\)</span> et tout rationnel <span class="math inline">\(p\)</span>, <span class="math display">\[\log(x \cdot y) = \log(x) + \log(y) \qquad \text{et} \qquad \log(x^p) = p \cdot \log(x).\]</span></p>
+<div class="fragment">
+<p>Soit <span class="math inline">\(n \geq 1\)</span> un entier et soit <span class="math inline">\(k\)</span> tel que <span class="math inline">\(2^k \leq n &lt; 2^{k+1}\)</span>.</p>
+<ul>
+<li>Comme <span class="math inline">\(\log\)</span> est croissante, <span class="math inline">\(k \leq \log(n) &lt; k + 1\)</span> (par exemple, <span class="math inline">\(1024 &lt; 2000 &lt; 2048\)</span>, donc <span class="math inline">\(10 &lt; \log(2000) &lt; 11\)</span>). <span class="fragment">Entre deux puissances de 2 consécutives, <span class="math inline">\(\log\)</span> ne varie que de 1 : la classe <span class="math inline">\(\Theta(\log n)\)</span> est donc <strong>déterminée par les valeurs de <span class="math inline">\(\log\)</span> sur les puissances de 2</strong>.</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Après <span class="math inline">\(k\)</span> divisions par 2, on obtient <span class="math inline">\(n / 2^k\)</span>, qui est entre 1 et 2 : il faut donc <span class="math inline">\(k\)</span> ou <span class="math inline">\(k + 1\)</span> divisions pour arriver à un nombre <span class="math inline">\(\leq 1\)</span>. <strong>À moins de 1 près, <span class="math inline">\(\log(n)\)</span> est donc encore le nombre de fois qu’il faut diviser <span class="math inline">\(n\)</span> par 2 pour arriver à un nombre <span class="math inline">\(\leq 1\)</span>.</strong></li>
+</ul>
+</div>
+<div class="fragment">
+<p><span class="remark">Remarque.</span> Pour le logarithme de base <span class="math inline">\(a &gt; 1\)</span>, <span class="math inline">\(\log_a(x) = \log(x) / \log(a)\)</span> : changer de base multiplie par une constante, et ne change pas la classe <span class="math inline">\(\Theta(\log n)\)</span>.</p>
+</div>
+</section>
+<section id="comportement-de-log-à-linfini" class="slide level2 smaller">
+<h2>Comportement de <span class="math inline">\(\log\)</span> à l’infini</h2>
+<p><span class="math inline">\(\log(n)\)</span> croît vers l’infini quand <span class="math inline">\(n \to \infty\)</span>, mais <strong>beaucoup plus lentement que <span class="math inline">\(n\)</span></strong> :</p>
+<div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center; margin-top: -10px;">
+<div style="width: 40%; font-size: 80%;">
 <table class="caption-top">
 <thead>
 <tr class="header">
 <th><span class="math inline">\(n\)</span></th>
-<th><span class="math inline">\(\log_2(n)\)</span></th>
+<th><span class="math inline">\(\log(n)\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -1075,16 +1314,20 @@ Recherche linéaire et recherche binaire
 </tbody>
 </table>
 </div>
-<div style="width: 38%;">
-<p><img data-src="media/03-log2-plot.svg" class="keep-hue" style="background-color: transparent;;width:100.0%"></p>
+<div style="width: 33%;">
+<p><img data-src="media/22-log-plot.svg" class="keep-hue" style="background-color: transparent;;width:100.0%"></p>
 </div>
 </div>
-<div class="r-stack" style="margin-top: -65px;">
-<p><img data-src="media/05-log-approaching-n-1.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:72.0%"></p>
-<p><img data-src="media/05-log-approaching-n-2.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:72.0%"></p>
-<p><img data-src="media/05-log-approaching-n-3.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:72.0%"></p>
-<p><img data-src="media/05-log-approaching-n-4.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:72.0%"></p>
-<p><img data-src="media/05-log-approaching-n-5.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:72.0%"></p>
+<div class="r-stack" style="margin-top: -95px;">
+<p><img data-src="media/21-log-infini-1.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="0"></p>
+<p><img data-src="media/21-log-infini-2.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="1"></p>
+<p><img data-src="media/21-log-infini-3.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="2"></p>
+<p><img data-src="media/21-log-infini-4.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="3"></p>
+<p><img data-src="media/21-log-infini-5.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="4"></p>
+<p><img data-src="media/21-log-infini-6.svg" class="keep-hue fragment current-visible" style="background-color: transparent;;width:68.0%" data-fragment-index="5"></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><span class="remark">Remarque.</span> <span class="math inline">\(\log(n^3) = 3 \log(n)\)</span> : à une constante près, c’est <span class="math inline">\(\log(n)\)</span>, donc <span class="math inline">\(\log(n^3)\)</span> est <span class="math inline">\(\Theta(\log n)\)</span>.</p>
 </div>
 </section>
 <section id="recherche-binaire-complexité-suite" class="slide level2 smaller">
@@ -1093,23 +1336,23 @@ Recherche linéaire et recherche binaire
 <div class="column" style="width:50%;">
 <ul>
 <li>À chaque itération, la taille de la sous-liste de nombres où <code>x</code> pourrait encore se trouver <strong>est divisée par <span class="math inline">\(\sim 2\)</span></strong>.</li>
-<li>Nombre d’itérations <span class="math inline">\(\approx \log_2(n)\)</span> dans le pire des cas (quand <code>x</code> n’est pas dans <code>L</code>).</li>
+<li>Nombre d’itérations <span class="math inline">\(\approx \log(n)\)</span> dans le pire des cas (quand <code>x</code> n’est pas dans <code>L</code>).</li>
 <li><code>r_bin</code> a donc une complexité <strong><span class="math inline">\(\Theta(\log n)\)</span></strong>.</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="sourceCode" id="cb18" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
-<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb18-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
-<span id="cb18-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb18-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
-<span id="cb18-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
-<span id="cb18-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
-<span id="cb18-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb18-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb18-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb18-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19" style="font-size:21px; margin-top: 20px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a>    haut <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb19-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> haut <span class="op">&gt;=</span> bas:</span>
+<span id="cb19-6"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb19-7"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L[milieu] <span class="op">==</span> x:</span>
+<span id="cb19-8"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> milieu</span>
+<span id="cb19-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
+<span id="cb19-10"><a href="" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb19-11"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb19-12"><a href="" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb19-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div class="fragment">
 <div style="display: flex; gap: -100px; align-items: flex-start;">
