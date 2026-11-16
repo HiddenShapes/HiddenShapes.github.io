@@ -470,11 +470,7 @@ Variant de boucle
 </section>
 <section id="trouver-linvariant-de-boucle-évolution-de-s" class="slide level2 smaller">
 <h2>Trouver l’invariant de boucle : évolution de <span class="math inline">\(s\)</span></h2>
-<div style="width: 32%; margin: 0 auto; font-size: 120%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Pour trouver l’invariant de boucle, on étudie l’<strong>évolution de <span class="math inline">\(s\)</span></strong> : sa valeur au début de chaque itération de la boucle <code>for</code>.</p>
 <style>
 /* « Évolution de s » : colonnes séparées par un trait vertical, avec plus d'espace de part et d'autre */
 .reveal .evolution-s table th + th, .reveal .evolution-s table td + td { border-left: 1.5px solid rgba(127, 127, 127, 0.55); padding-left: 1em; }
@@ -485,6 +481,11 @@ html.ics-light .reveal .evolution-s .vert { color: #13652a; }
 .reveal .slides section .evolution-s .fragment.turn-green { opacity: 1; visibility: inherit; }
 .reveal .slides section .evolution-s .fragment.turn-green.visible { color: #3aa64b; }
 html.ics-light .reveal .slides section .evolution-s .fragment.turn-green.visible { color: #13652a; }
+/* une case contient l'exemple et le cas général, l'un sur l'autre */
+.reveal .evolution-s .cell-stack { display: inline-grid; }
+.reveal .evolution-s .cell-stack > * { grid-area: 1 / 1; justify-self: start; }
+/* pendant l'exemple (a = 2, n = 4), pas de ligne ⋮ : elle n'apparaît qu'avec le cas général */
+.reveal .evolution-s tr:has(.dots-row:not(.visible)) { display: none; }
 /* doré : les « = … » du cas général, juste avant l'invariant encadré */
 .reveal .slides section .evolution-s .fragment.turn-gold { opacity: 1; visibility: inherit; }
 .reveal .slides section .evolution-s .fragment.turn-gold.visible { color: #e0b030; }
@@ -495,55 +496,56 @@ html.ics-light .reveal .slides section .evolution-s .fragment.turn-gold.visible 
 /* la réponse à « qu'est-ce qui est toujours vrai ? », encadrée (texte compris) */
 .reveal .invariant-box { border: 2px solid currentColor; border-radius: 8px; padding: 0.35em 0.7em; }
 </style>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:62%;">
 <div class="iter-table evolution-s">
 <table class="caption-top">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 44%">
-<col style="width: 44%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"><code>i</code></th>
-<th style="text-align: left;"><span class="math inline">\(s\)</span> (pour <span class="math inline">\(a = 2\)</span>, <span class="math inline">\(n = 4\)</span>)</th>
-<th style="text-align: left;"><span class="math inline">\(s\)</span> (cas général)</th>
+<th style="text-align: left;"><span class="cell-stack"><span class="fragment fade-out" data-fragment-index="6"><span class="math inline">\(s\)</span> (pour <span class="math inline">\(a = 2\)</span>, <span class="math inline">\(n = 4\)</span>)</span><span class="fragment" data-fragment-index="6"><span class="math inline">\(s\)</span> (cas général)</span></span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(0\)</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="6"><span class="math inline">\(0\)</span></span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="ex fragment fade-out" data-fragment-index="6"><span class="fragment" data-fragment-index="0"><span class="math inline">\(0\)</span></span></span><span class="gen"><span class="fragment" data-fragment-index="7"><span class="math inline">\(0\)</span></span></span></span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(1\)</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><span class="math inline">\(0 \cdot 2 + 1 = 1\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="7"><span class="math inline">\(0 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="8"><span class="fragment turn-gold" data-fragment-index="18"><span class="math inline">\(= 1\)</span></span></span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="ex fragment fade-out" data-fragment-index="6"><span class="fragment" data-fragment-index="1"><span class="math inline">\(0 \cdot 2 + 1 = 1\)</span></span></span><span class="gen"><span class="fragment" data-fragment-index="8"><span class="math inline">\(0 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="9"><span class="fragment turn-gold" data-fragment-index="19"><span class="math inline">\(= 1\)</span></span></span></span></span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><span class="math inline">\(1 \cdot 2 + 1 = 3\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="9"><span class="math inline">\(1 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="10"><span class="fragment turn-gold" data-fragment-index="18"><span class="math inline">\(= 1 + a\)</span></span></span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="ex fragment fade-out" data-fragment-index="6"><span class="fragment" data-fragment-index="2"><span class="math inline">\(1 \cdot 2 + 1 = 3\)</span></span></span><span class="gen"><span class="fragment" data-fragment-index="10"><span class="math inline">\(1 \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="11"><span class="fragment turn-gold" data-fragment-index="19"><span class="math inline">\(= 1 + a\)</span></span></span></span></span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(3\)</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(3 \cdot 2 + 1 = 7\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="11"><span class="math inline">\((1 + a) \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="12"><span class="fragment turn-gold" data-fragment-index="18"><span class="math inline">\(= 1 + a + a^2\)</span></span></span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="ex fragment fade-out" data-fragment-index="6"><span class="fragment" data-fragment-index="3"><span class="math inline">\(3 \cdot 2 + 1 = 7\)</span></span></span><span class="gen"><span class="fragment" data-fragment-index="12"><span class="math inline">\((1 + a) \cdot a + 1\)</span></span> <span class="fragment" data-fragment-index="13"><span class="fragment turn-gold" data-fragment-index="19"><span class="math inline">\(= 1 + a + a^2\)</span></span></span></span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\vdots\)</span></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="13"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment dots-row" data-fragment-index="6"><span class="math inline">\(\vdots\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="14"><span class="math inline">\(\vdots\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(n\)</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><span class="fragment turn-green" data-fragment-index="5"><span class="math inline">\(7 \cdot 2 + 1 = 15\)</span></span></span> <span class="fragment vert" data-fragment-index="5"><span class="math inline">\(= 1 + 2^1 + 2^2 + 2^3\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="14"><span class="vert"><span class="math inline">\(1 + a + \cdots + a^{n-1}\)</span></span> (on espère)</span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="fragment fade-out" data-fragment-index="6"><span class="math inline">\(4\)</span></span><span class="fragment" data-fragment-index="6"><span class="math inline">\(n\)</span></span></span></td>
+<td style="text-align: left;"><span class="cell-stack"><span class="ex fragment fade-out" data-fragment-index="6"><span class="fragment" data-fragment-index="4"><span class="fragment turn-green" data-fragment-index="5"><span class="math inline">\(7 \cdot 2 + 1 = 15\)</span></span></span> <span class="fragment vert" data-fragment-index="5"><span class="math inline">\(= 1 + 2^1 + 2^2 + 2^3\)</span></span></span><span class="gen"><span class="fragment" data-fragment-index="15"><span class="vert"><span class="math inline">\(1 + a + \cdots + a^{n-1}\)</span></span> (on espère)</span></span></span></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="debut-fin fragment" data-fragment-index="15">
+</div><div class="column" style="width:38%;">
+<div style="font-size: 120%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> s <span class="op">*</span> a <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+<div class="debut-fin fragment" data-fragment-index="16">
 <table class="caption-top">
 <colgroup>
 <col style="width: 24%">
@@ -551,16 +553,16 @@ html.ics-light .reveal .slides section .evolution-s .fragment.turn-gold.visible 
 </colgroup>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="15">Au début</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="15"><span class="math inline">\(s = 0\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="16">Au début</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="16"><span class="math inline">\(s = 0\)</span></span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="17"><strong>Toujours vrai</strong>&nbsp;?</span></td>
-<td style="text-align: left;"><span class="fragment invariant-box" data-fragment-index="19">Au début de la <span class="math inline">\(i\)</span>ème itération : <span class="math inline">\(s = 1 + a + \cdots + a^{i-1}\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="18"><strong>Toujours vrai</strong>&nbsp;?</span></td>
+<td style="text-align: left;"><span class="fragment invariant-box" data-fragment-index="20">Au début de la <span class="math inline">\(i\)</span>ème itération : <span class="math inline">\(s = 1 + a + \cdots + a^{i-1}\)</span></span></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="16">À la fin</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="16"><span class="math inline">\(s = 1 + a + \cdots + a^{n-1}\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="17">À la fin</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="17"><span class="math inline">\(s = 1 + a + \cdots + a^{n-1}\)</span></span></td>
 </tr>
 </tbody>
 </table>
