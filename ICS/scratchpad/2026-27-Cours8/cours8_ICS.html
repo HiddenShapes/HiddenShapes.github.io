@@ -212,6 +212,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     viewer.setAttribute('tabindex', '0');
 
+    /* Cours 8 : les étapes sont empilées dans une grille (.frame-stack) et seule la visibilité change,
+       pour que la hauteur reste celle de la plus grande étape et que la page ne saute pas au clic. */
+    var stack = document.createElement('div');
+    stack.className = 'frame-stack';
+    viewer.insertBefore(stack, frames[0]);
+    frames.forEach(function (f) { stack.appendChild(f); });
+
     var controls = document.createElement('div');
     controls.className = 'frame-controls';
 
@@ -237,7 +244,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function show(i) {
       current = Math.max(0, Math.min(frames.length - 1, i));
       frames.forEach(function (f, k) {
-        f.style.display = (k === current) ? '' : 'none';
+        f.style.visibility = (k === current) ? '' : 'hidden';
+        f.setAttribute('aria-hidden', k === current ? 'false' : 'true');
       });
       counter.textContent = (current + 1) + ' / ' + frames.length;
       prev.disabled = (current === 0);
@@ -718,7 +726,7 @@ html.ics-light .reveal .slides section .preuve-tableau .fragment.turn-green.visi
 <td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(n\)</span> (après la boucle)</span></td>
 <td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(s\)</span> (retourné)</span></td>
 <td style="text-align: left;"><span class="fragment" data-fragment-index="3"><span class="math inline">\(\sum_{k=0}^{n-1} a^k\)</span></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="3">✓ <strong>Terminaison</strong></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3" style="white-space: nowrap;">⇒ <strong>Terminaison</strong> :<br>c’est le résultat voulu</span></td>
 </tr>
 </tbody>
 </table>
@@ -825,7 +833,7 @@ Dans les deux cas, au début de la prochaine itération, <code>le_max</code> est
 <h2>Preuve que <span class="math inline">\(\operatorname{pgcd}(a,b) = \operatorname{pgcd}(b, a\bmod b)\)</span></h2>
 <p><strong>Preuve :</strong></p>
 <ul>
-<li>On écrit la division entière de <span class="math inline">\(a\)</span> par <span class="math inline">\(b\)</span> comme <span class="math display">\[a = bq + \color{red}{(a \bmod b)}, \qquad a = bq + \color{red}{r}, \qquad 0 \leq r &lt; b.\]</span></li>
+<li>On écrit la division entière de <span class="math inline">\(a\)</span> par <span class="math inline">\(b\)</span> comme <span class="math display">\[a = bq + {\color{red}{(a \bmod b)}}, \qquad a = bq + {\color{red}{r}}, \qquad 0 \leq r &lt; b.\]</span></li>
 <li>Cette équation montre immédiatement qu’un diviseur de <span class="math inline">\(b\)</span> et <span class="math inline">\(r\)</span> divise aussi <br><span class="math inline">\(a\)</span> (et <span class="math inline">\(b\)</span>).</li>
 <li>En réorganisant cette équation en <span class="math display">\[r = a - bq\]</span> on voit aussi qu’un diviseur de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> divise également <span class="math inline">\(r\)</span> (et <span class="math inline">\(b\)</span>).</li>
 <li>Par conséquent, <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> ont exactement les mêmes diviseurs communs que <span class="math inline">\(b\)</span> et <span class="math inline">\(r\)</span>. Leur <span class="math inline">\(\operatorname{pgcd}\)</span> est donc le même. <span class="math inline">\(\blacksquare\)</span></li>
@@ -895,7 +903,7 @@ Dans les deux cas, au début de la prochaine itération, <code>le_max</code> est
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="4">Au début</span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><span class="math inline">\(i = a\)</span> et <span class="math inline">\(k = b\)</span>, donc <span class="math inline">\(\operatorname{pgcd}(i, k) = \operatorname{pgcd}(a, b)\)</span></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="4"><span class="math inline">\(i = a\)</span> et <span class="math inline">\(k = b\)</span></span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="5"><strong>Toujours vrai</strong>&nbsp;?</span></td>

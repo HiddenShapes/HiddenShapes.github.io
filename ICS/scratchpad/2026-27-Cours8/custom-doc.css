@@ -78,6 +78,18 @@ body {
   text-align: center;
 }
 
+/* Cours 8 : étapes empilées (voir header.html), la hauteur est celle de la plus grande */
+.frame-viewer .frame-stack {
+  display: grid;
+}
+.frame-viewer .frame-stack > .frame {
+  grid-area: 1 / 1;
+}
+/* étapes faites de texte et de tableaux (pas seulement d'images) : alignées à gauche, comme le reste des notes */
+.frame-viewer .frame-stack > .frame:not(:has(> p > img:only-child, > div.quarto-figure)) {
+  text-align: left;
+}
+
 .frame-controls {
   display: flex;
   align-items: center;
