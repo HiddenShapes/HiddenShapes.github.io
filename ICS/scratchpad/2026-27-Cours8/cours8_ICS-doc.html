@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><strong>Problème :</strong> pour un réel <span class="math inline">\(a\)</span> et un entier <span class="math inline">\(n \geq 0\)</span> en entrée, écrire un algorithme (sous forme de fonction Python) qui retourne</p>
 <p><span class="math display">\[\sum_{k=0}^{n-1} a^k = 1 + a + a^2 + \cdots + a^{n-1}.\]</span></p>
 <p>Voici une solution :</p>
-<div id="796ef507" class="cell" data-execution_count="1">
+<div id="fdbd15b3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> serie_geom(a, n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="problème-2-calculer-un-maximum">Problème 2 : calculer un maximum</h2>
 <p><strong>Problème :</strong> étant donné une liste non vide de nombres réels, calculer le maximum.</p>
 <p>Reprenons l’algorithme du dernier cours :</p>
-<div id="9aa9fa51" class="cell" data-execution_count="2">
+<div id="f104256e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximum(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    le_max <span class="op">=</span> L[<span class="dv">0</span>]</span>
@@ -736,7 +736,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="algorithme-deuclide-terminaison" class="level2">
 <h2 class="anchored" data-anchor-id="algorithme-deuclide-terminaison">Algorithme d’Euclide : terminaison</h2>
 <p>On peut utiliser ce fait pour créer un algorithme.</p>
-<div id="19efd8a0" class="cell" data-execution_count="3">
+<div id="5b6ed2da" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pgcd(a, b):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> a</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> b</span>
@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <pre><code>12</code></pre>
 </div>
 </div>
-<div id="8d5fa664" class="cell" data-execution_count="4">
+<div id="1bc2f4b7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pgcd(<span class="dv">2437</span>, <span class="dv">181</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1</code></pre>
@@ -845,7 +845,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="recherche-linéaire" class="level2">
 <h2 class="anchored" data-anchor-id="recherche-linéaire">Recherche linéaire</h2>
 <p><strong>Idée :</strong> parcourir la liste du début à la fin, et s’arrêter dès qu’on trouve <code>x</code>.</p>
-<div id="6d37cd2f" class="cell" data-execution_count="5">
+<div id="aa36562a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_lin(L, x):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -908,13 +908,14 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Recherche de <strong>31</strong> : étape 2 <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9,}}\; 13, 17, 18, 24, {\color{goldenrod}{\mathbf{26}}}, 27, 32, 38, 47, 51]\]</span> Milieu : <strong>26</strong>. Comme <span class="math inline">\(31 &gt; 26\)</span>, on cherche à droite.</p>
 <p>Recherche de <strong>31</strong> : étape 3 <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9, 13, 17, 18, 24, 26,}}\; 27, 32, {\color{goldenrod}{\mathbf{38}}}, 47, 51]\]</span> Milieu : <strong>38</strong>. Comme <span class="math inline">\(31 &lt; 38\)</span>, on cherche à gauche.</p>
 <p>Recherche de <strong>31</strong> : étape 4 <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9, 13, 17, 18, 24, 26,}}\; {\color{goldenrod}{\mathbf{27}}}, 32, {\color{gray}{38, 47, 51}}]\]</span> Milieu : <strong>27</strong>. Comme <span class="math inline">\(31 &gt; 27\)</span>, on cherche à droite.</p>
-<p>Recherche de <strong>31</strong> : pas trouvé ! <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9, 13, 17, 18, 24, 26, 27,}}\; {\color{goldenrod}{\mathbf{32}}}, {\color{gray}{38, 47, 51}}]\]</span> <span class="math inline">\(32 \neq 31\)</span>. <strong>Pas trouvé !</strong> Seulement 5 étapes (au lieu de 20).</p>
+<p>Recherche de <strong>31</strong> : étape 5 <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9, 13, 17, 18, 24, 26, 27,}}\; {\color{goldenrod}{\mathbf{32}}}, {\color{gray}{38, 47, 51}}]\]</span> Milieu : <strong>32</strong>. Comme <span class="math inline">\(31 &lt; 32\)</span>, on cherche à gauche.</p>
+<p>Recherche de <strong>31</strong> : pas trouvé ! <span class="math display">\[[{\color{gray}{-7, -3, -1, 0, 1, 2, 5, 6, 8, 9, 13, 17, 18, 24, 26, 27, 32, 38, 47, 51}}]\]</span> Il ne reste plus aucun élément : <strong>Pas trouvé !</strong> Seulement 5 étapes (au lieu de 20).</p>
 <p><span class="remark">Remarque.</span> Cette méthode s’appelle la <strong>recherche binaire</strong> (ou recherche dichotomique).</p>
 </section>
 <section id="recherche-binaire" class="level2">
 <h2 class="anchored" data-anchor-id="recherche-binaire">Recherche binaire</h2>
 <p><strong>Entrée :</strong> une liste <code>L</code> de nombres, <strong>triée par ordre croissant</strong>, et un nombre <code>x</code>.</p>
-<div id="55c9fb0a" class="cell" data-execution_count="6">
+<div id="df43d18f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> r_bin(L, x):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    bas <span class="op">=</span> <span class="dv">0</span></span>
@@ -927,11 +928,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="op">-</span><span class="dv">7</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">13</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">27</span>,<span class="dv">32</span>,<span class="dv">38</span>,<span class="dv">47</span>,<span class="dv">51</span>]</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_bin(L, <span class="dv">17</span>))</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_bin(L, <span class="dv">31</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="op">-</span><span class="dv">7</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">13</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">27</span>,<span class="dv">32</span>,<span class="dv">38</span>,<span class="dv">47</span>,<span class="dv">51</span>]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_bin(L, <span class="dv">17</span>))</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_bin(L, <span class="dv">31</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>11
 None</code></pre>
@@ -952,8 +952,7 @@ None</code></pre>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> L[milieu] <span class="op">&gt;</span> x:</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            haut <span class="op">=</span> milieu <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            bas <span class="op">=</span> milieu <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Variant de boucle :</strong></p>
 <div style="text-align: center;">
 <p><code>haut - bas</code></p>
