@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algorithmes en action</title>
+<style>
+  @font-face { font-family: 'FiraC'; src: url('fonts/FiraCode-Regular.ttf'); font-weight: 400; }
+  @font-face { font-family: 'FiraC'; src: url('fonts/FiraCode-Medium.ttf'); font-weight: 500; }
+  @font-face { font-family: 'FiraC'; src: url('fonts/FiraCode-SemiBold.ttf'); font-weight: 600; }
+  html, body { margin: 0; height: 100%; background: #1d2021; overflow: hidden; cursor: none; }
+  #stage { display: block; position: fixed; left: 0; top: 0; }
+  #err { position: fixed; left: 8px; bottom: 8px; max-width: 92vw; max-height: 60vh; overflow: auto; z-index: 2;
+         color: #ff8080; background: rgba(0,0,0,.85); font: 13px/1.35 monospace; white-space: pre-wrap; display: none; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<pre id="err"></pre>
+<script>
+  /* Edit freely. URL options: ?lang=en  ?scene=tris,hanoi  ?shuffle  ?speed=1.5  ?fps  ?seed=42
+     Keys: → or click = next · ← or right-click = previous · 0-9 jump · r replay · space pause · l FR/EN · d fps · f fullscreen */
+  window.CONFIG = {
+    lang: 'fr',
+    tag: 'ics@man',                                   // left of the status bar
+    footer: { fr: 'informatique & calcul scientifique', en: 'computer science & scientific computing' }, // right of it
+    playlist: ['euclide', 'max_somme', 'hanoi', 'dichotomie', 'tris', 'fusion',
+               'graphes', 'labyrinthe', 'racines', 'pointfixe'],   // add 'intro' first for the boot screen
+    speed: 1,
+  };
+</script>
+<script src="js/core.js"></script>
+<script src="js/scenes/intro.js"></script>
+<script src="js/scenes/euclide.js"></script>
+<script src="js/scenes/max_somme.js"></script>
+<script src="js/scenes/hanoi.js"></script>
+<script src="js/scenes/dichotomie.js"></script>
+<script src="js/scenes/tris.js"></script>
+<script src="js/scenes/fusion.js"></script>
+<script src="js/scenes/graphes.js"></script>
+<script src="js/scenes/labyrinthe.js"></script>
+<script src="js/scenes/racines.js"></script>
+<script src="js/scenes/pointfixe.js"></script>
+<script src="js/player.js"></script>
+</body>
+</html>
