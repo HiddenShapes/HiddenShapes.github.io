@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="cours9_ICS-doc_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="cours9_ICS-doc_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="cours9_ICS-doc_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="cours9_ICS-doc_files/libs/bootstrap/bootstrap-da7ddf090378b5dd0f3ea355ccfa0496.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="cours9_ICS-doc_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="tri-par-sélection-code" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-sélection-code">Tri par sélection : code</h2>
-<div id="6a00b9cf" class="cell" data-execution_count="1">
+<div id="d20b05ae" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="tri-par-insertion-code" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-insertion-code">Tri par insertion : code</h2>
-<div id="ed4041c3" class="cell" data-execution_count="2">
+<div id="0e79dfce" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -654,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="tri-par-fusion-code" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-fusion-code">Tri par fusion : code</h2>
 <p>L’algorithme de tri par fusion est écrit de manière <strong>récursive</strong> : il trie <code>L[bas]</code>, …, <code>L[haut]</code>.</p>
-<div id="df8378d9" class="cell" data-execution_count="3">
+<div id="446d4415" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
@@ -682,32 +682,26 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="fusion-code" class="level2">
 <h2 class="anchored" data-anchor-id="fusion-code">Fusion : code</h2>
-<p>On copie d’abord les deux moitiés : <code>copie(L, debut, fin)</code> retourne une nouvelle liste contenant <code>L[debut]</code>, …, <code>L[fin]</code>. Puis on remplit <code>L[bas]</code>, …, <code>L[haut]</code> en prenant à chaque fois <strong>le plus petit</strong> des premiers éléments pas encore copiés de <code>L1</code> et de <code>L2</code>.</p>
-<div id="0e64f407" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> copie(L, debut, fin):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> []</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(debut, fin <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        C.append(L[k])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> C</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">2</span>]</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>tri_par_fusion(L, <span class="dv">0</span>, <span class="bu">len</span>(L) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On copie d’abord les deux moitiés avec des tranches (voir l’<a href="../2026-27-Cours4/indexage_avance.html">annexe du Cours 4</a>) : <code>L[bas:milieu + 1]</code> est une nouvelle liste qui contient <code>L[bas]</code>, …, <code>L[milieu]</code>, et <code>L[milieu + 1:haut + 1]</code> contient <code>L[milieu + 1]</code>, …, <code>L[haut]</code>. Puis on remplit <code>L[bas]</code>, …, <code>L[haut]</code> en prenant à chaque fois <strong>le plus petit</strong> des premiers éléments pas encore copiés de <code>L1</code> et de <code>L2</code>.</p>
+<div id="08bb3da2" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">2</span>]</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>tri_par_fusion(L, <span class="dv">0</span>, <span class="bu">len</span>(L) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1, 2, 3, 4, 5, 6, 7]</code></pre>
 </div>
@@ -721,8 +715,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>La correctitude de <code>fusion</code> découle de l’invariant de boucle suivant pour la boucle <code>for</code> : au début de l’itération <code>i</code>, <code>L[bas]</code>, …, <code>L[i-1]</code> sont les <code>i - bas</code> plus petits éléments de <code>L1</code> et <code>L2</code>, <strong>triés</strong> ; et <code>L1[L1_index]</code> et <code>L2[L2_index]</code> sont les plus petits éléments de leurs listes respectives qui n’ont pas encore été copiés dans <code>L</code>.</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -739,12 +733,12 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 class="anchored" data-anchor-id="complexité-de-fusion">Complexité de <code>fusion</code></h2>
 <ul>
 <li>La taille de l’entrée est <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>, c’est-à-dire la longueur totale des deux listes à fusionner.</li>
-<li>Les deux copies font <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> itérations : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li>Les deux tranches copient <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> éléments : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 <li>La boucle <code>for</code> itère <span class="math inline">\(n\)</span> fois et prend donc un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># Θ(n)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>

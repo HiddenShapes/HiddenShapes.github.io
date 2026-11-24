@@ -709,8 +709,8 @@ Diviser pour régner
 </div>
 </div><div class="column" style="width:45%;">
 <div class="sourceCode" id="cb5" style="font-size:24px; margin-top: 15px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
 <span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -734,8 +734,8 @@ Diviser pour régner
 </ul>
 </div><div class="column" style="width:45%;">
 <div class="sourceCode" id="cb6" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb6-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb6-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># Θ(n)</span></span>
+<span id="cb6-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb6-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
 <span id="cb6-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb6-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb6-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -755,12 +755,12 @@ Diviser pour régner
 <div class="column" style="width:55%;">
 <ul>
 <li>La taille de l’entrée est <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>, c’est-à-dire la longueur totale des deux listes à fusionner.</li>
-<li>Les deux copies font <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> itérations : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li>Les deux tranches copient <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> éléments : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
 <div class="sourceCode" id="cb7" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="2-3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb7-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb7-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># Θ(n)</span></span>
+<span id="cb7-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb7-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
 <span id="cb7-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb7-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb7-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -780,13 +780,13 @@ Diviser pour régner
 <div class="column" style="width:55%;">
 <ul>
 <li>La taille de l’entrée est <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>, c’est-à-dire la longueur totale des deux listes à fusionner.</li>
-<li>Les deux copies font <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> itérations : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li>Les deux tranches copient <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> éléments : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 <li>La boucle <code>for</code> itère <span class="math inline">\(n\)</span> fois et prend donc un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
 <div class="sourceCode" id="cb8" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="8"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb8-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb8-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb8-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># Θ(n)</span></span>
+<span id="cb8-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb8-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
 <span id="cb8-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb8-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb8-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
@@ -806,13 +806,13 @@ Diviser pour régner
 <div class="column" style="width:55%;">
 <ul>
 <li>La taille de l’entrée est <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>, c’est-à-dire la longueur totale des deux listes à fusionner.</li>
-<li>Les deux copies font <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> itérations : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li>Les deux tranches copient <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> éléments : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 <li>La boucle <code>for</code> itère <span class="math inline">\(n\)</span> fois et prend donc un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
 <div class="sourceCode" id="cb9" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb9-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb9-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> copie(L, bas, milieu)</span>
-<span id="cb9-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> copie(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># Θ(n)</span></span>
+<span id="cb9-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb9-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
 <span id="cb9-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb9-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
 <span id="cb9-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
