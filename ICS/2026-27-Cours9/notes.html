@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="tri-par-sélection-code" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-sélection-code">Tri par sélection : code</h2>
-<div id="94a90893" class="cell" data-execution_count="1">
+<div id="570a9e7e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 <section id="tri-par-insertion-code" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-insertion-code">Tri par insertion : code</h2>
-<div id="007bb212" class="cell" data-execution_count="2">
+<div id="0117d489" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -566,7 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><strong>trie récursivement</strong> chaque sous-liste,</li>
 <li><strong>fusionne</strong> les sous-listes triées pour obtenir une version triée de la liste initiale.</li>
 </ol></li>
-<li>Le tri des sous-listes se fait récursivement, et les appels récursifs s’arrêtent pour les listes de taille <span class="math inline">\(\leq 1\)</span> (<strong>cas de base</strong>).</li>
+<li>Le tri des sous-listes se fait récursivement, et les appels récursifs s’arrêtent pour les listes de taille 1 (<strong>cas de base</strong>).</li>
 </ul>
 </section>
 <section id="exemple-pas-à-pas" class="level2">
@@ -718,15 +718,16 @@ document.addEventListener('DOMContentLoaded', function () {
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>L’algorithme de tri par fusion est écrit de manière <strong>récursive</strong> : il trie <code>L[bas]</code>, …, <code>L[haut]</code>.</p>
-<div id="0f736865" class="cell" data-execution_count="3">
+<div id="2398ef0e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">==</span> bas: <span class="cf">return</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    milieu <span class="op">=</span> (haut <span class="op">+</span> bas) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, bas, milieu)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    fusion(L, bas, milieu, haut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="remark">Remarque.</span> Ici, le cas de base, c’est de <strong>ne rien faire</strong> ! Une liste de taille <span class="math inline">\(\leq 1\)</span> est déjà triée.</p>
+<p><span class="remark">Remarque.</span> Ici, le cas de base (<code>haut == bas</code>, une liste de taille 1), c’est de <strong>ne rien faire</strong> : une liste de taille 1 est déjà triée, on sort tout de suite avec <code>return</code>.</p>
 </section>
 <section id="tri-par-fusion-exemple-a" class="level2">
 <h2 class="anchored" data-anchor-id="tri-par-fusion-exemple-a">Tri par fusion : Exemple A</h2>
@@ -747,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="fusion-code" class="level2">
 <h2 class="anchored" data-anchor-id="fusion-code">Fusion : code</h2>
 <p>On copie d’abord les deux moitiés avec des tranches (voir l’<a href="../2026-27-Cours4/indexage_avance.html">annexe du Cours 4</a>) : <code>L[bas:milieu + 1]</code> est une nouvelle liste qui contient <code>L[bas]</code>, …, <code>L[milieu]</code>, et <code>L[milieu + 1:haut + 1]</code> contient <code>L[milieu + 1]</code>, …, <code>L[haut]</code>. Puis on remplit <code>L[bas]</code>, …, <code>L[haut]</code> en prenant à chaque fois <strong>le plus petit</strong> des premiers éléments pas encore copiés de <code>L1</code> et de <code>L2</code>.</p>
-<div id="0d7e880d" class="cell" data-execution_count="4">
+<div id="9afd748f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Entrée: L triée entre bas et milieu inclus,</span></span>
@@ -780,7 +781,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section id="correctitude-idée" class="level2">
 <h2 class="anchored" data-anchor-id="correctitude-idée">Correctitude (idée)</h2>
 <ul>
-<li>La correctitude de <code>tri_par_fusion(L, bas, haut)</code> découle de la correctitude de <code>fusion</code> et de la correctitude de <code>tri_par_fusion</code> sur des instances <strong>plus petites</strong> (cas de base : une liste de taille <span class="math inline">\(\leq 1\)</span> est déjà triée).</li>
+<li>La correctitude de <code>tri_par_fusion(L, bas, haut)</code> découle de la correctitude de <code>fusion</code> et de la correctitude de <code>tri_par_fusion</code> sur des instances <strong>plus petites</strong> (cas de base : une liste de taille 1 est déjà triée).</li>
 <li>La correctitude de <code>fusion</code> découle de l’invariant de boucle suivant pour la boucle <code>for</code> : au début de l’itération <code>i</code>, <code>L[bas]</code>, …, <code>L[i-1]</code> sont les <code>i - bas</code> plus petits éléments de <code>L1</code> et <code>L2</code>, <strong>triés</strong> ; et <code>L1[L1_index]</code> et <code>L2[L2_index]</code> sont les plus petits éléments de leurs listes respectives qui n’ont pas encore été copiés dans <code>L</code>.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
@@ -830,11 +831,12 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Soit <span class="math inline">\(T(n)\)</span> le temps de parcours, au pire des cas, de <code>tri_par_fusion</code> pour une entrée de taille <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>. On suppose que <span class="math inline">\(n = 2^k\)</span>, où <span class="math inline">\(k &gt; 0\)</span> est un entier.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)          <span class="co"># T(n/2)</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)     <span class="co"># T(n/2)</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)            <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">==</span> bas: <span class="cf">return</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    milieu <span class="op">=</span> (haut <span class="op">+</span> bas) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, bas, milieu)      <span class="co"># T(n/2)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># T(n/2)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    fusion(L, bas, milieu, haut)        <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>On a alors la <strong>relation de récurrence</strong> :</li>
 </ul>

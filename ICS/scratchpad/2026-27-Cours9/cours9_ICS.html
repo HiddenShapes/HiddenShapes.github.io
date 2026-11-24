@@ -687,7 +687,7 @@ Diviser pour régner
 </div>
 <div class="fragment">
 <ul>
-<li>Le tri des sous-listes se fait récursivement, et les appels récursifs s’arrêtent pour les listes de taille <span class="math inline">\(\leq 1\)</span> (<strong>cas de base</strong>).</li>
+<li>Le tri des sous-listes se fait récursivement, et les appels récursifs s’arrêtent pour les listes de taille 1 (<strong>cas de base</strong>).</li>
 </ul>
 </div>
 </section>
@@ -728,14 +728,15 @@ Diviser pour régner
 <div class="fragment">
 <p>L’algorithme de tri par fusion est écrit de manière <strong>récursive</strong> : il trie <code>L[bas]</code>, …, <code>L[haut]</code>.</p>
 <div class="sourceCode" id="cb8" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)</span>
-<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
-<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">==</span> bas: <span class="cf">return</span></span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>    milieu <span class="op">=</span> (haut <span class="op">+</span> bas) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, bas, milieu)</span>
+<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
+<span id="cb8-7"><a href="" aria-hidden="true" tabindex="-1"></a>    fusion(L, bas, milieu, haut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<p><span class="remark">Remarque.</span> Ici, le cas de base, c’est de <strong>ne rien faire</strong> ! Une liste de taille <span class="math inline">\(\leq 1\)</span> est déjà triée.</p>
+<p><span class="remark">Remarque.</span> Ici, le cas de base (<code>haut == bas</code>, une liste de taille 1), c’est de <strong>ne rien faire</strong> : une liste de taille 1 est déjà triée, on sort tout de suite avec <code>return</code>.</p>
 </div>
 </section>
 <section id="tri-par-fusion-exemple-a" class="slide level2">
@@ -809,7 +810,7 @@ Diviser pour régner
 <section id="correctitude-idée" class="slide level2 smaller">
 <h2>Correctitude (idée)</h2>
 <ul>
-<li>La correctitude de <code>tri_par_fusion(L, bas, haut)</code> découle de la correctitude de <code>fusion</code> et de la correctitude de <code>tri_par_fusion</code> sur des instances <strong>plus petites</strong> (cas de base : une liste de taille <span class="math inline">\(\leq 1\)</span> est déjà triée).</li>
+<li>La correctitude de <code>tri_par_fusion(L, bas, haut)</code> découle de la correctitude de <code>fusion</code> et de la correctitude de <code>tri_par_fusion</code> sur des instances <strong>plus petites</strong> (cas de base : une liste de taille 1 est déjà triée).</li>
 </ul>
 <div class="fragment">
 <ul>
@@ -949,11 +950,12 @@ Diviser pour régner
 <li>Soit <span class="math inline">\(T(n)\)</span> le temps de parcours, au pire des cas, de <code>tri_par_fusion</code> pour une entrée de taille <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>. On suppose que <span class="math inline">\(n = 2^k\)</span>, où <span class="math inline">\(k &gt; 0\)</span> est un entier.</li>
 </ul>
 <div class="sourceCode" id="cb16" style="margin-top: 10px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
-<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)          <span class="co"># T(n/2)</span></span>
-<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)     <span class="co"># T(n/2)</span></span>
-<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)            <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">==</span> bas: <span class="cf">return</span></span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>    milieu <span class="op">=</span> (haut <span class="op">+</span> bas) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, bas, milieu)      <span class="co"># T(n/2)</span></span>
+<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>    tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut) <span class="co"># T(n/2)</span></span>
+<span id="cb16-7"><a href="" aria-hidden="true" tabindex="-1"></a>    fusion(L, bas, milieu, haut)        <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>On a alors la <strong>relation de récurrence</strong> :</li>
