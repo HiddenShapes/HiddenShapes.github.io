@@ -470,7 +470,7 @@ Introduction
 <ul>
 <li>Dictionnaires (les vrais) ordonnés par ordre alphabétique des mots</li>
 <li>Annuaires ordonnés par ordre alphabétique des noms</li>
-<li>Listes d’étudiants au SAC ordonnés par Sciper…</li>
+<li>Les copies d’examen à scanner 😞</li>
 </ul></li>
 </ul>
 </div>
@@ -498,10 +498,8 @@ Tri par sélection
 <p><span style="font-size: 0.8em;">Exemple interactif : <a href="https://visualgo.net/en/sorting">visualgo.net/en/sorting</a></span></p>
 </div>
 </section>
-<section id="tri-par-sélection-correctitude" class="slide level2 smaller">
-<h2>Tri par sélection : correctitude</h2>
-<div class="columns">
-<div class="column" style="width:47%;">
+<section id="tri-par-sélection-code" class="slide level2">
+<h2>Tri par sélection : code</h2>
 <div class="sourceCode" id="cb1" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -512,6 +510,21 @@ Tri par sélection
 <span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> L[j]</span>
 <span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a>                m_index <span class="op">=</span> j</span>
 <span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a>        L[i], L[m_index] <span class="op">=</span> L[m_index], L[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tri-par-sélection-correctitude" class="slide level2 smaller">
+<h2>Tri par sélection : correctitude</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<div class="sourceCode" id="cb2" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> L[i]</span>
+<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>        m_index <span class="op">=</span> i</span>
+<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):</span>
+<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> L[j] <span class="op">&lt;</span> m:</span>
+<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>                m <span class="op">=</span> L[j]</span>
+<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>                m_index <span class="op">=</span> j</span>
+<span id="cb2-10"><a href="" aria-hidden="true" tabindex="-1"></a>        L[i], L[m_index] <span class="op">=</span> L[m_index], L[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:53%;">
 <p style="margin-top:-8px;">
 <strong>Invariant de boucle (boucle extérieure) :</strong>
@@ -526,18 +539,18 @@ Tri par sélection
 </div>
 </div></div>
 <ul>
-<li class="fragment"><strong>Maintenance :</strong> Supposons l’invariant vrai au début de l’itération <code>i</code>. La boucle intérieure trouve le minimum <code>m</code> de <code>L[i]</code>, …, <code>L[n-1]</code> : par l’invariant, c’est le <span class="math inline">\((i+1)\)</span>ème plus petit élément. L’échange le place en position <code>i</code> : <code>L[0]</code>, …, <code>L[i]</code> sont les <code>i + 1</code> plus petits éléments, triés.</li>
+<li class="fragment"><strong>Maintenance :</strong> Supposons l’invariant vrai au début de l’itération <code>i</code>. La boucle intérieure trouve le minimum <code>m</code> de <code>L[i]</code>, …, <code>L[n-1]</code> (démontrable avec un invariant de double). Par l’invariant, c’est le <span class="math inline">\((i+1)\)</span>ème plus petit élément. L’échange le place en position <code>i</code> : <code>L[0]</code>, …, <code>L[i]</code> sont les <code>i + 1</code> plus petits éléments, triés.</li>
 <li class="fragment"><strong>Terminaison :</strong> À la sortie de la boucle (au début de l’itération <code>i = n</code>, qui n’aura pas lieu), <code>L[0]</code>, …, <code>L[n-1]</code> sont les <code>n</code> plus petits éléments, triés : la liste entière est triée.</li>
 </ul>
 </section>
 <section id="tri-par-sélection-complexité" class="slide level2 smaller">
 <h2>Tri par sélection : complexité</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):                 <span class="co"># n itérations</span></span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>        ...</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):      <span class="co"># n - i - 1 itérations</span></span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>            ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_selection(L):</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):                 <span class="co"># n itérations</span></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):      <span class="co"># n - i - 1 itérations</span></span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a>            ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>Nombre total d’itérations de la boucle intérieure (comme pour la somme maximale au Cours 7) : <span class="math display">\[(n-1) + (n-2) + \cdots + 1 + 0 = \frac{n(n-1)}{2}.\]</span> Le temps de parcours a donc complexité <span class="math inline">\(\Theta(n^2)\)</span>.</li>
@@ -571,17 +584,30 @@ Tri par insertion
 <p><span style="font-size: 0.8em;">Exemple interactif : <a href="https://visualgo.net/en/sorting">visualgo.net/en/sorting</a> (choisir INS)</span></p>
 </div>
 </section>
+<section id="tri-par-insertion-code" class="slide level2">
+<h2>Tri par insertion : code</h2>
+<div class="sourceCode" id="cb4" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> L[j] <span class="op">&lt;</span> L[j <span class="op">-</span> <span class="dv">1</span>]:</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>            L[j], L[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> L[j <span class="op">-</span> <span class="dv">1</span>], L[j]</span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>La boucle <code>while</code> termine : <code>j</code> diminue de 1 à chaque itération, et elle s’arrête au plus tard quand <code>j</code> vaut 0 (<strong>variant de boucle</strong> : <code>j</code>).</p>
+</div>
+</section>
 <section id="tri-par-insertion-correctitude" class="slide level2 smaller">
 <h2>Tri par insertion : correctitude</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
-<div class="sourceCode" id="cb3" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i</span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> L[j] <span class="op">&lt;</span> L[j <span class="op">-</span> <span class="dv">1</span>]:</span>
-<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a>            L[j], L[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> L[j <span class="op">-</span> <span class="dv">1</span>], L[j]</span>
-<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i</span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> L[j] <span class="op">&lt;</span> L[j <span class="op">-</span> <span class="dv">1</span>]:</span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>            L[j], L[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> L[j <span class="op">-</span> <span class="dv">1</span>], L[j]</span>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:53%;">
 <p style="margin-top:-8px;">
 <strong>Invariant de boucle (boucle extérieure) :</strong>
@@ -596,19 +622,19 @@ Tri par insertion
 </div>
 </div></div>
 <ul>
-<li class="fragment"><strong>Maintenance :</strong> Supposons l’invariant vrai au début de l’itération <code>i</code>. La boucle <code>while</code> fait descendre <code>L[i]</code> par échanges successifs tant qu’il est plus petit que son voisin de gauche : elle l’insère à sa bonne place parmi <code>L[0]</code>, …, <code>L[i-1]</code>, qui sont triés. Ainsi, <code>L[0]</code>, …, <code>L[i]</code> sont les mêmes éléments qu’au départ, triés.</li>
+<li class="fragment"><strong>Maintenance :</strong> Supposons l’invariant vrai au début de l’itération <code>i</code>. La boucle <code>while</code> fait descendre <code>L[i]</code> par échanges successifs tant qu’il est plus petit que son voisin de gauche : elle l’insère à sa bonne place parmi <code>L[0]</code>, …, <code>L[i-1]</code>, qui sont triés (démontrable avec un invariant de double). Ainsi, <code>L[0]</code>, …, <code>L[i]</code> sont les mêmes éléments qu’au départ, triés.</li>
 <li class="fragment"><strong>Terminaison :</strong> À la sortie de la boucle (au début de l’itération <code>i = n</code>, qui n’aura pas lieu), <code>L[0]</code>, …, <code>L[n-1]</code> sont les mêmes éléments qu’au départ, triés.</li>
 </ul>
 </section>
 <section id="tri-par-insertion-complexité" class="slide level2 smaller">
 <h2>Tri par insertion : complexité</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):                         <span class="co"># n itérations</span></span>
-<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i</span>
-<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> L[j] <span class="op">&lt;</span> L[j <span class="op">-</span> <span class="dv">1</span>]:       <span class="co"># au plus i itérations</span></span>
-<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>            L[j], L[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> L[j <span class="op">-</span> <span class="dv">1</span>], L[j]</span>
-<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_insertion(L):</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(L)</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):                         <span class="co"># n itérations</span></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> L[j] <span class="op">&lt;</span> L[j <span class="op">-</span> <span class="dv">1</span>]:       <span class="co"># au plus i itérations</span></span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>            L[j], L[j <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> L[j <span class="op">-</span> <span class="dv">1</span>], L[j]</span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Au <strong>pire des cas</strong>, la liste est triée en ordre <strong>décroissant</strong> (par exemple <code>[4, 3, 2, 1, 0]</code>) : la boucle <code>while</code> itère alors exactement <span class="math inline">\(i\)</span> fois à l’étape <span class="math inline">\(i\)</span>, soit au total <span class="math display">\[0 + 1 + \cdots + (n-1) = \frac{n(n-1)}{2} \quad \text{itérations : complexité } \Theta(n^2).\]</span></li>
 </ul>
@@ -678,7 +704,38 @@ Diviser pour régner
 <p><img data-src="media/01-merge-sort-tree-8.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
 <p><img data-src="media/01-merge-sort-tree-9.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
 <p><img data-src="media/01-merge-sort-tree-10.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
-<p><img data-src="media/01-merge-sort-tree-11.svg" class="fragment keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-11.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-12.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-13.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-14.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-15.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-16.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-17.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-18.svg" class="fragment current-visible keep-hue" style="background-color: transparent;;width:78.0%"></p>
+<p><img data-src="media/01-merge-sort-tree-19.svg" class="fragment keep-hue" style="background-color: transparent;;width:78.0%"></p>
+</div>
+</section>
+<section id="tri-par-fusion-code" class="slide level2 smaller">
+<h2>Tri par fusion : code</h2>
+<p>On suppose pour l’instant qu’on dispose d’une fonction <code>fusion</code> qui fait le travail suivant (on l’écrira plus loin) :</p>
+<div class="sourceCode" id="cb7" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    Entrée: L triée entre bas et milieu inclus,</span></span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">            et entre milieu+1 et haut inclus</span></span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    Trie L entre bas et haut inclus</span></span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>L’algorithme de tri par fusion est écrit de manière <strong>récursive</strong> : il trie <code>L[bas]</code>, …, <code>L[haut]</code>.</p>
+<div class="sourceCode" id="cb8" style="font-size:24px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)</span>
+<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)</span>
+<span id="cb8-6"><a href="" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><span class="remark">Remarque.</span> Ici, le cas de base, c’est de <strong>ne rien faire</strong> ! Une liste de taille <span class="math inline">\(\leq 1\)</span> est déjà triée.</p>
 </div>
 </section>
 <section id="tri-par-fusion-exemple-a" class="slide level2">
@@ -692,6 +749,62 @@ Diviser pour régner
 <div class="img-center" style="padding-top: 70px">
 <p><img data-src="media/tri_fusion_B-obj.svg" class="dark-figure" style="width:100.0%"></p>
 </div>
+</section>
+<section id="fusion-code" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Fusion : code</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<div class="sourceCode" id="cb9" style="font-size:24px;" data-code-line-numbers="1-6"><pre class="sourceCode numberSource python no-line-numbers hide-unhighlighted number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb9-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb9-2" class="hljs-ln-code"><a href=""></a>    <span class="co">'''</span></span>
+<span id="cb9-3" class="hljs-ln-code"><a href=""></a><span class="co">    Entrée: L triée entre bas et milieu inclus,</span></span>
+<span id="cb9-4" class="hljs-ln-code"><a href=""></a><span class="co">            et entre milieu+1 et haut inclus</span></span>
+<span id="cb9-5" class="hljs-ln-code"><a href=""></a><span class="co">    Trie L entre bas et haut inclus</span></span>
+<span id="cb9-6" class="hljs-ln-code"><a href=""></a><span class="co">    '''</span></span>
+<span id="cb9-7" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb9-8" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb9-9" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb9-10" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb9-11" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-12" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-13" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb9-14" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb9-15" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb9-16" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-17" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb9-18" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb9-19" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:54%;">
+
+</div></div>
+</section>
+<section id="fusion-code-1" class="slide level2 smaller unlisted" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Fusion : code</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<div class="sourceCode" id="cb10" style="font-size:24px;" data-code-line-numbers="1-19"><pre class="sourceCode numberSource python no-line-numbers hide-unhighlighted number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb10-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb10-2" class="hljs-ln-code"><a href=""></a>    <span class="co">'''</span></span>
+<span id="cb10-3" class="hljs-ln-code"><a href=""></a><span class="co">    Entrée: L triée entre bas et milieu inclus,</span></span>
+<span id="cb10-4" class="hljs-ln-code"><a href=""></a><span class="co">            et entre milieu+1 et haut inclus</span></span>
+<span id="cb10-5" class="hljs-ln-code"><a href=""></a><span class="co">    Trie L entre bas et haut inclus</span></span>
+<span id="cb10-6" class="hljs-ln-code"><a href=""></a><span class="co">    '''</span></span>
+<span id="cb10-7" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb10-8" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb10-9" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb10-10" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb10-11" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-12" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-13" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb10-14" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb10-15" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb10-16" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-17" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb10-18" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb10-19" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:54%;">
+<p>On copie d’abord les deux moitiés avec des tranches (voir l’<a href="../2026-27-Cours4/indexage_avance.html">annexe du Cours 4</a>) : <code>L[bas:milieu + 1]</code> est une nouvelle liste qui contient <code>L[bas]</code>, …, <code>L[milieu]</code>, et <code>L[milieu + 1:haut + 1]</code> contient <code>L[milieu + 1]</code>, …, <code>L[haut]</code>.</p>
+<p>Puis on remplit <code>L[bas]</code>, …, <code>L[haut]</code> en prenant à chaque fois <strong>le plus petit</strong> des premiers éléments pas encore copiés de <code>L1</code> et de <code>L2</code>.</p>
+<p><span class="remark">Remarque.</span> <code>float('inf')</code> est l’<strong>infini</strong> : il est plus grand que tout nombre. Placé à la fin de <code>L1</code> et de <code>L2</code>, il évite de sortir d’une liste dont on a déjà copié tous les éléments : on prend alors toujours dans l’autre.</p>
+</div></div>
 </section>
 <section id="correctitude-idée" class="slide level2 smaller">
 <h2>Correctitude (idée)</h2>
@@ -708,20 +821,20 @@ Diviser pour régner
 <p>Au début de l’itération <code>i</code>, <code>L[bas]</code>, …, <code>L[i-1]</code> sont les <code>i - bas</code> plus petits éléments de <code>L1</code> et <code>L2</code>, <strong>triés</strong> ; et <code>L1[L1_index]</code> et <code>L2[L2_index]</code> sont les plus petits éléments de leurs listes respectives qui n’ont pas encore été copiés dans <code>L</code>.</p>
 </div>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb5" style="font-size:24px; margin-top: 15px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb5-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb5-10"><a href="" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb5-11"><a href="" aria-hidden="true" tabindex="-1"></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb5-12"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb5-13"><a href="" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb5-14"><a href="" aria-hidden="true" tabindex="-1"></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" style="font-size:24px; margin-top: 15px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb11-6"><a href="" aria-hidden="true" tabindex="-1"></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-7"><a href="" aria-hidden="true" tabindex="-1"></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb11-9"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb11-10"><a href="" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb11-11"><a href="" aria-hidden="true" tabindex="-1"></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb11-12"><a href="" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb11-13"><a href="" aria-hidden="true" tabindex="-1"></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb11-14"><a href="" aria-hidden="true" tabindex="-1"></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </div>
 </section>
@@ -733,20 +846,20 @@ Diviser pour régner
 <li>La taille de l’entrée est <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>, c’est-à-dire la longueur totale des deux listes à fusionner.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb6" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb6-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb6-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb6-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
-<span id="cb6-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb6-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb6-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb6-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb6-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
-<span id="cb6-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb6-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb6-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb6-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
-<span id="cb6-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb6-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb12-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb12-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb12-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
+<span id="cb12-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb12-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb12-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
+<span id="cb12-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb12-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb12-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb12-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb12-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb12-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="complexité-de-fusion-1" class="slide level2 smaller unlisted" data-auto-animate="true">
@@ -758,20 +871,20 @@ Diviser pour régner
 <li>Les deux tranches copient <span class="math inline">\((\text{milieu} - \text{bas} + 1) + (\text{haut} - \text{milieu}) = n\)</span> éléments : elles prennent un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb7" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="2-3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb7-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb7-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb7-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
-<span id="cb7-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb7-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb7-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
-<span id="cb7-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb7-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb7-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb7-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
-<span id="cb7-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb7-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="2-3"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb13-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb13-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb13-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
+<span id="cb13-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb13-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb13-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
+<span id="cb13-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb13-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb13-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb13-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb13-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb13-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="complexité-de-fusion-2" class="slide level2 smaller unlisted" data-auto-animate="true">
@@ -784,20 +897,20 @@ Diviser pour régner
 <li>La boucle <code>for</code> itère <span class="math inline">\(n\)</span> fois et prend donc un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb8" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="8"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb8-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb8-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb8-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
-<span id="cb8-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb8-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb8-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb8-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
-<span id="cb8-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb8-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb8-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb8-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
-<span id="cb8-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb8-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="8"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb14-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb14-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb14-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
+<span id="cb14-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb14-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb14-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
+<span id="cb14-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb14-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb14-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb14-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb14-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="complexité-de-fusion-3" class="slide level2 smaller unlisted" data-auto-animate="true">
@@ -810,20 +923,20 @@ Diviser pour régner
 <li>La boucle <code>for</code> itère <span class="math inline">\(n\)</span> fois et prend donc un temps <span class="math inline">\(\Theta(n)\)</span>.</li>
 </ul>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb9" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb9-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
-<span id="cb9-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb9-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
-<span id="cb9-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb9-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
-<span id="cb9-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
-<span id="cb9-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
-<span id="cb9-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
-<span id="cb9-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb9-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
-<span id="cb9-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
-<span id="cb9-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" style="font-size:24px; margin-top: 15px;" data-code-line-numbers="1-14"><pre class="sourceCode numberSource python no-line-numbers number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode python hljs"><span id="cb15-1" class="hljs-ln-code"><a href=""></a><span class="kw">def</span> fusion(L, bas, milieu, haut):</span>
+<span id="cb15-2" class="hljs-ln-code"><a href=""></a>    L1 <span class="op">=</span> L[bas:milieu <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb15-3" class="hljs-ln-code"><a href=""></a>    L2 <span class="op">=</span> L[milieu <span class="op">+</span> <span class="dv">1</span>:haut <span class="op">+</span> <span class="dv">1</span>]     <span class="co"># Θ(n)</span></span>
+<span id="cb15-4" class="hljs-ln-code"><a href=""></a>    L1.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb15-5" class="hljs-ln-code"><a href=""></a>    L2.append(<span class="bu">float</span>(<span class="st">'inf'</span>))</span>
+<span id="cb15-6" class="hljs-ln-code"><a href=""></a>    L1_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-7" class="hljs-ln-code"><a href=""></a>    L2_index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-8" class="hljs-ln-code"><a href=""></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(bas, haut <span class="op">+</span> <span class="dv">1</span>):  <span class="co"># Θ(n)</span></span>
+<span id="cb15-9" class="hljs-ln-code"><a href=""></a>        <span class="cf">if</span> L1[L1_index] <span class="op">&lt;=</span> L2[L2_index]:</span>
+<span id="cb15-10" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L1[L1_index]</span>
+<span id="cb15-11" class="hljs-ln-code"><a href=""></a>            L1_index <span class="op">=</span> L1_index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb15-12" class="hljs-ln-code"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb15-13" class="hljs-ln-code"><a href=""></a>            L[i] <span class="op">=</span> L2[L2_index]</span>
+<span id="cb15-14" class="hljs-ln-code"><a href=""></a>            L2_index <span class="op">=</span> L2_index <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <div class="center-container" style="padding-top: 30px;">
 <p><code>fusion</code> a la complexité <span class="math inline">\(\Theta(n) + \Theta(n) = \Theta(n)\)</span>.</p>
@@ -835,12 +948,12 @@ Diviser pour régner
 <ul>
 <li>Soit <span class="math inline">\(T(n)\)</span> le temps de parcours, au pire des cas, de <code>tri_par_fusion</code> pour une entrée de taille <span class="math inline">\(n = \text{haut} - \text{bas} + 1\)</span>. On suppose que <span class="math inline">\(n = 2^k\)</span>, où <span class="math inline">\(k &gt; 0\)</span> est un entier.</li>
 </ul>
-<div class="sourceCode" id="cb10" style="margin-top: 10px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)          <span class="co"># T(n/2)</span></span>
-<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)     <span class="co"># T(n/2)</span></span>
-<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)            <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" style="margin-top: 10px;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tri_par_fusion(L, bas, haut):</span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> haut <span class="op">-</span> bas <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>        milieu <span class="op">=</span> (bas <span class="op">+</span> haut) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, bas, milieu)          <span class="co"># T(n/2)</span></span>
+<span id="cb16-5"><a href="" aria-hidden="true" tabindex="-1"></a>        tri_par_fusion(L, milieu <span class="op">+</span> <span class="dv">1</span>, haut)     <span class="co"># T(n/2)</span></span>
+<span id="cb16-6"><a href="" aria-hidden="true" tabindex="-1"></a>        fusion(L, bas, milieu, haut)            <span class="co"># cn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>On a alors la <strong>relation de récurrence</strong> :</li>

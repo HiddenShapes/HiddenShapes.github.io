@@ -385,6 +385,12 @@
     width: 0;
 }
 
+/* Code qui se remplit (Cours 9, « Fusion : code ») : avec .hide-unhighlighted, les lignes hors de
+   code-line-numbers sont invisibles au lieu d'être grisées (le bloc garde sa hauteur complète). */
+.reveal div.sourceCode pre.hide-unhighlighted code.has-line-highlights > span:not(.highlight-line) {
+    opacity: 0;
+}
+
 /* ==========================================================================
    Flux d'exécution d'une fonction (cours 3)
 
