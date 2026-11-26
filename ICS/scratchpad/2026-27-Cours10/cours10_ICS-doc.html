@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Leonard Hardiman et Ghid Maatouk">
+
+<title>Informatique et Calcul Scientifique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="cours10_ICS-doc_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cours10_ICS-doc_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="cours10_ICS-doc_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="cours10_ICS-doc_files/libs/quarto-html/popper.min.js"></script>
+<script src="cours10_ICS-doc_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cours10_ICS-doc_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cours10_ICS-doc_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cours10_ICS-doc_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cours10_ICS-doc_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cours10_ICS-doc_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cours10_ICS-doc_files/libs/bootstrap/bootstrap-793d2f895026c625e46f27d038bf7b40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom-doc.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#les-sept-ponts-de-königsberg" id="toc-les-sept-ponts-de-königsberg" class="nav-link active" data-scroll-target="#les-sept-ponts-de-königsberg">Les sept ponts de Königsberg</a></li>
+  <li><a href="#graphes" id="toc-graphes" class="nav-link" data-scroll-target="#graphes">Graphes</a></li>
+  <li><a href="#les-sept-ponts-de-königsberg-modélisation" id="toc-les-sept-ponts-de-königsberg-modélisation" class="nav-link" data-scroll-target="#les-sept-ponts-de-königsberg-modélisation">Les sept ponts de Königsberg : modélisation</a></li>
+  <li><a href="#graphe-définition" id="toc-graphe-définition" class="nav-link" data-scroll-target="#graphe-définition">Graphe : définition</a></li>
+  <li><a href="#graphe-dirigé" id="toc-graphe-dirigé" class="nav-link" data-scroll-target="#graphe-dirigé">Graphe dirigé</a></li>
+  <li><a href="#graphe-non-dirigé" id="toc-graphe-non-dirigé" class="nav-link" data-scroll-target="#graphe-non-dirigé">Graphe non dirigé</a></li>
+  <li><a href="#graphe-pondéré" id="toc-graphe-pondéré" class="nav-link" data-scroll-target="#graphe-pondéré">Graphe pondéré</a></li>
+  <li><a href="#graphe-simple-vs-multigraphe" id="toc-graphe-simple-vs-multigraphe" class="nav-link" data-scroll-target="#graphe-simple-vs-multigraphe">Graphe simple vs multigraphe</a></li>
+  <li><a href="#exemple-dapplication-réseaux-routiers" id="toc-exemple-dapplication-réseaux-routiers" class="nav-link" data-scroll-target="#exemple-dapplication-réseaux-routiers">Exemple d’application : réseaux routiers</a></li>
+  <li><a href="#exemple-dapplication-réseaux-sociaux" id="toc-exemple-dapplication-réseaux-sociaux" class="nav-link" data-scroll-target="#exemple-dapplication-réseaux-sociaux">Exemple d’application : réseaux sociaux</a></li>
+  <li><a href="#représentation-dun-graphe-en-mémoire" id="toc-représentation-dun-graphe-en-mémoire" class="nav-link" data-scroll-target="#représentation-dun-graphe-en-mémoire">Représentation d’un graphe en mémoire</a></li>
+  <li><a href="#a.-matrice-dadjacence" id="toc-a.-matrice-dadjacence" class="nav-link" data-scroll-target="#a.-matrice-dadjacence">A. Matrice d’adjacence</a></li>
+  <li><a href="#b.-liste-dadjacence" id="toc-b.-liste-dadjacence" class="nav-link" data-scroll-target="#b.-liste-dadjacence">B. Liste d’adjacence</a></li>
+  <li><a href="#représentation-de-graphes" id="toc-représentation-de-graphes" class="nav-link" data-scroll-target="#représentation-de-graphes">Représentation de graphes</a></li>
+  <li><a href="#listes-python" id="toc-listes-python" class="nav-link" data-scroll-target="#listes-python">Listes Python</a></li>
+  <li><a href="#listes-python-accéder-à-un-élément" id="toc-listes-python-accéder-à-un-élément" class="nav-link" data-scroll-target="#listes-python-accéder-à-un-élément">Listes Python : accéder à un élément</a></li>
+  <li><a href="#listes-python-append-et-pop" id="toc-listes-python-append-et-pop" class="nav-link" data-scroll-target="#listes-python-append-et-pop">Listes Python : <code>append</code> et <code>pop</code></a></li>
+  <li><a href="#listes-python-insert-et-remove" id="toc-listes-python-insert-et-remove" class="nav-link" data-scroll-target="#listes-python-insert-et-remove">Listes Python : <code>insert</code> et <code>remove</code></a></li>
+  <li><a href="#listes-python-temps-de-parcours" id="toc-listes-python-temps-de-parcours" class="nav-link" data-scroll-target="#listes-python-temps-de-parcours">Listes Python : temps de parcours</a></li>
+  <li><a href="#dictionnaires-python" id="toc-dictionnaires-python" class="nav-link" data-scroll-target="#dictionnaires-python">Dictionnaires Python</a></li>
+  <li><a href="#matrice-vs-listes-dadjacence-espace" id="toc-matrice-vs-listes-dadjacence-espace" class="nav-link" data-scroll-target="#matrice-vs-listes-dadjacence-espace">Matrice vs listes d’adjacence : espace</a></li>
+  <li><a href="#matrice-vs-listes-dadjacence-temps" id="toc-matrice-vs-listes-dadjacence-temps" class="nav-link" data-scroll-target="#matrice-vs-listes-dadjacence-temps">Matrice vs listes d’adjacence : temps</a></li>
+  <li><a href="#chemins-distance" id="toc-chemins-distance" class="nav-link" data-scroll-target="#chemins-distance">Chemins, distance</a></li>
+  <li><a href="#exemple-graphe-non-dirigé" id="toc-exemple-graphe-non-dirigé" class="nav-link" data-scroll-target="#exemple-graphe-non-dirigé">Exemple : graphe non dirigé</a></li>
+  <li><a href="#exemple-graphe-dirigé" id="toc-exemple-graphe-dirigé" class="nav-link" data-scroll-target="#exemple-graphe-dirigé">Exemple : graphe dirigé</a></li>
+  <li><a href="#parcourir-des-graphes" id="toc-parcourir-des-graphes" class="nav-link" data-scroll-target="#parcourir-des-graphes">Parcourir des graphes</a></li>
+  <li><a href="#parcours-en-largeur-bfs" id="toc-parcours-en-largeur-bfs" class="nav-link" data-scroll-target="#parcours-en-largeur-bfs">Parcours en largeur (BFS)</a></li>
+  <li><a href="#bfs-spécification" id="toc-bfs-spécification" class="nav-link" data-scroll-target="#bfs-spécification">BFS : spécification</a></li>
+  <li><a href="#bfs-code" id="toc-bfs-code" class="nav-link" data-scroll-target="#bfs-code">BFS : code</a></li>
+  <li><a href="#bfs-parcours" id="toc-bfs-parcours" class="nav-link" data-scroll-target="#bfs-parcours">BFS : parcours</a></li>
+  <li><a href="#bfs-ordre-de-parcours" id="toc-bfs-ordre-de-parcours" class="nav-link" data-scroll-target="#bfs-ordre-de-parcours">BFS : ordre de parcours</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+          scale: 100,
+          linebreaks: { automatic: true },
+      		mtextFontInherit: true
+        }});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.frame-viewer').forEach(function (viewer) {
+    var frames = Array.prototype.filter.call(
+      viewer.children,
+      function (el) { return el.classList && el.classList.contains('frame'); }
+    );
+    if (frames.length < 2) return;
+
+    viewer.setAttribute('tabindex', '0');
+
+    /* Cours 8 : les étapes sont empilées dans une grille (.frame-stack) et seule la visibilité change,
+       pour que la hauteur reste celle de la plus grande étape et que la page ne saute pas au clic. */
+    var stack = document.createElement('div');
+    stack.className = 'frame-stack';
+    viewer.insertBefore(stack, frames[0]);
+    frames.forEach(function (f) { stack.appendChild(f); });
+
+    var controls = document.createElement('div');
+    controls.className = 'frame-controls';
+
+    var prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'btn btn-sm btn-outline-secondary frame-prev';
+    prev.textContent = '← Précédent';
+
+    var counter = document.createElement('span');
+    counter.className = 'frame-counter';
+
+    var next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'btn btn-sm btn-outline-secondary frame-next';
+    next.textContent = 'Suivant →';
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    viewer.appendChild(controls);
+
+    var current = 0;
+    function show(i) {
+      current = Math.max(0, Math.min(frames.length - 1, i));
+      frames.forEach(function (f, k) {
+        f.style.visibility = (k === current) ? '' : 'hidden';
+        f.setAttribute('aria-hidden', k === current ? 'false' : 'true');
+      });
+      counter.textContent = (current + 1) + ' / ' + frames.length;
+      prev.disabled = (current === 0);
+      next.disabled = (current === frames.length - 1);
+    }
+    prev.addEventListener('click', function () { show(current - 1); });
+    next.addEventListener('click', function () { show(current + 1); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { show(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { show(current + 1); e.preventDefault(); }
+    });
+    show(0);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.spoiler').forEach(function (sp) {
+    var overlay = document.createElement('div');
+    overlay.className = 'spoiler-overlay';
+    overlay.textContent = 'Cliquez pour révéler';
+    sp.appendChild(overlay);
+    overlay.addEventListener('click', function () {
+      sp.classList.add('revealed');
+    });
+  });
+});
+</script>
+
+<script>
+/* Light/dark switch for the slides. Light is the default; the choice is
+   remembered per browser so a lecturer who prefers dark sets it once. Applied
+   before the slides are painted so it does not flash.
+   The switch is a small pill pinned to the top-right of the viewport, shown
+   on the title slide only so nothing sits in the corner during the lecture.
+   Deck pages only: the notes pages load the same header. */
+(function () {
+  var KEY = 'ics-slide-theme';
+  var root = document.documentElement;
+
+  /* header.html is included at the top of <body>, so the head is already
+     parsed and the reveal stylesheet is the reliable "this is a deck" marker. */
+  if (!document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  var btn = null;
+
+  function apply(theme) {
+    var light = theme === 'light';
+    root.classList.toggle('ics-light', light);
+    if (btn) {
+      btn.setAttribute('aria-checked', light ? 'true' : 'false');
+      btn.title = light ? 'Passer au thème sombre' : 'Passer au thème clair';
+    }
+    /* canvas drawings cannot follow CSS, so they listen for this */
+    document.dispatchEvent(new CustomEvent('ics-theme-change', { detail: theme }));
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  apply(stored === 'dark' ? 'dark' : 'light');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-theme-toggle';
+    btn.setAttribute('role', 'switch');
+    btn.setAttribute('aria-label', 'Thème clair ou sombre');
+    var knob = document.createElement('span');
+    knob.className = 'ics-theme-knob';
+    btn.appendChild(knob);
+    document.body.appendChild(btn);
+
+    /* A click must not leave the button focused, or reveal stops seeing the
+       arrow keys and the deck can no longer be advanced from the keyboard.
+       Preventing the default on mousedown keeps the focus where it was; Tab
+       still reaches the button. */
+    btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var next = root.classList.contains('ics-light') ? 'dark' : 'light';
+      try { localStorage.setItem(KEY, next); } catch (e2) {}
+      apply(next);
+      btn.blur();
+    });
+    /* Only the two keys that press the button are held back, so that reveal
+       does not also advance the slide. The arrows must get through. */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') e.stopPropagation();
+    });
+
+    apply(root.classList.contains('ics-light') ? 'light' : 'dark');
+
+    /* the switch is only visible while the title slide is up */
+    function markTitle() {
+      var cur = window.Reveal && Reveal.getCurrentSlide && Reveal.getCurrentSlide();
+      btn.classList.toggle('on-title', !!cur && cur.id === 'title-slide');
+    }
+    function hook() {
+      markTitle();
+      Reveal.on('slidechanged', markTitle);
+    }
+    (function waitForReveal() {
+      if (window.Reveal && Reveal.isReady && Reveal.isReady()) { hook(); return; }
+      setTimeout(waitForReveal, 150);
+    })();
+  });
+})();
+</script>
+
+<script>
+/* Table of contents button for the notes on a phone.
+
+   Quarto hides the margin sidebar below 768px, and its own toc toggle only
+   ships with a website navbar, which a standalone document does not have.
+   This adds a small three-bar button pinned to the top right; tapping it
+   drops the contents down underneath it. Whether any of it is visible is
+   decided in custom-doc.css, so above 768px the button is not shown and the
+   sidebar stays in the margin as before.
+
+   Notes pages only: the decks load the same header. */
+(function () {
+  if (document.querySelector('link[href*="revealjs/dist/reveal.css"]')) return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('quarto-margin-sidebar');
+    if (!panel || !panel.querySelector('nav[role="doc-toc"]')) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ics-toc-btn';
+    btn.setAttribute('aria-label', 'Table des matières');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'quarto-margin-sidebar');
+    for (var i = 0; i < 3; i++) btn.appendChild(document.createElement('span'));
+    document.body.appendChild(btn);
+
+    function setOpen(open) {
+      document.documentElement.classList.toggle('ics-toc-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!document.documentElement.classList.contains('ics-toc-open'));
+    });
+
+    /* tapping a heading closes the panel, so the reader lands on the section */
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) setOpen(false);
+    });
+
+    /* anywhere else, or escape */
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* Out of the way while reading down the page, back as soon as the reader
+       scrolls up, which is the gesture for "where am I / take me elsewhere".
+       Always there at the top of the page, and never hidden while open. */
+    var lastY = window.scrollY;
+    function reveal(on) { btn.classList.toggle('ics-toc-btn-away', !on); }
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY, dy = y - lastY;
+      if (Math.abs(dy) < 6) return;          /* ignore jitter */
+      lastY = y;
+      if (document.documentElement.classList.contains('ics-toc-open')) return;
+      reveal(dy < 0 || y < 120);
+    }, { passive: true });
+  });
+})();
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Informatique et Calcul Scientifique</h1>
+<p class="subtitle lead">Cours 10</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Leonard Hardiman et Ghid Maatouk </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="les-sept-ponts-de-königsberg" class="level2">
+<h2 class="anchored" data-anchor-id="les-sept-ponts-de-königsberg">Les sept ponts de Königsberg</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/Konigsberg_bridges.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Existe-t-il un chemin à travers la ville qui emprunte <strong>chaque pont exactement une fois</strong> ?</li>
+<li>En 1736, Euler prouva <strong>qu’il n’existe pas de tel chemin</strong>. Ce résultat est considéré comme le début de la <strong>théorie des graphes</strong>.</li>
+</ul>
+</section>
+<section id="graphes" class="level2">
+<h2 class="anchored" data-anchor-id="graphes">Graphes</h2>
+<ul>
+<li>Un graphe est une structure mathématique appropriée pour représenter des <strong>relations</strong> entre des objets.</li>
+<li>Un graphe consiste en un ensemble de <strong>sommets</strong> reliés par des <strong>arêtes</strong>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/01-graph-undirected-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="les-sept-ponts-de-königsberg-modélisation" class="level2">
+<h2 class="anchored" data-anchor-id="les-sept-ponts-de-königsberg-modélisation">Les sept ponts de Königsberg : modélisation</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/Konigsberg_bridges2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<ul>
+<li>On peut représenter chaque masse de terre par un <strong>sommet</strong>, et relier deux sommets par une <strong>arête</strong> lorsque les deux masses de terre correspondantes sont reliées par un pont.</li>
+<li>Dans le <strong>graphe</strong> ainsi obtenu, la question devient : existe-t-il un chemin dans le graphe qui emprunte chaque arête exactement une fois ?</li>
+</ul>
+</section>
+<section id="graphe-définition" class="level2">
+<h2 class="anchored" data-anchor-id="graphe-définition">Graphe : définition</h2>
+<ul>
+<li>Un graphe <span class="math inline">\(G = (V, E)\)</span> est défini par son ensemble <span class="math inline">\(V\)</span> de sommets (<em>vertices</em> en anglais) et son ensemble <span class="math inline">\(E\)</span> d’arêtes (<em>edges</em> en anglais).</li>
+<li>Une arête <span class="math inline">\((u, v)\)</span> est une paire de sommets, ordonnés ou non.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/13-edge-uv-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+<ul>
+<li>À partir de là, il y a plusieurs types de graphe.</li>
+</ul>
+</section>
+<section id="graphe-dirigé" class="level2">
+<h2 class="anchored" data-anchor-id="graphe-dirigé">Graphe dirigé</h2>
+<ul>
+<li>Si les arêtes d’un graphe <span class="math inline">\(G\)</span> sont des paires <strong>ordonnées</strong> de sommets, le graphe est dit <strong>dirigé</strong>.</li>
+<li>Le graphe ci-dessous contient l’arête <span class="math inline">\((A,B)\)</span> mais pas l’arête <span class="math inline">\((B,A)\)</span>.
+<ul>
+<li>On dira que <span class="math inline">\(B\)</span> est <strong>voisin</strong> de <span class="math inline">\(A\)</span> ou <strong>adjacent</strong> à <span class="math inline">\(A\)</span> (mais <span class="math inline">\(A\)</span> n’est pas voisin de <span class="math inline">\(B\)</span>).</li>
+</ul></li>
+<li>Les graphes dirigés sont appropriés pour représenter des situations de flux ou de déplacement entre une source et une destination.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/02-graph-directed-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</section>
+<section id="graphe-non-dirigé" class="level2">
+<h2 class="anchored" data-anchor-id="graphe-non-dirigé">Graphe non dirigé</h2>
+<ul>
+<li>Si les arêtes d’un graphe <span class="math inline">\(G\)</span> sont des paires <strong>non ordonnées</strong> de sommets, le graphe est dit <strong>non dirigé</strong>.</li>
+<li>Dans le graphe ci-dessous, <span class="math inline">\((A,B)\)</span> et <span class="math inline">\((B,A)\)</span> dénotent la même arête.
+<ul>
+<li><span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> sont <strong>voisins</strong> l’un de l’autre ou <strong>adjacents</strong> l’un à l’autre.</li>
+</ul></li>
+<li>Les graphes non dirigés sont appropriés pour représenter des relations symétriques entre des objets.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/01-graph-undirected-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</section>
+<section id="graphe-pondéré" class="level2">
+<h2 class="anchored" data-anchor-id="graphe-pondéré">Graphe pondéré</h2>
+<ul>
+<li>Un graphe (dirigé ou non) est dit <strong>pondéré</strong> si <strong>un poids</strong> est associé à chaque arête du graphe.</li>
+<li>Selon les applications, les poids peuvent être des nombres entiers ou réels, de n’importe quel signe.</li>
+<li>Les graphes pondérés sont appropriés par exemple pour représenter le coût d’emprunter un certain chemin ou de prendre une certaine décision.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/04-graph-weighted-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</section>
+<section id="graphe-simple-vs-multigraphe" class="level2">
+<h2 class="anchored" data-anchor-id="graphe-simple-vs-multigraphe">Graphe simple vs multigraphe</h2>
+<ul>
+<li>Le graphe obtenu dans la modélisation du problème des ponts de Königsberg est en fait un <strong>multigraphe</strong>. Un multigraphe (dirigé ou non)
+<ul>
+<li>permet à plusieurs arêtes de relier la même paire de sommets <span class="math inline">\((u,v)\)</span> ;</li>
+<li>permet à une arête d’avoir la forme <span class="math inline">\((u,u)\)</span>, c’est-à-dire de relier un sommet à lui-même.</li>
+</ul></li>
+<li>Un <strong>graphe simple</strong> ne permet ni les arêtes «&nbsp;parallèles&nbsp;», ni les arêtes qui relient un sommet à lui-même.</li>
+<li>Sauf si spécifié autrement, on considérera toujours des graphes simples.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/05-simple-vs-multi-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</section>
+<section id="exemple-dapplication-réseaux-routiers" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-dapplication-réseaux-routiers">Exemple d’application : réseaux routiers</h2>
+<ul>
+<li>On peut représenter un réseau routier par un graphe dirigé et pondéré :
+<ul>
+<li>chaque intersection de routes est un sommet ;</li>
+<li>chaque segment de route entre deux intersections est une arête dirigée selon le sens de la circulation ;</li>
+<li>le poids d’une arête peut être la longueur du segment de route correspondant, ou une estimation du temps nécessaire pour parcourir ce segment de route.</li>
+</ul></li>
+<li>On s’intéresse entre autres à des algorithmes qui calculent le <strong>plus court chemin</strong> entre deux points (problème d’optimisation).</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/lausanne1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/lausanne2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-dapplication-réseaux-sociaux" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-dapplication-réseaux-sociaux">Exemple d’application : réseaux sociaux</h2>
+<ul>
+<li>On peut représenter les relations sur un réseau social comme MySpace par un graphe non dirigé :
+<ul>
+<li>chaque personne est un sommet ;</li>
+<li>il existe une arête entre deux sommets si ces deux personnes sont amies ;</li>
+<li>le graphe est non dirigé puisque la relation d’amitié est symétrique.</li>
+</ul></li>
+<li>On s’intéresse entre autres à des questions du type «&nbsp;quels sont les amis d’amis de la personne A ?&nbsp;» ou bien «&nbsp;quelle est la distance entre les personnes A et B ?&nbsp;»</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/network.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Un réseau social où la relation de «&nbsp;suivi&nbsp;» est non symétrique, comme Twitter, Instagram ou TikTok, sera modélisé par un graphe dirigé.</li>
+</ul>
+</section>
+<section id="représentation-dun-graphe-en-mémoire" class="level2">
+<h2 class="anchored" data-anchor-id="représentation-dun-graphe-en-mémoire">Représentation d’un graphe en mémoire</h2>
+<ul>
+<li><p>Comment <strong>stocker un graphe en mémoire</strong> ?</p></li>
+<li><p>Le graphe est complètement décrit par l’ensemble de ses <strong>sommets</strong> et l’ensemble de ses <strong>arêtes</strong>. Comment représenter <strong>efficacement</strong> ces ensembles en mémoire ?</p></li>
+<li><p>Que veut dire <strong>efficacement</strong> ?</p>
+<ul>
+<li>Espace en <strong>mémoire</strong></li>
+<li><strong>Temps</strong> de parcours des opérations</li>
+</ul></li>
+<li><p>Quelles sont les opérations qu’on veut pouvoir faire efficacement ?</p>
+<p>Cela dépendra de <strong>l’application</strong>. Est-il plus important de pouvoir…</p>
+<p>A. décider rapidement si deux sommets sont reliés par une arête ? B. parcourir efficacement les voisins d’un sommet donné ?</p></li>
+<li><p>Les deux manières les plus communes pour représenter un graphe en mémoire sont</p>
+<p>A. avec une <strong>matrice d’adjacence</strong> ; B. avec des <strong>listes d’adjacence</strong>.</p></li>
+<li><p>Dans ce qui suit, on va toujours considérer un graphe <span class="math inline">\(G\)</span> avec <span class="math inline">\(n\)</span> sommets <span class="math inline">\(0, 1, \ldots, n-1\)</span>, et <span class="math inline">\(m\)</span> arêtes.</p></li>
+<li><p>Si <span class="math inline">\(G\)</span> est dirigé, <span class="math inline">\(m\)</span> peut prendre n’importe quelle valeur entre <span class="math inline">\(0\)</span> et <span class="math inline">\(n(n-1)\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(G\)</span> est non dirigé, <span class="math inline">\(m\)</span> peut prendre n’importe quelle valeur entre <span class="math inline">\(0\)</span> et <span class="math inline">\(n(n-1)/2\)</span>.</p></li>
+<li><p>On remarque qu’un graphe a donc toujours <span class="math inline">\(O(n^2)\)</span> arêtes.</p></li>
+</ul>
+</section>
+<section id="a.-matrice-dadjacence" class="level2">
+<h2 class="anchored" data-anchor-id="a.-matrice-dadjacence">A. Matrice d’adjacence</h2>
+<ul>
+<li>Pour représenter <span class="math inline">\(G\)</span> avec une matrice d’adjacence, on stocke une matrice dont les lignes et les colonnes sont indexées par les sommets de <span class="math inline">\(G\)</span>. Elle contient à la ligne <span class="math inline">\(u\)</span> et colonne <span class="math inline">\(v\)</span> :
+<ul>
+<li><span class="math inline">\(1\)</span> si l’arête <span class="math inline">\((u,v)\)</span> existe dans le graphe (<span class="math inline">\(v\)</span> est <strong>adjacent</strong> à <span class="math inline">\(u\)</span>) ;</li>
+<li><span class="math inline">\(0\)</span> sinon.</li>
+</ul></li>
+<li>En Python, on peut représenter une telle matrice avec une liste de taille <span class="math inline">\(n\)</span> dont chaque élément est une liste de taille <span class="math inline">\(n\)</span> (un tableau, comme au Cours 5).
+<ul>
+<li>Pour le graphe ci-dessous : <code>[[0,1,0,0],[0,0,1,1],[0,0,0,1],[0,0,1,0]]</code></li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/06-adjmatrix-directed-1-bis.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Si <span class="math inline">\(G\)</span> est non dirigé, la matrice d’adjacence sera <strong>symétrique</strong>.</li>
+<li>Si <span class="math inline">\(G\)</span> est pondéré, il suffit de remplacer chaque <span class="math inline">\(1\)</span> dans la matrice par le poids de l’arête correspondante.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/07-adjmatrix-weighted-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</section>
+<section id="b.-liste-dadjacence" class="level2">
+<h2 class="anchored" data-anchor-id="b.-liste-dadjacence">B. Liste d’adjacence</h2>
+<ul>
+<li>Pour représenter <span class="math inline">\(G\)</span> avec des listes d’adjacence, on stocke, pour chaque sommet de <span class="math inline">\(G\)</span>, <strong>une liste de ses voisins</strong>.</li>
+<li>En Python, on peut stocker ces données dans un <strong>dictionnaire</strong> dont les clés sont les sommets et les valeurs les listes des voisins des sommets.
+<ul>
+<li>Pour le graphe du haut : <code>{0:[1], 1:[2,3], 2:[3], 3:[2]}</code></li>
+<li>Pour le graphe du bas : <code>{0:[1], 1:[0,2,3], 2:[1,3], 3:[1,2]}</code></li>
+<li>Pour un graphe pondéré, on peut stocker des tuples (sommet, poids) dans la liste des voisins.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/08-adjlist-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+<ul>
+<li>On pourrait aussi utiliser une liste où l’élément <code>i</code> est la liste des voisins du sommet <code>i</code>, mais un dictionnaire nous permet d’avoir des sommets nommés autrement que <span class="math inline">\(0, 1, \ldots, n-1\)</span>.</li>
+</ul>
+</section>
+<section id="représentation-de-graphes" class="level2">
+<h2 class="anchored" data-anchor-id="représentation-de-graphes">Représentation de graphes</h2>
+<ul>
+<li><p>On a vu deux manières de représenter un graphe en mémoire :</p>
+<p>A. la <strong>matrice d’adjacence</strong>, B. les <strong>listes d’adjacence</strong> (stockées dans un dictionnaire).</p></li>
+<li><p><strong>Laquelle choisir ?</strong> Cela dépend</p>
+<ul>
+<li>des <strong>opérations</strong> qu’on veut effectuer sur le graphe,</li>
+<li>du <strong>coût en temps</strong> de ces opérations dans chaque représentation,</li>
+<li>de l’<strong>espace mémoire</strong> occupé par chaque représentation.</li>
+</ul></li>
+<li><p>Le coût des opérations dépend directement de la façon dont les <strong>listes</strong> et les <strong>dictionnaires</strong> sont implémentés en Python.</p></li>
+<li><p>On va donc d’abord étudier ces deux structures de données, avant de comparer les deux représentations.</p></li>
+</ul>
+</section>
+<section id="listes-python" class="level2">
+<h2 class="anchored" data-anchor-id="listes-python">Listes Python</h2>
+<ul>
+<li>Rappel du Cours 7 (cf.&nbsp;<a href="https://hidden-shapes.com/ICS/2026-27-Cours7/notes.html#operations-de-liste">«&nbsp;Modèle de computation : opérations de listes&nbsp;»</a>) : une liste est stockée en mémoire comme un bloc contigu de <strong>références</strong> aux éléments de la liste.
+<ul>
+<li>Une référence est l’adresse en mémoire de l’élément auquel elle se réfère.</li>
+</ul></li>
+<li>Chaque référence occupe <strong>un bloc de taille constante</strong> en mémoire.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/list.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</section>
+<section id="listes-python-accéder-à-un-élément" class="level2">
+<h2 class="anchored" data-anchor-id="listes-python-accéder-à-un-élément">Listes Python : accéder à un élément</h2>
+<ul>
+<li>Pour accéder à un élément <code>L[i]</code>, il faut :
+<ul>
+<li><strong>calculer</strong> l’adresse de la référence à l’objet correspondant ;</li>
+<li>accéder à l’élément en mémoire.</li>
+</ul></li>
+<li>Ces opérations se font en <strong>temps constant</strong>. On peut donc accéder à un élément <code>L[i]</code> (pour le lire ou le modifier) en temps <span class="math inline">\(\Theta(1)\)</span>.</li>
+</ul>
+</section>
+<section id="listes-python-append-et-pop" class="level2">
+<h2 class="anchored" data-anchor-id="listes-python-append-et-pop">Listes Python : <code>append</code> et <code>pop</code></h2>
+<ul>
+<li>Pour effectuer une opération <code>L.append()</code>, il faut :
+<ul>
+<li>modifier la longueur de la liste ;</li>
+<li>insérer une référence à un nouvel objet <strong>en fin de liste</strong>.</li>
+</ul></li>
+<li>On peut donc considérer que ces deux opérations se font <strong>en temps constant</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, et donc qu’on peut effectuer une opération <code>L.append()</code> en temps <span class="math inline">\(\Theta(1)\)</span>.</li>
+<li>De même, on peut effectuer une opération <code>L.pop()</code> <strong>en temps constant</strong>.</li>
+</ul>
+</section>
+<section id="listes-python-insert-et-remove" class="level2">
+<h2 class="anchored" data-anchor-id="listes-python-insert-et-remove">Listes Python : <code>insert</code> et <code>remove</code></h2>
+<ul>
+<li>Pour insérer un élément à l’index <code>i</code> avec <code>L.insert(i, x)</code>, il faut <strong>décaler</strong> vers la «&nbsp;droite&nbsp;» tous les éléments à partir de l’indice <code>i</code>.</li>
+<li>De même, pour enlever un élément avec <code>L.remove(x)</code>, <code>L.pop(i)</code> ou <code>del</code>, il faut <strong>décaler</strong> vers la «&nbsp;gauche&nbsp;» tous les éléments suivants.</li>
+<li>Ceci est nécessaire afin de maintenir la propriété de l’accès en temps constant.</li>
+<li>Pour une liste de taille <span class="math inline">\(n\)</span>, les opérations d’insertion ou de suppression à un index arbitraire prennent donc un temps <strong><span class="math inline">\(\Theta(n)\)</span></strong> au pire des cas.</li>
+</ul>
+</section>
+<section id="listes-python-temps-de-parcours" class="level2">
+<h2 class="anchored" data-anchor-id="listes-python-temps-de-parcours">Listes Python : temps de parcours</h2>
+<p>Soit <code>L</code> une liste de taille <span class="math inline">\(n\)</span>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Opération</th>
+<th>Temps de parcours moyen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lecture/écriture <code>L[i]</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>L.append(x)</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>L.pop()</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>L.insert(i,x)</code></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>L.pop(i)</code></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>L.remove(x)</code></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>del L[i:j:k]</code></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size:0.8em;">Source : <a href="https://wiki.python.org/moin/TimeComplexity">wiki.python.org/moin/TimeComplexity</a></span></p>
+</section>
+<section id="dictionnaires-python" class="level2">
+<h2 class="anchored" data-anchor-id="dictionnaires-python">Dictionnaires Python</h2>
+<ul>
+<li>Contrairement aux listes, les dictionnaires permettent la lecture, l’insertion et la suppression d’une clé arbitraire en <strong>temps moyen</strong> <span class="math inline">\(\Theta(1)\)</span>, grâce à l’utilisation de <strong>fonctions de hachage</strong> (qui dépassent le cadre de ce cours).</li>
+</ul>
+<p>Soit <code>D</code> un dictionnaire de taille <span class="math inline">\(n\)</span> (contenant <span class="math inline">\(n\)</span> paires clé-valeur).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 67%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Opération</th>
+<th>Temps de parcours moyen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lecture <code>D[key]</code>, <code>D.get(key)</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="even">
+<td>insertion/écriture <code>D[key] = val</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>suppression <code>D.pop(key)</code>, <code>del D[key]</code></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matrice-vs-listes-dadjacence-espace" class="level2">
+<h2 class="anchored" data-anchor-id="matrice-vs-listes-dadjacence-espace">Matrice vs listes d’adjacence : espace</h2>
+<ul>
+<li>La matrice d’adjacence prend un espace <strong><span class="math inline">\(\Theta(n^2)\)</span></strong> en mémoire <strong>indépendamment</strong> du nombre d’arêtes dans le graphe.</li>
+<li>Les listes d’adjacence prennent un espace <strong><span class="math inline">\(\Theta(n+m)\)</span></strong> en mémoire :
+<ul>
+<li>le dictionnaire contient <span class="math inline">\(n\)</span> éléments ;</li>
+<li>soit <span class="math inline">\((u,v)\)</span> une arête de <span class="math inline">\(G\)</span>. Si <span class="math inline">\(G\)</span> est dirigé, <span class="math inline">\(v\)</span> apparaît dans la liste de <span class="math inline">\(u\)</span> ; s’il est non dirigé, <span class="math inline">\(v\)</span> apparaît dans la liste de <span class="math inline">\(u\)</span> et <span class="math inline">\(u\)</span> dans la liste de <span class="math inline">\(v\)</span>. Chaque arête contribue donc <span class="math inline">\(1\)</span> (si <span class="math inline">\(G\)</span> est dirigé) ou <span class="math inline">\(2\)</span> (si <span class="math inline">\(G\)</span> est non dirigé) à la taille totale des listes ;</li>
+<li>la taille totale de toutes les listes est donc <span class="math inline">\(m\)</span> (<span class="math inline">\(G\)</span> dirigé) ou <span class="math inline">\(2m\)</span> (<span class="math inline">\(G\)</span> non dirigé).</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/adj_list.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Par exemple :
+<ul>
+<li>si <span class="math inline">\(m = \Theta(n)\)</span>, alors une représentation par listes d’adjacence prend un espace <strong><span class="math inline">\(\Theta(n)\)</span></strong> ;</li>
+<li>si <span class="math inline">\(m = \Theta(n\log n)\)</span>, alors cette représentation prend un espace <strong><span class="math inline">\(\Theta(n\log n)\)</span></strong> ;</li>
+<li>si <span class="math inline">\(m = \Theta(n^2)\)</span>, alors cette représentation prend un espace <strong><span class="math inline">\(\Theta(n^2)\)</span></strong>.</li>
+</ul></li>
+<li>Sauf si le graphe a «&nbsp;beaucoup&nbsp;» d’arêtes (<span class="math inline">\(m = \Theta(n^2)\)</span>), la matrice d’adjacence occupe beaucoup plus de place en mémoire que les listes d’adjacence.</li>
+</ul>
+</section>
+<section id="matrice-vs-listes-dadjacence-temps" class="level2">
+<h2 class="anchored" data-anchor-id="matrice-vs-listes-dadjacence-temps">Matrice vs listes d’adjacence : temps</h2>
+<ul>
+<li>Selon les opérations qu’on veut effectuer, il vaudra mieux adopter une représentation par matrice d’adjacence ou par listes d’adjacence.</li>
+<li><strong>Déterminer s’il existe une arête entre deux sommets :</strong>
+<ul>
+<li>se fait en <strong>temps constant</strong> dans une représentation par matrice (il suffit de lire <code>G[u][v]</code>) ;</li>
+<li>se fait en temps <strong><span class="math inline">\(\Theta(n)\)</span></strong> au pire des cas dans une représentation par listes d’adjacence (il faut parcourir toute la liste des voisins de <span class="math inline">\(u\)</span>).</li>
+</ul></li>
+<li><strong>Parcourir les voisins d’un sommet <span class="math inline">\(u\)</span> :</strong>
+<ul>
+<li>se fait en temps <strong><span class="math inline">\(\Theta(n)\)</span></strong> dans une représentation par matrice (il faut parcourir toute la ligne <code>G[u]</code>) ;</li>
+<li>se fait en temps <strong>proportionnel au nombre de voisins de <span class="math inline">\(u\)</span></strong> dans une représentation par listes d’adjacence (<span class="math inline">\(\Theta(n)\)</span> au pire des cas, mais souvent moins…).</li>
+</ul></li>
+<li>Comme nous nous intéressons principalement à des algorithmes qui parcourent un graphe, à partir de maintenant tous nos graphes seront implémentés sous forme de <strong>listes d’adjacence</strong>.</li>
+</ul>
+</section>
+<section id="chemins-distance" class="level2">
+<h2 class="anchored" data-anchor-id="chemins-distance">Chemins, distance</h2>
+<p>Soit un graphe <span class="math inline">\(G\)</span> et deux sommets <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span>.</p>
+<ul>
+<li>Un <strong>chemin de longueur <span class="math inline">\(\ell\)</span></strong> entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span> est une suite de sommets <span class="math inline">\(u_0, u_1, \ldots, u_\ell,\ \ell \geq 0\)</span> tous distincts, avec <span class="math inline">\(u_0 = u\)</span> et <span class="math inline">\(u_\ell = v\)</span>, tels que <span class="math inline">\(u_i\)</span> et <span class="math inline">\(u_{i+1}\)</span> sont liés par une arête pour tout <span class="math inline">\(0 \leq i \leq \ell - 1\)</span>.</li>
+<li>Un <strong>plus court chemin</strong> entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span> est un chemin entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span> de longueur minimale.</li>
+<li>La <strong>distance</strong> entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span> est la longueur d’un plus court chemin entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span>.</li>
+<li>S’il existe un chemin entre <span class="math inline">\(u\)</span> et <span class="math inline">\(v\)</span>, on dit que <span class="math inline">\(v\)</span> est <strong>atteignable</strong> depuis <span class="math inline">\(u\)</span>.</li>
+</ul>
+</section>
+<section id="exemple-graphe-non-dirigé" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-graphe-non-dirigé">Exemple : graphe non dirigé</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/09-paths-undirected-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+<p>Il existe plusieurs chemins entre <span class="math inline">\(0\)</span> et <span class="math inline">\(4\)</span> :</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>0, 1, 4</li>
+<li>0, 2, 4</li>
+<li>0, 1, 2, 4</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>0, 2, 1, 4</li>
+<li>0, 3, 5, 4</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Les chemins les plus courts sont 0, 1, 4 et 0, 2, 4.</li>
+<li>Les chemins inverses (par ex. 4, 1, 0) sont des chemins entre 4 et 0.</li>
+<li>Les sommets 0 et 4 sont à <strong>distance 2</strong> l’un de l’autre.</li>
+</ul>
+</section>
+<section id="exemple-graphe-dirigé" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-graphe-dirigé">Exemple : graphe dirigé</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/10-paths-directed-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+<p>Le seul chemin entre <span class="math inline">\(0\)</span> et <span class="math inline">\(4\)</span> est <strong>0, 2, 4</strong>.</p>
+<ul>
+<li>Le sommet 4 est à <strong>distance 2</strong> du sommet 0.</li>
+<li>Le seul chemin entre <span class="math inline">\(4\)</span> et <span class="math inline">\(0\)</span> est <strong>4, 5, 3, 0</strong>.</li>
+<li>Le sommet 0 est à <strong>distance 3</strong> du sommet 4.</li>
+</ul>
+</section>
+<section id="parcourir-des-graphes" class="level2">
+<h2 class="anchored" data-anchor-id="parcourir-des-graphes">Parcourir des graphes</h2>
+<ul>
+<li>Étant donné un graphe <span class="math inline">\(G\)</span> et un sommet <span class="math inline">\(s\)</span> de <span class="math inline">\(G\)</span> (la «&nbsp;source&nbsp;»), un <strong>algorithme de parcours</strong> permet d’<strong>explorer</strong> (ou de visiter), à partir de <span class="math inline">\(s\)</span>, tous les sommets de <span class="math inline">\(G\)</span> qui sont atteignables depuis <span class="math inline">\(s\)</span>.</li>
+<li>Un grand nombre d’algorithmes de graphes sont basés sur des algorithmes de parcours.</li>
+<li>Pour l’instant, on va simplement afficher les sommets du graphe dans l’ordre dans lequel ils sont parcourus.</li>
+<li>Les algorithmes de parcours de graphe tombent en général dans deux catégories : le <strong>parcours en largeur</strong> et le <strong>parcours en profondeur</strong>.</li>
+</ul>
+</section>
+<section id="parcours-en-largeur-bfs" class="level2">
+<h2 class="anchored" data-anchor-id="parcours-en-largeur-bfs">Parcours en largeur (BFS)</h2>
+<p>Le parcours de <span class="math inline">\(G\)</span> en largeur (<em>Breadth-First Search</em>) à partir d’un sommet <span class="math inline">\(s\)</span> explore les sommets de <span class="math inline">\(G\)</span> en commençant par <span class="math inline">\(s\)</span>, puis par les sommets à <strong>distance 1</strong> de <span class="math inline">\(s\)</span>, puis les sommets à <strong>distance 2</strong>, …</p>
+<div class="frame-viewer">
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-7.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/11-bfs-8.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bfs-spécification" class="level2">
+<h2 class="anchored" data-anchor-id="bfs-spécification">BFS : spécification</h2>
+<ul>
+<li>L’algorithme BFS prend en entrée une représentation <strong>par listes d’adjacence</strong> d’un graphe <span class="math inline">\(G\)</span>, et un sommet <span class="math inline">\(s\)</span> de <span class="math inline">\(G\)</span>.</li>
+<li>Il affiche les sommets de <span class="math inline">\(G\)</span> <strong>atteignables depuis <span class="math inline">\(s\)</span></strong>, avec la garantie suivante :</li>
+</ul>
+<div class="center-container">
+<p>Si la distance entre <span class="math inline">\(s\)</span> et <span class="math inline">\(u\)</span> est <strong>plus petite</strong> que la distance entre <span class="math inline">\(s\)</span> et <span class="math inline">\(v\)</span>, <strong><span class="math inline">\(u\)</span> apparaîtra avant <span class="math inline">\(v\)</span></strong> dans le parcours.</p>
+</div>
+<ul>
+<li>L’algorithme maintient un ensemble de sommets à parcourir (une liste «&nbsp;<strong>à faire</strong>&nbsp;») et choisit dans cet ensemble un prochain sommet à parcourir à chaque étape.</li>
+<li>Le choix de la structure de données pour cet ensemble de sommets (la liste «&nbsp;<strong>à faire</strong>&nbsp;») est important pour l’efficacité de l’algorithme.</li>
+<li>On présente aujourd’hui une version de BFS qui fonctionne correctement <strong>mais qui n’a pas un temps de parcours optimal</strong>.</li>
+</ul>
+</section>
+<section id="bfs-code" class="level2">
+<h2 class="anchored" data-anchor-id="bfs-code">BFS : code</h2>
+<div id="c773603e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> BFS(G, s):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    a_parcourir <span class="op">=</span> [s]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    vu <span class="op">=</span> {u: <span class="va">False</span> <span class="cf">for</span> u <span class="kw">in</span> G}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    vu[s] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> a_parcourir:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        sommet <span class="op">=</span> a_parcourir.pop(<span class="dv">0</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> u <span class="kw">in</span> G[sommet]:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> vu[u]:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                a_parcourir.append(u)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                vu[u] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(sommet)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> {<span class="dv">0</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="dv">1</span>: [<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">5</span>], <span class="dv">2</span>: [<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>], <span class="dv">3</span>: [<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">8</span>],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>     <span class="dv">4</span>: [<span class="dv">1</span>,<span class="dv">9</span>], <span class="dv">5</span>: [<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">11</span>], <span class="dv">6</span>: [<span class="dv">2</span>], <span class="dv">7</span>: [<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">12</span>], <span class="dv">8</span>: [<span class="dv">3</span>,<span class="dv">13</span>],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     <span class="dv">9</span>: [<span class="dv">4</span>,<span class="dv">11</span>], <span class="dv">10</span>: [<span class="dv">5</span>], <span class="dv">11</span>: [<span class="dv">5</span>,<span class="dv">9</span>], <span class="dv">12</span>: [<span class="dv">7</span>], <span class="dv">13</span>: [<span class="dv">8</span>]}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>BFS(G, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</code></pre>
+</div>
+</div>
+<ul>
+<li><code>a_parcourir</code> est la liste «&nbsp;à faire&nbsp;» ; <code>vu[u]</code> vaut <code>True</code> dès que <code>u</code> a été ajouté à cette liste, pour ne jamais l’y ajouter deux fois.</li>
+</ul>
+</section>
+<section id="bfs-parcours" class="level2">
+<h2 class="anchored" data-anchor-id="bfs-parcours">BFS : parcours</h2>
+<p>On illustre le déroulement de BFS sur le graphe de la section précédente, en montrant le contenu de la liste <code>a_parcourir</code> et les sommets visités à chaque étape (le sommet en tête de liste, en rouge, est celui qui va être traité ensuite).</p>
+<div class="frame-viewer">
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">0</span>]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">1</span>, 2, 3]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">2</span>, 3, 4, 5]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">3</span>, 4, 5, 6, 7]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">4</span>, 5, 6, 7, 8]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">5</span>, 6, 7, 8, 9]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">6</span>, 7, 8, 9, 10, 11]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">7</span>, 8, 9, 10, 11]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-7.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">8</span>, 9, 10, 11, 12]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-8.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">9</span>, 10, 11, 12, 13]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-9.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">10</span>, 11, 12, 13]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-10.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">11</span>, 12, 13]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-11.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">12</span>, 13]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-12.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = [<span class="highlight-red">13</span>]</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-13.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+<div class="frame">
+<p><code>a_parcourir = []</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/14-bfs-anim-14.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="margin-top:-25px; margin-bottom: -30px;;width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bfs-ordre-de-parcours" class="level2">
+<h2 class="anchored" data-anchor-id="bfs-ordre-de-parcours">BFS : ordre de parcours</h2>
+<ul>
+<li>L’ordre exact dans lequel BFS visite les sommets dépend de <strong>l’ordre des voisins dans chaque liste d’adjacence</strong> : pour un même graphe, deux dictionnaires différents peuvent donner deux parcours différents.</li>
+<li>Cependant, <strong>tous les parcours BFS valides respectent la règle suivante</strong> :</li>
+</ul>
+<div class="center-container">
+<p>Si la distance entre <span class="math inline">\(s\)</span> et <span class="math inline">\(u\)</span> est <strong>plus petite</strong> que la distance entre <span class="math inline">\(s\)</span> et <span class="math inline">\(v\)</span>, <strong><span class="math inline">\(u\)</span> apparaîtra avant <span class="math inline">\(v\)</span></strong> dans le parcours.</p>
+</div>
+<ul>
+<li>Exemple avec <code>s = 0</code> sur le graphe suivant :</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/25-bfs-order-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:25.0%"></p>
+</figure>
+</div>
+<ul>
+<li><p><code>G = {0:[1,2], 1:[0,3], 2:[0,4], 3:[1], 4:[2]}</code> → parcours <code>0, 1, 2, 3, 4</code></p></li>
+<li><p><code>G = {0:[2,1], 1:[0,3], 2:[0,4], 3:[1], 4:[2]}</code> → parcours <code>0, 2, 1, 4, 3</code></p></li>
+<li><p>Les deux respectent bien la règle : distance 0, avant distance 1, avant distance 2.</p></li>
+</ul>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>En fait, elles se font en temps <strong>moyen</strong> constant.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
